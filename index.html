@@ -1402,6 +1402,182 @@
     .cta-deco.d3 { width: 120px; height: 120px; top: 35%; right: 12%; opacity: .6; }
 
     .cta-final .container { position: relative; z-index: 1; }
+
+    /* ═══════════════════════════════════════════════════════════
+       UNIFICAÇÃO VISUAL — todo o site fala a mesma língua do hero
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── h2 consistente em todas as seções claras ──────────── */
+    .pain h2, .solution h2, .timeline-intro h2,
+    .testimonials h2, .forwho h2, .guarantee h2, .faq h2 {
+      font-weight: 700;
+      letter-spacing: -.025em;
+      color: var(--dark-green);
+    }
+
+    /* ── h2 pérola para seções escuras ─────────────────────── */
+    .inside h2 {
+      background: linear-gradient(170deg, #ffffff 0%, #dff0e2 45%, #ffffff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── eyebrow verde em qualquer fundo ───────────────────── */
+    .eyebrow { color: var(--accent); }
+    .inside .eyebrow { color: var(--accent); opacity: .9; }
+
+    /* ── PAIN: textura dot-grid sutil ──────────────────────── */
+    .pain { position: relative; overflow: hidden; background: var(--white); }
+    .pain::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(37,56,40,.028) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .pain .container { position: relative; z-index: 1; }
+
+    /* ── SOLUTION: pillar cards elevados ───────────────────── */
+    .solution { background: var(--off-white); }
+    .pillar {
+      background: var(--white);
+      border: 1px solid rgba(122,158,126,.15);
+      border-top: 3px solid var(--accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,.05);
+    }
+    .pillar:hover { box-shadow: 0 16px 40px rgba(0,0,0,.09); }
+    .pillar-icon {
+      width: 54px; height: 54px;
+      background: var(--dark-green);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+      margin-bottom: 1.3rem;
+    }
+    .pillar-title { color: var(--dark-green); font-size: 1.12rem; font-weight: 700; }
+    .pillar-text { color: var(--text-muted); }
+
+    /* ── INSIDE: dark premium (espelho do hero) ────────────── */
+    .inside { background: var(--dark-green); position: relative; overflow: hidden; }
+    .inside::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(122,158,126,.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(122,158,126,.12) 0%, transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .inside::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .inside .container { position: relative; z-index: 1; }
+    .inside-item {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .inside-item:hover { background: rgba(255,255,255,.12); box-shadow: none; }
+    .inside-text { color: rgba(250,248,245,.88); }
+    .inside-check {
+      background: rgba(122,158,126,.22);
+      border: 1px solid rgba(122,158,126,.4);
+      color: var(--accent);
+    }
+
+    /* ── TESTIMONIALS: beige + cards elevados ──────────────── */
+    .testimonials { background: var(--beige); }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid rgba(122,158,126,.15);
+      border-top: 3px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+    }
+    .testi-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 4px; right: 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem;
+      line-height: 1;
+      color: rgba(122,158,126,.1);
+      pointer-events: none;
+    }
+    .testi-text { color: var(--text); font-style: normal; line-height: 1.75; }
+    .testi-stars { color: #e8c245; }
+
+    /* ── FORWHO: seção off-white, coluna "sim" dark ─────────── */
+    .forwho { background: var(--off-white); }
+    .forwho-yes {
+      background: var(--dark-green);
+      border: 1px solid rgba(122,158,126,.2);
+    }
+    .forwho-yes h3 { color: rgba(250,248,245,.92); }
+    .forwho-yes .forwho-list li {
+      color: rgba(250,248,245,.78);
+      border-bottom-color: rgba(255,255,255,.07);
+    }
+    .forwho-yes .forwho-list li::before { color: var(--accent); }
+    .forwho-no { background: var(--white); border: 1px solid rgba(0,0,0,.06); }
+    .forwho-no h3 { color: var(--text); }
+
+    /* ── OFERTA: dark premium com glow + card de vidro ──────── */
+    .offer-section {
+      background: var(--dark-green);
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 55%, rgba(122,158,126,.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 78% 18%, rgba(122,158,126,.14) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section .container { position: relative; z-index: 1; }
+    .offer-box {
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.28),
+        0 2px 8px rgba(0,0,0,.06),
+        0 0 0 6px rgba(122,158,126,.1);
+    }
+
+    /* ── GARANTIA: off-white + badge reforçado ─────────────── */
+    .guarantee { background: var(--off-white); }
+    .guarantee-badge {
+      box-shadow:
+        0 0 0 8px rgba(122,158,126,.12),
+        0 0 0 18px rgba(122,158,126,.05),
+        0 12px 40px rgba(0,0,0,.1);
+    }
+    .guarantee h2 { color: var(--dark-green); }
+
+    /* ── FAQ: branco + estado aberto dark-green ─────────────── */
+    .faq { background: var(--white); }
+    .faq-item { border: 1px solid rgba(0,0,0,.06); }
+    .faq-item.open { border-color: rgba(122,158,126,.32); }
+    .faq-btn { font-weight: 600; }
+    .faq-item.open .faq-btn {
+      color: var(--dark-green);
+      background: rgba(122,158,126,.07);
+    }
+    .faq-body { color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -1509,6 +1685,7 @@
 <section class="pain section">
   <div class="container">
 
+    <span class="eyebrow reveal">Você reconhece isso?</span>
     <h2 class="reveal">
       Você já tentou. Sabe que não é<br>falta de força de vontade.
     </h2>
@@ -1721,6 +1898,7 @@
 <section class="testimonials section">
   <div class="container">
 
+    <span class="eyebrow reveal">Resultados reais</span>
     <h2 class="reveal">O que outras mulheres estão dizendo</h2>
 
     <div class="testi-grid">
@@ -1787,6 +1965,7 @@
 <section class="forwho section">
   <div class="container">
 
+    <span class="eyebrow reveal">Perfil ideal</span>
     <h2 class="reveal">Para quem é — e para quem não é</h2>
 
     <div class="forwho-grid">
@@ -1879,6 +2058,7 @@
           <div class="guarantee-badge-label">dias de<br>garantia</div>
         </div>
       </div>
+      <span class="eyebrow reveal">Compra sem risco</span>
       <h2>7 dias de garantia incondicional</h2>
       <p class="guarantee-text">
         Se por qualquer motivo você não ficar satisfeita com o conteúdo, basta
@@ -1896,6 +2076,7 @@
 <section class="faq section">
   <div class="container">
 
+    <span class="eyebrow reveal">Dúvidas comuns</span>
     <h2 class="reveal">Perguntas frequentes</h2>
 
     <div class="faq-list">
