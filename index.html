@@ -950,6 +950,346 @@
       .seals { flex-direction: column; align-items: center; }
       .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       PREMIUM LAYER
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── HERO: glow + floating chips ──────────────────────────── */
+    .book-wrapper {
+      position: relative;
+      min-height: 430px;
+      padding: 56px 32px 56px 0;
+    }
+
+    .book-glow {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at 55% 50%, rgba(122,158,126,.22) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .book { position: relative; z-index: 1; }
+
+    .float-chip {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid rgba(122,158,126,.38);
+      border-radius: 40px;
+      padding: 7px 14px 7px 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .76rem;
+      font-weight: 500;
+      color: var(--text);
+      box-shadow: 0 3px 14px rgba(0,0,0,.09), 0 1px 3px rgba(0,0,0,.04);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      z-index: 2;
+      animation: chipFloat var(--dur, 3.5s) ease-in-out var(--d, 0s) infinite;
+    }
+
+    .float-chip-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes chipFloat {
+      0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+      50%       { transform: translateY(-7px) rotate(var(--rot, 0deg)); }
+    }
+
+    .float-chip.c1 { top: 24px;  left: 12px;  --dur:3.4s; --d:.1s; --rot:-2deg; }
+    .float-chip.c2 { top: 130px; right: 4px;  --dur:3.8s; --d:.6s; --rot:1.5deg; }
+    .float-chip.c3 { bottom: 130px; right: 0px; --dur:3.5s; --d:1s;  --rot:-1.5deg; }
+    .float-chip.c4 { bottom: 24px; left: 16px; --dur:4.1s; --d:.4s; --rot:2deg; }
+
+    @media (max-width: 768px) {
+      .float-chip { display: none; }
+      .book-wrapper { padding: 32px 0; min-height: auto; }
+      .book-glow { display: none; }
+    }
+
+    /* ── NUMBERS: dark premium ─────────────────────────────────── */
+    .numbers { background: var(--dark-green); padding: 72px 0; }
+    .numbers .number-lbl { color: rgba(250,248,245,.6); }
+
+    .numbers-grid > div {
+      padding: 12px 20px;
+      position: relative;
+    }
+
+    .numbers-grid > div:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: rgba(255,255,255,.1);
+    }
+
+    @media (max-width: 768px) {
+      .numbers-grid > div:not(:last-child)::after { display: none; }
+    }
+
+    /* ── PROTOCOL TIMELINE ─────────────────────────────────────── */
+    .timeline { background: var(--off-white); overflow: hidden; }
+
+    .timeline-intro {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 4rem;
+    }
+
+    .timeline-intro h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-intro p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .tl-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      gap: 8px;
+      padding-top: 8px;
+    }
+
+    .tl-track::before {
+      content: '';
+      position: absolute;
+      top: 42px;
+      left: calc(12.5% + 8px);
+      right: calc(12.5% + 8px);
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-dark) 65%, var(--dark-green));
+      z-index: 0;
+    }
+
+    .tl-step {
+      text-align: center;
+      padding: 0 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-dot {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: var(--dark-green);
+      border: 2.5px solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.3rem;
+      box-shadow: 0 0 0 6px rgba(122,158,126,.1);
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: default;
+    }
+
+    .tl-step:hover .tl-dot {
+      transform: scale(1.1) translateY(-4px);
+      box-shadow: 0 0 0 10px rgba(122,158,126,.15), 0 14px 30px rgba(0,0,0,.1);
+    }
+
+    .tl-day {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .53rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .tl-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .tl-phase-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .45rem;
+    }
+
+    .tl-phase {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .55rem;
+    }
+
+    .tl-desc {
+      font-size: .84rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: .75rem;
+    }
+
+    .tl-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: .7rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: .03em;
+    }
+
+    .tl-step.tl-final .tl-dot {
+      background: var(--accent);
+      border-color: var(--accent-deep);
+      box-shadow: 0 0 0 6px rgba(122,158,126,.18);
+    }
+
+    .tl-step.tl-final .tl-num  { color: var(--dark-green); }
+    .tl-step.tl-final .tl-day  { color: rgba(37,56,40,.7); }
+    .tl-step.tl-final .tl-tag  { background: var(--dark-green); color: #fff; }
+
+    @media (max-width: 768px) {
+      .tl-track { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .tl-track::before { display: none; }
+    }
+
+    /* ── PAIN HIGHLIGHT ────────────────────────────────────────── */
+    .pain-highlight {
+      background: var(--dark-green);
+      border-radius: 16px;
+      padding: 34px 38px;
+      margin: 2.5rem 0;
+      max-width: 640px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pain-highlight::before {
+      content: '\201C';
+      position: absolute;
+      top: -32px; left: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 9rem;
+      color: rgba(122,158,126,.18);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .pain-highlight p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      font-style: italic;
+      color: rgba(250,248,245,.92);
+      line-height: 1.72;
+      position: relative;
+      z-index: 1;
+      max-width: none;
+      margin-bottom: 0;
+    }
+
+    .pain-highlight cite {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal;
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── GUARANTEE BADGE ───────────────────────────────────────── */
+    .guarantee-badge-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .guarantee-badge {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      background: var(--accent-soft);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 8px rgba(122,158,126,.12), 0 10px 36px rgba(0,0,0,.1);
+    }
+
+    .guarantee-badge::before {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(122,158,126,.55);
+    }
+
+    .guarantee-badge-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--dark-green);
+      line-height: 1;
+    }
+
+    .guarantee-badge-label {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    /* ── CTA FINAL: glow + deco circles ───────────────────────── */
+    .cta-final { position: relative; overflow: hidden; }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 55%, rgba(122,158,126,.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 25%, rgba(122,158,126,.12) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cta-deco {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(122,158,126,.07);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cta-deco.d1 { width: 340px; height: 340px; top: -130px; left: -100px; }
+    .cta-deco.d2 { width: 240px; height: 240px; bottom: -80px; right: -60px; }
+    .cta-deco.d3 { width: 120px; height: 120px; top: 35%; right: 12%; opacity: .6; }
+
+    .cta-final .container { position: relative; z-index: 1; }
   </style>
 </head>
 <body>
@@ -995,6 +1335,7 @@
 
       <!-- Mockup do e-book -->
       <div class="book-wrapper">
+        <div class="book-glow"></div>
         <div class="book">
           <div class="book-spine"></div>
           <div class="book-pages"></div>
@@ -1008,6 +1349,10 @@
             <div class="book-sub">Cardápio · Protocolo · Resultados</div>
           </div>
         </div>
+        <div class="float-chip c1" style="--dur:3.4s;--d:.1s;--rot:-2deg"><div class="float-chip-dot"></div>Sem academia</div>
+        <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>Resultado visível</div>
+        <div class="float-chip c3" style="--dur:3.5s;--d:1s;--rot:-1.5deg"><div class="float-chip-dot"></div>Sem passar fome</div>
+        <div class="float-chip c4" style="--dur:4.1s;--d:.4s;--rot:2deg"><div class="float-chip-dot"></div>PDF imediato</div>
       </div>
 
     </div>
@@ -1079,7 +1424,10 @@
       <li class="reveal">Já desistiu antes — e tem medo de desistir de novo</li>
     </ul>
 
-    <p class="pain-turn reveal">"O problema nunca foi você. Foi o método."</p>
+    <div class="pain-highlight reveal">
+      <p>Você não está exagerando. Você não é fraca. O que acontece é que o método que você tentou foi construído sem considerar o que realmente tranca o metabolismo — inflamação crônica, cortisol elevado e microbiota desequilibrada.</p>
+      <cite>— O que esse protocolo resolve</cite>
+    </div>
 
   </div>
 </section>
@@ -1134,6 +1482,69 @@
           mantém você no caminho — e esse protocolo foi construído para entregar
           isso.
         </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     05b. TIMELINE DO PROTOCOLO
+═══════════════════════════════════════════════════════════════ -->
+<section class="timeline section">
+  <div class="container">
+
+    <div class="timeline-intro reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>7 dias. 3 fases. Um resultado visível.</h2>
+      <p>Cada fase tem um objetivo específico. Não é dieta — é uma reprogramação progressiva do metabolismo, fase por fase.</p>
+    </div>
+
+    <div class="tl-track">
+
+      <div class="tl-step reveal">
+        <div class="tl-dot">
+          <span class="tl-day">Dias</span>
+          <span class="tl-num">1–2</span>
+        </div>
+        <div class="tl-phase-label">Fase 1</div>
+        <div class="tl-phase">Reset Metabólico</div>
+        <div class="tl-desc">Remove os gatilhos de inflamação. Hidratação, sono e alimentação limpa criam o ambiente certo para o que vem depois.</div>
+        <span class="tl-tag">Desincha em 48h</span>
+      </div>
+
+      <div class="tl-step reveal">
+        <div class="tl-dot">
+          <span class="tl-day">Dias</span>
+          <span class="tl-num">3–4</span>
+        </div>
+        <div class="tl-phase-label">Fase 2</div>
+        <div class="tl-phase">Ativação</div>
+        <div class="tl-desc">Alimentos termogênicos e movimento estratégico. O metabolismo começa a gastar mais — sem aumentar o cortisol.</div>
+        <span class="tl-tag">Balança começa a mover</span>
+      </div>
+
+      <div class="tl-step reveal">
+        <div class="tl-dot">
+          <span class="tl-day">Dias</span>
+          <span class="tl-num">5–6</span>
+        </div>
+        <div class="tl-phase-label">Fase 3</div>
+        <div class="tl-phase">Aceleração</div>
+        <div class="tl-desc">Janela alimentar de 8 horas. Pela primeira vez, o corpo entra em modo consistente de queima de gordura.</div>
+        <span class="tl-tag">Queima ativa</span>
+      </div>
+
+      <div class="tl-step tl-final reveal">
+        <div class="tl-dot">
+          <span class="tl-day">Dia</span>
+          <span class="tl-num">7</span>
+        </div>
+        <div class="tl-phase-label">Resultado</div>
+        <div class="tl-phase">Avaliação</div>
+        <div class="tl-desc">Você mede, vê a diferença e decide: quer mais disso. Esse dia marca o início de um novo padrão.</div>
+        <span class="tl-tag">–1 a 3kg</span>
       </div>
 
     </div>
@@ -1345,7 +1756,12 @@
 <section class="guarantee section">
   <div class="container">
     <div class="guarantee-inner reveal">
-      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-badge-wrap">
+        <div class="guarantee-badge">
+          <div class="guarantee-badge-num">7</div>
+          <div class="guarantee-badge-label">dias de<br>garantia</div>
+        </div>
+      </div>
       <h2>7 dias de garantia incondicional</h2>
       <p class="guarantee-text">
         Se por qualquer motivo você não ficar satisfeita com o conteúdo, basta
@@ -1450,6 +1866,9 @@
      12. CTA FINAL
 ═══════════════════════════════════════════════════════════════ -->
 <section class="cta-final section">
+  <div class="cta-deco d1"></div>
+  <div class="cta-deco d2"></div>
+  <div class="cta-deco d3"></div>
   <div class="container">
 
     <h2 class="reveal">Sua transformação começa hoje.</h2>
