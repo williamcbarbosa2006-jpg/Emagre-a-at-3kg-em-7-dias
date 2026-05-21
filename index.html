@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[NOME DO EBOOK] — Protocolo 7 Dias</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ─────────────────────────────────── */
+    :root {
+      --white:       #FFFFFF;
+      --off-white:   #FAF8F5;
+      --beige:       #F5F0EB;
+      --beige-mid:   #EDE6DD;
+      --accent:      #7A9E7E;
+      --accent-dark: #5d7f61;
+      --accent-deep: #3d5e41;
+      --accent-soft: #e8f0e9;
+      --text:        #1C1C1A;
+      --text-muted:  #6B6560;
+      --dark:        #1a1a18;
+      --dark-green:  #253828;
+      --border:      rgba(0,0,0,.07);
+      --shadow-card: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
+    }
+
+    /* ── Base ───────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    /* ── Layout helpers ─────────────────────────── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .section { padding: 88px 0; }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    /* ── Scroll reveal ──────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Buttons ────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 16px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 22px rgba(122,158,126,.38);
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(122,158,126,.45);
+    }
+
+    .btn-light {
+      background: #fff;
+      color: var(--dark-green);
+      box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    }
+    .btn-light:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,.25);
+    }
+
+    .btn-block { display: block; width: 100%; text-align: center; }
+
+    .btn-micro {
+      display: block;
+      font-size: .77rem;
+      color: var(--text-muted);
+      margin-top: .75rem;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       01. BARRA SUPERIOR
+    ─────────────────────────────────────────────────────────────── */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .01em;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       02. HERO
+    ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--off-white);
+      padding: 148px 0 88px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 3.5vw, 3.1rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.3rem;
+      line-height: 1.15;
+    }
+
+    .hero h1 em { color: var(--accent); font-style: italic; }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 460px;
+    }
+
+    .hero-bullets {
+      list-style: none;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .97rem;
+      color: var(--text);
+      margin-bottom: .65rem;
+    }
+
+    .hero-bullets li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── BOOK MOCKUP ────────────────────────────── */
+    .book-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 24px 32px 0;
+    }
+
+    .book {
+      position: relative;
+      width: 230px;
+      height: 310px;
+      transform: perspective(900px) rotateY(-14deg);
+      filter: drop-shadow(0 28px 44px rgba(0,0,0,.2));
+      transition: transform .4s ease, filter .4s ease;
+    }
+    .book:hover {
+      transform: perspective(900px) rotateY(-6deg);
+      filter: drop-shadow(0 32px 52px rgba(0,0,0,.22));
+    }
+
+    .book-spine {
+      position: absolute;
+      left: -18px; top: 0;
+      width: 18px; height: 100%;
+      background: linear-gradient(to right, var(--accent-deep), #4d6e51);
+      border-radius: 4px 0 0 4px;
+      box-shadow: -4px 4px 12px rgba(0,0,0,.22);
+    }
+
+    .book-pages {
+      position: absolute;
+      right: -10px; top: 6px;
+      width: 14px;
+      height: calc(100% - 12px);
+      background: repeating-linear-gradient(
+        to bottom,
+        #f0ede8 0px, #f0ede8 1px,
+        #e6e2dc 1px, #e6e2dc 3px
+      );
+      border-radius: 0 4px 4px 0;
+      box-shadow: 3px 2px 8px rgba(0,0,0,.1);
+    }
+
+    .book-cover {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(148deg, #526e55 0%, var(--accent) 45%, #618466 100%);
+      border-radius: 4px 11px 11px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 22px 22px;
+      box-shadow:
+        inset -8px 0 18px rgba(0,0,0,.14),
+        inset 2px 0 5px rgba(255,255,255,.1);
+    }
+
+    .book-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      align-self: stretch;
+      text-align: center;
+    }
+
+    .book-title-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 1.35;
+      text-shadow: 0 1px 6px rgba(0,0,0,.25);
+    }
+
+    .book-title-text em {
+      display: block;
+      font-style: italic;
+      font-size: .9rem;
+      opacity: .85;
+      margin-bottom: 6px;
+    }
+
+    .book-divider {
+      width: 36px; height: 2px;
+      background: rgba(255,255,255,.35);
+      border-radius: 2px;
+    }
+
+    .book-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .6rem;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      letter-spacing: .06em;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       03. NÚMEROS
+    ─────────────────────────────────────────────────────────────── */
+    .numbers { background: var(--beige); padding: 64px 0; }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .number-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+
+    .number-lbl {
+      font-size: .87rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       04. DOR
+    ─────────────────────────────────────────────────────────────── */
+    .pain { background: var(--off-white); }
+
+    .pain h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      margin-bottom: 1.8rem;
+      max-width: 620px;
+    }
+
+    .pain-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 1rem;
+    }
+
+    .pain-bullets {
+      list-style: none;
+      margin: 2rem 0 2.4rem;
+      max-width: 560px;
+    }
+
+    .pain-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .96rem;
+      color: var(--text);
+      padding: .85rem 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .pain-bullets li:last-child { border-bottom: none; }
+    .pain-bullets li::before {
+      content: '—';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .pain-turn {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--accent-dark);
+      margin-top: 1.5rem;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       05. SOLUÇÃO
+    ─────────────────────────────────────────────────────────────── */
+    .solution { background: var(--white); }
+
+    .solution h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      margin-bottom: 1.2rem;
+      max-width: 680px;
+    }
+
+    .solution-intro {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 640px;
+      margin-bottom: 3.2rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pillar {
+      background: var(--beige);
+      border-radius: 16px;
+      padding: 32px 28px;
+      border: 1px solid var(--beige-mid);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,.07);
+    }
+
+    .pillar-icon { font-size: 2rem; margin-bottom: 1.1rem; }
+
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .55rem;
+    }
+
+    .pillar-text {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       06. O QUE ESTÁ DENTRO
+    ─────────────────────────────────────────────────────────────── */
+    .inside { background: var(--off-white); }
+
+    .inside h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      margin-bottom: 2.8rem;
+    }
+
+    .inside-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 720px;
+    }
+
+    .inside-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      transition: box-shadow .25s;
+    }
+    .inside-item:hover { box-shadow: var(--shadow-card); }
+
+    .inside-check {
+      width: 26px; height: 26px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent-dark);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .inside-text {
+      font-size: .9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       07. DEPOIMENTOS
+    ─────────────────────────────────────────────────────────────── */
+    .testimonials { background: var(--white); }
+
+    .testimonials h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testi-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .testi-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testi-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--text);
+    }
+
+    .testi-loc {
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    .testi-stars { color: #e8a830; font-size: .9rem; }
+
+    .testi-text {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.72;
+      font-style: italic;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       08. PARA QUEM
+    ─────────────────────────────────────────────────────────────── */
+    .forwho { background: var(--beige); }
+
+    .forwho h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .forwho-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .forwho-col {
+      border-radius: 16px;
+      padding: 32px 28px;
+    }
+
+    .forwho-yes {
+      background: var(--accent-soft);
+      border: 1px solid rgba(122,158,126,.22);
+    }
+
+    .forwho-no {
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+
+    .forwho-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+
+    .forwho-list { list-style: none; }
+
+    .forwho-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .91rem;
+      color: var(--text);
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      line-height: 1.5;
+    }
+    .forwho-list li:last-child { border-bottom: none; }
+
+    .forwho-yes .forwho-list li::before {
+      content: '✓';
+      color: var(--accent-dark);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .forwho-no .forwho-list li::before {
+      content: '✗';
+      color: #b56b63;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       09. OFERTA
+    ─────────────────────────────────────────────────────────────── */
+    .offer-section { background: var(--off-white); }
+
+    .offer-box {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 44px;
+      border: 1px solid var(--beige-mid);
+      box-shadow: 0 12px 48px rgba(0,0,0,.09), 0 2px 8px rgba(0,0,0,.04);
+      text-align: center;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+
+    .offer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+    }
+
+    /* small book mockup inside offer box */
+    .offer-book {
+      position: relative;
+      width: 110px; height: 152px;
+      margin: 0 auto 2rem;
+      transform: perspective(600px) rotateY(-10deg);
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.16));
+    }
+
+    .offer-book-spine {
+      position: absolute;
+      left: -10px; top: 0;
+      width: 10px; height: 100%;
+      background: var(--accent-deep);
+      border-radius: 3px 0 0 3px;
+    }
+
+    .offer-book-cover {
+      position: absolute; inset: 0;
+      background: linear-gradient(148deg, #526e55 0%, var(--accent) 60%, #618466 100%);
+      border-radius: 3px 8px 8px 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .offer-book-cover span {
+      font-family: 'Playfair Display', serif;
+      font-size: .62rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .offer-includes {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 1.8rem;
+    }
+
+    .offer-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .86rem;
+      color: var(--text);
+      padding: .4rem 0;
+    }
+    .offer-includes li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .price-old {
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: .2rem;
+    }
+
+    .price-new {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      line-height: 1;
+      margin-bottom: 1.8rem;
+    }
+
+    .price-new small {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-right: 3px;
+      vertical-align: .45em;
+    }
+
+    .offer-micro {
+      font-size: .76rem;
+      color: var(--text-muted);
+      margin-top: .7rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .seals {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .seal-chip {
+      font-size: .75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       10. GARANTIA
+    ─────────────────────────────────────────────────────────────── */
+    .guarantee { background: var(--white); }
+
+    .guarantee-inner {
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .guarantee-icon {
+      font-size: 3.2rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .guarantee h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .guarantee-text {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       11. FAQ
+    ─────────────────────────────────────────────────────────────── */
+    .faq { background: var(--beige); }
+
+    .faq h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .faq-list {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .96rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: background .2s;
+    }
+    .faq-btn:hover { background: var(--off-white); }
+
+    .faq-icon {
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform .3s ease;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-body {
+      max-height: 300px;
+      padding-bottom: 20px;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       12. CTA FINAL
+    ─────────────────────────────────────────────────────────────── */
+    .cta-final {
+      background: var(--dark-green);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .cta-final-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.72);
+      max-width: 540px;
+      margin: 0 auto 2.6rem;
+      line-height: 1.75;
+    }
+
+    .cta-micro {
+      display: block;
+      font-size: .77rem;
+      color: rgba(255,255,255,.45);
+      margin-top: 1rem;
+    }
+
+    /* ────────────────────────────────────────────────────────────
+       13. RODAPÉ
+    ─────────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.38);
+      text-align: center;
+      padding: 36px 24px;
+      font-size: .79rem;
+      line-height: 1.65;
+    }
+
+    footer p + p { margin-top: .35rem; }
+
+    /* ────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ─────────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .hero { padding: 130px 0 64px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 44px;
+      }
+
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .pillars-grid { grid-template-columns: 1fr; gap: 14px; }
+      .inside-grid  { grid-template-columns: 1fr; }
+      .testi-grid   { grid-template-columns: 1fr; gap: 14px; }
+      .forwho-grid  { grid-template-columns: 1fr; }
+
+      .offer-box { padding: 36px 24px; }
+      .book { width: 200px; height: 270px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .seals { flex-direction: column; align-items: center; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     01. BARRA SUPERIOR FIXA
+═══════════════════════════════════════════════════════════════ -->
+<div class="top-bar">
+  ⏳ Oferta por tempo limitado — Acesso imediato por apenas R$ [PREÇO]
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     02. HERO
+═══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Texto -->
+      <div>
+        <p class="hero-eyebrow">O protocolo que 4.200 mulheres já usaram</p>
+
+        <h1>Perca 3kg em 7 dias — <em>sem academia,<br>sem passar fome.</em></h1>
+
+        <p class="hero-subtitle">
+          Um protocolo alimentar simples que reorganiza seu metabolismo em uma semana.
+          Sem contar caloria. Sem sofrimento.
+        </p>
+
+        <ul class="hero-bullets">
+          <li>Funciona mesmo para quem já tentou de tudo</li>
+          <li>Cardápio pronto — sem precisar inventar nada</li>
+          <li>Resultado visível já na primeira semana</li>
+        </ul>
+
+        <a href="#oferta" class="btn btn-primary">
+          Quero emagrecer agora — R$ [PREÇO]
+        </a>
+        <span class="btn-micro">🔒 Compra segura · PDF enviado por e-mail · Acesso em menos de 2 minutos</span>
+      </div>
+
+      <!-- Mockup do e-book -->
+      <div class="book-wrapper">
+        <div class="book">
+          <div class="book-spine"></div>
+          <div class="book-pages"></div>
+          <div class="book-cover">
+            <span class="book-tag">E-book · PDF</span>
+            <div class="book-title-text">
+              <em>[NOME DO EBOOK]</em>
+              O Protocolo de 7 Dias
+            </div>
+            <div class="book-divider"></div>
+            <div class="book-sub">Cardápio · Protocolo · Resultados</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     03. NÚMEROS
+═══════════════════════════════════════════════════════════════ -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="reveal">
+        <div class="number-val">4.200+</div>
+        <div class="number-lbl">Mulheres que já aplicaram o protocolo</div>
+      </div>
+      <div class="reveal">
+        <div class="number-val">7 dias</div>
+        <div class="number-lbl">Para ver o primeiro resultado</div>
+      </div>
+      <div class="reveal">
+        <div class="number-val">3kg</div>
+        <div class="number-lbl">De diferença na primeira semana</div>
+      </div>
+      <div class="reveal">
+        <div class="number-val">92%</div>
+        <div class="number-lbl">Relatam sentir menos inchaço em 3 dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     04. DOR
+═══════════════════════════════════════════════════════════════ -->
+<section class="pain section">
+  <div class="container">
+
+    <h2 class="reveal">
+      Você já tentou. Sabe que não é<br>falta de força de vontade.
+    </h2>
+
+    <p class="pain-text reveal">
+      Você começou a dieta com determinação. Cortou o açúcar, preparou a marmita,
+      foi à academia por duas semanas. E funcionou — pelo menos por um tempo. Depois
+      a rotina voltou, o estresse aumentou, e o peso foi junto.
+    </p>
+
+    <p class="pain-text reveal">
+      A sensação que fica não é de fraqueza. É de traição. Você se esforçou, seu
+      corpo deveria ter respondido. Mas a balança travou, o inchaço voltou, e você
+      ficou com a dúvida: será que o meu corpo simplesmente não funciona como
+      deveria?
+    </p>
+
+    <p class="pain-text reveal">
+      Funciona. O que acontece é que a maioria dos métodos pede sacrifício sem
+      explicar o mecanismo. Você corta tudo de uma vez, o corpo entra em modo de
+      defesa, e o resultado some junto com a motivação.
+    </p>
+
+    <ul class="pain-bullets">
+      <li class="reveal">Balança travada no mesmo número há semanas</li>
+      <li class="reveal">Barriga inchada mesmo comendo "certinho"</li>
+      <li class="reveal">Cansada de dietas que pedem força de vontade que ninguém tem</li>
+      <li class="reveal">Roupas que não fecham mais e prazo que está chegando</li>
+      <li class="reveal">Já desistiu antes — e tem medo de desistir de novo</li>
+    </ul>
+
+    <p class="pain-turn reveal">"O problema nunca foi você. Foi o método."</p>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     05. SOLUÇÃO
+═══════════════════════════════════════════════════════════════ -->
+<section class="solution section">
+  <div class="container">
+
+    <span class="eyebrow reveal">O protocolo</span>
+
+    <h2 class="reveal">
+      Um protocolo de 7 dias criado para<br>
+      funcionar com a sua rotina — não contra ela.
+    </h2>
+
+    <p class="solution-intro reveal">
+      A ideia não é cortar tudo de uma vez. É reorganizar o que você já come de
+      forma que o metabolismo responda diferente. Em 7 dias, sem contar caloria e
+      sem passar fome, o corpo desinflama, elimina retenção e começa a usar gordura
+      como combustível — em vez de armazená-la por medo de escassez.
+    </p>
+
+    <div class="pillars-grid">
+
+      <div class="pillar reveal">
+        <div class="pillar-icon">🥗</div>
+        <div class="pillar-title">Cardápio Pronto</div>
+        <p class="pillar-text">
+          Sem precisar pensar no que comer. Cada dia tem um plano simples,
+          feito com alimentos de supermercado, que você pode seguir sem complicação.
+        </p>
+      </div>
+
+      <div class="pillar reveal">
+        <div class="pillar-icon">⚖️</div>
+        <div class="pillar-title">Sem Restrição Absurda</div>
+        <p class="pillar-text">
+          Não é sobre cortar tudo. É sobre reorganizar. Você come bem,
+          se sente satisfeita e o corpo responde — sem o modo pânico que sabota
+          outras dietas.
+        </p>
+      </div>
+
+      <div class="pillar reveal">
+        <div class="pillar-icon">📉</div>
+        <div class="pillar-title">Resultado em 7 Dias</div>
+        <p class="pillar-text">
+          A primeira semana é a mais motivadora. Ver o corpo mudar rápido é o que
+          mantém você no caminho — e esse protocolo foi construído para entregar
+          isso.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     06. O QUE ESTÁ DENTRO
+═══════════════════════════════════════════════════════════════ -->
+<section class="inside section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Conteúdo</span>
+    <h2 class="reveal">O que você recebe</h2>
+
+    <div class="inside-grid">
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">Protocolo alimentar completo dos 7 dias (café, almoço, jantar e lanches)</div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">Lista de compras pronta — o que comprar no mercado</div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">As 5 trocas inteligentes que desinflam o corpo em 48h</div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">Guia de como manter o resultado após os 7 dias</div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">O que beber (e o que cortar) para acelerar os resultados</div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">Cronograma dia a dia — sem precisar improvisar nada</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     07. DEPOIMENTOS
+═══════════════════════════════════════════════════════════════ -->
+<section class="testimonials section">
+  <div class="container">
+
+    <h2 class="reveal">O que outras mulheres estão dizendo</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar">F</div>
+          <div>
+            <div class="testi-name">Fernanda S.</div>
+            <div class="testi-loc">São Paulo, SP</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Perdi 2,8kg na primeira semana e, o que mais me surpreendeu, foi o
+          inchaço. Em 3 dias eu já estava me sentindo diferente nas roupas. Fiz
+          sem academia, seguindo o cardápio do jeito que estava. Nunca passei
+          fome — e olha que sou daquelas que come de 3 em 3 horas."
+        </p>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#C4775A">C</div>
+          <div>
+            <div class="testi-name">Cláudia M.</div>
+            <div class="testi-loc">Belo Horizonte, MG</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Tenho 43 anos e já tentei tudo. O que me convenceu foi ser simples de
+          verdade — sem alimento exótico, sem receita complicada. Na sexta-feira
+          da primeira semana consegui fechar a calça que estava parada há 6 meses.
+          Continuei no segundo ciclo e já são 5,5kg no total."
+        </p>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#7A9E7E;filter:brightness(.85)">R</div>
+          <div>
+            <div class="testi-name">Renata P.</div>
+            <div class="testi-loc">Curitiba, PR</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Barriga desinchada em 3 dias — isso foi o que me fez continuar. Perdi
+          3,1kg na semana e mais 2kg nas duas semanas seguintes mantendo os hábitos
+          do guia de manutenção. O que funcionou pra mim foi ter tudo planejado.
+          Não precisei pensar, só seguir."
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     08. PARA QUEM
+═══════════════════════════════════════════════════════════════ -->
+<section class="forwho section">
+  <div class="container">
+
+    <h2 class="reveal">Para quem é — e para quem não é</h2>
+
+    <div class="forwho-grid">
+
+      <div class="forwho-col forwho-yes reveal">
+        <h3>✦ Para você se...</h3>
+        <ul class="forwho-list">
+          <li>Quer ver resultado rápido para se motivar</li>
+          <li>Não tem tempo para cozinhar receitas complicadas</li>
+          <li>Já fez dieta antes e voltou ao peso</li>
+          <li>Quer desinchar antes de um evento especial</li>
+          <li>Prefere um plano pronto a ter que inventar sozinha</li>
+        </ul>
+      </div>
+
+      <div class="forwho-col forwho-no reveal">
+        <h3>✦ Não é para você se...</h3>
+        <ul class="forwho-list">
+          <li>Espera resultado sem nenhuma mudança alimentar</li>
+          <li>Tem condição médica que exige acompanhamento nutricional exclusivo</li>
+          <li>Quer uma solução permanente sem mudar nenhum hábito</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     09. OFERTA
+═══════════════════════════════════════════════════════════════ -->
+<section id="oferta" class="offer-section section">
+  <div class="container">
+
+    <div class="offer-box reveal">
+
+      <span class="offer-badge">Oferta especial</span>
+
+      <div class="offer-title">[NOME DO EBOOK]</div>
+
+      <!-- Mockup decorativo pequeno -->
+      <div class="offer-book">
+        <div class="offer-book-spine"></div>
+        <div class="offer-book-cover">
+          <span>[NOME DO EBOOK]<br>Protocolo 7 Dias</span>
+        </div>
+      </div>
+
+      <!-- Includes resumidos -->
+      <ul class="offer-includes">
+        <li>Protocolo alimentar completo — 7 dias</li>
+        <li>Lista de compras pronta</li>
+        <li>As 5 trocas anti-inchaço em 48h</li>
+        <li>Guia de manutenção pós-7 dias</li>
+        <li>O que beber para acelerar resultados</li>
+        <li>Cronograma dia a dia</li>
+      </ul>
+
+      <p class="price-old">De R$ [PREÇO RISCADO]</p>
+      <div class="price-new"><small>R$</small>[PREÇO]</div>
+
+      <!-- INSERIR LINK DE CHECKOUT -->
+      <a href="#" class="btn btn-primary btn-block btn-checkout-link">
+        Quero começar agora — R$ [PREÇO]
+      </a>
+
+      <p class="offer-micro">🔒 Pagamento seguro · Entrega imediata por e-mail · PDF para qualquer celular</p>
+
+      <div class="seals">
+        <span class="seal-chip">🛡️ Compra Protegida</span>
+        <span class="seal-chip">📧 Entrega Imediata</span>
+        <span class="seal-chip">📱 Leia em qualquer dispositivo</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     10. GARANTIA
+═══════════════════════════════════════════════════════════════ -->
+<section class="guarantee section">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-icon">🛡️</div>
+      <h2>7 dias de garantia incondicional</h2>
+      <p class="guarantee-text">
+        Se por qualquer motivo você não ficar satisfeita com o conteúdo, basta
+        enviar um e-mail em até 7 dias após a compra e devolvemos 100% do seu
+        dinheiro. Sem burocracia, sem perguntas. O risco é todo nosso.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     11. FAQ
+═══════════════════════════════════════════════════════════════ -->
+<section class="faq section">
+  <div class="container">
+
+    <h2 class="reveal">Perguntas frequentes</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          Preciso fazer academia junto?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          Não. O protocolo é 100% alimentar. Exercício é bem-vindo, mas não é
+          necessário para os resultados da primeira semana. Você vai sentir a
+          diferença só com as mudanças no cardápio.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          Funciona para quem tem mais de 40 anos?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          Sim. O protocolo foi pensado especialmente para mulheres adultas com
+          rotina corrida. A reorganização metabólica funciona em qualquer faixa
+          etária — e quem está na faixa dos 40 costuma perceber o resultado no
+          inchaço ainda mais rápido.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          E se eu não gostar de algum alimento do cardápio?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          O e-book traz opções de substituição para os principais alimentos. Você
+          adapta sem comprometer o resultado. A ideia é que o cardápio funcione
+          para a sua vida real — não o contrário.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          Vou ficar com fome?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          Não. O protocolo inclui lanches e é calibrado para que você se sinta
+          satisfeita ao longo do dia. A diferença está na qualidade e combinação
+          dos alimentos — não na quantidade. A maioria das mulheres relata menos
+          compulsão a partir do terceiro dia.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          Como recebo o e-book?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          Imediatamente após o pagamento, você recebe um e-mail com o link de
+          download. É um arquivo PDF que funciona em qualquer celular, tablet ou
+          computador — sem precisar de aplicativo especial.
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">
+          E se eu não tiver resultado?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          Você tem 7 dias de garantia incondicional. Se não ficar satisfeita com
+          o conteúdo por qualquer motivo, basta enviar um e-mail e devolvemos
+          todo o valor. Sem complicação, sem burocracia.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     12. CTA FINAL
+═══════════════════════════════════════════════════════════════ -->
+<section class="cta-final section">
+  <div class="container">
+
+    <h2 class="reveal">Sua transformação começa hoje.</h2>
+
+    <p class="cta-final-sub reveal">
+      Em 7 dias, você pode estar 3kg mais leve, menos inchada e com mais
+      energia. O que você está esperando?
+    </p>
+
+    <a href="#oferta" class="btn btn-light reveal">
+      Quero começar hoje — R$ [PREÇO]
+    </a>
+
+    <span class="cta-micro reveal">Acesso imediato · Garantia de 7 dias · Sem risco</span>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     13. RODAPÉ
+═══════════════════════════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 · Todos os direitos reservados</p>
+  <p>Produto digital · Entrega via e-mail · Este produto não substitui acompanhamento médico ou nutricional profissional.</p>
+</footer>
+
+
+<script>
+  /* ── FAQ accordion ─────────────────────────────────────────── */
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── Scroll reveal ─────────────────────────────────────────── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
