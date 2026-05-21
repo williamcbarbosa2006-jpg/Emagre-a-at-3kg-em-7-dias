@@ -167,47 +167,73 @@
        02. HERO
     ─────────────────────────────────────────────────────────────── */
     .hero {
-      background: var(--off-white);
-      padding: 148px 0 88px;
+      background: var(--dark-green);
+      padding: 164px 0 108px;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 64px;
+      grid-template-columns: 1fr 460px;
+      gap: 56px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-eyebrow {
-      font-size: .78rem;
+      font-size: .76rem;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.2rem;
+      margin-bottom: 0;
+    }
+
+    /* social proof badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(122,158,126,.15);
+      border: 1px solid rgba(122,158,126,.3);
+      border-radius: 40px;
+      padding: 6px 16px 6px 12px;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-badge-stars { color: #e8c245; font-size: .82rem; letter-spacing: 2px; }
+
+    .hero-badge-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .76rem;
+      font-weight: 500;
+      color: rgba(250,248,245,.72);
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 3.5vw, 3.1rem);
+      font-size: clamp(2.6rem, 4.6vw, 4.2rem);
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 1.3rem;
-      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 1.4rem;
+      line-height: 1.08;
+      letter-spacing: -.01em;
     }
 
     .hero h1 em { color: var(--accent); font-style: italic; }
 
     .hero-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-muted);
+      font-size: 1.1rem;
+      color: rgba(250,248,245,.7);
       line-height: 1.75;
       margin-bottom: 2rem;
-      max-width: 460px;
+      max-width: 480px;
     }
 
     .hero-bullets {
       list-style: none;
-      margin-bottom: 2.4rem;
+      margin-bottom: 2.6rem;
     }
 
     .hero-bullets li {
@@ -215,8 +241,8 @@
       align-items: flex-start;
       gap: 10px;
       font-size: .97rem;
-      color: var(--text);
-      margin-bottom: .65rem;
+      color: rgba(250,248,245,.88);
+      margin-bottom: .7rem;
     }
 
     .hero-bullets li::before {
@@ -237,15 +263,15 @@
 
     .book {
       position: relative;
-      width: 230px;
-      height: 310px;
-      transform: perspective(900px) rotateY(-14deg);
-      filter: drop-shadow(0 28px 44px rgba(0,0,0,.2));
+      width: 270px;
+      height: 364px;
+      transform: perspective(1000px) rotateY(-14deg);
+      filter: drop-shadow(0 32px 56px rgba(0,0,0,.38)) drop-shadow(0 0 40px rgba(122,158,126,.22));
       transition: transform .4s ease, filter .4s ease;
     }
     .book:hover {
-      transform: perspective(900px) rotateY(-6deg);
-      filter: drop-shadow(0 32px 52px rgba(0,0,0,.22));
+      transform: perspective(1000px) rotateY(-5deg);
+      filter: drop-shadow(0 40px 64px rgba(0,0,0,.42)) drop-shadow(0 0 50px rgba(122,158,126,.3));
     }
 
     .book-spine {
@@ -928,11 +954,11 @@
     ─────────────────────────────────────────────────────────────── */
     @media (max-width: 768px) {
       .section { padding: 64px 0; }
-      .hero { padding: 130px 0 64px; }
+      .hero { padding: 136px 0 72px; }
 
       .hero-inner {
         grid-template-columns: 1fr;
-        gap: 44px;
+        gap: 48px;
       }
 
       .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -942,7 +968,7 @@
       .forwho-grid  { grid-template-columns: 1fr; }
 
       .offer-box { padding: 36px 24px; }
-      .book { width: 200px; height: 270px; }
+      .book { width: 220px; height: 296px; }
     }
 
     @media (max-width: 480px) {
@@ -954,6 +980,60 @@
     /* ═══════════════════════════════════════════════════════════
        PREMIUM LAYER
     ═══════════════════════════════════════════════════════════ */
+
+    /* ── HERO: overlays & typography overrides ────────────────── */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 72% 48%, rgba(122,158,126,.32) 0%, transparent 55%),
+        radial-gradient(ellipse at 8%  80%, rgba(122,158,126,.14) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* large decorative ring */
+    .hero-ring {
+      position: absolute;
+      width: 680px; height: 680px;
+      border-radius: 50%;
+      border: 1px solid rgba(122,158,126,.1);
+      top: 50%; right: -160px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-ring::before {
+      content: '';
+      position: absolute;
+      inset: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(122,158,126,.07);
+    }
+
+    .hero .btn-primary {
+      font-size: 1.06rem;
+      padding: 18px 46px;
+      box-shadow: 0 6px 28px rgba(122,158,126,.45), 0 0 0 0 rgba(122,158,126,.3);
+    }
+
+    .hero .btn-primary:hover {
+      box-shadow: 0 10px 36px rgba(122,158,126,.52), 0 0 0 0 rgba(122,158,126,.3);
+    }
+
+    .hero .btn-micro { color: rgba(255,255,255,.42); }
 
     /* ── HERO: glow + floating chips ──────────────────────────── */
     .book-wrapper {
@@ -1307,14 +1387,18 @@
      02. HERO
 ═══════════════════════════════════════════════════════════════ -->
 <section class="hero">
+  <div class="hero-ring"></div>
   <div class="container">
     <div class="hero-inner">
 
       <!-- Texto -->
       <div>
-        <p class="hero-eyebrow">O protocolo que 4.200 mulheres já usaram</p>
+        <div class="hero-badge reveal">
+          <span class="hero-badge-stars">★★★★★</span>
+          <span class="hero-badge-text">4.200+ mulheres · protocolo validado</span>
+        </div>
 
-        <h1>Perca 3kg em 7 dias — <em>sem academia,<br>sem passar fome.</em></h1>
+        <h1 class="reveal">Perca 3kg em 7 dias — <em>sem academia,<br>sem passar fome.</em></h1>
 
         <p class="hero-subtitle">
           Um protocolo alimentar simples que reorganiza seu metabolismo em uma semana.
