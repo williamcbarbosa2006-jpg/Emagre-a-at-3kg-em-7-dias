@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emagreça até 3kg em 7 Dias — Protocolo Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --off-white: #FAF8F5;
+    --beige: #F5F0EB;
+    --beige-mid: #EDE6DD;
+    --accent: #7A9E7E;
+    --accent-dark: #5d7f61;
+    --accent-deep: #3d5e41;
+    --accent-soft: #e8f0e9;
+    --text: #1C1C1A;
+    --text-muted: #6B6560;
+    --dark-green: #253828;
+  }
+
+  @page {
+    size: A5 portrait;
+    margin: 18mm 16mm 20mm 18mm;
+    @bottom-right {
+      content: counter(page);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9pt;
+      color: #9e9690;
+    }
+    @top-center {
+      content: "Emagreça até 3kg em 7 Dias";
+      font-family: 'DM Sans', sans-serif;
+      font-size: 7.5pt;
+      color: #b5b0aa;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  @page cover {
+    margin: 0;
+    @bottom-right { content: none; }
+    @top-center { content: none; }
+  }
+
+  @page toc {
+    @top-center { content: none; }
+    @bottom-right { content: none; }
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* ─── COVER ─── */
+  .page-cover {
+    page: cover;
+    width: 148mm;
+    height: 210mm;
+    background: var(--dark-green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    page-break-after: always;
+    padding: 20mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(122,158,126,0.18) 0%, transparent 65%),
+                radial-gradient(ellipse at 70% 20%, rgba(122,158,126,0.1) 0%, transparent 55%);
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8mm;
+    position: relative;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28pt;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 6mm;
+    position: relative;
+  }
+
+  .cover-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .cover-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10pt;
+    color: rgba(250,248,245,0.72);
+    font-weight: 300;
+    line-height: 1.55;
+    max-width: 100mm;
+    margin-bottom: 14mm;
+    position: relative;
+  }
+
+  .cover-divider {
+    width: 32mm;
+    height: 1.5px;
+    background: var(--accent);
+    margin: 0 auto 14mm;
+    position: relative;
+  }
+
+  .cover-promise {
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    position: relative;
+    width: 100%;
+  }
+
+  .cover-promise-item {
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9pt;
+    color: rgba(250,248,245,0.82);
+    font-weight: 400;
+  }
+
+  .cover-check {
+    width: 5mm;
+    height: 5mm;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover-check::after {
+    content: '✓';
+    color: white;
+    font-size: 7pt;
+    line-height: 1;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    color: rgba(250,248,245,0.35);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── TOC ─── */
+  .page-toc {
+    page: toc;
+    page-break-after: always;
+    padding-top: 12mm;
+  }
+
+  .toc-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5mm;
+  }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18pt;
+    color: var(--text);
+    margin-bottom: 8mm;
+    border-bottom: 1.5px solid var(--beige-mid);
+    padding-bottom: 5mm;
+  }
+
+  .toc-list {
+    list-style: none;
+  }
+
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    padding: 3mm 0;
+    border-bottom: 1px solid var(--beige);
+    font-size: 9.5pt;
+    color: var(--text);
+    gap: 2mm;
+  }
+
+  .toc-list li .toc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 8.5pt;
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 6mm;
+    flex-shrink: 0;
+  }
+
+  .toc-list li .toc-name {
+    flex: 1;
+  }
+
+  .toc-list li .toc-days {
+    font-size: 8pt;
+    color: var(--text-muted);
+    font-weight: 400;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ─── CHAPTER ─── */
+  .page-chapter {
+    page-break-before: always;
+    padding-top: 8mm;
+  }
+
+  .chapter-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3mm;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19pt;
+    font-weight: 700;
+    color: var(--dark-green);
+    line-height: 1.25;
+    margin-bottom: 6mm;
+    padding-bottom: 5mm;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--dark-green);
+    margin: 7mm 0 3mm;
+    line-height: 1.35;
+  }
+
+  p {
+    margin-bottom: 4mm;
+    font-size: 10.5pt;
+    line-height: 1.72;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  ul, ol {
+    padding-left: 5mm;
+    margin-bottom: 4mm;
+  }
+
+  li {
+    margin-bottom: 1.5mm;
+    font-size: 10pt;
+    line-height: 1.65;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--beige-mid);
+    margin: 5mm 0;
+  }
+
+  /* ─── CALLOUT / BLOCKQUOTE ─── */
+  blockquote {
+    background: var(--accent-soft);
+    border-left: 3.5px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+    font-size: 10pt;
+    color: var(--accent-deep);
+    line-height: 1.65;
+  }
+
+  blockquote strong {
+    color: var(--accent-deep);
+  }
+
+  /* ─── TABLES ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+
+  thead tr {
+    background: var(--dark-green);
+    color: white;
+  }
+
+  thead th {
+    padding: 2.5mm 3mm;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 9pt;
+    letter-spacing: 0.03em;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--beige-mid);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--off-white);
+  }
+
+  tbody td {
+    padding: 2.5mm 3mm;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+
+  /* ─── PROFILE BOX ─── */
+  .profiles {
+    margin: 5mm 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .profile-card {
+    background: var(--beige);
+    border-radius: 6px;
+    padding: 3.5mm 4.5mm;
+    border-left: 3px solid var(--accent);
+  }
+
+  .profile-card strong {
+    display: block;
+    font-size: 9pt;
+    color: var(--accent-deep);
+    font-weight: 600;
+    margin-bottom: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .profile-card p {
+    margin: 0;
+    font-size: 9.5pt;
+    color: var(--text);
+  }
+
+  /* ─── PROTOCOL TABLE (DO/DON'T) ─── */
+  .protocol-section {
+    background: var(--off-white);
+    border: 1px solid var(--beige-mid);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 5mm 0;
+    page-break-inside: avoid;
+  }
+
+  .protocol-section table {
+    margin: 0;
+    font-size: 9pt;
+  }
+
+  .protocol-section thead th:first-child {
+    background: var(--accent);
+  }
+
+  .protocol-section thead th:last-child {
+    background: #c17b7b;
+  }
+
+  /* ─── PHASE TAG ─── */
+  .phase-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1.5mm 3mm;
+    border-radius: 3px;
+    margin-bottom: 3mm;
+  }
+
+  /* ─── PLATE VISUAL ─── */
+  .plate-guide {
+    background: var(--dark-green);
+    color: white;
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+    page-break-inside: avoid;
+  }
+
+  .plate-guide h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    color: var(--accent);
+    margin-bottom: 3mm;
+    font-weight: 600;
+  }
+
+  .plate-guide p {
+    color: rgba(250,248,245,0.88);
+    font-size: 9.5pt;
+    margin-bottom: 2mm;
+  }
+
+  .plate-row {
+    display: flex;
+    gap: 2mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .plate-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 10mm;
+    flex-shrink: 0;
+  }
+
+  .plate-desc {
+    font-size: 9.5pt;
+    color: rgba(250,248,245,0.88);
+    flex: 1;
+  }
+
+  /* ─── FINAL CTA ─── */
+  .next-step-box {
+    background: var(--accent-soft);
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    padding: 5mm 6mm;
+    margin-top: 8mm;
+    text-align: center;
+  }
+
+  .next-step-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    color: var(--dark-green);
+    margin-bottom: 3mm;
+  }
+
+  .next-step-box p {
+    color: var(--text-muted);
+    font-size: 9.5pt;
+    margin-bottom: 0;
+  }
+
+  .next-step-box strong {
+    color: var(--accent-deep);
+    font-size: 11pt;
+    display: block;
+    margin-top: 2mm;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ─── PRINT UTILITIES ─── */
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+
+  .break-before {
+    page-break-before: always;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ COVER ═══════════════════════════════════ -->
+<div class="page-cover">
+  <div class="cover-eyebrow">Protocolo Alimentar</div>
+  <div class="cover-title">Emagreça até<br><em>3kg em 7 Dias</em></div>
+  <div class="cover-subtitle">Sem academia, sem passar fome e sem contar caloria — o protocolo dia a dia para desinchar, recuperar energia e ver resultado real na primeira semana.</div>
+  <div class="cover-divider"></div>
+  <div class="cover-promise">
+    <div class="cover-promise-item"><div class="cover-check"></div>Protocolo alimentar completo para os 7 dias</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Cardápio diário com substituições</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Ativação metabólica sem academia</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Estratégia de janela alimentar (Dias 5–6)</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Guia de perfil individual por tipo de corpo</div>
+  </div>
+  <div class="cover-footer">© 2026 — Todos os direitos reservados. Uso pessoal.</div>
+</div>
+
+<!-- ═══════════════════════════════════ SUMÁRIO ═══════════════════════════════════ -->
+<div class="page-toc">
+  <div class="toc-label">Sumário</div>
+  <div class="toc-title">O Que Vem a Seguir</div>
+  <ul class="toc-list">
+    <li>
+      <span class="toc-num">01</span>
+      <span class="toc-name">Você Não Está Exagerando — Seu Corpo Está Pedindo Socorro</span>
+      <span class="toc-days">Diagnóstico</span>
+    </li>
+    <li>
+      <span class="toc-num">02</span>
+      <span class="toc-name">Por Que Realmente Você Não Consegue Emagrecer</span>
+      <span class="toc-days">Causa Real</span>
+    </li>
+    <li>
+      <span class="toc-num">03</span>
+      <span class="toc-name">O Erro Que Sabota 90% das Dietas</span>
+      <span class="toc-days">Armadilhas</span>
+    </li>
+    <li>
+      <span class="toc-num">04</span>
+      <span class="toc-name">Dias 1 e 2 — O Reset Metabólico</span>
+      <span class="toc-days">Dias 1–2</span>
+    </li>
+    <li>
+      <span class="toc-num">05</span>
+      <span class="toc-name">Dias 3 e 4 — A Ativação</span>
+      <span class="toc-days">Dias 3–4</span>
+    </li>
+    <li>
+      <span class="toc-num">06</span>
+      <span class="toc-name">Dias 5 e 6 — A Aceleração</span>
+      <span class="toc-days">Dias 5–6</span>
+    </li>
+    <li>
+      <span class="toc-num">07</span>
+      <span class="toc-name">Dia 7 — A Decisão</span>
+      <span class="toc-days">Dia 7</span>
+    </li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 1 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 1</div>
+  <h1 class="chapter-title">Você Não Está Exagerando — Seu Corpo Está Pedindo Socorro</h1>
+
+  <p>Você olha pro espelho e sente aquela pontada. Não é só estética. É a sensação de que algo mudou — e que você perdeu o controle de quando e como isso aconteceu.</p>
+  <p>A roupa que usava há seis meses não fecha mais. Você acorda cansada mesmo depois de dormir. O estômago parece sempre inchado, mesmo nos dias em que você comeu "direitinho". E o pior: você já tentou tantas coisas que começa a achar que o problema é você.</p>
+
+  <blockquote><strong>Não é você. É o seu metabolismo respondendo a um ambiente que está trabalhando contra ele.</strong></blockquote>
+
+  <h2>O Que a Ciência Diz Sobre o Ganho de Peso</h2>
+  <p>Pesquisadores da Escola de Saúde Pública de Harvard publicaram estudos mostrando que o ganho de peso crônico não é simplesmente sobre "comer mais do que gasta". O cortisol elevado — hormônio do estresse, presente em 78% dos brasileiros com excesso de peso — instrui o corpo a armazenar gordura na região abdominal mesmo em dietas de déficit calórico.</p>
+  <p>Você não é fraca. Você está num ciclo bioquímico. E ciclos têm saída.</p>
+
+  <h2>O Que "7 Dias" Significa Na Prática</h2>
+  <p>Em 7 dias você não vai atingir o peso dos seus sonhos. Isso não existe e qualquer um que prometer isso está mentindo.</p>
+  <p>O que você vai alcançar em 7 dias é diferente — e mais valioso no início:</p>
+  <ul>
+    <li>Desinchar visivelmente (até 2kg de retenção de líquido vão embora)</li>
+    <li>Reduzir a inflamação que causa cansaço e inchaço crônico</li>
+    <li>Resetar seus hábitos alimentares sem passar fome</li>
+    <li>Perder entre 1 e 3kg de forma real, dependendo do seu ponto de partida</li>
+    <li>Sentir uma diferença de energia que você não sentia há meses</li>
+  </ul>
+  <p>Esse é o primeiro degrau. E primeiros degraus importam porque eles provam que o método funciona — para você, no seu corpo, na sua rotina.</p>
+
+  <h2>Diagnóstico: Qual É o Seu Perfil?</h2>
+  <p>Existem três perfis de quem está aqui. O protocolo se aplica igual, mas o que você vai sentir em cada fase é diferente.</p>
+
+  <div class="profiles">
+    <div class="profile-card">
+      <strong>Perfil 1 — A Recém-Chegada</strong>
+      <p>Você começou a engordar nos últimos 6 a 12 meses. Pode ser estresse, sedentarismo, mudança de rotina. O seu metabolismo ainda responde rápido. Você vai sentir os efeitos do protocolo mais cedo — provavelmente a partir do Dia 3.</p>
+    </div>
+    <div class="profile-card">
+      <strong>Perfil 2 — A do Ciclo Interminável</strong>
+      <p>Você perde, volta, perde, volta. Já fez low carb, jejum, shake, dieta da lua. O problema é que cada dieta radical deixou rastros — metabolismo adaptado, relação difícil com comida. O protocolo aqui é mais sobre reconstrução do que velocidade.</p>
+    </div>
+    <div class="profile-card">
+      <strong>Perfil 3 — A do Inchaço Crônico</strong>
+      <p>Você não come tanto assim, mas vive inchada. A balança não muda mas o corpo parece diferente dependendo do dia. O problema pode ser inflamação, retenção de sódio, intestino lento. Você vai ver resultados visíveis rápido — mas a balança pode não mostrar tudo que mudou.</p>
+    </div>
+  </div>
+
+  <p><strong>Marque seu perfil agora.</strong> Nos próximos capítulos, vou indicar onde cada perfil precisa de atenção especial.</p>
+  <hr>
+  <p>O que gerou onde você está não vai embora em 24 horas. Mas começa a ir embora a partir do momento que você entende o mecanismo. E é exatamente isso que o próximo capítulo vai te mostrar.</p>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 2 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 2</div>
+  <h1 class="chapter-title">Por Que Realmente Você Não Consegue Emagrecer</h1>
+
+  <p>Existe a versão oficial. E existe a versão real.</p>
+  <p>A versão oficial diz: "você está engordando porque come mais do que gasta". Reduza as calorias, aumente o exercício. Simples.</p>
+  <p>Se fosse assim tão simples, 71% dos brasileiros não estariam acima do peso mesmo sabendo disso há anos.</p>
+  <p>A versão real é mais complicada — e mais útil.</p>
+
+  <h2>Resistência à Insulina: O Gatilho Que Ninguém Menciona</h2>
+  <p>O Dr. David Ludwig, pesquisador de nutrição da Universidade Harvard, passou décadas estudando por que pessoas que seguem dietas calóricas convencionais continuam engordando. A conclusão contrariou décadas de senso comum nutricional: <strong>o problema não é a quantidade de comida, é o que ela faz com os seus hormônios</strong>.</p>
+  <p>Quando você consome açúcar refinado, farinhas brancas e alimentos ultraprocessados com frequência, seu pâncreas precisa liberar doses cada vez maiores de insulina para dar conta do trabalho. Com o tempo, as células param de responder direito. É a resistência à insulina.</p>
+  <p>E a insulina elevada tem um efeito direto: ela instrui as células de gordura a armazenar mais. E impede que a gordura armazenada seja liberada como energia. Resultado: você come, a energia vai para o estoque — não para a célula. Você sente fome de novo rápido. O ciclo se repete.</p>
+
+  <h2>As 3 Causas Reais Mais Comuns</h2>
+
+  <div class="profiles">
+    <div class="profile-card">
+      <strong>Causa 1 — Inflamação Crônica de Baixo Grau</strong>
+      <p>Alimentos ultraprocessados, açúcar, óleos vegetais refinados e estresse crônico criam um estado inflamatório silencioso. Inflamação crônica interfere diretamente nos hormônios que regulam fome (leptina e grelina), tornando difícil sentir saciedade.</p>
+    </div>
+    <div class="profile-card">
+      <strong>Causa 2 — Cortisol Elevado</strong>
+      <p>O cortisol — hormônio do estresse — tem uma função evolutiva: preparar o corpo para uma ameaça. Com cortisol cronicamente alto, o corpo acumula gordura especificamente na região abdominal e usa músculo como combustível — o pior dos mundos.</p>
+    </div>
+    <div class="profile-card">
+      <strong>Causa 3 — Disbiose Intestinal</strong>
+      <p>O intestino não é apenas digestão. Quando a microbiota intestinal está desequilibrada, o processo de extração de energia dos alimentos muda. Pessoas com disbiose absorvem mais calorias dos mesmos alimentos do que pessoas com microbiota saudável.</p>
+    </div>
+  </div>
+
+  <h2>O Que Isso Significa Para Você</h2>
+  <p>Nenhuma dessas causas é culpa sua. São respostas biológicas a um ambiente que foi projetado para criar exatamente esse estado.</p>
+  <p>Mas entender a causa muda onde você age. Não adianta só comer menos se o problema é inflamação. Não adianta se matar na academia se o problema é cortisol — exercício excessivo <em>aumenta</em> cortisol.</p>
+  <blockquote>O protocolo dos próximos 7 dias age nas três causas ao mesmo tempo. Não com remédio. Com alimentação, ritmo e estratégia.</blockquote>
+  <p>Antes de ver o que fazer, porém, você precisa ver o que <strong>não</strong> fazer. O próximo capítulo é sobre o erro que a maioria das pessoas comete exatamente agora.</p>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 3 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 3</div>
+  <h1 class="chapter-title">O Erro Que Sabota 90% das Dietas</h1>
+
+  <p>Existe um comportamento que a maioria adota quando decide emagrecer. É automático. É intuitivo. E é exatamente o que mais prejudica o resultado.</p>
+  <p>Chamo de <strong>"a síndrome do tudo ou nada"</strong>.</p>
+
+  <h2>Como a Síndrome do Tudo ou Nada Funciona</h2>
+  <p>Você se olha no espelho segunda-feira de manhã e decide: "agora vai". Corta o açúcar, o carboidrato, o álcool, o café, o jantar, tudo. Vai para a academia todo dia. Bebe 3 litros de água. Na quarta, você está com fome, irritada, com dor muscular. Na sexta, você cede. No domingo, você "reinicia na segunda".</p>
+  <p>O corpo humano não responde a mudanças radicais com resultados radicais. Ele responde com resistência. Quanto mais severa a restrição, mais forte o sinal de alarme do organismo — que interpreta restrição extrema como escassez e ativa mecanismos para preservar gordura.</p>
+  <blockquote>Isso tem nome científico: <strong>adaptação metabólica</strong>. Seu corpo literalmente fica mais eficiente em gastar menos energia quando percebe que a oferta caiu abruptamente.</blockquote>
+
+  <h2>Os 5 Comportamentos Que Destroem o Resultado</h2>
+  <ul>
+    <li><strong>Cortar tudo de uma vez:</strong> A privação extrema aumenta o cortisol e o pensamento obsessivo sobre comida. A recaída depois de 3–5 dias é praticamente garantida.</li>
+    <li><strong>Pular refeições para compensar:</strong> Cria pico de grelina (hormônio da fome) e queda de energia, seguido de uma refeição maior do que seria.</li>
+    <li><strong>Focar exclusivamente na balança:</strong> A balança mede peso total — não gordura, não músculo, não líquido. Quem usa só a balança desiste justamente quando o protocolo está funcionando nos bastidores.</li>
+    <li><strong>Treinar até a exaustão nos primeiros dias:</strong> Exercício de alta intensidade aumenta cortisol. Para pessoas com cortisol já cronicamente elevado, a academia intensa nos primeiros dias pode literalmente sabotar a perda de gordura abdominal.</li>
+    <li><strong>Eliminar carboidratos completamente:</strong> Low carb extremo sem supervisão reduz serotonina, aumenta ansiedade e cria o "efeito rebote de carboidrato" — quando você comer qualquer carboidrato depois, o corpo armazena tudo como gordura.</li>
+  </ul>
+
+  <h2>A Regra de Ouro Antes de Qualquer Mudança</h2>
+  <p>Antes de qualquer decisão alimentar ou de exercício durante os 7 dias, passe pelo seguinte filtro:</p>
+  <blockquote>"<em>Essa mudança é algo que eu consigo manter por 7 dias sem sofrer? Se a resposta for não — é restritiva demais para agora.</em>"</blockquote>
+  <p>O protocolo que começa no próximo capítulo foi construído para passar nesse filtro. É difícil o suficiente para funcionar. Sustentável o suficiente para ser completado.</p>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 4 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 4</div>
+  <h1 class="chapter-title">Dias 1 e 2 — O Reset Metabólico</h1>
+  <div class="phase-tag">Dias 1 – 2</div>
+
+  <p>Os dois primeiros dias são sobre parar antes de acelerar. Parece contra-intuitivo. A vontade é de sair fazendo. Mas o reset é o passo que determina o sucesso de tudo que vem depois.</p>
+
+  <div class="avoid-break">
+    <h2>O Que É o Reset (e o Que Não É)</h2>
+    <table>
+      <thead><tr><th>O Reset É</th><th>O Reset Não É</th></tr></thead>
+      <tbody>
+        <tr><td>Remover alimentos inflamatórios</td><td>Jejum de dias</td></tr>
+        <tr><td>Aumentar hidratação</td><td>Suco detox de 3 dias</td></tr>
+        <tr><td>Priorizar sono como ferramenta metabólica</td><td>Comer só salada</td></tr>
+        <tr><td>Comer com atenção — sem pressa, sem tela</td><td>Passar fome</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>O Que Remover Completamente</h2>
+  <ul>
+    <li>Açúcar refinado e adoçantes artificiais (aspartame, sucralose)</li>
+    <li>Farinhas brancas (pão branco, macarrão branco, biscoito, bolacha)</li>
+    <li>Óleos vegetais industriais (soja, girassol, milho, canola)</li>
+    <li>Alimentos ultraprocessados (qualquer coisa com lista de ingredientes maior que 5 itens que você não reconhece)</li>
+    <li>Álcool em qualquer quantidade</li>
+    <li>Refrigerantes e sucos de caixinha</li>
+  </ul>
+
+  <h2>O Que Adicionar Ativamente</h2>
+  <ul>
+    <li><strong>Água:</strong> mínimo 2,5 litros por dia (não inclui café, chá ou suco)</li>
+    <li><strong>Legumes e verduras</strong> em cada refeição</li>
+    <li><strong>Proteína</strong> em cada refeição: ovo, frango, peixe, atum, cottage</li>
+    <li><strong>Gordura boa:</strong> azeite extra-virgem, abacate, castanhas (porção pequena)</li>
+    <li><strong>Sono:</strong> 7 a 8 horas. Sem negociação. Dormir mal aumenta grelina em 24% no dia seguinte.</li>
+  </ul>
+
+  <div class="protocol-section">
+    <table>
+      <thead><tr><th>✓ O que fazer</th><th>✗ O que não fazer</th></tr></thead>
+      <tbody>
+        <tr><td>Comer de 3 em 3 horas (sem pular)</td><td>Pular refeições para "compensar"</td></tr>
+        <tr><td>2,5L de água ao longo do dia</td><td>Tomar líquido só quando sentir sede</td></tr>
+        <tr><td>Verdura em todas as refeições</td><td>Refeição só de carboidrato</td></tr>
+        <tr><td>Dormir antes da meia-noite</td><td>Tela depois das 22h (luz azul atrasa melatonina)</td></tr>
+        <tr><td>Caminhar 20 minutos (leve)</td><td>Academia intensa nesses dias</td></tr>
+        <tr><td>Mastigar devagar, sem distração</td><td>Comer em pé, correndo ou na frente do celular</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="profiles">
+    <div class="profile-card"><strong>Perfil 1</strong><p>Você vai sentir uma diferença de bem-estar já no Dia 2. A inflamação responde rápido quando o gatilho é recente.</p></div>
+    <div class="profile-card"><strong>Perfil 2</strong><p>Esses dois dias podem gerar um leve "craving" por açúcar ou carboidrato. É normal. É o seu organismo testando se o novo padrão é real. Não é fome — é adaptação.</p></div>
+    <div class="profile-card"><strong>Perfil 3</strong><p>Você provavelmente vai desinchar visivelmente já no Dia 2. A redução de sódio e aumento de água é o protocolo mais eficaz para retenção.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 5 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 5</div>
+  <h1 class="chapter-title">Dias 3 e 4 — A Ativação</h1>
+  <div class="phase-tag">Dias 3 – 4</div>
+
+  <p>Você passou pelos dois primeiros dias. O ambiente interno está mais limpo. Agora é hora de ligar o motor.</p>
+  <p>A fase de ativação tem dois focos simultâneos: alimentos que aceleram o metabolismo e movimento estratégico que não aumenta o cortisol. A combinação cria o "efeito termogênico composto" — seu corpo começa a gastar mais energia processando e se movendo ao mesmo tempo.</p>
+
+  <h2>Alimentos Termogênicos para Adicionar</h2>
+  <ul>
+    <li><strong>Gengibre fresco:</strong> ralado no chá, na salada, no peixe. Aumenta a termogênese em até 20%.</li>
+    <li><strong>Canela:</strong> uma colher de chá no café, no iogurte, na fruta. Melhora sensibilidade à insulina.</li>
+    <li><strong>Chá verde:</strong> 2 a 3 xícaras por dia. Catequinas + cafeína moderada = queima de gordura sem estresse adrenal.</li>
+    <li><strong>Pimenta-caiena:</strong> se tolerar, uma pitada em qualquer refeição quente.</li>
+    <li><strong>Ovo inteiro:</strong> a gema tem colina, que ativa o metabolismo das gorduras no fígado.</li>
+    <li><strong>Salmão ou sardinha:</strong> ômega-3 reduz inflamação e melhora sensibilidade hormonal.</li>
+  </ul>
+
+  <h2>Movimento de Ativação — Dias 3 e 4</h2>
+  <div class="plate-guide">
+    <h3>Manhã (10–15 minutos, antes do café)</h3>
+    <div class="plate-row"><span class="plate-pct">50</span><span class="plate-desc">agachamentos livres (divida em séries de 10)</span></div>
+    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">séries de 30 segundos de prancha</span></div>
+    <div class="plate-row"><span class="plate-pct">20</span><span class="plate-desc">afundos alternados + 5 minutos de caminhada</span></div>
+    <h3 style="margin-top:3mm;">Tarde ou Noite (30 minutos)</h3>
+    <p>Caminhada a passo acelerado — você deve conseguir falar mas estar levemente ofegante.</p>
+  </div>
+
+  <div class="protocol-section">
+    <table>
+      <thead><tr><th>✓ O que fazer</th><th>✗ O que não fazer</th></tr></thead>
+      <tbody>
+        <tr><td>Gengibre e canela pelo menos 1× por dia</td><td>Academia pesada ou treino acima de 45 min</td></tr>
+        <tr><td>Chá verde com limão no café da manhã</td><td>Café com açúcar ou adoçante artificial</td></tr>
+        <tr><td>Proteína no café da manhã (ovo, queijo, iogurte)</td><td>Café da manhã só com pão e manteiga</td></tr>
+        <tr><td>Exercício matinal em jejum curto (até 60 min)</td><td>Jejum prolongado (mais de 14h)</td></tr>
+        <tr><td>Caminhada 30 min à tarde</td><td>Ficar sentada o dia todo sem nenhum movimento</td></tr>
+        <tr><td>Jantar até as 20h</td><td>Comer após as 21h</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="profiles">
+    <div class="profile-card"><strong>Perfil 1</strong><p>Dias 3 e 4 são quando você vai começar a ver a balança se mover. A inflamação caiu, o metabolismo está se ajustando.</p></div>
+    <div class="profile-card"><strong>Perfil 2</strong><p>Você pode sentir um aumento de energia incomum. Não interprete isso como sinal de que pode "flexibilizar" — é o corpo respondendo positivamente. Continue.</p></div>
+    <div class="profile-card"><strong>Perfil 3</strong><p>O inchaço visual está provavelmente menor. A balança pode ainda não ter se movido muito, mas o espelho está diferente.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 6 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 6</div>
+  <h1 class="chapter-title">Dias 5 e 6 — A Aceleração</h1>
+  <div class="phase-tag">Dias 5 – 6</div>
+
+  <p>Chegamos na fase que mais gera dúvida. E também a que mais gera resultado.</p>
+  <p>Nos Dias 5 e 6, você vai usar uma janela alimentar de 8 horas — comer em um período específico do dia e não comer fora dele. Isso não é jejum radical. É o seu sistema digestivo tendo tempo suficiente para processar, descansar e usar gordura como combustível.</p>
+
+  <h2>O Que É a Janela Alimentar</h2>
+  <table>
+    <thead><tr><th>É</th><th>Não É</th></tr></thead>
+    <tbody>
+      <tr><td>Comer entre 12h e 20h</td><td>Ficar sem comer nada o dia todo</td></tr>
+      <tr><td>3 refeições dentro desse horário</td><td>Contar cada caloria</td></tr>
+      <tr><td>Água, chá verde e café preto fora da janela</td><td>Sofrer de fome até o horário "liberar"</td></tr>
+    </tbody>
+  </table>
+
+  <blockquote>Mark Mattson, neurocientista dos National Institutes of Health (EUA): quando o organismo passa mais de 10 a 12 horas sem alimento, ele começa a utilizar gordura armazenada como fonte primária de energia — o processo chamado de <strong>lipólise</strong>.</blockquote>
+
+  <div class="plate-guide">
+    <h3>Composição de Prato — Dias 5 e 6</h3>
+    <div class="plate-row"><span class="plate-pct">50%</span><span class="plate-desc">Legumes e verduras (qualquer preparo)</span></div>
+    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Proteína (frango, peixe, ovo, carne magra, tofu)</span></div>
+    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Carboidrato complexo (arroz integral, batata-doce, mandioca, quinoa)</span></div>
+  </div>
+
+  <h2>O Cronograma do Dia</h2>
+  <table>
+    <thead><tr><th>Horário</th><th>O Que Fazer</th></tr></thead>
+    <tbody>
+      <tr><td>Ao acordar</td><td>300ml de água com limão + café preto ou chá verde</td></tr>
+      <tr><td>Antes de 10h</td><td>Caminhada 30 min em jejum (lipólise ativa)</td></tr>
+      <tr><td>12h (1ª refeição)</td><td>Almoço completo — composição 50/25/25</td></tr>
+      <tr><td>15h–16h</td><td>Lanche proteico: iogurte + castanhas + fruta vermelha</td></tr>
+      <tr><td>19h–20h</td><td>Jantar leve: sopa ou salada grande com proteína</td></tr>
+      <tr><td>Após 20h</td><td>Apenas água e chá sem adoçar</td></tr>
+    </tbody>
+  </table>
+
+  <div class="profiles">
+    <div class="profile-card"><strong>Perfil 1</strong><p>Você provavelmente vai sentir fome no período da manhã por 1 a 2 horas. Isso passa no segundo dia. Use água e café para atravessar.</p></div>
+    <div class="profile-card"><strong>Perfil 2</strong><p>A janela alimentar pode parecer fácil ou muito difícil dependendo da sua relação histórica com comida. Se sentir ansiedade, não é fome física — é hábito. Fome tem crescimento gradual, ansiedade tem onset súbito.</p></div>
+    <div class="profile-card"><strong>Perfil 3</strong><p>Você vai acordar no Dia 6 notavelmente mais definida. O conjunto redução de sódio + hidratação + janela alimentar age especificamente na retenção.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 7 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 7</div>
+  <h1 class="chapter-title">Dia 7 — A Decisão</h1>
+  <div class="phase-tag">Dia 7</div>
+
+  <p>O Dia 7 não é o dia do resultado mágico.</p>
+  <p>Digo isso com respeito, porque qualquer promessa de milagre em uma semana desrespeita a inteligência de quem está aqui. O Dia 7 é o dia em que você avalia, consolida e decide o que fazer com o que aprendeu.</p>
+
+  <h2>Como Se Medir Hoje</h2>
+  <p>Antes de qualquer refeição, logo ao acordar:</p>
+  <ul>
+    <li>Peso na balança</li>
+    <li>Medida da cintura (na altura do umbigo, com fita métrica)</li>
+    <li>Medida do quadril (na parte mais larga)</li>
+    <li>Foto comparativa se quiser (frente e lado, mesma roupa do Dia 1)</li>
+  </ul>
+  <p>Compare com os registros do Dia 1. <strong>Não apenas com a balança — com tudo.</strong></p>
+
+  <h2>O Que Você Provavelmente Vai Encontrar</h2>
+  <table>
+    <thead><tr><th>Consistência</th><th>Resultado Esperado</th></tr></thead>
+    <tbody>
+      <tr><td>80%+ dos dias seguidos</td><td>1 a 3kg na balança · 1 a 3cm na cintura · energia visivelmente melhor</td></tr>
+      <tr><td>50–80% seguidos</td><td>0,5 a 1,5kg · redução de inchaço visível · mais clareza sobre o que funciona pro seu corpo</td></tr>
+      <tr><td>Chegou até aqui com dificuldades</td><td>Você tem agora mais dados sobre como o seu corpo reage do que tinha antes. Isso não é fracasso — é pesquisa aplicada.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A Coisa Que Ninguém Diz Sobre Emagrecimento</h2>
+  <p>Existe uma mentira embutida no mercado de dietas: que o objetivo é um ponto final. Um número na balança. Uma foto de depois.</p>
+  <p>O que realmente funciona é que as pessoas que mantêm o peso perdido não chegaram a um "ponto final". Elas chegaram a um novo ponto de partida. Um conjunto de hábitos que não exigem mais esforço ativo porque se tornaram o modo padrão.</p>
+  <blockquote><strong>Você não vai "terminar de emagrecer". Você vai mudar quem você é na sua relação com comida e movimento.</strong></blockquote>
+
+  <div class="next-step-box">
+    <h3>Seu Próximo Passo</h3>
+    <p>Se você quer continuar com um protocolo de 30 dias que aprofunda cada fase desse método — incluindo estratégias de treino progressivo, rotação de carboidratos, e como sustentar o resultado sem efeito rebote:</p>
+    <strong>CORPO SECO: O MÉTODO COMPLETO</strong>
+    <p style="margin-top:2mm;font-size:9pt;">O próximo passo para quem provou que consegue e quer resultados de longo prazo.</p>
+  </div>
+
+  <hr>
+  <p style="text-align:center; color:var(--text-muted); font-size:8.5pt; margin-top:6mm;">Você chegou ao Dia 7. Isso por si só é algo que a maioria não faz.<br>A próxima versão de você começa exatamente daqui.</p>
+  <p style="text-align:center; color:var(--beige-mid); font-size:8pt; margin-top:3mm;">© 2026 — Todos os direitos reservados. Uso pessoal.</p>
+</div>
+
+</body>
+</html>

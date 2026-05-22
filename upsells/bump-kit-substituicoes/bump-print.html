@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Kit Substituições & Rótulos — Protocolo 7 Dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --off-white: #FAF8F5;
+    --beige: #F5F0EB;
+    --beige-mid: #EDE6DD;
+    --accent: #7A9E7E;
+    --accent-dark: #5d7f61;
+    --accent-deep: #3d5e41;
+    --accent-soft: #e8f0e9;
+    --text: #1C1C1A;
+    --text-muted: #6B6560;
+    --dark-green: #253828;
+  }
+
+  @page {
+    size: A5 portrait;
+    margin: 16mm 15mm 18mm 17mm;
+    @bottom-right {
+      content: counter(page);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 8.5pt;
+      color: #b0aba5;
+    }
+    @top-right {
+      content: "Kit Substituições & Rótulos";
+      font-family: 'DM Sans', sans-serif;
+      font-size: 7pt;
+      color: #c0bbb5;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  @page cover { margin: 0; @bottom-right { content: none; } @top-right { content: none; } }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* COVER */
+  .page-cover {
+    page: cover;
+    width: 148mm;
+    height: 210mm;
+    background: var(--dark-green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    page-break-after: always;
+    padding: 18mm;
+    position: relative;
+  }
+
+  .page-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 25% 75%, rgba(122,158,126,0.2) 0%, transparent 60%);
+  }
+
+  .cover-tag {
+    font-size: 7pt;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5mm;
+    position: relative;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24pt;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 4mm;
+    position: relative;
+  }
+
+  .cover-title em { color: var(--accent); font-style: italic; }
+
+  .cover-sub {
+    font-size: 9.5pt;
+    color: rgba(250,248,245,0.7);
+    font-weight: 300;
+    line-height: 1.55;
+    margin-bottom: 10mm;
+    position: relative;
+  }
+
+  .cover-divider {
+    width: 28mm;
+    height: 1.5px;
+    background: var(--accent);
+    margin: 0 auto 10mm;
+    position: relative;
+  }
+
+  .cover-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+    position: relative;
+    width: 100%;
+  }
+
+  .cover-item {
+    display: flex;
+    align-items: center;
+    gap: 3.5mm;
+    font-size: 8.5pt;
+    color: rgba(250,248,245,0.82);
+  }
+
+  .cover-dot {
+    width: 4.5mm;
+    height: 4.5mm;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover-dot::after { content: '✓'; color: white; font-size: 6.5pt; }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 9mm;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 7pt;
+    color: rgba(250,248,245,0.3);
+  }
+
+  /* SECTION BREAK */
+  .section-break {
+    page-break-before: always;
+    padding-top: 6mm;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    background: var(--dark-green);
+    color: white;
+    padding: 4mm 5mm;
+    border-radius: 7px;
+    margin-bottom: 5mm;
+    page-break-after: avoid;
+  }
+
+  .section-header .sh-tag {
+    font-size: 7pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+  }
+
+  .section-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17pt;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 2mm;
+  }
+
+  .section-header p {
+    font-size: 8.5pt;
+    color: rgba(250,248,245,0.75);
+    line-height: 1.55;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 5px 5px 0;
+    padding: 3.5mm 4.5mm;
+    margin: 4mm 0;
+    font-size: 9pt;
+    color: var(--accent-deep);
+    line-height: 1.6;
+    page-break-inside: avoid;
+  }
+
+  .callout strong { color: var(--accent-deep); }
+
+  /* GROUP LABEL */
+  .group-label {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin: 6mm 0 2.5mm;
+    page-break-after: avoid;
+  }
+
+  .group-label .gl-num {
+    background: var(--accent);
+    color: white;
+    font-size: 8pt;
+    font-weight: 700;
+    width: 6mm;
+    height: 6mm;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .group-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 12pt;
+    font-weight: 600;
+    color: var(--dark-green);
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2mm;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+  }
+
+  thead tr { background: var(--dark-green); }
+
+  thead th {
+    padding: 2mm 2.5mm;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8pt;
+    color: white;
+    letter-spacing: 0.02em;
+  }
+
+  tbody tr { border-bottom: 1px solid var(--beige-mid); }
+  tbody tr:nth-child(even) { background: var(--off-white); }
+  tbody td { padding: 2mm 2.5mm; vertical-align: top; line-height: 1.5; }
+
+  td:first-child { font-weight: 500; color: var(--dark-green); white-space: nowrap; }
+  td:last-child { font-size: 8pt; color: var(--text-muted); font-style: italic; }
+
+  /* RULE CARD */
+  .rule-card {
+    border: 1px solid var(--beige-mid);
+    border-radius: 7px;
+    overflow: hidden;
+    margin: 4mm 0;
+    page-break-inside: avoid;
+  }
+
+  .rule-card-head {
+    background: var(--accent);
+    padding: 2.5mm 4mm;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .rule-card-head .rn {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 700;
+    width: 8mm;
+    height: 8mm;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .rule-card-head .rt {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .rule-card-body {
+    padding: 3.5mm 4mm;
+    background: var(--white);
+  }
+
+  .rule-card-body p {
+    font-size: 9pt;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 2mm;
+  }
+
+  .rule-card-body p:last-child { margin-bottom: 0; }
+  .rule-card-body strong { color: var(--dark-green); font-weight: 600; }
+  .rule-card-body em { color: var(--text-muted); font-style: italic; }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    background: var(--dark-green);
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    margin: 4mm 0;
+    page-break-inside: avoid;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    padding: 2mm 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 9pt;
+    color: rgba(250,248,245,0.88);
+    line-height: 1.5;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist li .cl-box {
+    width: 4.5mm;
+    height: 4.5mm;
+    border: 1.5px solid var(--accent);
+    border-radius: 2.5px;
+    flex-shrink: 0;
+    margin-top: 0.5mm;
+  }
+
+  .checklist li strong { color: var(--accent); font-weight: 600; }
+
+  /* SUGAR LIST */
+  .sugar-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin: 3mm 0;
+  }
+
+  .sugar-group {
+    background: var(--off-white);
+    border-radius: 6px;
+    padding: 3mm 3.5mm;
+    border-top: 2.5px solid var(--accent);
+  }
+
+  .sugar-group h3 {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2mm;
+  }
+
+  .sugar-group ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sugar-group ul li {
+    font-size: 8pt;
+    color: var(--text);
+    padding: 0.5mm 0;
+    border-bottom: 1px solid var(--beige-mid);
+    line-height: 1.45;
+  }
+
+  .sugar-group ul li:last-child { border-bottom: none; }
+
+  /* WORD TRAP TABLE */
+  .trap-table thead th { background: #c17b7b; }
+
+  /* GOLDEN RULE */
+  .golden-rule {
+    background: var(--accent-soft);
+    border: 1.5px solid var(--accent);
+    border-radius: 7px;
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+
+  .golden-rule p {
+    font-family: 'Playfair Display', serif;
+    font-size: 10.5pt;
+    font-style: italic;
+    color: var(--accent-deep);
+    line-height: 1.6;
+  }
+
+  .golden-rule strong {
+    font-style: normal;
+    font-size: 11pt;
+    color: var(--dark-green);
+    display: block;
+    margin-top: 2mm;
+  }
+
+  p { margin-bottom: 3mm; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 12pt; color: var(--dark-green); margin: 5mm 0 2.5mm; }
+  hr { border: none; border-top: 1px solid var(--beige-mid); margin: 4mm 0; }
+  ul { padding-left: 4mm; margin-bottom: 3mm; }
+  li { margin-bottom: 1.5mm; font-size: 9pt; line-height: 1.6; }
+  blockquote { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9pt; color: var(--accent-deep); border-radius: 0 5px 5px 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page-cover">
+  <div class="cover-tag">Complemento do Protocolo 7 Dias</div>
+  <div class="cover-title">Kit <em>Substituições</em><br>& Rótulos</div>
+  <div class="cover-sub">Tabela de 30+ substituições alimentares + Guia completo de leitura de rótulos para não sabotar o protocolo.</div>
+  <div class="cover-divider"></div>
+  <div class="cover-includes">
+    <div class="cover-item"><div class="cover-dot"></div>30+ substituições organizadas por grupo alimentar</div>
+    <div class="cover-item"><div class="cover-dot"></div>56 nomes do açúcar que a indústria usa</div>
+    <div class="cover-item"><div class="cover-dot"></div>Armadilhas das palavras "light", "integral" e "natural"</div>
+    <div class="cover-item"><div class="cover-dot"></div>Tabela de sódio oculto nos alimentos do dia a dia</div>
+    <div class="cover-item"><div class="cover-dot"></div>Checklist rápido para usar no supermercado</div>
+  </div>
+  <div class="cover-footer">© 2026 — Uso pessoal. Complemento do Protocolo Emagreça até 3kg em 7 Dias.</div>
+</div>
+
+<!-- ══════════════════════ PARTE 1: TABELA DE SUBSTITUIÇÕES ══════════════════════ -->
+<div class="section-header" style="margin-top:6mm;">
+  <div class="sh-tag">Parte 1 de 2</div>
+  <h1>Tabela de Substituições</h1>
+  <p>Quando um alimento do cardápio não estiver disponível, não for do seu gosto ou não couber no orçamento, consulte aqui. Cada troca foi validada para manter o efeito anti-inchaço do protocolo.</p>
+</div>
+
+<div class="callout">
+  <strong>Regra de ouro das substituições:</strong> Troque dentro do mesmo grupo — proteína por proteína, carbo por carbo. Nunca substitua uma proteína por um carboidrato. Isso desequilibra a proporção do prato e compromete o resultado.
+</div>
+
+<!-- GRUPO 1 -->
+<div class="group-label"><div class="gl-num">1</div><h2>Proteínas</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Frango grelhado</td><td>Peixe, atum em água, sardinha, tofu firme</td><td>Prefira peixe 2× na semana — ômega-3 reduz inflamação</td></tr>
+    <tr><td>Ovo cozido</td><td>Ovo mexido, omelete sem queijo, tofu mexido</td><td>2 ovos = 1 porção de proteína</td></tr>
+    <tr><td>Atum em água</td><td>Sardinha em água, frango desfiado, camarão cozido</td><td>Evite versões em óleo — mais sódio</td></tr>
+    <tr><td>Carne bovina magra</td><td>Patinho, coxão mole, frango, peixe</td><td>Evite cortes gordurosos nos 7 dias</td></tr>
+    <tr><td>Iogurte natural</td><td>Iogurte grego sem açúcar, coalhada seca</td><td>Sem adição de açúcar na lista de ingredientes</td></tr>
+    <tr><td>Queijo branco</td><td>Cottage, ricota fresca</td><td>Evite muçarela e queijo amarelo — alto sódio</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 2 -->
+<div class="group-label"><div class="gl-num">2</div><h2>Carboidratos</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Arroz integral</td><td>Quinoa, arroz negro, macarrão integral (porção menor)</td><td>Quinoa tem mais proteína que o arroz</td></tr>
+    <tr><td>Batata-doce</td><td>Mandioca, inhame, batata baroa (mandioquinha)</td><td>Evite batata inglesa frita</td></tr>
+    <tr><td>Mandioca cozida</td><td>Batata-doce, inhame, cará</td><td>Todas têm fibras — resistência ao amido</td></tr>
+    <tr><td>Pão integral (max 1 fatia)</td><td>Tapioca com recheio proteico, wrap integral</td><td>"Integral" deve ser o 1° ingrediente</td></tr>
+    <tr><td>Aveia</td><td>Granola sem açúcar, farinha de aveia</td><td>Aveia com água é melhor que com leite nos 7 dias</td></tr>
+    <tr><td>Macarrão integral</td><td>Macarrão de lentilha, de grão-de-bico</td><td>Mais proteína, menos glicemia — excelente troca</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 3 -->
+<div class="group-label"><div class="gl-num">3</div><h2>Gorduras Boas</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Azeite extra-virgem</td><td>Óleo de coco extra-virgem (1 col. chá)</td><td>Não substitua por margarina ou óleo de soja</td></tr>
+    <tr><td>Abacate (¼ unidade)</td><td>1 col. sopa pasta de amendoim, 10 castanhas</td><td>Abacate tem potássio — ótimo contra retenção</td></tr>
+    <tr><td>Castanha-do-pará (2 un.)</td><td>Amêndoas (10 un.), nozes (3 metades)</td><td>Não exceda 2 castanhas-do-pará por dia</td></tr>
+    <tr><td>Pasta de amendoim natural</td><td>Pasta de amêndoa, tahini</td><td>"Natural" = só amendoim na lista</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 4 -->
+<div class="group-label"><div class="gl-num">4</div><h2>Laticínios e Bebidas</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Leite desnatado</td><td>Leite de amêndoa sem açúcar, leite de caju, de coco light</td><td>Evite leite de aveia — mais carboidrato</td></tr>
+    <tr><td>Chá verde</td><td>Chá de gengibre com limão, chá branco</td><td>Ambos têm propriedades termogênicas</td></tr>
+    <tr><td>Água com limão</td><td>Água com gengibre, com hortelã, água de coco natural</td><td>Água de coco: 1 copo/dia no máximo</td></tr>
+    <tr><td>Café preto</td><td>Café com canela (sem açúcar), café com leite vegetal</td><td>A canela ajuda na sensibilidade à insulina</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 5 -->
+<div class="group-label"><div class="gl-num">5</div><h2>Legumes e Verduras</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Brócolis</td><td>Couve-flor, couve-de-bruxelas, repolho</td><td>Todos são crucíferos — anti-inflamatórios</td></tr>
+    <tr><td>Espinafre</td><td>Couve manteiga, rúcula, agrião</td><td>Folhas escuras têm magnésio — ajuda contra retenção</td></tr>
+    <tr><td>Cenoura</td><td>Abobrinha, chuchu, vagem</td><td>Cenoura crua tem IG menor que cozida</td></tr>
+    <tr><td>Pepino</td><td>Abobrinha crua, chuchu cru, salsão</td><td>Pepino é 96% água — ótimo anti-retenção</td></tr>
+    <tr><td>Tomate</td><td>Pimentão vermelho, beterraba (moderada)</td><td>Tomate cru é melhor que cozido nesse contexto</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 6 -->
+<div class="group-label"><div class="gl-num">6</div><h2>Lanches e Petiscos</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Fruta fresca</td><td>Fruta congelada, fruta seca sem açúcar (pequena porção)</td><td>Fruta seca: max 1 col. sopa — açúcar concentrado</td></tr>
+    <tr><td>Frutas vermelhas</td><td>Melancia (sem exagero), kiwi, maçã verde</td><td>Frutas vermelhas têm menos açúcar que uva e manga</td></tr>
+    <tr><td>Castanhas (porção)</td><td>Amendoim torrado sem sal, sementes de abóbora</td><td>Max 30g por porção</td></tr>
+    <tr><td>Iogurte com fruta</td><td>Coalhada seca com canela, kefir natural</td><td>Kefir é probiótico — excelente para microbiota</td></tr>
+  </tbody>
+</table>
+
+<!-- GRUPO 7 -->
+<div class="group-label"><div class="gl-num">7</div><h2>Condimentos e Temperos</h2></div>
+<table>
+  <thead><tr><th>Alimento Original</th><th>Substituições Equivalentes</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr><td>Sal (limitado)</td><td>Ervas frescas, limão, vinagre de maçã, cúrcuma</td><td>Sal = retenção. Use limão para dar sabor</td></tr>
+    <tr><td>Azeite + limão</td><td>Vinagre balsâmico, mostarda Dijon, tahini diluído</td><td>Evite molhos prontos — todos têm sódio oculto</td></tr>
+    <tr><td>Alho e cebola</td><td>Cebolinha, salsinha, manjericão, orégano</td><td>Alho cru tem propriedades antibacterianas</td></tr>
+    <tr><td>Pimenta vermelha</td><td>Pimenta-do-reino, páprica defumada, gengibre</td><td>Pimenta ativa termogênese — use se tolerar</td></tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════ PARTE 2: GUIA DE RÓTULOS ══════════════════════ -->
+<div class="section-break"></div>
+<div class="section-header">
+  <div class="sh-tag">Parte 2 de 2</div>
+  <h1>Guia de Leitura de Rótulos</h1>
+  <p>Você pode seguir o protocolo à risca e ainda assim travar — se os alimentos que compra tiverem ingredientes que bloqueiam o resultado. Este guia muda isso em 10 minutos.</p>
+</div>
+
+<!-- REGRA 1 -->
+<div class="rule-card">
+  <div class="rule-card-head"><div class="rn">1</div><div class="rt">A Lista de Ingredientes Não Mente (Mas Esconde)</div></div>
+  <div class="rule-card-body">
+    <p>Os ingredientes são listados em <strong>ordem decrescente de quantidade</strong>. O primeiro da lista é o que tem mais no produto.</p>
+    <blockquote>"Iogurte de morango: leite desnatado, polpa de morango, <strong>açúcar</strong>, amido modificado, aroma artificial." — O açúcar aparece em 3° lugar. Esse produto tem mais açúcar do que morango. Parece saudável. Não é.</blockquote>
+    <p><strong>Regra rápida:</strong> Se açúcar (em qualquer versão) aparecer entre os 3 primeiros ingredientes → devolva para a prateleira.</p>
+  </div>
+</div>
+
+<!-- REGRA 2 -->
+<div class="rule-card">
+  <div class="rule-card-head"><div class="rn">2</div><div class="rt">O Açúcar Tem 56 Nomes Diferentes</div></div>
+  <div class="rule-card-body">
+    <p>A indústria usa nomes alternativos para esconder açúcar na lista de ingredientes. Os mais comuns:</p>
+    <div class="sugar-groups">
+      <div class="sugar-group">
+        <h3>Grupo 1 — Disfarçados</h3>
+        <ul>
+          <li>Açúcar invertido</li>
+          <li>Xarope de glicose</li>
+          <li>Xarope de milho (HFCS)</li>
+          <li>Dextrose</li>
+          <li>Maltose</li>
+          <li>Frutose</li>
+        </ul>
+      </div>
+      <div class="sugar-group">
+        <h3>Grupo 2 — "Naturais"</h3>
+        <ul>
+          <li>Mel (fora do contexto)</li>
+          <li>Xarope de agave</li>
+          <li>Néctar de agave</li>
+          <li>Xarope de arroz integral</li>
+          <li>Açúcar de coco (excesso)</li>
+          <li>Melaço</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sugar-group" style="margin-top:2mm;">
+      <h3>Grupo 3 — Adoçantes Artificiais que Disparam Fome</h3>
+      <ul style="display:flex; flex-wrap:wrap; gap:1mm 6mm; padding:0;">
+        <li>Aspartame</li><li>Sucralose</li><li>Acesulfame-K (Ace-K)</li><li>Sacarina</li><li>Ciclamato</li>
+      </ul>
+    </div>
+    <p style="margin-top:2.5mm; font-size:8.5pt; color:var(--text-muted);">Adoçantes artificiais confundem o pâncreas — que libera insulina em resposta ao sabor doce mesmo sem glicose real. Insulina elevada = modo de armazenamento de gordura ativado.</p>
+  </div>
+</div>
+
+<!-- REGRA 3 -->
+<div class="rule-card">
+  <div class="rule-card-head"><div class="rn">3</div><div class="rt">As Armadilhas das Palavras na Embalagem</div></div>
+  <div class="rule-card-body">
+    <table class="trap-table">
+      <thead><tr><th>Palavra</th><th>O que parece</th><th>O que realmente significa</th></tr></thead>
+      <tbody>
+        <tr><td>"Light"</td><td>Menos calórico</td><td>25% menos de um nutriente específico — pode ter mais açúcar compensando</td></tr>
+        <tr><td>"Diet"</td><td>Para emagrecer</td><td>Sem açúcar — mas pode ter mais gordura ou sódio</td></tr>
+        <tr><td>"Zero açúcar"</td><td>Saudável</td><td>Sem sacarose, mas pode ter adoçantes artificiais</td></tr>
+        <tr><td>"Integral"</td><td>Feito com grão integral</td><td>Só precisa ter alguma quantidade — verifique se é o 1° ingrediente</td></tr>
+        <tr><td>"Natural"</td><td>Sem químicos</td><td>Não tem definição legal no Brasil. Não significa nada.</td></tr>
+        <tr><td>"Sem conservantes"</td><td>Mais saudável</td><td>Pode ter outros aditivos. Leia a lista completa.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- REGRA 4 -->
+<div class="rule-card">
+  <div class="rule-card-head"><div class="rn">4</div><div class="rt">O Sódio Oculto</div></div>
+  <div class="rule-card-body">
+    <p>O sódio é o principal vilão do inchaço. E ele se esconde onde você menos espera.</p>
+    <table>
+      <thead><tr><th>Alimento</th><th>Sódio / porção</th><th>Equivalente em sal</th></tr></thead>
+      <tbody>
+        <tr><td>Tempero pronto (1 sachê)</td><td>800–1200mg</td><td>2g de sal</td></tr>
+        <tr><td>Queijo prato (1 fatia)</td><td>300–400mg</td><td>0,8g de sal</td></tr>
+        <tr><td>Pão de forma (2 fatias)</td><td>250–350mg</td><td>0,6g de sal</td></tr>
+        <tr><td>Molho shoyu (1 col. sopa)</td><td>700–900mg</td><td>1,8g de sal</td></tr>
+        <tr><td>Atum em óleo (1 lata)</td><td>400–600mg</td><td>1g de sal</td></tr>
+        <tr><td>Biscoito cream cracker (6 un.)</td><td>280–380mg</td><td>0,7g de sal</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:2.5mm; font-size:8.5pt;"><strong>Limite nos 7 dias:</strong> abaixo de 1500mg de sódio/dia. <strong>Como reduzir:</strong> troque tempero pronto por ervas frescas + alho + limão. O inchaço some em 24–48h.</p>
+  </div>
+</div>
+
+<!-- REGRA 5 -->
+<div class="rule-card">
+  <div class="rule-card-head"><div class="rn">5</div><div class="rt">Os Óleos que Inflamam</div></div>
+  <div class="rule-card-body">
+    <p>Óleos vegetais industriais são ricos em ômega-6 e, em excesso, aumentam a inflamação sistêmica — exatamente o que o protocolo está combatendo.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3mm; margin-top:2mm;">
+      <div class="sugar-group" style="border-top-color: #c17b7b;">
+        <h3 style="color:#8a4a4a;">Evitar nos 7 dias</h3>
+        <ul>
+          <li>Óleo de soja</li>
+          <li>Óleo de girassol</li>
+          <li>Óleo de milho</li>
+          <li>Óleo de canola (excesso)</li>
+          <li>Gordura vegetal hidrogenada</li>
+        </ul>
+      </div>
+      <div class="sugar-group">
+        <h3>Usar no lugar</h3>
+        <ul>
+          <li>Azeite extra-virgem (cru ou baixa temperatura)</li>
+          <li>Óleo de coco extra-virgem (temperatura alta)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST MERCADO -->
+<h2 style="margin-top:6mm; margin-bottom:3mm;">Checklist Rápido no Supermercado</h2>
+<p style="font-size:9pt; color:var(--text-muted); margin-bottom:2mm;">Antes de colocar qualquer produto no carrinho, responda:</p>
+<ul class="checklist">
+  <li><div class="cl-box"></div><span>O açúcar (ou qualquer nome alternativo) está entre os 3 primeiros ingredientes? → <strong>Devolve</strong></span></li>
+  <li><div class="cl-box"></div><span>Tem adoçante artificial (aspartame, sucralose, ace-K)? → <strong>Devolve se for consumo diário</strong></span></li>
+  <li><div class="cl-box"></div><span>Tem mais de 600mg de sódio por porção? → <strong>Devolve ou usa em quantidade mínima</strong></span></li>
+  <li><div class="cl-box"></div><span>A lista tem mais de 5 itens que você não reconhece? → <strong>Devolve</strong></span></li>
+  <li><div class="cl-box"></div><span>A palavra "integral" aparece como 1° ingrediente? → <strong>Pode levar</strong></span></li>
+  <li><div class="cl-box"></div><span>O óleo usado é azeite ou coco? → <strong>Pode levar</strong></span></li>
+</ul>
+
+<div class="golden-rule">
+  <p>Se passou em todos os critérios — é uma escolha segura para o protocolo.</p>
+  <strong>Leia rótulos. Sempre. Sem exceção.</strong>
+</div>
+
+<p style="text-align:center; color:var(--text-muted); font-size:8pt; margin-top:5mm;">© 2026 — Uso pessoal. Complemento do Protocolo Emagreça até 3kg em 7 Dias.</p>
+
+</body>
+</html>

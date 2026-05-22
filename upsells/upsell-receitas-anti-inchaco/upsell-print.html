@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Receitas Anti-inchaço — 5 Prontas em 15 Minutos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FFFFFF;
+    --off-white: #FAF8F5;
+    --beige: #F5F0EB;
+    --beige-mid: #EDE6DD;
+    --accent: #7A9E7E;
+    --accent-dark: #5d7f61;
+    --accent-deep: #3d5e41;
+    --accent-soft: #e8f0e9;
+    --text: #1C1C1A;
+    --text-muted: #6B6560;
+    --dark-green: #253828;
+  }
+
+  @page {
+    size: A5 portrait;
+    margin: 16mm 15mm 18mm 17mm;
+    @bottom-right {
+      content: counter(page);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 8.5pt;
+      color: #b0aba5;
+    }
+    @top-left {
+      content: "Receitas Anti-inchaço";
+      font-family: 'DM Sans', sans-serif;
+      font-size: 7pt;
+      color: #c0bbb5;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  @page cover { margin: 0; @bottom-right { content: none; } @top-left { content: none; } }
+  @page recipe { }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* ─── COVER ─── */
+  .page-cover {
+    page: cover;
+    width: 148mm;
+    height: 210mm;
+    background: var(--dark-green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    page-break-after: always;
+    padding: 18mm;
+    position: relative;
+  }
+
+  .page-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(122,158,126,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 15%, rgba(122,158,126,0.1) 0%, transparent 50%);
+  }
+
+  .cover-tag { font-size: 7pt; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 5mm; position: relative; }
+  .cover-title { font-family: 'Playfair Display', serif; font-size: 23pt; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 3mm; position: relative; }
+  .cover-title em { color: var(--accent); font-style: italic; }
+  .cover-sub { font-size: 9pt; color: rgba(250,248,245,0.68); font-weight: 300; line-height: 1.55; margin-bottom: 10mm; position: relative; max-width: 90mm; }
+  .cover-divider { width: 28mm; height: 1.5px; background: var(--accent); margin: 0 auto 10mm; position: relative; }
+
+  .cover-recipes {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+    position: relative;
+    width: 100%;
+    text-align: left;
+  }
+
+  .cover-recipe-item {
+    display: flex;
+    align-items: center;
+    gap: 3.5mm;
+    padding: 2mm 3mm;
+    background: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .cover-recipe-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 6mm;
+    flex-shrink: 0;
+  }
+
+  .cover-recipe-info { flex: 1; }
+  .cover-recipe-name { font-size: 8.5pt; font-weight: 500; color: rgba(250,248,245,0.9); line-height: 1.3; }
+  .cover-recipe-meta { font-size: 7.5pt; color: rgba(250,248,245,0.45); margin-top: 0.5mm; }
+
+  .cover-footer { position: absolute; bottom: 9mm; left: 0; right: 0; text-align: center; font-size: 7pt; color: rgba(250,248,245,0.28); }
+
+  /* ─── INTRO PAGE ─── */
+  .page-intro {
+    page-break-after: always;
+    padding-top: 6mm;
+  }
+
+  .intro-header {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    margin-bottom: 5mm;
+    border-left: 3.5px solid var(--accent);
+  }
+
+  .intro-header h2 { font-family: 'Playfair Display', serif; font-size: 14pt; color: var(--dark-green); margin-bottom: 2mm; }
+  .intro-header p { font-size: 9pt; color: var(--text-muted); line-height: 1.6; }
+
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin: 4mm 0;
+  }
+
+  .protocol-cell {
+    background: var(--dark-green);
+    border-radius: 7px;
+    padding: 3.5mm 4mm;
+    color: white;
+  }
+
+  .protocol-cell .pc-days { font-size: 7.5pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5mm; }
+  .protocol-cell .pc-name { font-family: 'Playfair Display', serif; font-size: 11pt; color: white; margin-bottom: 1.5mm; }
+  .protocol-cell .pc-desc { font-size: 8pt; color: rgba(250,248,245,0.7); line-height: 1.5; }
+
+  .recipe-index {
+    list-style: none;
+    margin: 4mm 0;
+  }
+
+  .recipe-index li {
+    display: flex;
+    align-items: baseline;
+    padding: 2.5mm 0;
+    border-bottom: 1px solid var(--beige-mid);
+    gap: 3mm;
+    font-size: 9.5pt;
+  }
+
+  .recipe-index li .ri-num { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 700; color: var(--accent); min-width: 5mm; }
+  .recipe-index li .ri-name { flex: 1; color: var(--text); }
+  .recipe-index li .ri-meta { font-size: 8pt; color: var(--text-muted); text-align: right; flex-shrink: 0; }
+
+  /* ─── RECIPE PAGE ─── */
+  .page-recipe {
+    page: recipe;
+    page-break-before: always;
+  }
+
+  .recipe-header {
+    background: var(--dark-green);
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    margin-bottom: 5mm;
+    page-break-after: avoid;
+  }
+
+  .recipe-header .rh-tag {
+    font-size: 7pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5mm;
+  }
+
+  .recipe-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17pt;
+    font-weight: 700;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 3mm;
+  }
+
+  .recipe-meta-bar {
+    display: flex;
+    gap: 4mm;
+    flex-wrap: wrap;
+  }
+
+  .meta-chip {
+    background: rgba(122,158,126,0.22);
+    border: 1px solid rgba(122,158,126,0.4);
+    border-radius: 20px;
+    padding: 1mm 3mm;
+    font-size: 7.5pt;
+    color: rgba(250,248,245,0.88);
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .meta-chip::before {
+    content: attr(data-icon);
+    font-size: 8pt;
+  }
+
+  /* WHY BOX */
+  .why-box {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 3.5mm 4.5mm;
+    margin: 0 0 4mm;
+    page-break-inside: avoid;
+  }
+
+  .why-box .wb-label { font-size: 7pt; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5mm; }
+  .why-box p { font-size: 9pt; color: var(--accent-deep); line-height: 1.62; margin: 0; }
+  .why-box .wb-profile { margin-top: 2mm; font-size: 8.5pt; color: var(--accent-dark); font-weight: 500; }
+
+  /* TWO COLUMN */
+  .two-col {
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    gap: 4mm;
+    margin: 4mm 0;
+  }
+
+  /* INGREDIENTS */
+  .ingredients-box {
+    background: var(--off-white);
+    border: 1px solid var(--beige-mid);
+    border-radius: 7px;
+    padding: 3.5mm 4mm;
+    page-break-inside: avoid;
+  }
+
+  .box-label { font-size: 7.5pt; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 2.5mm; }
+
+  .ingredients-box ul { list-style: none; padding: 0; }
+  .ingredients-box ul li {
+    font-size: 8.5pt;
+    line-height: 1.55;
+    padding: 1.5mm 0;
+    border-bottom: 1px solid var(--beige-mid);
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 2mm;
+  }
+  .ingredients-box ul li:last-child { border-bottom: none; }
+  .ingredients-box ul li::before { content: '·'; color: var(--accent); font-size: 12pt; line-height: 1; flex-shrink: 0; margin-top: -1mm; }
+  .ingredients-box ul li em { font-style: italic; color: var(--text-muted); font-size: 8pt; }
+
+  /* STEPS */
+  .steps-box { }
+
+  .step {
+    display: flex;
+    gap: 2.5mm;
+    margin-bottom: 3mm;
+    page-break-inside: avoid;
+  }
+
+  .step-num {
+    background: var(--accent);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 10pt;
+    font-weight: 700;
+    min-width: 6mm;
+    height: 6mm;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 0.3mm;
+  }
+
+  .step-content { flex: 1; }
+  .step-title { font-size: 8.5pt; font-weight: 600; color: var(--dark-green); margin-bottom: 0.8mm; }
+  .step-body { font-size: 8.5pt; color: var(--text); line-height: 1.55; }
+
+  /* PLATE GUIDE */
+  .plate-guide {
+    background: var(--dark-green);
+    border-radius: 7px;
+    padding: 3.5mm 4.5mm;
+    margin: 3mm 0;
+    page-break-inside: avoid;
+  }
+
+  .plate-guide .pg-label { font-size: 7pt; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 2mm; }
+
+  .plate-row {
+    display: flex;
+    gap: 2.5mm;
+    align-items: center;
+    margin-bottom: 1.5mm;
+  }
+
+  .plate-row:last-child { margin-bottom: 0; }
+
+  .plate-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 10mm;
+    flex-shrink: 0;
+  }
+
+  .plate-desc { font-size: 8.5pt; color: rgba(250,248,245,0.85); line-height: 1.45; }
+
+  /* PROTOCOL TIMING */
+  .timing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+  }
+
+  .timing-table thead tr { background: var(--dark-green); }
+  .timing-table thead th { padding: 2mm 2.5mm; text-align: left; font-weight: 600; font-size: 8pt; color: white; }
+  .timing-table tbody tr { border-bottom: 1px solid var(--beige-mid); }
+  .timing-table tbody tr:nth-child(even) { background: var(--off-white); }
+  .timing-table tbody td { padding: 2mm 2.5mm; vertical-align: top; line-height: 1.5; }
+  .timing-table tbody td:first-child { font-weight: 500; color: var(--accent-dark); }
+
+  /* VARIATIONS */
+  .variations-box {
+    border: 1px solid var(--beige-mid);
+    border-radius: 7px;
+    overflow: hidden;
+    margin: 3mm 0;
+    page-break-inside: avoid;
+  }
+
+  .variations-box .var-head {
+    background: var(--beige);
+    padding: 2mm 3.5mm;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+  }
+
+  .variations-box ul { list-style: none; padding: 2.5mm 3.5mm; }
+  .variations-box ul li {
+    font-size: 8.5pt;
+    line-height: 1.55;
+    padding: 1.5mm 0;
+    border-bottom: 1px dashed var(--beige-mid);
+    color: var(--text);
+  }
+  .variations-box ul li:last-child { border-bottom: none; }
+  .variations-box ul li strong { color: var(--dark-green); font-weight: 600; }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 5px 5px 0;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-size: 8.5pt;
+    color: var(--accent-deep);
+    line-height: 1.6;
+    page-break-inside: avoid;
+  }
+
+  .callout strong { color: var(--accent-deep); }
+
+  p { margin-bottom: 3mm; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 11pt; color: var(--dark-green); margin: 4mm 0 2mm; }
+  hr { border: none; border-top: 1px solid var(--beige-mid); margin: 3.5mm 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ COVER ═══════════════════ -->
+<div class="page-cover">
+  <div class="cover-tag">Complemento do Protocolo 7 Dias</div>
+  <div class="cover-title">Receitas<br><em>Anti-inchaço</em></div>
+  <p class="cover-sub">5 receitas prontas em menos de 15 minutos, desenvolvidas para as fases do protocolo — com ingredientes simples de supermercado.</p>
+  <div class="cover-divider"></div>
+  <div class="cover-recipes">
+    <div class="cover-recipe-item">
+      <div class="cover-recipe-num">01</div>
+      <div class="cover-recipe-info">
+        <div class="cover-recipe-name">Frango ao Gengibre com Couve-Flor</div>
+        <div class="cover-recipe-meta">Almoço / Jantar · 15 min</div>
+      </div>
+    </div>
+    <div class="cover-recipe-item">
+      <div class="cover-recipe-num">02</div>
+      <div class="cover-recipe-info">
+        <div class="cover-recipe-name">Omelete de Espinafre com Tomate</div>
+        <div class="cover-recipe-meta">Café da manhã · 8 min</div>
+      </div>
+    </div>
+    <div class="cover-recipe-item">
+      <div class="cover-recipe-num">03</div>
+      <div class="cover-recipe-info">
+        <div class="cover-recipe-name">Bowl de Atum, Pepino e Abacate</div>
+        <div class="cover-recipe-meta">Almoço · 10 min · sem fogão</div>
+      </div>
+    </div>
+    <div class="cover-recipe-item">
+      <div class="cover-recipe-num">04</div>
+      <div class="cover-recipe-info">
+        <div class="cover-recipe-name">Sopa de Legumes Detox</div>
+        <div class="cover-recipe-meta">Jantar · 15 min · rende 2 porções</div>
+      </div>
+    </div>
+    <div class="cover-recipe-item">
+      <div class="cover-recipe-num">05</div>
+      <div class="cover-recipe-info">
+        <div class="cover-recipe-name">Iogurte com Canela e Frutas Vermelhas</div>
+        <div class="cover-recipe-meta">Lanche · 3 min</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">© 2026 — Uso pessoal. Complemento do Protocolo Emagreça até 3kg em 7 Dias.</div>
+</div>
+
+<!-- ═══════════════════ INTRO ═══════════════════ -->
+<div class="page-intro">
+  <div class="intro-header">
+    <h2>Como Usar Este Caderno</h2>
+    <p>O maior risco de quem começa o protocolo é enjoar do cardápio no Dia 3 e improvisar — e aí o resultado vai junto. Estas 5 receitas foram criadas especificamente para encaixar em cada fase, com ingredientes que potencializam o efeito anti-inchaço de cada dia.</p>
+  </div>
+
+  <div class="protocol-grid">
+    <div class="protocol-cell">
+      <div class="pc-days">Dias 1–2</div>
+      <div class="pc-name">Reset Metabólico</div>
+      <div class="pc-desc">Receitas 02 e 05. Leve, proteico, anti-inflamatório.</div>
+    </div>
+    <div class="protocol-cell">
+      <div class="pc-days">Dias 3–4</div>
+      <div class="pc-name">Ativação</div>
+      <div class="pc-desc">Receita 01. Gengibre + crucífera = termogênico natural.</div>
+    </div>
+    <div class="protocol-cell">
+      <div class="pc-days">Dias 5–6</div>
+      <div class="pc-name">Aceleração</div>
+      <div class="pc-desc">Receitas 03 e 04. Janela alimentar: prato completo sem carboidrato simples.</div>
+    </div>
+    <div class="protocol-cell">
+      <div class="pc-days">Dia 7</div>
+      <div class="pc-name">Avaliação</div>
+      <div class="pc-desc">Qualquer receita. Foque em leveza no jantar — até 19h.</div>
+    </div>
+  </div>
+
+  <ul class="recipe-index">
+    <li><span class="ri-num">01</span><span class="ri-name">Frango ao Gengibre com Couve-Flor</span><span class="ri-meta">Almoço/Jantar · 15 min</span></li>
+    <li><span class="ri-num">02</span><span class="ri-name">Omelete de Espinafre com Tomate</span><span class="ri-meta">Café · 8 min</span></li>
+    <li><span class="ri-num">03</span><span class="ri-name">Bowl de Atum, Pepino e Abacate</span><span class="ri-meta">Almoço · 10 min</span></li>
+    <li><span class="ri-num">04</span><span class="ri-name">Sopa de Legumes Detox</span><span class="ri-meta">Jantar · 15 min</span></li>
+    <li><span class="ri-num">05</span><span class="ri-name">Iogurte com Canela e Frutas Vermelhas</span><span class="ri-meta">Lanche · 3 min</span></li>
+  </ul>
+</div>
+
+<!-- ═══════════════════ RECEITA 01 ═══════════════════ -->
+<div class="page-recipe">
+  <div class="recipe-header">
+    <div class="rh-tag">Receita 01 · Almoço ou Jantar</div>
+    <h1>Frango ao Gengibre<br>com Couve-Flor</h1>
+    <div class="recipe-meta-bar">
+      <div class="meta-chip" data-icon="⏱">15 minutos</div>
+      <div class="meta-chip" data-icon="🍽">1 porção</div>
+      <div class="meta-chip" data-icon="🔥">1 frigideira</div>
+      <div class="meta-chip" data-icon="✓">Dias 3–4 (Ativação)</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="wb-label">Por que é anti-inchaço</div>
+    <p>O gengibre tem gingerol, composto que inibe prostaglandinas inflamatórias — as mesmas que causam inchaço e retenção. A couve-flor é crucífera: rica em glucosinolatos que apoiam a desintoxicação hepática. O azeite completa com polifenóis anti-inflamatórios.</p>
+    <div class="wb-profile">Perfil ideal: Todos os perfis — especialmente Perfil 3 (inchaço crônico).</div>
+  </div>
+
+  <div class="two-col">
+    <div class="ingredients-box">
+      <div class="box-label">Ingredientes</div>
+      <ul>
+        <li>150g de filé de frango <em>(peito ou sassami)</em></li>
+        <li>1 xícara de couve-flor em floretes</li>
+        <li>1 col. chá de gengibre fresco ralado <em>(ou ½ col. chá em pó)</em></li>
+        <li>1 dente de alho amassado</li>
+        <li>1 col. sopa de azeite extra-virgem</li>
+        <li>Suco de ½ limão</li>
+        <li>Sal mínimo e pimenta-do-reino</li>
+        <li>Salsinha para finalizar <em>(opcional)</em></li>
+      </ul>
+    </div>
+    <div class="steps-box">
+      <div class="box-label">Modo de Preparo</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Tempere o frango (2 min)</div>
+          <div class="step-body">Corte em tiras finas. Tempere com limão, pimenta e sal mínimo. Reserve.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Refogue a couve-flor (5 min)</div>
+          <div class="step-body">Frigideira média com ½ col. azeite, fogo médio-alto. Refogue a couve por 4–5 min até dourar. Retire e reserve.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Cozinhe o frango (5 min)</div>
+          <div class="step-body">Mesma frigideira, restante do azeite, alho e gengibre por 30s. Adicione o frango — 4–5 min virando uma vez.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Finalize (1 min)</div>
+          <div class="step-body">Volte a couve-flor, mexa por 1 min para incorporar. Sirva com salsinha.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plate-guide">
+    <div class="pg-label">Montagem do Prato — Protocolo 50/25/25</div>
+    <div class="plate-row"><div class="plate-pct">50%</div><div class="plate-desc">Couve-flor refogada + folhas verdes cruas</div></div>
+    <div class="plate-row"><div class="plate-pct">25%</div><div class="plate-desc">Frango ao gengibre</div></div>
+    <div class="plate-row"><div class="plate-pct">25%</div><div class="plate-desc">½ xícara de arroz integral ou batata-doce (conforme dia do protocolo)</div></div>
+  </div>
+
+  <div class="variations-box">
+    <div class="var-head">Variações</div>
+    <ul>
+      <li><strong>Sem frango:</strong> filé de tilápia ou salmão — tempo cai para 3 min por lado.</li>
+      <li><strong>Sem couve-flor:</strong> brócolis, vagem ou abobrinha em rodelas.</li>
+      <li><strong>Mais picante:</strong> adicione pimenta-caiena — aumenta o efeito termogênico.</li>
+      <li><strong>Versão fria para levar:</strong> frango frio + folhas + vinagrete de limão em bowl.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ RECEITA 02 ═══════════════════ -->
+<div class="page-recipe">
+  <div class="recipe-header">
+    <div class="rh-tag">Receita 02 · Café da Manhã</div>
+    <h1>Omelete de Espinafre<br>com Tomate</h1>
+    <div class="recipe-meta-bar">
+      <div class="meta-chip" data-icon="⏱">8 minutos</div>
+      <div class="meta-chip" data-icon="🍽">1 porção</div>
+      <div class="meta-chip" data-icon="🔥">1 frigideira</div>
+      <div class="meta-chip" data-icon="✓">Dias 1–2 e 3–4</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="wb-label">Por que é anti-inchaço</div>
+    <p>O ovo inteiro tem colina — nutriente essencial para o metabolismo de gorduras no fígado. O espinafre é rico em magnésio, mineral que regula a retenção de sódio nas células (baixo magnésio = mais inchaço). O tomate tem licopeno e potássio, que equilibra o sódio e ajuda na diurese natural.</p>
+    <div class="wb-profile">Perfil ideal: Perfil 1 e Perfil 2. Café da manhã proteico estabiliza a glicemia por 4–5 horas.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="ingredients-box">
+      <div class="box-label">Ingredientes</div>
+      <ul>
+        <li>2 ovos inteiros</li>
+        <li>1 punhado de espinafre fresco <em>(ou 2 col. sopa congelado, descongelado e espremido)</em></li>
+        <li>½ tomate médio em cubos pequenos</li>
+        <li>1 col. chá de azeite extra-virgem</li>
+        <li>Sal mínimo, orégano e pimenta-do-reino</li>
+        <li>1 col. sopa de cottage <em>(opcional — aumenta proteína)</em></li>
+      </ul>
+    </div>
+    <div class="steps-box">
+      <div class="box-label">Modo de Preparo</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Bata os ovos (1 min)</div>
+          <div class="step-body">Bata com orégano e pimenta. Não adicione sal ainda — deixa a omelete aquosa.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Refogue o espinafre (2 min)</div>
+          <div class="step-body">Frigideira 20cm, fogo médio, azeite. Espinafre por 1–2 min até murchar. Espalhe pelo fundo.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Cozinhe a omelete (4 min)</div>
+          <div class="step-body">Despeje os ovos sobre o espinafre. Não mexa. Distribua o tomate. Tampe por 2 min. Dobre ao meio quando as bordas estiverem firmes.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Descanse e sirva (1 min)</div>
+          <div class="step-body">Desligue. 30 segundos de repouso — o calor termina o cozimento. Tempere com sal mínimo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Café da Manhã Completo</h2>
+  <table class="timing-table">
+    <thead><tr><th>Item</th><th>Quantidade</th></tr></thead>
+    <tbody>
+      <tr><td>Omelete</td><td>2 ovos (receita acima)</td></tr>
+      <tr><td>Fruta</td><td>1 fruta pequena ou ½ fruta média — evite banana e uva nos primeiros 3 dias</td></tr>
+      <tr><td>Bebida</td><td>Café preto ou chá verde — sem açúcar</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout"><strong>Dias 5–6 (janela alimentar):</strong> não adicione pão neste café. A omelete já sustenta até o almoço às 12h com proteína e gordura boa suficientes.</div>
+
+  <div class="variations-box">
+    <div class="var-head">Variações</div>
+    <ul>
+      <li><strong>Sem espinafre:</strong> rúcula (adicionar depois de pronto), couve picada fina ou agrião.</li>
+      <li><strong>Mais proteica:</strong> 30g de atum em água misturado nos ovos antes de despejar.</li>
+      <li><strong>Mais cremosa:</strong> 1 col. sopa de cottage misturado nos ovos antes de bater.</li>
+      <li><strong>Para levar:</strong> enrole fria em papel alumínio. Aguenta 4h em temperatura ambiente.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ RECEITA 03 ═══════════════════ -->
+<div class="page-recipe">
+  <div class="recipe-header">
+    <div class="rh-tag">Receita 03 · Almoço · Sem fogão</div>
+    <h1>Bowl de Atum, Pepino<br>e Abacate</h1>
+    <div class="recipe-meta-bar">
+      <div class="meta-chip" data-icon="⏱">10 minutos</div>
+      <div class="meta-chip" data-icon="🍽">1 porção</div>
+      <div class="meta-chip" data-icon="❄">Sem fogão</div>
+      <div class="meta-chip" data-icon="✓">Dias 1–2 e 5–6</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="wb-label">Por que é anti-inchaço</div>
+    <p>O atum em água tem ômega-3, que reduz a produção de citocinas inflamatórias. O pepino é 96% água e tem cucurbitacinas, compostos com ação diurética natural. O abacate tem potássio (mais que a banana) e gordura monoinsaturada que melhora a sensibilidade à insulina.</p>
+    <div class="wb-profile">Perfil ideal: Perfil 3 (inchaço crônico) — a combinação mais estratégica dos 7 dias.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="ingredients-box">
+      <div class="box-label">Ingredientes</div>
+      <ul>
+        <li>1 lata de atum em água <em>(120g escorrido — prefira abaixo de 300mg sódio/lata)</em></li>
+        <li>½ pepino japonês ou 1 pepino comum em rodelas</li>
+        <li>¼ de abacate maduro em cubos</li>
+        <li>½ xícara de folhas verdes <em>(rúcula, alface ou espinafre cru)</em></li>
+        <li>1 col. chá de azeite extra-virgem</li>
+        <li>Suco de 1 limão</li>
+        <li>Pimenta-do-reino e cebolinha</li>
+        <li>1 col. chá de gergelim <em>(opcional — finalizar)</em></li>
+      </ul>
+    </div>
+    <div class="steps-box">
+      <div class="box-label">Modo de Preparo</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Prepare o atum (2 min)</div>
+          <div class="step-body">Escorra bem. Solte com garfo. Tempere com metade do limão e pimenta.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Monte a base (3 min)</div>
+          <div class="step-body">Bowl ou prato fundo: folhas verdes na base. Pepino por cima. Atum ao lado — não misture ainda.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Adicione o abacate (2 min)</div>
+          <div class="step-body">Cubos de abacate diretamente sobre o bowl. Regue com o restante do limão imediatamente — evita oxidação.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Finalize (1 min)</div>
+          <div class="step-body">Azeite, cebolinha e gergelim. Sirva imediatamente — não guardar montado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plate-guide">
+    <div class="pg-label">Montagem — Protocolo 50/25/25</div>
+    <div class="plate-row"><div class="plate-pct">50%</div><div class="plate-desc">Pepino + folhas verdes</div></div>
+    <div class="plate-row"><div class="plate-pct">25%</div><div class="plate-desc">Atum temperado</div></div>
+    <div class="plate-row"><div class="plate-pct">25%</div><div class="plate-desc">Abacate — substitui o carboidrato nos Dias 5–6. Nos Dias 1–4, adicione ½ xícara de arroz integral.</div></div>
+  </div>
+
+  <div class="variations-box">
+    <div class="var-head">Variações</div>
+    <ul>
+      <li><strong>Sem atum:</strong> sardinha em água, camarão cozido com limão ou frango desfiado frio.</li>
+      <li><strong>Sem abacate:</strong> 10 castanhas picadas ou pasta de amendoim natural diluída com limão como molho.</li>
+      <li><strong>Versão picante:</strong> gotas de Tabasco ou pimenta-caiena — termogênico adicional.</li>
+      <li><strong>Para levar:</strong> atum e abacate separados. Monte no destino para não oxidar.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ RECEITA 04 ═══════════════════ -->
+<div class="page-recipe">
+  <div class="recipe-header">
+    <div class="rh-tag">Receita 04 · Jantar · Rende 2 porções</div>
+    <h1>Sopa de Legumes<br>Detox</h1>
+    <div class="recipe-meta-bar">
+      <div class="meta-chip" data-icon="⏱">15 minutos</div>
+      <div class="meta-chip" data-icon="🍽">2 porções</div>
+      <div class="meta-chip" data-icon="♻">Preparo em lote</div>
+      <div class="meta-chip" data-icon="✓">Dias 5–6 (jantar)</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="wb-label">Por que é anti-inchaço</div>
+    <p>O jantar é a refeição mais crítica do protocolo: comer pesado à noite eleva insulina quando o metabolismo já desacelerou. Esta sopa resolve: volume grande (sacia), baixíssimo sódio, ingredientes diuréticos. Alho e cebola têm quercetina, flavonoide anti-inflamatório. A cúrcuma tem curcumina — um dos anti-inflamatórios naturais mais estudados.</p>
+    <div class="wb-profile">Perfil ideal: Todos os perfis — especialmente indicada para os Dias 5–6, quando o jantar deve ser terminado até as 20h.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="ingredients-box">
+      <div class="box-label">Ingredientes</div>
+      <ul>
+        <li>1 abobrinha média em cubos</li>
+        <li>1 cenoura em rodelas</li>
+        <li>1 xícara de brócolis em floretes</li>
+        <li>1 talo de salsão (aipo) em fatias</li>
+        <li>½ cebola picada</li>
+        <li>2 dentes de alho amassados</li>
+        <li>1 col. chá de cúrcuma em pó</li>
+        <li>1 col. chá de azeite extra-virgem</li>
+        <li>600ml de água filtrada</li>
+        <li>Sal mínimo, pimenta-do-reino, salsinha</li>
+        <li>100g de frango desfiado ou ½ lata de grão-de-bico <em>(opcional — aumenta proteína)</em></li>
+      </ul>
+    </div>
+    <div class="steps-box">
+      <div class="box-label">Modo de Preparo</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Refogue a base (3 min)</div>
+          <div class="step-body">Panela média, azeite, fogo médio. Cebola e alho por 2 min até amolecer sem dourar.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Legumes firmes (2 min)</div>
+          <div class="step-body">Adicione cenoura e salsão. Mexa por 2 min.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Cozinhe (8 min)</div>
+          <div class="step-body">Água, cúrcuma, pimenta e sal. Quando ferver: abobrinha e brócolis. 6–8 min — macios mas firmes.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Finalize</div>
+          <div class="step-body">Ajuste tempero. Frango ou grão-de-bico se usar. Salsinha fresca. Sirva quente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Guia de Porção por Dia do Protocolo</h2>
+  <table class="timing-table">
+    <thead><tr><th>Situação</th><th>Porção</th></tr></thead>
+    <tbody>
+      <tr><td>Dias 1–4 (Reset e Ativação)</td><td>1 tigela grande + proteína dentro da sopa</td></tr>
+      <tr><td>Dias 5–6 (Aceleração, janela até 20h)</td><td>1 tigela + nada mais após</td></tr>
+      <tr><td>Dia 7 (Avaliação)</td><td>1 tigela leve — jantar mais cedo (até 19h)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout"><strong>Dica de preparo em lote:</strong> faça o dobro no Dia 1 ou 2. Guarda na geladeira por até 3 dias. Dois jantares resolvidos — elimina a tentação de pedir delivery ou improvisar.</div>
+
+  <div class="variations-box">
+    <div class="var-head">Variações</div>
+    <ul>
+      <li><strong>Mais cremosa:</strong> bata metade da sopa no liquidificador e misture de volta — creme denso sem farinha.</li>
+      <li><strong>Mais picante:</strong> gengibre fresco ralado no refogado — intensifica o efeito termogênico.</li>
+      <li><strong>Sem brócolis:</strong> couve-flor, vagem ou espinafre (espinafre vai nos últimos 2 minutos).</li>
+      <li><strong>Versão express:</strong> legumes congelados prontos — tempo cai para 8 minutos no total.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ RECEITA 05 ═══════════════════ -->
+<div class="page-recipe">
+  <div class="recipe-header">
+    <div class="rh-tag">Receita 05 · Lanche</div>
+    <h1>Iogurte com Canela<br>e Frutas Vermelhas</h1>
+    <div class="recipe-meta-bar">
+      <div class="meta-chip" data-icon="⏱">3 minutos</div>
+      <div class="meta-chip" data-icon="🍽">1 porção</div>
+      <div class="meta-chip" data-icon="❄">Sem fogão</div>
+      <div class="meta-chip" data-icon="✓">Todos os dias</div>
+    </div>
+  </div>
+
+  <div class="why-box">
+    <div class="wb-label">Por que é anti-inchaço</div>
+    <p>O iogurte natural é um dos melhores probióticos alimentares disponíveis — probióticos equilibram a microbiota intestinal, reduzindo a absorção calórica e a produção de compostos inflamatórios. A canela melhora a sensibilidade à insulina em até 19% (Journal of Medicinal Food). As frutas vermelhas têm antocianinas, antioxidantes que reduzem inflamação e têm baixo índice glicêmico.</p>
+    <div class="wb-profile">Perfil ideal: Todos os perfis. O lanche mais simples e completo do protocolo.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="ingredients-box">
+      <div class="box-label">Ingredientes</div>
+      <ul>
+        <li>1 pote (170g) de iogurte natural integral <strong>sem açúcar</strong> <em>(lista de ingredientes: só "leite" e "fermento lático")</em></li>
+        <li>½ xícara de frutas vermelhas <em>(morango, mirtilo, framboesa, amora — frescas ou congeladas)</em></li>
+        <li>1 col. chá de canela em pó</li>
+        <li>1 col. chá de mel puro <em>(opcional — só Dias 1–4)</em></li>
+        <li>1 col. sopa de granola sem açúcar <em>(opcional — textura)</em></li>
+      </ul>
+    </div>
+    <div class="steps-box">
+      <div class="box-label">Modo de Preparo</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Verifique o iogurte</div>
+          <div class="step-body">Confirme que está sem açúcar. Iogurte "natural" com sabor de fruta geralmente tem açúcar adicionado — use o natural sem nenhum sabor.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Monte (2 min)</div>
+          <div class="step-body">Iogurte no bowl. Frutas por cima. Polvilhe a canela. Mel se for usar: 1 col. chá rasa — só Dias 1–4, evite nos Dias 5–6.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Sirva</div>
+          <div class="step-body">Imediatamente ou tampado na geladeira por até 2 horas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Horário Estratégico no Protocolo</h2>
+  <table class="timing-table">
+    <thead><tr><th>Dia do Protocolo</th><th>Melhor horário</th></tr></thead>
+    <tbody>
+      <tr><td>Dias 1–2 (Reset)</td><td>Entre o café da manhã e o almoço (10h–11h)</td></tr>
+      <tr><td>Dias 3–4 (Ativação)</td><td>Após o exercício matinal</td></tr>
+      <tr><td>Dias 5–6 (Janela 12h–20h)</td><td>15h–16h — dentro da janela alimentar</td></tr>
+      <tr><td>Dia 7</td><td>Lanche da tarde — última refeição antes do jantar leve</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout"><strong>Por que não usar iogurte "light" ou "zero"?</strong> Adoçante artificial dispara resposta insulínica mesmo sem caloria real. Amido modificado substitui a gordura removida. Menos gordura = menos saciedade = mais fome em 1 hora. Use o integral sem açúcar.</div>
+
+  <div class="variations-box">
+    <div class="var-head">Variações</div>
+    <ul>
+      <li><strong>Sem frutas frescas:</strong> 1 col. sopa de pasta de fruta 100% fruta ou 1 col. chá de cacau 100% amargo.</li>
+      <li><strong>Versão grega:</strong> iogurte grego natural — mais proteína (10g vs. 5g). Textura cremosa, maior saciedade.</li>
+      <li><strong>Versão salgada (savory):</strong> iogurte + pepino ralado + alho + azeite + sal = tzatziki rápido. Ótimo com proteína.</li>
+      <li><strong>Para levar:</strong> frutas separadas do iogurte para não amolecer. Monte no destino.</li>
+    </ul>
+  </div>
+
+  <hr style="margin-top:5mm;">
+  <p style="text-align:center; color:var(--text-muted); font-size:8pt; margin-top:4mm;">© 2026 — Uso pessoal. Complemento do Protocolo Emagreça até 3kg em 7 Dias.</p>
+</div>
+
+</body>
+</html>

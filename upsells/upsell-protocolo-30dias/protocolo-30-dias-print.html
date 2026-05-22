@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Protocolo 30 Dias — Corpo em Forma</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark-green: #253828;
+    --accent:     #7A9E7E;
+    --accent-dark:#5d7f61;
+    --accent-soft:#e8f0e9;
+    --gold:       #C9973A;
+    --gold-light: #e8c97a;
+    --beige:      #F5F0EB;
+    --off-white:  #FAF8F5;
+    --text:       #1C1C1A;
+    --muted:      #6B6560;
+    --border:     #DDD8D2;
+  }
+
+  @page { size: A5 portrait; margin: 13mm 14mm 13mm 14mm; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8.5pt;
+    color: var(--text);
+    background: #fff;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+  .page-break { page-break-after: always; break-after: page; }
+
+  /* ── CAPA ────────────────────────────────────────────── */
+  .cover {
+    background: var(--dark-green);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 28mm 16mm 20mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,151,58,.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 80%, rgba(122,158,126,.22) 0%, transparent 45%);
+  }
+  .cover-content { position: relative; z-index: 1; }
+  .cover-eyebrow {
+    font-size: 6.5pt; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 6mm; display: block;
+    border-left: 3px solid var(--gold); padding-left: 8px;
+  }
+  .cover-h1 {
+    font-size: 30pt; font-weight: 700; color: #fff; line-height: 1.06;
+    letter-spacing: -.02em; margin-bottom: 4mm;
+  }
+  .cover-h1 em {
+    display: block; font-style: italic;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .cover-sub {
+    font-size: 9pt; color: rgba(250,248,245,.68); line-height: 1.65; margin-bottom: 10mm;
+    max-width: 85%;
+  }
+  .cover-pills {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12mm;
+  }
+  .cover-pill {
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px; padding: 4px 12px;
+    font-size: 6.5pt; font-weight: 600; color: rgba(250,248,245,.82);
+    letter-spacing: .04em;
+  }
+  .cover-ring-1 {
+    position: absolute; width: 80mm; height: 80mm; border-radius: 50%;
+    border: 1.5px solid rgba(201,151,58,.2); right: -20mm; top: 20mm;
+  }
+  .cover-ring-2 {
+    position: absolute; width: 55mm; height: 55mm; border-radius: 50%;
+    border: 1px solid rgba(201,151,58,.28); right: -8mm; top: 32mm;
+  }
+  .cover-footer { position: relative; z-index: 1; }
+  .cover-footer-tag {
+    font-size: 6pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(201,151,58,.6); border-top: 1px solid rgba(201,151,58,.2);
+    padding-top: 6px; margin-top: 0;
+  }
+
+  /* ── ÍNDICE ────────────────────────────────────────── */
+  .indice-page { padding: 8mm 0; }
+  .indice-title {
+    font-size: 16pt; font-weight: 700; color: var(--dark-green); margin-bottom: 6mm;
+    padding-bottom: 3mm; border-bottom: 2px solid var(--accent);
+  }
+  .indice-list { list-style: none; }
+  .indice-item {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 3.5px 0; border-bottom: 1px dotted #e0dbd4; font-size: 8pt;
+  }
+  .indice-item strong { font-weight: 600; color: var(--dark-green); }
+  .indice-item.section-header {
+    font-family: 'Playfair Display', serif; font-size: 9pt; font-weight: 700;
+    color: var(--gold); margin-top: 4mm; border-bottom: none;
+    letter-spacing: .04em;
+  }
+
+  /* ── CHAPTER HEADER ────────────────────────────────── */
+  .chapter-header {
+    background: var(--dark-green); padding: 8mm 10mm 7mm;
+    margin: -13mm -14mm 7mm; position: relative; overflow: hidden;
+  }
+  .chapter-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 85% 40%, rgba(201,151,58,.15) 0%, transparent 55%);
+  }
+  .ch-eyebrow {
+    font-size: 5.5pt; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 2mm; display: block;
+    position: relative; z-index: 1;
+  }
+  .ch-title {
+    font-size: 18pt; font-weight: 700; color: #fff; line-height: 1.1;
+    position: relative; z-index: 1;
+  }
+  .ch-title em {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-style: italic;
+  }
+  .ch-sub {
+    font-size: 7.5pt; color: rgba(250,248,245,.65); margin-top: 2mm;
+    position: relative; z-index: 1;
+  }
+
+  /* ── SECTION EYEBROW ───────────────────────────────── */
+  .sec-eyebrow {
+    font-size: 6pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent-dark); margin-bottom: 2mm; display: block;
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif; font-size: 12pt; font-weight: 700;
+    color: var(--dark-green); margin-bottom: 3mm;
+  }
+  .sec-text { font-size: 8pt; color: var(--muted); line-height: 1.65; margin-bottom: 3mm; }
+
+  /* ── MEAL PLAN TABLE ───────────────────────────────── */
+  .week-label {
+    background: var(--accent-soft); border-left: 4px solid var(--accent);
+    padding: 4px 10px; border-radius: 0 6px 6px 0;
+    font-size: 7pt; font-weight: 700; color: var(--dark-green);
+    margin-bottom: 3mm; display: inline-block;
+  }
+  .week-label.gold { background: rgba(201,151,58,.1); border-color: var(--gold); color: var(--gold); }
+
+  .meal-table { width: 100%; border-collapse: collapse; font-size: 6.8pt; margin-bottom: 5mm; }
+  .meal-table thead th {
+    background: var(--dark-green); color: rgba(255,255,255,.92);
+    padding: 4px 5px; font-weight: 600; font-size: 6pt; text-align: left;
+    letter-spacing: .06em;
+  }
+  .meal-table thead th:first-child { width: 13%; }
+  .meal-table tbody td {
+    padding: 4px 5px; border: 1px solid var(--border);
+    vertical-align: top; line-height: 1.45;
+  }
+  .meal-table tbody tr:nth-child(even) td { background: var(--off-white); }
+  .meal-table .day-cell {
+    font-weight: 700; color: var(--dark-green); font-size: 6.5pt;
+  }
+  .meal-table .phase-row td { background: rgba(122,158,126,.08) !important; }
+  .meal-table .phase-row .day-cell { color: var(--accent-dark); }
+  .meal-note {
+    font-size: 6.2pt; color: var(--muted); font-style: italic;
+    margin-bottom: 4mm; padding: 3px 8px;
+    border-left: 2px solid var(--accent-soft);
+  }
+
+  /* ── SHOPPING LIST ─────────────────────────────────── */
+  .shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-bottom: 4mm; }
+  .shop-category {
+    background: var(--off-white); border-radius: 8px; padding: 5px 8px;
+    border-top: 3px solid var(--accent);
+  }
+  .shop-category.gold-top { border-top-color: var(--gold); }
+  .shop-cat-title {
+    font-size: 6.5pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dark-green); margin-bottom: 3px;
+  }
+  .shop-list { list-style: none; }
+  .shop-list li {
+    font-size: 7pt; color: var(--text); padding: 1.5px 0;
+    border-bottom: 1px solid rgba(0,0,0,.04); display: flex; align-items: center; gap: 4px;
+  }
+  .shop-list li:last-child { border-bottom: none; }
+  .shop-list li::before { content: '□'; color: var(--accent); font-size: 7pt; flex-shrink: 0; }
+
+  /* ── WORKOUT CARD ──────────────────────────────────── */
+  .workout-phase {
+    background: var(--dark-green); color: rgba(250,248,245,.9);
+    padding: 5px 10px; border-radius: 6px; font-size: 7pt; font-weight: 600;
+    margin-bottom: 4mm; display: flex; justify-content: space-between; align-items: center;
+  }
+  .workout-phase span { color: var(--gold-light); }
+
+  .treino-block { margin-bottom: 5mm; }
+  .treino-label {
+    background: var(--accent); color: #fff;
+    font-size: 6.5pt; font-weight: 700; letter-spacing: .08em;
+    padding: 3px 10px; border-radius: 4px; margin-bottom: 3mm; display: inline-block;
+  }
+  .treino-label.b { background: var(--accent-dark); }
+  .treino-label.c { background: var(--dark-green); }
+
+  .ex-table { width: 100%; border-collapse: collapse; font-size: 7pt; margin-bottom: 3mm; }
+  .ex-table thead th {
+    background: var(--accent-soft); color: var(--dark-green);
+    padding: 3px 6px; font-size: 6pt; font-weight: 700; text-align: left;
+    border: 1px solid rgba(122,158,126,.2);
+  }
+  .ex-table tbody td {
+    padding: 4px 6px; border: 1px solid var(--border); vertical-align: middle;
+  }
+  .ex-table tbody tr:nth-child(even) td { background: var(--off-white); }
+  .ex-name-cell { font-weight: 600; color: var(--dark-green); }
+  .ex-muscles { font-size: 6pt; color: var(--muted); }
+  .ex-series { font-weight: 700; color: var(--accent-dark); white-space: nowrap; }
+  .ex-tip {
+    font-size: 6pt; color: var(--muted); font-style: italic;
+    padding: 2px 6px; background: rgba(122,158,126,.06); border-radius: 3px;
+  }
+
+  /* ── STRETCHING ────────────────────────────────────── */
+  .stretch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .stretch-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px;
+    border-top: 3px solid var(--accent);
+  }
+  .stretch-num {
+    font-family: 'Playfair Display', serif; font-size: 14pt; font-weight: 700;
+    color: var(--accent-soft); line-height: 1; float: right;
+  }
+  .stretch-name { font-weight: 700; font-size: 7.5pt; color: var(--dark-green); margin-bottom: 2px; }
+  .stretch-time { font-size: 6pt; color: var(--gold); font-weight: 600; margin-bottom: 3px; }
+  .stretch-how { font-size: 6.5pt; color: var(--muted); line-height: 1.5; }
+
+  /* ── HIGHLIGHT BOX ─────────────────────────────────── */
+  .highlight-box {
+    background: var(--dark-green); border-radius: 8px; padding: 6mm 8mm;
+    position: relative; overflow: hidden; margin: 4mm 0;
+  }
+  .highlight-box::before {
+    content: '\201C';
+    position: absolute; top: -4mm; left: 2mm;
+    font-family: 'Playfair Display', serif; font-size: 40pt;
+    color: rgba(201,151,58,.15); line-height: 1; pointer-events: none;
+  }
+  .highlight-box p {
+    font-family: 'Playfair Display', serif; font-size: 9pt; font-style: italic;
+    color: rgba(250,248,245,.92); line-height: 1.65; position: relative; z-index: 1;
+  }
+  .highlight-box cite {
+    display: block; font-family: 'DM Sans', sans-serif; font-style: normal;
+    font-size: 6pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold-light); margin-top: 3mm; position: relative; z-index: 1;
+  }
+
+  /* ── INFO BOX ──────────────────────────────────────── */
+  .info-box {
+    background: var(--accent-soft); border-radius: 8px; padding: 5mm 7mm;
+    border-left: 4px solid var(--accent); margin: 4mm 0;
+  }
+  .info-box.gold { background: rgba(201,151,58,.08); border-left-color: var(--gold); }
+  .info-title { font-weight: 700; font-size: 8pt; color: var(--dark-green); margin-bottom: 2mm; }
+  .info-list { list-style: none; }
+  .info-list li {
+    font-size: 7.5pt; color: var(--text); padding: 2px 0; display: flex; gap: 6px;
+  }
+  .info-list li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+  .info-box.gold .info-list li::before { color: var(--gold); }
+
+  /* ── MAINTENANCE PHASES ────────────────────────────── */
+  .maintenance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 4mm; }
+  .maint-card {
+    border-radius: 8px; padding: 5px 8px; font-size: 7.5pt;
+  }
+  .maint-card.green { background: var(--accent-soft); border: 1px solid rgba(122,158,126,.25); }
+  .maint-card.dark  { background: var(--dark-green); }
+  .maint-title { font-weight: 700; font-size: 8pt; margin-bottom: 3px; }
+  .maint-card.green .maint-title { color: var(--dark-green); }
+  .maint-card.dark  .maint-title { color: rgba(250,248,245,.92); }
+  .maint-card.dark  p { color: rgba(250,248,245,.72); font-size: 7pt; }
+
+  /* ── WEEKEND PROTOCOL ──────────────────────────────── */
+  .weekend-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; margin: 3mm 0; }
+  .wk-col { border-radius: 8px; padding: 5px 7px; }
+  .wk-col.a { background: var(--off-white); border: 1px solid var(--border); }
+  .wk-col.b { background: var(--accent-soft); border: 1px solid rgba(122,158,126,.2); }
+  .wk-col.c { background: var(--dark-green); }
+  .wk-label { font-size: 6pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 3px; }
+  .wk-col.a .wk-label { color: var(--muted); }
+  .wk-col.b .wk-label { color: var(--accent-dark); }
+  .wk-col.c .wk-label { color: var(--gold-light); }
+  .wk-title { font-weight: 700; font-size: 7.5pt; margin-bottom: 3px; }
+  .wk-col.a .wk-title, .wk-col.b .wk-title { color: var(--dark-green); }
+  .wk-col.c .wk-title { color: rgba(250,248,245,.92); }
+  .wk-col.a p, .wk-col.b p { font-size: 6.5pt; color: var(--muted); line-height: 1.5; }
+  .wk-col.c p { font-size: 6.5pt; color: rgba(250,248,245,.68); line-height: 1.5; }
+
+  /* ── TRACKING TABLE ────────────────────────────────── */
+  .track-table { width: 100%; border-collapse: collapse; font-size: 7pt; }
+  .track-table th {
+    background: var(--dark-green); color: rgba(250,248,245,.88);
+    padding: 4px 6px; font-size: 6pt; text-align: left;
+  }
+  .track-table td { padding: 5px 6px; border: 1px solid var(--border); }
+  .track-table td.fill { background: var(--off-white); height: 14px; }
+
+  /* ── FOOTER & PAGE NUM ─────────────────────────────── */
+  @page { @bottom-center { content: counter(page); font-family: 'DM Sans', sans-serif; font-size: 7pt; color: #999; } }
+
+  p { margin-bottom: 2.5mm; }
+  strong { font-weight: 600; }
+  ul, ol { padding-left: 4mm; margin-bottom: 2.5mm; }
+  li { margin-bottom: 1.5px; }
+  .mb-4 { margin-bottom: 4mm; }
+  .mb-6 { margin-bottom: 6mm; }
+  .gold-text { color: var(--gold); font-weight: 700; }
+  .green-text { color: var(--accent-dark); font-weight: 700; }
+  .rule { border: none; border-top: 1px solid var(--border); margin: 5mm 0; }
+  .tag-pill {
+    display: inline-block; background: var(--accent-soft); color: var(--accent-dark);
+    font-size: 6pt; font-weight: 700; padding: 2px 8px; border-radius: 12px;
+  }
+  .tag-pill.gold { background: rgba(201,151,58,.12); color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ CAPA ══════════════════════════════ -->
+<div class="cover page-break">
+  <div class="cover-ring-1"></div>
+  <div class="cover-ring-2"></div>
+  <div class="cover-content">
+    <span class="cover-eyebrow">Produto Digital · E-book PDF</span>
+    <h1 class="cover-h1">Protocolo<br>30 Dias<br><em>Corpo em Forma</em></h1>
+    <p class="cover-sub">
+      Plano alimentar rotativo, treinos em casa com progressão semanal e guia de alongamentos aeróbicos — tudo o que você precisa para consolidar o que o Protocolo 7 Dias começou.
+    </p>
+    <div class="cover-pills">
+      <span class="cover-pill">Plano alimentar 30 dias</span>
+      <span class="cover-pill">Treinos em casa</span>
+      <span class="cover-pill">Alongamentos aeróbicos</span>
+      <span class="cover-pill">Lista de compras</span>
+      <span class="cover-pill">Protocolo de finais de semana</span>
+      <span class="cover-pill">Guia de manutenção</span>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <p class="cover-footer-tag">© 2025 · Produto digital · Todos os direitos reservados</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ ÍNDICE ═════════════════════════════ -->
+<div class="indice-page page-break">
+  <h2 class="indice-title">Conteúdo</h2>
+  <ul class="indice-list">
+    <li class="indice-item section-header">Como usar este protocolo</li>
+    <li class="indice-item"><span>Instruções, regras e como adaptar</span></li>
+    <li class="indice-item section-header">Plano Alimentar — 4 Semanas</li>
+    <li class="indice-item"><strong>Semana 1</strong> — Consolidação<span>5</span></li>
+    <li class="indice-item"><strong>Semana 2</strong> — Ativação<span>7</span></li>
+    <li class="indice-item"><strong>Semana 3</strong> — Aceleração<span>9</span></li>
+    <li class="indice-item"><strong>Semana 4</strong> — Transformação<span>11</span></li>
+    <li class="indice-item section-header">Lista de Compras Mensal</li>
+    <li class="indice-item">Organizada por categoria com quantidades<span>13</span></li>
+    <li class="indice-item section-header">Planilha de Treinos em Casa</li>
+    <li class="indice-item">Semanas 1–2: Adaptação (3×/semana)<span>15</span></li>
+    <li class="indice-item">Semanas 3–4: Progressão (3×/semana)<span>17</span></li>
+    <li class="indice-item section-header">Guia de Alongamentos Aeróbicos</li>
+    <li class="indice-item">10 alongamentos · 15 minutos por dia<span>19</span></li>
+    <li class="indice-item section-header">Protocolos Especiais</li>
+    <li class="indice-item">Protocolo de Finais de Semana<span>21</span></li>
+    <li class="indice-item">Guia de Manutenção Pós-30 Dias<span>22</span></li>
+  </ul>
+</div>
+
+<!-- ═══════════════════ COMO USAR ══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Introdução</span>
+    <h1 class="ch-title">Como usar<br><em>este protocolo</em></h1>
+    <p class="ch-sub">Leia antes de começar — leva 5 minutos e faz toda a diferença</p>
+  </div>
+
+  <p class="sec-text">O Protocolo 30 Dias foi construído como continuação direta do Protocolo 7 Dias. Ele não exige força de vontade extra — exige que você siga a estrutura. A diferença entre quem termina os 30 dias e quem abandona na segunda semana não é motivação: é planejamento.</p>
+
+  <div class="info-box mb-4">
+    <div class="info-title">As 4 regras do protocolo</div>
+    <ul class="info-list">
+      <li>Siga uma semana de cada vez. Não pule para a próxima antes de terminar.</li>
+      <li>Se errar uma refeição, continue na próxima. Um deslize não apaga dias de trabalho.</li>
+      <li>Hidratação é parte do protocolo: 2L de água por dia, mínimo.</li>
+      <li>Nos dias de treino, faça o treino antes do almoço sempre que possível.</li>
+    </ul>
+  </div>
+
+  <span class="sec-eyebrow">Como está organizado</span>
+  <div class="maintenance-grid">
+    <div class="maint-card green">
+      <div class="maint-title">Plano alimentar</div>
+      <p>4 semanas de cardápio completo (café, almoço, jantar, 2 lanches). Rotativo — você nunca repete o mesmo padrão por mais de 7 dias.</p>
+    </div>
+    <div class="maint-card green">
+      <div class="maint-title">Planilha de treinos</div>
+      <p>3 treinos por semana (Treino A, B e C). Progride de Adaptação (S1-S2) para Progressão (S3-S4) automaticamente.</p>
+    </div>
+    <div class="maint-card green">
+      <div class="maint-title">Guia de alongamentos</div>
+      <p>15 minutos por dia, qualquer horário. Aeróbico e metabólico — não é alongamento estático de academia.</p>
+    </div>
+    <div class="maint-card dark">
+      <div class="maint-title">Protocolo de finais de semana</div>
+      <p style="color:rgba(250,248,245,.72)">O grande diferencial: como manter o progresso sem se privar. Sábado, domingo, festas, restaurante — tudo coberto.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p>Você não vai passar fome em nenhuma semana deste protocolo. Se sentir fome fora das refeições, adicione uma porção de castanhas ou um ovo cozido. O protocolo é ajustável — o que não é ajustável é pular refeições.</p>
+    <cite>— Princípio do Protocolo 30 Dias</cite>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEMANA 1 ════════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Plano Alimentar · Semana 1</span>
+    <h1 class="ch-title"><em>Consolidação</em></h1>
+    <p class="ch-sub">Mantém e aprofunda o que o Protocolo 7 Dias criou. Elimina o restante da inflamação.</p>
+  </div>
+
+  <div class="week-label">Semana 1 — Dias 1 a 7</div>
+
+  <table class="meal-table">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Café da Manhã</th>
+        <th>Lanche (10h)</th>
+        <th>Almoço</th>
+        <th>Lanche (15h)</th>
+        <th>Jantar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day-cell">Seg</td>
+        <td>2 ovos mexidos + 1 fatia pão integral + 1 maçã + chá verde</td>
+        <td>30g castanhas + 1 fruta</td>
+        <td>150g frango grelhado + 3 col. arroz integral + 2 col. feijão + salada verde + azeite</td>
+        <td>Iogurte grego natural (170g)</td>
+        <td>Omelete (3 ovos) + salada de folhas + tomate + pepino</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Ter</td>
+        <td>Iogurte grego (170g) + 1 col. aveia + frutas vermelhas + 1 col. chia</td>
+        <td>1 banana + 1 col. pasta de amendoim</td>
+        <td>150g atum em lata + 1 batata-doce média + brócolis cozido + azeite + limão</td>
+        <td>30g castanhas + chá</td>
+        <td>Sopa de legumes (cenoura + abobrinha + chuchu) + 100g frango desfiado</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Qua</td>
+        <td>2 ovos cozidos + 1 fatia pão integral + 1 laranja + chá verde</td>
+        <td>1 maçã + 10 amêndoas</td>
+        <td>150g carne moída magra + 2 col. macarrão integral + molho tomate natural + salada</td>
+        <td>Iogurte grego (170g) + 1 col. chia</td>
+        <td>Tilápia grelhada (130g) + abobrinha refogada + cenoura</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Qui</td>
+        <td>Vitamina: banana + 1 col. aveia + leite de amêndoa + 1 col. chia</td>
+        <td>30g castanhas + 1 pera</td>
+        <td>150g frango grelhado + quinoa (3 col.) + espinafre refogado + azeite</td>
+        <td>1 fatia pão integral + queijo cottage</td>
+        <td>Omelete (2 ovos) + cogumelos + tomate cereja + folhas</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Sex</td>
+        <td>2 ovos mexidos + abacate (1/2) + 1 fatia pão integral + chá verde</td>
+        <td>Iogurte grego (170g) + frutas</td>
+        <td>150g salmão grelhado + arroz integral (3 col.) + brócolis + azeite</td>
+        <td>30g castanhas</td>
+        <td>Sopa de cúrcuma (caldo + cúrcuma + gengibre + cenoura + frango)</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Sáb</td>
+        <td colspan="5" style="font-style:italic;color:var(--muted);font-size:6.5pt">→ Ver Protocolo de Finais de Semana (página 21)</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Dom</td>
+        <td colspan="5" style="font-style:italic;color:var(--muted);font-size:6.5pt">→ Ver Protocolo de Finais de Semana (página 21)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meal-note">★ Beba 2L de água por dia. Chá verde ou gengibre podem ser consumidos livremente. Evite refrigerante e suco industrializado durante toda a Semana 1.</p>
+</div>
+
+<!-- ═══════════════════ SEMANA 2 ════════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Plano Alimentar · Semana 2</span>
+    <h1 class="ch-title"><em>Ativação</em></h1>
+    <p class="ch-sub">Os treinos entram na rotina. Alimentação e movimento sincronizados pela primeira vez.</p>
+  </div>
+
+  <div class="week-label">Semana 2 — Dias 8 a 14</div>
+  <p class="sec-text" style="margin-bottom:2mm">Nos <strong>dias de treino (Seg/Qua/Sex)</strong>, adicione a pré-treino e ajuste o almoço conforme abaixo. Nos dias de descanso, mantenha o padrão da Semana 1.</p>
+
+  <table class="meal-table">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Café / Pré-Treino</th>
+        <th>Lanche (10h)</th>
+        <th>Almoço</th>
+        <th>Lanche (15h)</th>
+        <th>Jantar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="phase-row">
+        <td class="day-cell">Seg★</td>
+        <td>Panqueca aveia+banana (2 un.) + 1 ovo + chá | Pré-treino: 1 banana (30min antes)</td>
+        <td>Iogurte grego + frutas vermelhas</td>
+        <td>180g frango + quinoa (3 col.) + espinafre + cenoura ralada</td>
+        <td>30g castanhas + maçã</td>
+        <td>Omelete (3 ovos) + abobrinha refogada + tomate</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Ter</td>
+        <td>Smoothie verde: espinafre + abacate + gengibre + água de coco</td>
+        <td>1 fruta + 10 castanhas</td>
+        <td>150g atum + batata-doce + brócolis + azeite</td>
+        <td>Iogurte grego + 1 col. chia</td>
+        <td>Sopa detox: caldo + cúrcuma + cenoura + gengibre + 100g frango</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Qua★</td>
+        <td>2 ovos mexidos + pão integral + 1 laranja | Pré-treino: café preto</td>
+        <td>1 maçã + queijo cottage</td>
+        <td>180g carne magra + arroz integral + feijão + salada + azeite</td>
+        <td>Iogurte grego + banana</td>
+        <td>Tilápia (130g) + legumes no vapor + azeite</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Qui</td>
+        <td>Iogurte grego + aveia + frutas + chia</td>
+        <td>30g castanhas + 1 pera</td>
+        <td>150g salmão + quinoa + brócolis + limão</td>
+        <td>1 fatia pão integral + pasta amendoim</td>
+        <td>Sopa de legumes + frango desfiado</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Sex★</td>
+        <td>Vitamina: banana + aveia + leite amêndoa | Pré-treino: 1 banana</td>
+        <td>Iogurte + frutas vermelhas</td>
+        <td>180g frango + macarrão integral + molho tomate + salada</td>
+        <td>30g castanhas</td>
+        <td>Omelete + salada grande + azeite</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Sáb/Dom</td>
+        <td colspan="5" style="font-style:italic;color:var(--muted);font-size:6.5pt">→ Protocolo de Finais de Semana (pág. 21) · ★ = Dia de treino</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meal-note">★ Dias de treino: aumente a porção de proteína no almoço (150g → 180g). No jantar: mais leve, menos carboidrato.</p>
+</div>
+
+<!-- ═══════════════════ SEMANA 3 ════════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Plano Alimentar · Semana 3</span>
+    <h1 class="ch-title"><em>Aceleração</em></h1>
+    <p class="ch-sub">Janela alimentar de 8 horas. Corpo em modo de queima consistente de gordura.</p>
+  </div>
+
+  <div class="week-label gold">Semana 3 — Dias 15 a 21 · Janela Alimentar 12h–20h</div>
+
+  <div class="info-box gold" style="margin-bottom:3mm">
+    <div class="info-title">O que é janela alimentar e como aplicar</div>
+    <ul class="info-list">
+      <li>Concentre todas as refeições entre 12h e 20h (8 horas de janela)</li>
+      <li>Antes das 12h: água, chá verde, café preto (sem açúcar) liberados</li>
+      <li>Se não for possível, mantenha o padrão da Semana 2 — sem culpa</li>
+      <li>Durma pelo menos 7h — o sono é quando a queima de gordura é mais intensa</li>
+    </ul>
+  </div>
+
+  <table class="meal-table">
+    <thead>
+      <tr>
+        <th>Horário</th>
+        <th>Refeição</th>
+        <th>Dias de Treino ★</th>
+        <th>Dias de Descanso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day-cell">12h (1ª)</td>
+        <td>Almoço completo</td>
+        <td>200g proteína + quinoa (3 col.) + vegetais + azeite</td>
+        <td>180g proteína + arroz integral + feijão + salada</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">15h</td>
+        <td>Lanche</td>
+        <td>Iogurte grego + frutas + 20g castanhas</td>
+        <td>1 fruta + 30g castanhas</td>
+      </tr>
+      <tr>
+        <td class="day-cell">17h (pré)</td>
+        <td>Pré-treino ★</td>
+        <td>1 banana + café preto (dias de treino apenas)</td>
+        <td>— (sem refeição extra)</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">19h</td>
+        <td>Jantar</td>
+        <td>150g proteína + vegetais + azeite (sem carboidrato pesado)</td>
+        <td>Omelete (2 ovos) + salada grande OU sopa leve</td>
+      </tr>
+      <tr>
+        <td class="day-cell">20h</td>
+        <td>Encerramento</td>
+        <td colspan="2" style="font-style:italic;font-size:6.5pt">Última refeição do dia. Após as 20h: apenas água e chá sem açúcar.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="meal-note">Opções de proteína (rotacione ao longo da semana): frango grelhado · salmão · atum · carne magra · ovos · tofu</p>
+  <p class="meal-note">Opções de vegetais: brócolis · espinafre · abobrinha · cenoura · chuchu · pimentão · couve-flor · alface · rúcula</p>
+
+  <div class="highlight-box">
+    <p>A Semana 3 é a mais importante do protocolo. O corpo está treinado, o metabolismo está responsivo, e a janela alimentar cria o ambiente hormonal ideal para a queima de gordura. Não é hora de improvisar.</p>
+    <cite>— Protocolo 30 Dias</cite>
+  </div>
+</div>
+
+<!-- ═══════════════════ SEMANA 4 ════════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Plano Alimentar · Semana 4</span>
+    <h1 class="ch-title"><em>Transformação</em></h1>
+    <p class="ch-sub">Resultado consolidado. Transição para o padrão de manutenção.</p>
+  </div>
+
+  <div class="week-label">Semana 4 — Dias 22 a 30</div>
+  <p class="sec-text">A Semana 4 introduce flexibilidade inteligente. O objetivo não é mais acelerar — é solidificar um padrão que dure após os 30 dias. Você começa a construir a sua forma de comer para o resto da vida.</p>
+
+  <span class="sec-eyebrow">Estrutura das refeições</span>
+  <div class="info-box mb-4">
+    <div class="info-title">Método do prato (use em todas as refeições principais)</div>
+    <ul class="info-list">
+      <li><strong>40% do prato</strong> — vegetais e folhas (variar diariamente)</li>
+      <li><strong>30% do prato</strong> — proteína (frango, peixe, ovo, carne magra)</li>
+      <li><strong>20% do prato</strong> — carboidrato de qualidade (arroz integral, batata-doce, quinoa)</li>
+      <li><strong>10% do prato</strong> — gordura boa (azeite, abacate, castanhas)</li>
+    </ul>
+  </div>
+
+  <table class="meal-table">
+    <thead>
+      <tr>
+        <th>Refeição</th>
+        <th>Opção A</th>
+        <th>Opção B</th>
+        <th>Opção C</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day-cell">Café</td>
+        <td>2 ovos + pão integral + 1 fruta + chá</td>
+        <td>Smoothie: banana + aveia + leite de amêndoa</td>
+        <td>Iogurte grego + granola sem açúcar + frutas</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Lanche 1</td>
+        <td>30g castanhas + 1 fruta</td>
+        <td>Iogurte grego + chia</td>
+        <td>1 fatia pão integral + pasta amendoim</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Almoço</td>
+        <td>Método do prato (ver acima)</td>
+        <td>Método do prato (variar proteína)</td>
+        <td>Método do prato (variar carboidrato)</td>
+      </tr>
+      <tr class="phase-row">
+        <td class="day-cell">Lanche 2</td>
+        <td>Só se sentir fome real</td>
+        <td>Fruta + castanhas</td>
+        <td>Chá + biscoito integral (2 un.)</td>
+      </tr>
+      <tr>
+        <td class="day-cell">Jantar</td>
+        <td>Metade do volume do almoço</td>
+        <td>Omelete + salada grande</td>
+        <td>Sopa leve de legumes com proteína</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meal-note">Sábado e Domingo: aplique o Protocolo de Finais de Semana — você já tem flexibilidade suficiente para fazer escolhas conscientes sem precisar de regras rígidas.</p>
+</div>
+
+<!-- ═══════════════════ LISTA DE COMPRAS ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Lista Mensal</span>
+    <h1 class="ch-title">Lista de <em>compras</em></h1>
+    <p class="ch-sub">Organize por semana — compre proteínas 2× por semana para manter a frescura.</p>
+  </div>
+
+  <div class="shop-grid">
+    <div class="shop-category">
+      <div class="shop-cat-title">🥩 Proteínas (compre 2×/semana)</div>
+      <ul class="shop-list">
+        <li>Peito de frango — 1,5kg/semana</li>
+        <li>Ovos — 30 unidades/semana</li>
+        <li>Atum em lata (água) — 8 latas/mês</li>
+        <li>Salmão — 400g/semana</li>
+        <li>Tilápia ou outro peixe — 400g/semana</li>
+        <li>Carne moída magra — 400g/semana</li>
+        <li>Iogurte grego natural — 4 potes/semana</li>
+      </ul>
+    </div>
+    <div class="shop-category">
+      <div class="shop-cat-title">🥦 Vegetais e Folhas</div>
+      <ul class="shop-list">
+        <li>Brócolis — 1 cabeça/semana</li>
+        <li>Espinafre — 1 maço/semana</li>
+        <li>Abobrinha — 4 unidades/semana</li>
+        <li>Cenoura — 1kg/semana</li>
+        <li>Chuchu — 4 unidades/semana</li>
+        <li>Alface, rúcula ou mix — 2 maços/semana</li>
+        <li>Tomate — 1kg/semana</li>
+        <li>Pepino — 3 unidades/semana</li>
+        <li>Couve-flor — 1 cabeça/quinzena</li>
+        <li>Pimentão — 3 unidades/semana</li>
+      </ul>
+    </div>
+    <div class="shop-category">
+      <div class="shop-cat-title">🍌 Frutas</div>
+      <ul class="shop-list">
+        <li>Banana — 1 cacho/semana</li>
+        <li>Maçã — 7 unidades/semana</li>
+        <li>Laranja — 7 unidades/semana</li>
+        <li>Abacate — 3 unidades/semana</li>
+        <li>Pera — 4 unidades/semana</li>
+        <li>Frutas vermelhas (congeladas) — 400g/semana</li>
+        <li>Limão — 6 unidades/semana</li>
+      </ul>
+    </div>
+    <div class="shop-category">
+      <div class="shop-cat-title">🌾 Carboidratos e Grãos</div>
+      <ul class="shop-list">
+        <li>Arroz integral — 2kg/mês</li>
+        <li>Quinoa — 500g/mês</li>
+        <li>Batata-doce — 2kg/semana</li>
+        <li>Aveia em flocos — 1kg/mês</li>
+        <li>Macarrão integral — 500g/mês</li>
+        <li>Feijão cozido/lata — 4 latas/mês</li>
+        <li>Pão integral (sem açúcar) — 2 pacotes/semana</li>
+      </ul>
+    </div>
+    <div class="shop-category gold-top">
+      <div class="shop-cat-title">🫒 Gorduras Boas</div>
+      <ul class="shop-list">
+        <li>Azeite extravirgem — 500ml/mês</li>
+        <li>Castanha-do-pará — 200g/semana</li>
+        <li>Amêndoas — 200g/semana</li>
+        <li>Pasta de amendoim (sem açúcar) — 1 pote/mês</li>
+        <li>Chia — 500g/mês</li>
+        <li>Linhaça dourada — 500g/mês</li>
+      </ul>
+    </div>
+    <div class="shop-category gold-top">
+      <div class="shop-cat-title">🫙 Temperos e Essenciais</div>
+      <ul class="shop-list">
+        <li>Alho — 2 cabeças/semana</li>
+        <li>Cebola — 1kg/semana</li>
+        <li>Cúrcuma em pó — 1 pote/mês</li>
+        <li>Gengibre fresco — 1 raiz/semana</li>
+        <li>Sal rosa ou marinho — 1 pote/mês</li>
+        <li>Chá verde (sachê) — 1 caixa/mês</li>
+        <li>Água de coco (natural) — 4 unidades/semana</li>
+        <li>Leite de amêndoa — 2L/semana</li>
+      </ul>
+    </div>
+  </div>
+  <p class="meal-note">Compre proteínas frescas 2× por semana (Seg e Qui). Vegetais, 1× por semana. Grãos e laticínios: compra mensal funciona bem.</p>
+</div>
+
+<!-- ═══════════════════ TREINOS S1-S2 ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Planilha de Treinos · Semanas 1 e 2</span>
+    <h1 class="ch-title">Treinos em <em>casa</em></h1>
+    <p class="ch-sub">3 treinos por semana · Sem equipamento · 25–30 minutos por sessão</p>
+  </div>
+
+  <div class="workout-phase">
+    <span>Fase 1 — Adaptação (Semanas 1 e 2)</span>
+    <span>3× / semana · Seg / Qua / Sex</span>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label">TREINO A — Full Body Base</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Como executar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Agachamento livre</td><td class="ex-muscles">Quadríceps · Glúteo · Core</td><td class="ex-series">3 × 12</td><td>45s</td><td class="ex-tip">Pés na largura dos ombros, desça até as coxas ficarem paralelas ao chão, suba empurrando pelos calcanhares.</td></tr>
+        <tr><td class="ex-name-cell">Flexão de joelho</td><td class="ex-muscles">Peitoral · Tríceps · Ombro</td><td class="ex-series">3 × 8</td><td>45s</td><td class="ex-tip">Joelhos no chão, mãos afastadas na largura dos ombros. Desça até o peito quase tocar o chão.</td></tr>
+        <tr><td class="ex-name-cell">Prancha frontal</td><td class="ex-muscles">Core · Lombar · Ombros</td><td class="ex-series">3 × 30s</td><td>30s</td><td class="ex-tip">Antebraços no chão, corpo reto da cabeça aos calcanhares. Não deixe o quadril subir ou cair.</td></tr>
+        <tr><td class="ex-name-cell">Elevação de quadril</td><td class="ex-muscles">Glúteo · Posterior de coxa</td><td class="ex-series">3 × 15</td><td>30s</td><td class="ex-tip">Deitada de costas, pés no chão, eleve o quadril até o corpo ficar reto. Aperte o glúteo no topo.</td></tr>
+        <tr><td class="ex-name-cell">Jumping jack</td><td class="ex-muscles">Cardio · Full body</td><td class="ex-series">2 × 30s</td><td>20s</td><td class="ex-tip">Pule abrindo pernas e braços simultaneamente. Mantenha o ritmo constante.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label b">TREINO B — Core e Cardio</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Como executar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Afundo alternado</td><td class="ex-muscles">Quadríceps · Glúteo</td><td class="ex-series">3 × 10 cada</td><td>45s</td><td class="ex-tip">Dê um passo longo à frente, flexione o joelho até a coxa ficar paralela. Volte e altere as pernas.</td></tr>
+        <tr><td class="ex-name-cell">Superman</td><td class="ex-muscles">Lombar · Glúteo · Ombros</td><td class="ex-series">3 × 12</td><td>30s</td><td class="ex-tip">Deitada de bruços, eleve simultaneamente os braços e as pernas do chão. Segure 2 segundos no topo.</td></tr>
+        <tr><td class="ex-name-cell">Mountain climber</td><td class="ex-muscles">Core · Cardio · Ombros</td><td class="ex-series">3 × 20</td><td>30s</td><td class="ex-tip">Posição de prancha, alterne puxar os joelhos até o peito em ritmo rápido. 1 rep = 1 joelho.</td></tr>
+        <tr><td class="ex-name-cell">Prancha lateral</td><td class="ex-muscles">Oblíquos · Core</td><td class="ex-series">2 × 20s cada</td><td>20s</td><td class="ex-tip">Apoio no antebraço e borda do pé. Quadril elevado e corpo alinhado. Alterne os lados.</td></tr>
+        <tr><td class="ex-name-cell">Step touch lateral</td><td class="ex-muscles">Cardio · Adutores</td><td class="ex-series">2 × 40s</td><td>20s</td><td class="ex-tip">Passo lateral alternado, tocando os pés ao centro. Mantenha o ritmo constante, braços balançando.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label c">TREINO C — Glúteo e Cardio</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Como executar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Agachamento sumo</td><td class="ex-muscles">Glúteo · Adutores · Quadríceps</td><td class="ex-series">3 × 15</td><td>45s</td><td class="ex-tip">Pés afastados além dos ombros, pontas dos pés viradas para fora. Agache profundo, joelhos seguindo os pés.</td></tr>
+        <tr><td class="ex-name-cell">Coice com extensão</td><td class="ex-muscles">Glúteo · Posterior</td><td class="ex-series">3 × 12 cada</td><td>30s</td><td class="ex-tip">Em quatro apoios, estique uma perna para trás e para cima. Aperte o glúteo no topo. Alterne as pernas.</td></tr>
+        <tr><td class="ex-name-cell">Burpee modificado</td><td class="ex-muscles">Full body · Cardio</td><td class="ex-series">3 × 6</td><td>60s</td><td class="ex-tip">Agache, apoie as mãos no chão, leve as pernas para trás (sem pular), volte e levante. Evolua para o pulo quando estiver confortável.</td></tr>
+        <tr><td class="ex-name-cell">Bird dog</td><td class="ex-muscles">Core · Lombar · Equilíbrio</td><td class="ex-series">3 × 10 cada</td><td>30s</td><td class="ex-tip">Quatro apoios. Estique o braço esquerdo e a perna direita simultaneamente. Mantenha a coluna neutra. Alterne.</td></tr>
+        <tr><td class="ex-name-cell">Corda imaginária</td><td class="ex-muscles">Cardio · Panturrilha</td><td class="ex-series">2 × 45s</td><td>20s</td><td class="ex-tip">Simule pular corda com os braços girando e os pés alternando. Intensidade progressiva.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ TREINOS S3-S4 ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Planilha de Treinos · Semanas 3 e 4</span>
+    <h1 class="ch-title"><em>Progressão</em></h1>
+    <p class="ch-sub">Mesmos movimentos, maior intensidade. Seu corpo já está adaptado — agora evoluímos.</p>
+  </div>
+
+  <div class="workout-phase">
+    <span>Fase 2 — Progressão (Semanas 3 e 4)</span>
+    <span>3× / semana · Maior volume e intensidade</span>
+  </div>
+
+  <div class="info-box" style="margin-bottom:4mm">
+    <div class="info-title">O que muda da Fase 1 para a Fase 2</div>
+    <ul class="info-list">
+      <li>Agachamento: 3×12 → <strong>4×15</strong> + 10 segundos de pausa na descida</li>
+      <li>Flexão: joelho → <strong>pé completo</strong> (ou aumentar reps se ainda no joelho)</li>
+      <li>Prancha: 30s → <strong>45s</strong> + adicionar elevação de perna alternada</li>
+      <li>Elevação de quadril: 3×15 → <strong>4×15 a uma perna</strong> (cada lado)</li>
+      <li>Cardio final: 2 rondas isoladas → <strong>5 minutos contínuos</strong></li>
+      <li>Burpee: modificado → <strong>completo com pulo</strong></li>
+    </ul>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label">TREINO A — Progressão Full Body</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Progressão</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Agachamento com pausa</td><td class="ex-muscles">Quadríceps · Glúteo</td><td class="ex-series">4 × 15</td><td>45s</td><td class="ex-tip">Pausa de 3 segundos na posição baixa antes de subir. Maior ativação muscular.</td></tr>
+        <tr><td class="ex-name-cell">Flexão completa</td><td class="ex-muscles">Peitoral · Tríceps</td><td class="ex-series">3 × 12</td><td>45s</td><td class="ex-tip">Pés no chão (sem joelho). Se ainda não conseguir, faça com joelho mas com mais reps (15).</td></tr>
+        <tr><td class="ex-name-cell">Prancha com elevação</td><td class="ex-muscles">Core · Glúteo</td><td class="ex-series">3 × 45s</td><td>30s</td><td class="ex-tip">Durante a prancha, eleve cada perna alternadamente 10cm do chão. Mantém o quadril imóvel.</td></tr>
+        <tr><td class="ex-name-cell">Elevação quadril 1 perna</td><td class="ex-muscles">Glúteo · Posterior</td><td class="ex-series">4 × 12 cada</td><td>30s</td><td class="ex-tip">Mesma posição, mas uma perna estendida no ar. Muito mais difícil — comece só com 8 se precisar.</td></tr>
+        <tr><td class="ex-name-cell">Cardio contínuo</td><td class="ex-muscles">Full body</td><td class="ex-series">1 × 5min</td><td>—</td><td class="ex-tip">Jumping jack + step touch + corda imaginária em sequência, 5 minutos sem parar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label b">TREINO B — Core Avançado</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Progressão</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Afundo com passo acelerado</td><td class="ex-muscles">Quadríceps · Glúteo</td><td class="ex-series">3 × 14 cada</td><td>45s</td><td class="ex-tip">Dê o afundo e volte mais rápido — adicione explosão na subida mas mantém controle na descida.</td></tr>
+        <tr><td class="ex-name-cell">Superman com rotação</td><td class="ex-muscles">Lombar · Oblíquos</td><td class="ex-series">3 × 15</td><td>30s</td><td class="ex-tip">Mesmo movimento do Superman, mas adicione uma leve rotação do tronco no topo antes de descer.</td></tr>
+        <tr><td class="ex-name-cell">Mountain climber cruzado</td><td class="ex-muscles">Core · Oblíquos</td><td class="ex-series">3 × 24</td><td>30s</td><td class="ex-tip">Ao puxar o joelho, leve-o em direção ao cotovelo oposto. Mais rotação de core.</td></tr>
+        <tr><td class="ex-name-cell">Prancha lateral dinâmica</td><td class="ex-muscles">Oblíquos · Adutores</td><td class="ex-series">3 × 30s cada</td><td>20s</td><td class="ex-tip">Na prancha lateral, desça e suba o quadril lentamente (10 movimentos nos 30 segundos).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="treino-block">
+    <span class="treino-label c">TREINO C — Glúteo Intensivo</span>
+    <table class="ex-table">
+      <thead>
+        <tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Descanso</th><th>Progressão</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="ex-name-cell">Agachamento sumo pulsado</td><td class="ex-muscles">Glúteo · Adutores</td><td class="ex-series">4 × 20</td><td>45s</td><td class="ex-tip">Na posição baixa do agachamento sumo, faça 3 pulsos pequenos antes de subir. 1 rep = 3 pulsos + subida.</td></tr>
+        <tr><td class="ex-name-cell">Coice com elevação</td><td class="ex-muscles">Glúteo superior</td><td class="ex-series">4 × 15 cada</td><td>30s</td><td class="ex-tip">No coice, adicione uma elevação lateral no retorno. Cada ciclo = 2 movimentos por perna.</td></tr>
+        <tr><td class="ex-name-cell">Burpee completo</td><td class="ex-muscles">Full body · Cardio</td><td class="ex-series">4 × 8</td><td>45s</td><td class="ex-tip">Agache, mãos no chão, salte as pernas para trás, flexão, salte as pernas de volta, pule com os braços acima.</td></tr>
+        <tr><td class="ex-name-cell">Bird dog com pausa</td><td class="ex-muscles">Core · Estabilização</td><td class="ex-series">3 × 12 cada</td><td>30s</td><td class="ex-tip">Mesma posição, segure 3 segundos estendido antes de retornar. Muito mais difícil para o core.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ ALONGAMENTOS ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">15 minutos por dia</span>
+    <h1 class="ch-title">Guia de <em>Alongamentos Aeróbicos</em></h1>
+    <p class="ch-sub">Execute pela manhã ou após o treino. O efeito metabólico dura horas.</p>
+  </div>
+
+  <p class="sec-text" style="margin-bottom:3mm">Esta sequência combina alongamento ativo com ativação cardiovascular leve. Diferente do alongamento estático de academia, ela mantém o coração em ritmo e aumenta a queima calórica mesmo em dias de descanso.</p>
+
+  <div class="stretch-grid">
+
+    <div class="stretch-card">
+      <div class="stretch-num">01</div>
+      <div class="stretch-name">Marcha estacionária</div>
+      <div class="stretch-time">⏱ 1min 30s — aquecimento</div>
+      <div class="stretch-how">Eleve os joelhos até a altura do quadril alternadamente, braços balançando em ritmo constante. Progressivo: comece devagar, aumente o ritmo nos últimos 30 segundos.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">02</div>
+      <div class="stretch-name">Rotação de tronco em pé</div>
+      <div class="stretch-time">⏱ 1min — coluna torácica</div>
+      <div class="stretch-how">Pés afastados, braços estendidos. Gire o tronco para a esquerda e direita alternadamente, olhar acompanha. 30 repetições totais, aumentando a amplitude progressivamente.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">03</div>
+      <div class="stretch-name">Abertura de peito dinâmica</div>
+      <div class="stretch-time">⏱ 1min — peitoral · ombros</div>
+      <div class="stretch-how">Pés juntos, braços estendidos à frente. Abra os braços levando-os para trás como asas, juntando as escápulas. Retorne e repita em ritmo constante. 30 repetições.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">04</div>
+      <div class="stretch-name">Flexão lateral com braço</div>
+      <div class="stretch-time">⏱ 1min — oblíquos · lateral</div>
+      <div class="stretch-how">Em pé, eleve um braço acima da cabeça e incline o tronco para o lado oposto. Retorne e alterne. 20 repetições cada lado. Sinta o alongamento na lateral do tronco.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">05</div>
+      <div class="stretch-name">Agachamento parcial com extensão</div>
+      <div class="stretch-time">⏱ 1min 30s — quadríceps · glúteo</div>
+      <div class="stretch-how">Agache até 90° e, ao subir, eleve uma perna estendida à frente (alternando). Movimento fluído, sem pausa. 20 repetições cada perna. Aquece glúteo e quadríceps simultaneamente.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">06</div>
+      <div class="stretch-name">Posição da criança ativa</div>
+      <div class="stretch-time">⏱ 1min — lombar · quadril</div>
+      <div class="stretch-how">De joelhos, sente sobre os calcanhares e estenda os braços à frente no chão. Alterne a extensão dos braços (um por vez) fazendo uma leve tração. Respire profundamente a cada ciclo.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">07</div>
+      <div class="stretch-name">Torção espinhal deitada</div>
+      <div class="stretch-time">⏱ 1min — coluna · quadril</div>
+      <div class="stretch-how">Deitada, flexione um joelho e leve-o ao lado oposto (torção). Braços em T, ombros no chão. Segure 15 segundos cada lado, 2 repetições por lado. Respire fundo na posição.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">08</div>
+      <div class="stretch-name">Alongamento de panturrilha</div>
+      <div class="stretch-time">⏱ 1min — panturrilha · posterior</div>
+      <div class="stretch-how">Apoie as mãos na parede, uma perna à frente flexionada, outra atrás esticada. Empurre o calcanhar de trás no chão. 30 segundos cada perna, 2 repetições.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">09</div>
+      <div class="stretch-name">Abraço de joelhos deitada</div>
+      <div class="stretch-time">⏱ 1min — lombar · quadril</div>
+      <div class="stretch-how">Deitada de costas, puxe ambos os joelhos ao peito. Abrace-os com os braços. Role levemente da esquerda para a direita (massagem lombar). Respire profundamente por 1 minuto.</div>
+    </div>
+
+    <div class="stretch-card">
+      <div class="stretch-num">10</div>
+      <div class="stretch-name">Respiração abdominal + relaxamento</div>
+      <div class="stretch-time">⏱ 2min — sistema nervoso</div>
+      <div class="stretch-how">Deitada, olhos fechados. Inspire pelo nariz (4 seg), segure (2 seg), expire pela boca (6 seg). 10 ciclos. Esta é a etapa mais importante: ativa o sistema parassimpático e acelera a recuperação muscular.</div>
+    </div>
+
+  </div>
+  <p class="meal-note" style="margin-top:3mm">★ Total: aproximadamente 13–15 minutos. Execute diariamente — mesmo nos dias de descanso dos treinos. A sequência pode ser feita em qualquer espaço pequeno, sem equipamento.</p>
+</div>
+
+<!-- ═══════════════════ PROTOCOLO FDS ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Protocolos Especiais</span>
+    <h1 class="ch-title">Finais de <em>semana</em></h1>
+    <p class="ch-sub">Como manter o progresso sem se privar — restaurante, família, festa.</p>
+  </div>
+
+  <p class="sec-text">O maior erro de qualquer protocolo alimentar é tornar o final de semana um campo minado de culpa. Um ou dois dias mais flexíveis não apagam cinco dias de protocolo. O que apaga são exageros reais — não escolhas conscientes.</p>
+
+  <div class="weekend-grid mb-4">
+    <div class="wk-col a">
+      <div class="wk-label">Sábado</div>
+      <div class="wk-title">Flexibilidade controlada</div>
+      <p>Café e almoço: protocolo normal. Jantar: uma refeição livre (sem exagero em quantidade). Pode tomar uma taça de vinho. Sem sobremesa pesada.</p>
+    </div>
+    <div class="wk-col b">
+      <div class="wk-label">Domingo</div>
+      <div class="wk-title">Refeição em família</div>
+      <p>Almoço livre — coma o que a família come. Quantidades: o prato cheio uma vez, sem repetir. Jantar: leve (ovo + salada ou sopa).</p>
+    </div>
+    <div class="wk-col c">
+      <div class="wk-label">Festa / Restaurante</div>
+      <div class="wk-title">Regra do 80/20</div>
+      <p>80% das escolhas: proteína + vegetal. 20%: o que quiser. Evite frituras em quantidade. Prefira água com gás a refrigerante.</p>
+    </div>
+  </div>
+
+  <div class="info-box gold">
+    <div class="info-title">As 5 estratégias que funcionam</div>
+    <ul class="info-list">
+      <li>Coma uma refeição de protocolo antes de sair — você chegará com menos fome</li>
+      <li>No restaurante: peça a proteína grelhada e a salada sempre que tiver opção</li>
+      <li>Não vá de jejum longo para uma festa — o exagero é garantido</li>
+      <li>Segunda-feira: volte ao protocolo sem pensar no que aconteceu no sábado</li>
+      <li>Uma semana ruim não cancela três semanas boas — o protocolo é acumulativo</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════ MANUTENÇÃO ═══════════════════ -->
+<div class="page-break">
+  <div class="chapter-header">
+    <span class="ch-eyebrow">Guia de Manutenção</span>
+    <h1 class="ch-title">Pós <em>30 dias</em></h1>
+    <p class="ch-sub">O resultado que você construiu — como garantir que ele fique.</p>
+  </div>
+
+  <p class="sec-text">Você chegou ao Dia 30. O que acontece agora determina se os próximos 6 meses serão de manutenção ou de retrocesso. A boa notícia: manter é muito mais fácil do que conquistar — porque você já sabe como o seu corpo responde.</p>
+
+  <div class="maintenance-grid mb-4">
+    <div class="maint-card green">
+      <div class="maint-title">O que continuar fazendo</div>
+      <p>Método do prato no almoço. Proteína em todas as refeições principais. Água (2L/dia). 2–3 treinos por semana. Jantar mais leve que o almoço.</p>
+    </div>
+    <div class="maint-card green">
+      <div class="maint-title">O que pode flexibilizar</div>
+      <p>Finais de semana mais livres. Não precisa medir porções. Pode incluir sobremesa 1–2x por semana. Pode reduzir para 2 treinos por semana em períodos de mais correria.</p>
+    </div>
+    <div class="maint-card dark">
+      <div class="maint-title">O que nunca voltar a fazer</div>
+      <p style="color:rgba(250,248,245,.72)">Pular o café da manhã regularmente. Jantar pesado após as 21h. Ficar sem comer por mais de 5h acordada. Dieta restritiva por mais de 3 dias seguidos.</p>
+    </div>
+    <div class="maint-card dark">
+      <div class="maint-title">Sinal de alerta</div>
+      <p style="color:rgba(250,248,245,.72)">Se ganhar +2kg em 2 semanas: volte ao protocolo da Semana 1 por 7 dias. Funciona toda vez. Não espere ganhar mais para agir.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p>O que você fez nos últimos 30 dias não foi uma dieta. Foi um reset. Você reorganizou a forma como seu corpo processa alimentos, como você se relaciona com a comida e como a rotina funciona em torno da sua saúde. Isso não precisa de manutenção — já é parte de quem você é.</p>
+    <cite>— Protocolo 30 Dias · Parabéns por chegar até aqui.</cite>
+  </div>
+
+  <div class="info-box gold" style="margin-top:4mm">
+    <div class="info-title">Próximo passo (opcional)</div>
+    <ul class="info-list">
+      <li>Se quer ir mais fundo: o Desafio 90 Dias está disponível com 3 trilhas personalizadas</li>
+      <li>Se quer manter: repita o ciclo de 4 semanas a cada 2 meses como "recalibração"</li>
+      <li>Se quer só manter o ritmo: continue os treinos e use o Método do Prato diariamente</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

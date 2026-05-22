@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Desafio 90 Dias — Transformação Completa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark-green:#253828;--accent:#7A9E7E;--accent-soft:#e8f0e9;
+  --gold:#C9973A;--gold-light:#e8c97a;
+  --beige:#F5F0EB;--off-white:#FAF8F5;
+  --text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2;
+  --track-a:#2d4a32;--track-b:#2a3d5c;--track-c:#4a2d48;
+}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+.page-break{page-break-after:always;break-after:page}
+
+/* CAPA */
+.cover{background:var(--dark-green);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:26mm 16mm 18mm;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(201,151,58,.22) 0%,transparent 50%),radial-gradient(ellipse at 10% 85%,rgba(122,158,126,.18) 0%,transparent 45%)}
+.cover-content{position:relative;z-index:1}
+.cover-badge{display:inline-block;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1a1a;font-size:5.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8mm}
+.cover-h1{font-size:34pt;font-weight:700;color:#fff;line-height:1.04;letter-spacing:-.02em;margin-bottom:3mm}
+.cover-h1 em{display:block;font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cover-sub{font-size:9pt;color:rgba(250,248,245,.65);line-height:1.65;margin-bottom:10mm;max-width:88%}
+.cover-tracks{display:flex;gap:8px;margin-bottom:12mm}
+.cover-track{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px 10px;text-align:center}
+.cover-track .t-label{font-size:5pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3px}
+.cover-track .t-name{font-size:7pt;color:#fff;font-weight:600}
+.cover-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,151,58,.5),transparent);margin-bottom:10mm}
+.cover-footer{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end}
+.cover-footer-brand{font-size:6pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.cover-rings{position:absolute;right:14mm;top:50%;transform:translateY(-50%)}
+.ring{position:absolute;border-radius:50%;transform:translate(-50%,-50%)}
+.ring1{width:80mm;height:80mm;border:1px solid rgba(201,151,58,.12);left:50%;top:50%}
+.ring2{width:58mm;height:58mm;border:1px solid rgba(201,151,58,.2);left:50%;top:50%}
+.ring3{width:36mm;height:36mm;border:1px solid rgba(201,151,58,.32);left:50%;top:50%}
+
+/* ÍNDICE */
+.toc-page{padding-top:4mm}
+.section-eyebrow{font-size:6pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5mm;display:block}
+.toc-h{font-size:18pt;font-weight:700;color:var(--dark-green);margin-bottom:6mm}
+.toc-track-header{font-size:7pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:var(--dark-green);padding:4px 10px;margin:5mm 0 3mm;border-radius:3px}
+.toc-item{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;border-bottom:1px dotted var(--border);font-size:8pt}
+.toc-item .toc-title{color:var(--text)}
+.toc-item .toc-pg{color:var(--muted);font-size:7pt}
+.toc-sub{padding:2px 0 2px 10px;font-size:7.5pt;color:var(--muted);border-bottom:1px dotted rgba(221,216,210,.5)}
+.toc-sub span:last-child{font-size:7pt}
+
+/* MANUAL */
+.manual-intro{background:var(--off-white);border-radius:8px;padding:12px 14px;margin-bottom:8mm;border-left:3px solid var(--gold)}
+.manual-intro p{font-size:8.5pt;line-height:1.6;color:var(--text)}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8mm}
+.rule-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+.rule-card .rc-num{font-size:18pt;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;line-height:1}
+.rule-card .rc-title{font-size:7.5pt;font-weight:700;color:var(--dark-green);margin:2px 0}
+.rule-card .rc-body{font-size:7pt;color:var(--muted);line-height:1.5}
+
+/* QUIZ TRILHA */
+.quiz-card{background:var(--dark-green);color:#fff;border-radius:8px;padding:12px 14px;margin-bottom:8mm}
+.quiz-card h3{font-size:11pt;margin-bottom:6mm;color:#fff}
+.quiz-option{display:flex;gap:10px;margin-bottom:6px;align-items:flex-start}
+.quiz-letter{min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7pt;font-weight:700;color:#1a1a1a;flex-shrink:0;margin-top:1px}
+.quiz-letter.qa{background:var(--gold-light)}
+.quiz-letter.qb{background:#82a8d4}
+.quiz-letter.qc{background:#c49fc2}
+.quiz-text{font-size:8pt;color:rgba(255,255,255,.85);line-height:1.5}
+.quiz-result{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8mm}
+.qr-card{background:rgba(255,255,255,.1);border-radius:6px;padding:8px;text-align:center}
+.qr-card .qr-label{font-size:5.5pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3px}
+.qr-card .qr-name{font-size:7pt;color:#fff;font-weight:600;line-height:1.3}
+
+/* TRACK HEADER */
+.track-header{min-height:40mm;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px;border-radius:8px;margin-bottom:6mm;position:relative;overflow:hidden}
+.track-header::before{content:'';position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(135deg,transparent,transparent 3px,rgba(255,255,255,.05) 3px,rgba(255,255,255,.05) 6px)}
+.track-header.ta{background:linear-gradient(135deg,#1e3d24,#2d5534)}
+.track-header.tb{background:linear-gradient(135deg,#1e2d4a,#2d4a6a)}
+.track-header.tc{background:linear-gradient(135deg,#3d1e3a,#5c2d55)}
+.track-header .track-eyebrow{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px;display:block}
+.track-header h2{font-size:20pt;color:#fff;font-weight:700;line-height:1.1;margin-bottom:4px}
+.track-header .track-sub{font-size:8pt;color:rgba(255,255,255,.7)}
+.track-header .track-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:6pt;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase}
+
+/* PHASE HEADER */
+.phase-bar{background:var(--dark-green);color:#fff;padding:5px 12px;border-radius:4px;margin:6mm 0 4mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .ph-name{font-size:7.5pt;font-weight:700}
+.phase-bar .ph-range{font-size:6.5pt;color:rgba(255,255,255,.6)}
+
+/* MEAL TABLE */
+table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:5mm}
+thead th{background:var(--dark-green);color:#fff;padding:4px 5px;font-weight:600;text-align:left;font-size:6.5pt}
+tbody tr:nth-child(even){background:var(--off-white)}
+tbody td{padding:4px 5px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.meal-tag{font-size:5.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1px}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:7px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:5mm}
+.phase-note strong{color:var(--dark-green)}
+
+/* WORKOUT */
+.workout-intro{font-size:8pt;color:var(--muted);margin-bottom:4mm;line-height:1.55}
+.workout-block{margin-bottom:6mm}
+.workout-block-title{font-size:9pt;font-weight:700;color:var(--dark-green);font-family:'Playfair Display',serif;border-bottom:2px solid var(--accent-soft);padding-bottom:3px;margin-bottom:4px}
+.workout-schedule{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:5mm}
+.wd{background:var(--off-white);border:1px solid var(--border);border-radius:4px;padding:4px 3px;text-align:center}
+.wd .day{font-size:5.5pt;font-weight:700;color:var(--muted);text-transform:uppercase;display:block}
+.wd .act{font-size:6.5pt;color:var(--dark-green);font-weight:600;line-height:1.3;display:block;margin-top:2px}
+.wd.rest{background:#fafaf8}
+.wd.rest .act{color:var(--muted)}
+.wd.active{border-color:var(--accent)}
+
+/* EXERCISE TABLE */
+.ex-table thead th{font-size:6pt;background:var(--dark-green)}
+.ex-table tbody td:first-child{font-weight:600;color:var(--dark-green)}
+.superset-badge{font-size:5.5pt;font-weight:700;background:var(--gold);color:#1a1a1a;padding:1px 5px;border-radius:2px;display:inline-block;margin-bottom:2px}
+
+/* RECIPES */
+.recipe-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:6mm;break-inside:avoid}
+.recipe-header{background:var(--dark-green);padding:10px 12px;color:#fff}
+.recipe-header .r-eyebrow{font-size:5.5pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.recipe-header h3{font-size:11pt;color:#fff;margin-bottom:3px}
+.recipe-header .r-meta{font-size:6.5pt;color:rgba(255,255,255,.6);display:flex;gap:10px}
+.recipe-body{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.recipe-body h4{font-size:7pt;font-weight:700;color:var(--dark-green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.recipe-body ul{padding-left:12px}
+.recipe-body ul li{font-size:7.5pt;color:var(--text);margin-bottom:2px}
+.recipe-body ol{padding-left:12px}
+.recipe-body ol li{font-size:7.5pt;color:var(--text);margin-bottom:3px;line-height:1.45}
+.recipe-macro{background:var(--off-white);padding:6px 12px;display:flex;gap:12px;border-top:1px solid var(--border)}
+.macro-item{font-size:6.5pt;text-align:center}
+.macro-item .mv{font-size:9pt;font-weight:700;color:var(--dark-green);font-family:'Playfair Display',serif;display:block}
+.macro-item .ml{color:var(--muted)}
+
+/* TRACKING */
+.tracking-section h2{font-size:16pt;color:var(--dark-green);margin-bottom:3mm}
+.tracking-table thead th{font-size:6pt;background:var(--dark-green)}
+.tracking-table tbody td{font-size:7pt;text-align:center;height:16px}
+.tracking-table tbody td:first-child{text-align:left;font-weight:600}
+.measure-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6mm}
+.measure-card{background:var(--off-white);border-radius:6px;padding:10px 12px;border:1px solid var(--border)}
+.measure-card .mc-label{font-size:6.5pt;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:4px}
+.measure-card .mc-fields{display:flex;gap:8px}
+.mc-field{flex:1;text-align:center}
+.mc-field .mf-label{font-size:5.5pt;color:var(--muted);display:block;margin-bottom:2px}
+.mc-field .mf-line{height:1px;background:var(--border);margin:0 4px}
+
+/* SUPLEMENTACAO */
+.suppl-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6mm}
+.suppl-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+.suppl-card .sc-name{font-size:8.5pt;font-weight:700;color:var(--dark-green);display:block;margin-bottom:3px}
+.suppl-card .sc-dose{font-size:7pt;color:var(--gold);font-weight:600;display:block;margin-bottom:4px}
+.suppl-card .sc-body{font-size:7pt;color:var(--muted);line-height:1.5}
+.suppl-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 6px 6px 0;font-size:7.5pt;color:var(--dark-green);margin-top:4mm}
+
+/* MINDSET */
+.mindset-section{position:relative}
+.mindset-section::before{content:'';position:absolute;top:0;left:-14mm;right:-14mm;height:2mm;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+.mindset-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:5mm 0}
+.mindset-card{background:var(--dark-green);color:#fff;border-radius:8px;padding:12px 14px}
+.mindset-card .mc-day{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3px}
+.mindset-card .mc-title{font-size:9pt;color:#fff;margin-bottom:5px}
+.mindset-card .mc-body{font-size:7pt;color:rgba(255,255,255,.75);line-height:1.55}
+.mindset-quote{background:var(--off-white);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:6mm 0;text-align:center}
+.mindset-quote .mq-text{font-size:10pt;font-family:'Playfair Display',serif;font-style:italic;color:var(--dark-green);line-height:1.5}
+.mindset-quote .mq-author{font-size:6.5pt;color:var(--muted);margin-top:5px}
+
+/* FINAL PAGE */
+.final-page{background:var(--dark-green);min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20mm 16mm;position:relative}
+.final-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,151,58,.15) 0%,transparent 60%)}
+.final-page h2{font-size:24pt;color:#fff;margin-bottom:4mm;position:relative}
+.final-page h2 em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final-page p{font-size:9pt;color:rgba(255,255,255,.7);max-width:80%;margin:0 auto 8mm;line-height:1.65;position:relative}
+.final-pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:4px 14px;font-size:6.5pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);position:relative}
+</style>
+</head>
+<body>
+
+<!-- ══ CAPA ══════════════════════════════════════════════ -->
+<div class="cover page-break">
+  <div class="cover-rings">
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+  </div>
+  <div class="cover-content">
+    <span class="cover-badge">Programa Completo de Transformação</span>
+    <h1 class="cover-h1">Desafio<br><em>90 Dias</em></h1>
+    <p class="cover-sub">Três trilhas personalizadas. Plano alimentar completo, treinos com demonstração, receitas por fase e acompanhamento semana a semana — do Dia 1 ao Dia 90.</p>
+    <div class="cover-tracks">
+      <div class="cover-track">
+        <span class="t-label">Trilha A</span>
+        <span class="t-name">Emagrecer de Verdade</span>
+      </div>
+      <div class="cover-track">
+        <span class="t-label">Trilha B</span>
+        <span class="t-name">Definição &amp; Tônus</span>
+      </div>
+      <div class="cover-track">
+        <span class="t-label">Trilha C</span>
+        <span class="t-name">Energia &amp; Leveza</span>
+      </div>
+    </div>
+    <div class="cover-divider"></div>
+    <p style="font-size:7.5pt;color:rgba(250,248,245,.5)">Inclui: 90 dias de cardápio · Treinos A/B/C · 9 receitas exclusivas · Tabela de medidas · Guia de suplementação · Bônus: Mindset antidesistência</p>
+  </div>
+  <div class="cover-footer">
+    <span class="cover-footer-brand">Desafio 90 Dias</span>
+    <span style="font-size:6pt;color:rgba(255,255,255,.3)">Uso pessoal — não reproduzir</span>
+  </div>
+</div>
+
+<!-- ══ ÍNDICE ═════════════════════════════════════════════ -->
+<div class="toc-page page-break">
+  <span class="section-eyebrow">Conteúdo</span>
+  <h2 class="toc-h">O que está<br>neste material</h2>
+
+  <div class="toc-track-header">Manual do Desafio</div>
+  <div class="toc-item"><span class="toc-title">Como funciona o Desafio 90 Dias</span><span class="toc-pg">4</span></div>
+  <div class="toc-item"><span class="toc-title">Qual trilha escolher (quiz rápido)</span><span class="toc-pg">4</span></div>
+  <div class="toc-item"><span class="toc-title">As 3 fases do desafio</span><span class="toc-pg">5</span></div>
+
+  <div class="toc-track-header" style="background:#2d4a32">Trilha A — Emagrecer de Verdade</div>
+  <div class="toc-item"><span class="toc-title">Plano alimentar — Fase 1 (D1–30)</span><span class="toc-pg">6</span></div>
+  <div class="toc-item"><span class="toc-title">Plano alimentar — Fase 2 (D31–60)</span><span class="toc-pg">7</span></div>
+  <div class="toc-item"><span class="toc-title">Plano alimentar — Fase 3 (D61–90)</span><span class="toc-pg">8</span></div>
+  <div class="toc-item"><span class="toc-title">Treinos — Fases 1, 2 e 3</span><span class="toc-pg">9</span></div>
+  <div class="toc-item"><span class="toc-title">Receitas Trilha A</span><span class="toc-pg">11</span></div>
+
+  <div class="toc-track-header" style="background:#2d4a6a">Trilha B — Definição &amp; Tônus</div>
+  <div class="toc-item"><span class="toc-title">Plano alimentar — 3 fases</span><span class="toc-pg">13</span></div>
+  <div class="toc-item"><span class="toc-title">Treinos progressivos com demonstração</span><span class="toc-pg">16</span></div>
+  <div class="toc-item"><span class="toc-title">Receitas Trilha B</span><span class="toc-pg">18</span></div>
+
+  <div class="toc-track-header" style="background:#5c2d55">Trilha C — Energia &amp; Leveza</div>
+  <div class="toc-item"><span class="toc-title">Plano alimentar — 3 fases</span><span class="toc-pg">20</span></div>
+  <div class="toc-item"><span class="toc-title">Treinos funcionais e mobilidade</span><span class="toc-pg">22</span></div>
+  <div class="toc-item"><span class="toc-title">Receitas Trilha C</span><span class="toc-pg">24</span></div>
+
+  <div class="toc-track-header">Ferramentas &amp; Bônus</div>
+  <div class="toc-item"><span class="toc-title">Tabela de medidas e evolução</span><span class="toc-pg">26</span></div>
+  <div class="toc-item"><span class="toc-title">Guia de suplementação</span><span class="toc-pg">27</span></div>
+  <div class="toc-item"><span class="toc-title">Bônus: Como não desistir no Dia 31</span><span class="toc-pg">28</span></div>
+</div>
+
+<!-- ══ MANUAL DO DESAFIO ══════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Manual do Desafio</span>
+  <h2 style="font-size:18pt;color:var(--dark-green);margin-bottom:5mm">Como funciona<br>o Desafio 90 Dias</h2>
+
+  <div class="manual-intro">
+    <p>Este programa não é uma dieta. É uma reprogramação gradual do seu metabolismo, do seu paladar e da sua relação com o movimento. Os 90 dias são divididos em <strong>3 fases de 30 dias</strong>, cada uma com um objetivo distinto — e cada fase prepara o terreno para a próxima.</p>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card">
+      <div class="rc-num">01</div>
+      <div class="rc-title">Escolha uma trilha — só uma</div>
+      <div class="rc-body">As três trilhas têm estruturas diferentes. Misturar planos de trilhas diferentes cancela os resultados. Use o quiz da próxima página.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rc-num">02</div>
+      <div class="rc-title">Cada fase dura exatamente 30 dias</div>
+      <div class="rc-body">Não pule de fase antes do prazo. A Fase 1 tem resultado metabólico que só aparece no final dela — não no meio.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rc-num">03</div>
+      <div class="rc-title">Pese-se só uma vez por semana</div>
+      <div class="rc-body">Flutuação diária de 1–2kg é normal (água, intestino, sal). A balança semanal mostra a tendência real. Foto mensal é mais fiel que a balança.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rc-num">04</div>
+      <div class="rc-title">Um tropeço não é queda</div>
+      <div class="rc-body">Saiu do plano num dia? Volta no próximo. O protocolo é robusto o suficiente pra absorver 2–3 dias fora por fase sem perder o resultado.</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <h3>Qual trilha é a sua?</h3>
+    <div class="quiz-option">
+      <div class="quiz-letter qa">A</div>
+      <div class="quiz-text"><strong style="color:var(--gold-light)">Trilha A — Emagrecer de Verdade:</strong> Tenho mais de 5kg para perder, meu metabolismo parece "travado" e já tentei outras dietas sem sucesso duradouro. Prioridade máxima: perda de gordura.</div>
+    </div>
+    <div class="quiz-option">
+      <div class="quiz-letter qb">B</div>
+      <div class="quiz-text"><strong style="color:#a0c4e8">Trilha B — Definição &amp; Tônus:</strong> Estou no peso ou próxima, mas quero firmar o corpo, ganhar músculo e eliminar a gordura localizada. Não tenho pressa para perder peso — quero mudar a composição.</div>
+    </div>
+    <div class="quiz-option">
+      <div class="quiz-letter qc">C</div>
+      <div class="quiz-text"><strong style="color:#d4a8d0">Trilha C — Energia &amp; Leveza:</strong> Meu principal problema é cansaço crônico, inchaço e falta de energia. Perder peso seria ótimo, mas saúde e disposição vêm primeiro. Preciso de algo sustentável e sem estresse.</div>
+    </div>
+    <div class="quiz-result">
+      <div class="qr-card">
+        <span class="qr-label">Trilha A</span>
+        <span class="qr-name">Déficit calórico + cardio progressivo</span>
+      </div>
+      <div class="qr-card">
+        <span class="qr-label">Trilha B</span>
+        <span class="qr-name">Recomposição + treino de força</span>
+      </div>
+      <div class="qr-card">
+        <span class="qr-label">Trilha C</span>
+        <span class="qr-name">Anti-inflamatório + movimento diário</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FASES OVERVIEW ══════════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Visão Geral</span>
+  <h2 style="font-size:16pt;color:var(--dark-green);margin-bottom:5mm">As 3 fases do desafio</h2>
+  <table>
+    <thead><tr><th>Fase</th><th>Dias</th><th>Objetivo</th><th>Trilha A</th><th>Trilha B</th><th>Trilha C</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Fase 1</strong><br><span style="color:var(--muted);font-size:6.5pt">Adaptação</span></td>
+        <td>1–30</td>
+        <td>Limpar o organismo, criar hábito, eliminar inflamação base</td>
+        <td>Alimentação limpa + cardio 3×/sem</td>
+        <td>Alimentação balanceada + força 3×/sem</td>
+        <td>Anti-inflamatório + caminhada diária</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 2</strong><br><span style="color:var(--muted);font-size:6.5pt">Aceleração</span></td>
+        <td>31–60</td>
+        <td>Ativar metabolismo, intensificar resultados, criar consistência</td>
+        <td>Déficit calórico + cardio 4×/sem</td>
+        <td>Progressão de carga + cardio finisher</td>
+        <td>Treino funcional 3×/sem + anti-inf.</td>
+      </tr>
+      <tr>
+        <td><strong>Fase 3</strong><br><span style="color:var(--muted);font-size:6.5pt">Transformação</span></td>
+        <td>61–90</td>
+        <td>Consolidar resultado, criar estilo de vida, preparar manutenção</td>
+        <td>Ciclagem calórica + HIIT 5×/sem</td>
+        <td>Supersets + cardio em jejum 2×/sem</td>
+        <td>Lifestyle integrado, flexibilidade</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="phase-note">
+    <strong>Regra de ouro entre fases:</strong> Antes de passar para a Fase 2 (Dia 31), registre suas medidas e faça uma foto. Este é o seu ponto de comparação mais importante — muita gente se decepciona sem foto porque a memória distorce o ponto de partida.
+  </div>
+
+  <span class="section-eyebrow" style="margin-top:6mm">Seu ponto de partida</span>
+  <table style="margin-bottom:0">
+    <thead><tr><th>Medida</th><th>Dia 1</th><th>Dia 30</th><th>Dia 60</th><th>Dia 90</th><th>Diferença</th></tr></thead>
+    <tbody>
+      <tr><td>Peso (kg)</td><td style="height:14px"></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Cintura (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Quadril (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Abdômen (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Braço (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Coxa (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TRILHA A — HEADER ══════════════════════════════════ -->
+<div class="page-break">
+  <div class="track-header ta">
+    <span class="track-badge">Trilha A</span>
+    <span class="track-eyebrow">Para quem quer perder gordura</span>
+    <h2>Emagrecer<br>de Verdade</h2>
+    <p class="track-sub">Déficit calórico progressivo · Cardio 3 a 5×/semana · Proteína alta para preservar massa</p>
+  </div>
+
+  <div class="phase-bar"><span class="ph-name">FASE 1 — Adaptação Metabólica</span><span class="ph-range">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> eliminar alimentos inflamatórios, estabilizar insulina, criar déficit moderado de ~300kcal/dia. Sem restrição severa — o corpo precisa aprender que vai receber comida de qualidade.</div>
+
+  <table>
+    <thead><tr><th style="width:14%">Refeição</th><th>Seg/Qua/Sex (Treino)</th><th>Ter/Qui/Sáb (Descanso)</th><th>Dom</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="meal-tag">Café</span>7h</td>
+        <td>2 ovos mexidos + 1 fatia pão integral + café sem açúcar</td>
+        <td>Idem</td>
+        <td>Omelete 3 ovos + fruta vermelha (1 xíc.)</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Manhã</span>10h</td>
+        <td>1 fruta pequena + 10 amêndoas</td>
+        <td>1 fruta pequena</td>
+        <td>Vitamina: leite de coco (200ml) + whey ou iogurte grego</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Almoço</span>13h</td>
+        <td>150g frango grelhado + arroz integral (4 col.) + salada verde livre + azeite</td>
+        <td>Idem ou atum + batata doce (100g) + legumes</td>
+        <td>Refeição livre (sem fritos, sem bebida alcoólica)</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Tarde</span>16h</td>
+        <td>Iogurte grego natural + 1 col. linhaça</td>
+        <td>1 punhado de oleaginosas (30g)</td>
+        <td>Iogurte grego ou fruta</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Jantar</span>19h</td>
+        <td>Omelete 3 ovos + legumes refogados + sopa de legumes (opcional)</td>
+        <td>150g peixe assado + purê de couve-flor + salada</td>
+        <td>Canja de frango caseira ou jantar leve</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Ceia</span>21h</td>
+        <td>Chá de camomila ou hortelã (sem açúcar)</td>
+        <td>Idem</td>
+        <td>Idem</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-break">
+  <div class="phase-bar"><span class="ph-name">FASE 2 — Aceleração</span><span class="ph-range">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Déficit de ~500kcal/dia. Redução de carboidratos no jantar e introdução de janela alimentar das 8h (comer entre 11h e 19h nos dias de treino, se tolerado).</div>
+
+  <table>
+    <thead><tr><th style="width:14%">Refeição</th><th>Dias de Treino (4×/sem)</th><th>Dias de Descanso (3×/sem)</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="meal-tag">Café</span>11h*</td>
+        <td>Shake: whey (30g) + leite vegetal (250ml) + 1 banana pequena + 1 col. aveia</td>
+        <td>2 ovos + abacate (½) + café sem açúcar</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Almoço</span>13h</td>
+        <td>180g frango ou carne magra + arroz integral (3 col.) + feijão (2 col.) + salada livre</td>
+        <td>150g proteína + batata doce (80g) + legumes</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Tarde</span>16h</td>
+        <td>Iogurte grego + fruta vermelha ou 1 maçã</td>
+        <td>10–15 amêndoas + 1 fruta pequena</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Jantar</span>19h (último)*</td>
+        <td>Salada grande + 120g proteína magra + azeite. Sem carboidrato simples.</td>
+        <td>Idem. Pode adicionar 1 fatia pão integral se sentir fome.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:7pt;color:var(--muted);margin-top:-3mm;margin-bottom:5mm">*Janela de 8h: comer entre 11h e 19h. Se sentir tontura, quebre o jejum com 1 fruta + 1 punhado de castanhas às 9h.</p>
+
+  <div class="phase-bar"><span class="ph-name">FASE 3 — Transformação</span><span class="ph-range">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Ciclagem calórica — 3 dias déficit (–600kcal) alternados com 1 dia de manutenção. Isso evita a estagnação metabólica. Cardio HIIT 5×/semana.</div>
+
+  <table>
+    <thead><tr><th style="width:18%">Dia</th><th>Tipo</th><th>Almoço</th><th>Jantar</th></tr></thead>
+    <tbody>
+      <tr><td>Dia de déficit</td><td>–600kcal</td><td>Frango 200g + salada + legumes. Sem arroz.</td><td>Omelete 3 ovos + caldo de legumes.</td></tr>
+      <tr><td>Dia de manutenção</td><td>Normal</td><td>Refeição completa normal (como Fase 1)</td><td>Proteína + carboidrato complexo + salada</td></tr>
+      <tr><td>Padrão semanal</td><td colspan="3">Seg/Ter/Qua = déficit · Qui = manutenção · Sex/Sáb = déficit · Dom = manutenção</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TRILHA A — TREINOS ══════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha A — Treinos</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:3mm">Programação de exercícios</h2>
+  <p class="workout-intro">Todos os treinos são para casa. Você precisará de: colchonete, 2 garrafas d'água (improviso de peso), corda de pular (opcional). Nenhum equipamento caro.</p>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 1 — Semanas 1 a 4 (3×/semana)</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">Treino A</span></div>
+      <div class="wd rest"><span class="day">Ter</span><span class="act">Caminhada 30min</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">Treino B</span></div>
+      <div class="wd rest"><span class="day">Qui</span><span class="act">Descanso</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">Treino C</span></div>
+      <div class="wd rest"><span class="day">Sáb</span><span class="act">Caminhada 40min</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso</span></div>
+    </div>
+
+    <table class="ex-table">
+      <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Execução</th></tr></thead>
+      <tbody>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:var(--dark-green)">TREINO A — Membros Inferiores + Cardio</td></tr>
+        <tr><td>Agachamento sumô</td><td>Glúteos, adutores</td><td>3 × 15</td><td>45s</td><td>Pés afastados, ponta dos pés para fora 45°. Joelhos acompanham os pés ao descer.</td></tr>
+        <tr><td>Avanço alternado</td><td>Quadríceps, glúteos</td><td>3 × 12 cada</td><td>45s</td><td>Passo à frente, joelho traseiro quase toca o chão. Empurre o calcanhar da frente para subir.</td></tr>
+        <tr><td>Elevação pélvica</td><td>Glúteos, isquiotibiais</td><td>4 × 20</td><td>30s</td><td>Deitada, pés no chão, suba o quadril até alinhar joelho-quadril-ombro. Aperta no topo.</td></tr>
+        <tr><td>Polichinelo</td><td>Cardio total</td><td>3 × 45s</td><td>30s</td><td>Salte abrindo pernas e levando braços acima da cabeça simultaneamente.</td></tr>
+        <tr><td>Mountain climber</td><td>Core, cardio</td><td>3 × 30s</td><td>30s</td><td>Posição de prancha. Traga joelhos alternados ao peito em ritmo acelerado.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:var(--dark-green)">TREINO B — Membros Superiores + Core</td></tr>
+        <tr><td>Flexão de braço (joelhos)</td><td>Peitoral, tríceps</td><td>3 × 12</td><td>45s</td><td>Mãos à largura dos ombros. Corpo reto do joelho ao ombro. Cotovelos a 45° do tronco.</td></tr>
+        <tr><td>Tríceps no banco</td><td>Tríceps</td><td>3 × 15</td><td>45s</td><td>Mãos em cadeira ou sofá, cotovelos dobram para trás. Desça até 90° e empurre.</td></tr>
+        <tr><td>Prancha frontal</td><td>Core total</td><td>3 × 30s</td><td>30s</td><td>Antebraços no chão, corpo reto. Não deixe o quadril subir nem cair.</td></tr>
+        <tr><td>Abdominal bicicleta</td><td>Oblíquos, reto abd.</td><td>3 × 20</td><td>30s</td><td>Deitada, mãos atrás da cabeça. Cotovelo direito ao joelho esquerdo. Alterne devagar.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:var(--dark-green)">TREINO C — Full Body Metabólico</td></tr>
+        <tr><td>Burpee (sem salto)</td><td>Full body</td><td>3 × 10</td><td>45s</td><td>Agacha → mãos no chão → recua pernas (prancha) → avança pernas → levanta.</td></tr>
+        <tr><td>Squat jump</td><td>Pernas, cardio</td><td>3 × 12</td><td>45s</td><td>Agacha fundo e salta verticalmente. Aterrissa com joelhos suaves.</td></tr>
+        <tr><td>Superman</td><td>Lombar, glúteos</td><td>3 × 15</td><td>30s</td><td>Barriga no chão, braços esticados à frente. Levante braços e pernas simultaneamente. Aperta por 2s.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page-break">
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 2 — Semanas 5 a 8 (4×/semana + cardio)</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">Treino A</span></div>
+      <div class="wd active"><span class="day">Ter</span><span class="act">Cardio 35min</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">Treino B</span></div>
+      <div class="wd rest"><span class="day">Qui</span><span class="act">Descanso</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">Treino C</span></div>
+      <div class="wd active"><span class="day">Sáb</span><span class="act">Cardio 40min</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso</span></div>
+    </div>
+    <p class="workout-intro">Progressão: aumente 1–2 repetições por exercício a cada semana. Cardio = caminhada rápida ou corda de pular.</p>
+
+    <table class="ex-table">
+      <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Execução</th></tr></thead>
+      <tbody>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:var(--dark-green)">TREINO A — Glúteos &amp; Pernas (Progressão)</td></tr>
+        <tr><td>Agachamento búlgaro</td><td>Glúteos, quad.</td><td>4 × 12 cada</td><td>60s</td><td>Pé traseiro elevado em cadeira. Desça o joelho da frente a 90°. Empurre pelo calcanhar.</td></tr>
+        <tr><td>Elevação pélvica 1 perna</td><td>Glúteo unilateral</td><td>3 × 15 cada</td><td>45s</td><td>Como elevação normal, mas com uma perna estendida. Mantém quadril nivelado no topo.</td></tr>
+        <tr><td>Cadeira de parede</td><td>Quadríceps</td><td>3 × 45s</td><td>60s</td><td>Costas na parede, joelhos a 90°. Segure sem descanso. Se queimar — está funcionando.</td></tr>
+        <tr><td>Pulo lateral sobre linha</td><td>Pernas, cardio</td><td>3 × 40s</td><td>30s</td><td>Salte lateralmente sobre uma linha imaginária. Aterrisse suave e pule imediatamente.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:var(--dark-green)">TREINO C — HIIT (introdução)</td></tr>
+        <tr><td>Protocolo 20-10</td><td>Full body</td><td>8 rounds</td><td>10s entre rounds</td><td>20s de esforço máximo (ex: agachamento com salto) → 10s descanso. Alterne exercícios: burpee, squat jump, mountain climber, polichinelo.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 3 — Semanas 9 a 13 (5×/semana HIIT)</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">HIIT A</span></div>
+      <div class="wd active"><span class="day">Ter</span><span class="act">HIIT B</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">HIIT C</span></div>
+      <div class="wd rest"><span class="day">Qui</span><span class="act">Caminhada</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">HIIT A</span></div>
+      <div class="wd active"><span class="day">Sáb</span><span class="act">HIIT B</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso</span></div>
+    </div>
+    <table class="ex-table">
+      <thead><tr><th>Circuito</th><th>Exercícios</th><th>Tempo</th><th>Pausa entre rounds</th><th>Total</th></tr></thead>
+      <tbody>
+        <tr><td>HIIT A</td><td>Squat jump → Mountain climber → Burpee completo → Polichinelo</td><td>40s cada</td><td>20s</td><td>4 rounds = 16 min</td></tr>
+        <tr><td>HIIT B</td><td>Elevação pélvica rápida → Prancha com tap → Avanço com salto → Superman</td><td>40s cada</td><td>20s</td><td>4 rounds = 16 min</td></tr>
+        <tr><td>HIIT C</td><td>Corrida estacionária alta → Flexão → Abdominal bicicleta → Pulo lateral</td><td>40s cada</td><td>20s</td><td>4 rounds = 16 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ TRILHA A — RECEITAS ════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha A — Receitas</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:5mm">3 receitas para potencializar a perda de gordura</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Café da manhã · Fase 1 e 2</span>
+      <h3>Shake Proteico Anti-inchaço</h3>
+      <div class="r-meta"><span>⏱ 5 min</span><span>🍽 1 porção</span><span>Sem lactose</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>1 scoop whey protein baunilha (30g)</li>
+          <li>200ml leite de amêndoa sem açúcar</li>
+          <li>½ banana congelada</li>
+          <li>1 col. sopa de linhaça dourada</li>
+          <li>1 col. chá de gengibre fresco ralado</li>
+          <li>Gelo a gosto</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Coloque todos os ingredientes no liquidificador.</li>
+          <li>Bata por 30 segundos até ficar homogêneo.</li>
+          <li>Sirva imediatamente.</li>
+          <li>Não adoce — o whey e a banana dão dulçor suficiente.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">28g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">22g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">5g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~245</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Almoço · Fase 2 e 3</span>
+      <h3>Bowl Queima Ativa</h3>
+      <div class="r-meta"><span>⏱ 20 min</span><span>🍽 1 porção</span><span>Alto teor proteico</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>150g peito de frango (grelhado)</li>
+          <li>80g batata doce cozida (cubos)</li>
+          <li>1 xíc. rúcula + espinafre</li>
+          <li>½ tomate cereja (10 unidades)</li>
+          <li>¼ pepino em rodelas</li>
+          <li>1 col. sopa azeite extra virgem</li>
+          <li>Limão, pimenta-do-reino, sal rosa</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Grelhe o frango com temperos (alho, páprica, sal).</li>
+          <li>Cozinhe a batata doce no vapor até macia.</li>
+          <li>Monte o bowl: verdes na base, batata e frango por cima.</li>
+          <li>Finalize com tomates, pepino, azeite e limão.</li>
+          <li>Consuma imediatamente para preservar os nutrientes.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">38g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">28g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">14g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~390</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRILHA B — HEADER ══════════════════════════════════ -->
+<div class="page-break">
+  <div class="track-header tb">
+    <span class="track-badge">Trilha B</span>
+    <span class="track-eyebrow">Para quem quer recomposição corporal</span>
+    <h2>Definição<br>&amp; Tônus</h2>
+    <p class="track-sub">Força progressiva · Proteína elevada · Cardio de suporte · Composição muscular</p>
+  </div>
+
+  <div class="phase-bar" style="background:#2d4a6a"><span class="ph-name">FASE 1 — Base de Força</span><span class="ph-range">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Aprender os padrões de movimento, criar base muscular, manter manutenção calórica (não déficit). Proteína: 1,6–2g por kg de peso corporal/dia.</div>
+
+  <table>
+    <thead><tr><th style="width:14%">Refeição</th><th>Dias de Treino</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="meal-tag">Café</span>7h</td>
+        <td>Omelete 3 ovos + aveia (4 col. sopa) + banana</td>
+        <td>2 ovos + 1 fatia pão integral + queijo cottage</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Manhã</span>10h</td>
+        <td>Whey shake (30g) + 1 fruta</td>
+        <td>Iogurte grego + granola s/açúcar (2 col.)</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Almoço</span>13h</td>
+        <td>200g proteína (frango/carne magra) + arroz integral (5 col.) + feijão + salada livre + azeite</td>
+        <td>Idem porém 3 col. arroz</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Pré-treino</span>16h</td>
+        <td>Banana + 10 amendoins ou 1 torrada integral + pasta de amendoim</td>
+        <td>Fruta + castanhas (30g)</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Jantar</span>20h</td>
+        <td>Proteína magra 150g + vegetais refogados + 2 col. arroz integral</td>
+        <td>Omelete ou peixe + salada + 1 batata doce pequena</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar" style="background:#2d4a6a"><span class="ph-name">FASE 2 — Intensificação</span><span class="ph-range">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Leve déficit calórico (–200kcal) para revelar músculo sem perder massa. Progressão de carga obrigatória — se não ficou mais difícil que semana passada, não está evoluindo.</div>
+
+  <table>
+    <thead><tr><th style="width:14%">Refeição</th><th>Dias de Treino (4×/sem)</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café</span></td><td>Idem Fase 1 + 1 col. sopa de chia</td><td>Omelete 2 ovos + abacate (¼) + café</td></tr>
+      <tr><td><span class="meal-tag">Manhã</span></td><td>Whey (30g) + aveia (2 col.) + água</td><td>Iogurte grego + frutas vermelhas (½ xíc.)</td></tr>
+      <tr><td><span class="meal-tag">Almoço</span></td><td>220g proteína + arroz integral (4 col.) + brócolis ou espinafre + azeite</td><td>Idem porém 3 col. arroz</td></tr>
+      <tr><td><span class="meal-tag">Tarde</span></td><td>Whey shake pós-treino (30g) + 1 fruta</td><td>Castanhas (20g) + 1 fruta</td></tr>
+      <tr><td><span class="meal-tag">Jantar</span></td><td>200g proteína + legumes à vontade. Sem carboidrato no jantar (dias de treino).</td><td>150g proteína + 1 col. arroz + legumes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar" style="background:#2d4a6a"><span class="ph-name">FASE 3 — Definição</span><span class="ph-range">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Déficit de –300kcal + 2 sessões semanais de cardio em jejum (manhã, antes do café). Supersets para densidade muscular e queima extra.</div>
+  <table>
+    <thead><tr><th>Dia</th><th>Café</th><th>Almoço</th><th>Jantar</th></tr></thead>
+    <tbody>
+      <tr><td>Treino + jejum cardio</td><td>Cardio em jejum → Whey + fruta ao acordar</td><td>200g proteína + arroz integral (4 col.) + salada</td><td>Proteína + legumes. Sem carb.</td></tr>
+      <tr><td>Treino normal</td><td>Omelete 3 ovos + aveia</td><td>Idem acima</td><td>Proteína + legumes + 1 col. arroz</td></tr>
+      <tr><td>Descanso</td><td>2 ovos + queijo branco + fruta</td><td>Refeição completa. Pode incluir 1 sobremesa leve (chocolate 70% — 2 quadradinhos).</td><td>Salada + proteína leve</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TRILHA B — TREINOS ══════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha B — Treinos</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:3mm">Força progressiva em casa</h2>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 1 — Fundamentos (3×/semana)</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">Treino A</span></div>
+      <div class="wd rest"><span class="day">Ter</span><span class="act">Caminhada</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">Treino B</span></div>
+      <div class="wd rest"><span class="day">Qui</span><span class="act">Descanso</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">Treino C</span></div>
+      <div class="wd rest"><span class="day">Sáb</span><span class="act">Caminhada</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso</span></div>
+    </div>
+    <table class="ex-table">
+      <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Execução (Técnica)</th></tr></thead>
+      <tbody>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#2d4a6a">TREINO A — Posterior + Glúteos</td></tr>
+        <tr><td>Elevação pélvica (lenta)</td><td>Glúteo, isquio.</td><td>4 × 15</td><td>60s</td><td>Suba em 2s, aperta 2s no topo, desce em 3s. Ritmo lento = mais ativação muscular.</td></tr>
+        <tr><td>Agachamento livre</td><td>Quadríceps, glúteos</td><td>4 × 15</td><td>60s</td><td>Calcanhares no chão, joelhos na direção dos pés. Coluna neutra. Desça até coxa paralela ao chão.</td></tr>
+        <tr><td>Panturrilha em pé</td><td>Gastrocnêmio, sóleo</td><td>3 × 20</td><td>45s</td><td>Segure em cadeira para equilíbrio. Suba na ponta do pé, aperta, desce lento. Amplitude total.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#2d4a6a">TREINO B — Superior</td></tr>
+        <tr><td>Flexão de braço</td><td>Peitoral, tríceps, ombro</td><td>4 × 10–15</td><td>60s</td><td>Mãos na largura dos ombros. Cotovelos a 45°. Desce até peito quase tocar o chão. Se precisar, use joelhos.</td></tr>
+        <tr><td>Remada com garrafa</td><td>Dorsal, bíceps</td><td>3 × 12 cada</td><td>60s</td><td>Apoie 1 mão/joelho na cadeira. Puxe garrafa cheia até o quadril. Retrai escápula no topo.</td></tr>
+        <tr><td>Desenvolvimento de ombro</td><td>Deltoides</td><td>3 × 12</td><td>60s</td><td>Sentada, cotovelos a 90° nas laterais. Empurre as garrafas acima da cabeça. Não trave o cotovelo.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#2d4a6a">TREINO C — Core + Estabilização</td></tr>
+        <tr><td>Prancha lateral</td><td>Oblíquos, glúteo médio</td><td>3 × 25s cada</td><td>30s</td><td>Antebraço no chão, quadril elevado. Corpo reto. Se difícil, apoie o joelho inferior.</td></tr>
+        <tr><td>Dead bug</td><td>Core profundo</td><td>3 × 10 cada</td><td>45s</td><td>Deitada, braços verticais, joelhos a 90°. Abaixe braço oposto ao pé. Costas no chão o tempo todo.</td></tr>
+        <tr><td>Hiperextensão no chão</td><td>Lombar, glúteos</td><td>3 × 15</td><td>45s</td><td>Barriga no chão. Eleve braços e pernas juntos. Segura 2s no topo. Baixa controlado.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 3 — Supersets para Definição (5×/semana)</div>
+    <table class="ex-table">
+      <thead><tr><th>Par</th><th>Exercício 1</th><th>Exercício 2</th><th>Séries</th><th>Pausa entre pares</th></tr></thead>
+      <tbody>
+        <tr><td><span class="superset-badge">S1</span></td><td>Agachamento búlgaro 12 reps cada</td><td>Elevação pélvica 20 reps</td><td>4 pares</td><td>75s</td></tr>
+        <tr><td><span class="superset-badge">S2</span></td><td>Flexão de braço 12 reps</td><td>Remada com garrafa 15 reps</td><td>4 pares</td><td>75s</td></tr>
+        <tr><td><span class="superset-badge">S3</span></td><td>Desenvolvimento de ombro 12 reps</td><td>Prancha 40s</td><td>3 pares</td><td>60s</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ TRILHA B — RECEITAS ════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha B — Receitas</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:5mm">3 receitas para recomposição</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Pós-treino · Fase 2 e 3</span>
+      <h3>Tigela Proteica de Atum e Abacate</h3>
+      <div class="r-meta"><span>⏱ 8 min</span><span>🍽 1 porção</span><span>Sem glúten</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>1 lata atum em água (120g escorrido)</li>
+          <li>½ abacate maduro</li>
+          <li>½ pepino em cubos</li>
+          <li>10 tomates cereja cortados ao meio</li>
+          <li>Suco de 1 limão</li>
+          <li>Sal, pimenta e coentro a gosto</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Escorra bem o atum e desfie levemente.</li>
+          <li>Amasse o abacate com limão e sal.</li>
+          <li>Misture atum, pepino e tomates.</li>
+          <li>Sirva sobre o abacate amassado.</li>
+          <li>Finalize com pimenta e coentro.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">35g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">8g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">18g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~325</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Jantar · Fase 3</span>
+      <h3>Frango Asiático com Brócolis no Vapor</h3>
+      <div class="r-meta"><span>⏱ 25 min</span><span>🍽 2 porções</span><span>Baixo carb</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>300g peito de frango em tiras</li>
+          <li>200g brócolis em floretes</li>
+          <li>2 dentes de alho picados</li>
+          <li>1 col. sopa shoyu light (baixo sódio)</li>
+          <li>1 col. chá de gengibre ralado</li>
+          <li>1 col. chá de gergelim torrado</li>
+          <li>1 col. sopa de azeite</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Marine o frango com shoyu, gengibre e alho (15 min).</li>
+          <li>Grelhe na frigideira antiaderente até dourar.</li>
+          <li>Cozinhe o brócolis no vapor (5 min — ainda crocante).</li>
+          <li>Monte o prato, regue com azeite.</li>
+          <li>Polvilhe gergelim e sirva.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">42g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">10g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">12g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~315</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRILHA C — HEADER ══════════════════════════════════ -->
+<div class="page-break">
+  <div class="track-header tc">
+    <span class="track-badge">Trilha C</span>
+    <span class="track-eyebrow">Para quem prioriza saúde e disposição</span>
+    <h2>Energia<br>&amp; Leveza</h2>
+    <p class="track-sub">Anti-inflamatório · Movimento diário · Gestão de estresse · Resultado sustentável</p>
+  </div>
+
+  <div class="phase-bar" style="background:#5c2d55"><span class="ph-name">FASE 1 — Reset</span><span class="ph-range">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Eliminar alimentos pró-inflamatórios (açúcar, ultraprocessados, álcool, trigo em excesso), melhorar qualidade do sono e criar rotina de movimento diário. Resultado esperado: deflação e mais energia — a balança vem depois.</div>
+
+  <table>
+    <thead><tr><th style="width:14%">Refeição</th><th>Todo dia</th><th>Variações / opções</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="meal-tag">Café</span>7–8h</td>
+        <td>2 ovos cozidos ou mexidos + fruta anti-inf. (mamão, abacaxi, manga) + chá verde ou café sem açúcar</td>
+        <td>Omelete de espinafre / vitamina de frutas vermelhas com leite de coco</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Manhã</span>10h</td>
+        <td>1 fruta + 10 amêndoas ou nozes</td>
+        <td>Iogurte grego natural (sem açúcar) + 1 col. chia</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Almoço</span>12–13h</td>
+        <td>Proteína magra (150g) + arroz integral ou quinoa (3 col.) + folhas verdes à vontade + azeite + limão</td>
+        <td>Pode substituir arroz por batata doce ou inhame. Evite pão branco e arroz branco.</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Tarde</span>15–16h</td>
+        <td>Chá de cúrcuma + gengibre (anti-inflamatório natural) + 1 fruta pequena</td>
+        <td>Suco verde (limão + couve + água de coco + gengibre) — sem açúcar nem peneirar</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Jantar</span>18–19h</td>
+        <td>Sopa de legumes caseira OU peixe + legumes no vapor. Refeição leve, digestiva, sem carboidrato pesado.</td>
+        <td>Omelete de legumes / frango desfiado com caldo de cúrcuma</td>
+      </tr>
+      <tr>
+        <td><span class="meal-tag">Noite</span>21h</td>
+        <td>Chá de camomila ou melissa (auxilia sono, reduz cortisol)</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar" style="background:#5c2d55"><span class="ph-name">FASE 2 — Ativação</span><span class="ph-range">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Adicionar treinos funcionais 3×/semana sem abrir mão da alimentação anti-inflamatória. Introdução de jeJum leve (12h: jantar às 19h e café às 7h).</div>
+
+  <table>
+    <thead><tr><th>Refeição</th><th>Dias de Treino (3×/sem)</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café</span>7h</td><td>Vitamina: leite vegetal + 1 scoop colágeno hidrolisado + fruta vermelha + 1 col. aveia</td><td>Omelete 2 ovos + abacate</td></tr>
+      <tr><td><span class="meal-tag">Almoço</span></td><td>Proteína 180g + carboidrato moderado + legumes</td><td>Idem</td></tr>
+      <tr><td><span class="meal-tag">Tarde</span></td><td>Banana + pasta de amendoim (1 col.) — pré-treino</td><td>Fruta + castanhas</td></tr>
+      <tr><td><span class="meal-tag">Jantar</span>19h</td><td>Proteína leve + legumes + caldos. Evite carboidrato pesado.</td><td>Idem</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar" style="background:#5c2d55"><span class="ph-name">FASE 3 — Fluxo</span><span class="ph-range">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Lifestyle integration — não é dieta, é forma de comer. 4 treinos/semana, 1 dia de refeição livre (sem culpa). Foco: manter o que foi conquistado e preparar para vida pós-desafio.</div>
+  <table>
+    <thead><tr><th>Tipo de dia</th><th>Almoço</th><th>Jantar</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Dia normal (5×/sem)</td><td>Refeição anti-inflamatória completa</td><td>Leve, sem carb pesado</td><td>Treino se faz antes ou depois do almoço</td></tr>
+      <tr><td>Dia livre (1×/sem)</td><td>Refeição de sua escolha</td><td>De sua escolha</td><td>Sem culpa — parte do protocolo</td></tr>
+      <tr><td>Dia de recuperação (1×/sem)</td><td>Sopa ou frango com legumes</td><td>Caldos ou omelete</td><td>Após o dia livre, volte suave</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ TRILHA C — TREINOS ══════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha C — Treinos</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:3mm">Movimento que dá energia, não cansaço</h2>
+  <p class="workout-intro">Trilha C prioriza consistência sobre intensidade. Os treinos são funcionais, de baixo impacto e podem ser feitos em qualquer espaço. A meta não é exaustão — é sentir o corpo se movendo melhor a cada semana.</p>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 1 — Movimento diário (sem treino formal)</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">Caminhada 30min</span></div>
+      <div class="wd active"><span class="day">Ter</span><span class="act">Yoga 20min</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">Caminhada 35min</span></div>
+      <div class="wd active"><span class="day">Qui</span><span class="act">Alongamento 15min</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">Caminhada 40min</span></div>
+      <div class="wd active"><span class="day">Sáb</span><span class="act">Atividade livre</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso completo</span></div>
+    </div>
+    <div class="phase-note">Yoga sugerido: Yoga With Adriene no YouTube — séries "30 Days of Yoga" ou "Yoga for Beginners". Gratuito, sem equipamento, guiado.</div>
+  </div>
+
+  <div class="workout-block">
+    <div class="workout-block-title">Fase 2 — Funcional 3×/semana</div>
+    <div class="workout-schedule">
+      <div class="wd active"><span class="day">Seg</span><span class="act">Funcional A</span></div>
+      <div class="wd active"><span class="day">Ter</span><span class="act">Caminhada</span></div>
+      <div class="wd active"><span class="day">Qua</span><span class="act">Funcional B</span></div>
+      <div class="wd active"><span class="day">Qui</span><span class="act">Yoga</span></div>
+      <div class="wd active"><span class="day">Sex</span><span class="act">Funcional C</span></div>
+      <div class="wd active"><span class="day">Sáb</span><span class="act">Caminhada</span></div>
+      <div class="wd rest"><span class="day">Dom</span><span class="act">Descanso</span></div>
+    </div>
+    <table class="ex-table">
+      <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Execução</th></tr></thead>
+      <tbody>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#5c2d55">FUNCIONAL A — Mobilidade + Força leve</td></tr>
+        <tr><td>Agachamento com pausa</td><td>Pernas, glúteos</td><td>3 × 12</td><td>60s</td><td>Desce devagar (3s), pausa de 2s no fundo, sobe suave. Foco na respiração.</td></tr>
+        <tr><td>Elevação pélvica com faixa</td><td>Glúteos, adutores</td><td>3 × 15</td><td>60s</td><td>Com faixa de resistência acima dos joelhos. Abra os joelhos contra a resistência no topo.</td></tr>
+        <tr><td>Gato-camelo (mobilidade)</td><td>Coluna, core</td><td>2 × 10</td><td>30s</td><td>De quatro apoios. Arqueie para cima (gato) e depois para baixo (camelo). Lento e respirando.</td></tr>
+        <tr><td>Alongamento de psoas</td><td>Flexor do quadril</td><td>2 × 40s cada</td><td>—</td><td>Ajoelhe um joelho, avance o outro pé. Empurre o quadril para frente suavemente.</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#5c2d55">FUNCIONAL B — Leveza e Cardio suave</td></tr>
+        <tr><td>Marcha estacionária elevada</td><td>Core, cardio leve</td><td>3 × 45s</td><td>30s</td><td>Eleve os joelhos ao nível do quadril, alternando. Braços acompanham o ritmo. Suave.</td></tr>
+        <tr><td>Flexão de parede</td><td>Peitoral, ombros</td><td>3 × 15</td><td>45s</td><td>Mãos na parede à largura dos ombros. Incline e empurre. Versão de baixo impacto da flexão.</td></tr>
+        <tr><td>Respiração diafragmática</td><td>Core profundo, estresse</td><td>5 min</td><td>—</td><td>Deitada, mão no abdômen. Inspire 4s pelo nariz (barriga sobe), expire 6s pela boca (barriga desce).</td></tr>
+        <tr><td colspan="5" style="background:var(--accent-soft);font-weight:700;font-size:7pt;color:#5c2d55">FUNCIONAL C — Full Body baixo impacto</td></tr>
+        <tr><td>Dead bug</td><td>Core profundo</td><td>3 × 8 cada</td><td>45s</td><td>Braços e pernas opostos se movem juntos. Costas coladas ao chão todo o tempo.</td></tr>
+        <tr><td>Superman lento</td><td>Lombar, glúteos</td><td>3 × 10</td><td>45s</td><td>Barriga no chão. Levanta devagar, aperta 3s, baixa 3s. Sem bater no chão.</td></tr>
+        <tr><td>Caminhada lateral agachada</td><td>Abdutores, glúteos</td><td>3 × 10 passos</td><td>60s</td><td>Posição de agachamento parcial. Dê 10 passos para o lado e volte. Com faixa é mais intenso.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ TRILHA C — RECEITAS ════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Trilha C — Receitas</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:5mm">3 receitas anti-inflamatórias</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Café da manhã · Todas as fases</span>
+      <h3>Vitamina Dourada Anti-inflamatória</h3>
+      <div class="r-meta"><span>⏱ 5 min</span><span>🍽 1 porção</span><span>Sem glúten e lactose</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>200ml leite de coco (ou leite de amêndoa)</li>
+          <li>½ banana congelada</li>
+          <li>1 col. chá de cúrcuma em pó</li>
+          <li>½ col. chá de gengibre fresco ralado</li>
+          <li>Pitada de pimenta-do-reino (ativa a curcumina)</li>
+          <li>1 col. sopa de mel (opcional)</li>
+          <li>Gelo a gosto</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Bata tudo no liquidificador por 30 segundos.</li>
+          <li>Sirva gelada ou aquecida (como golden milk).</li>
+          <li>Versão quente: esquente o leite, dissolva a cúrcuma e adicione mel. Beba como chá.</li>
+          <li>A pimenta é essencial — ela aumenta a absorção da curcumina em até 2000%.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">3g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">24g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">12g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~210</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-header">
+      <span class="r-eyebrow">Jantar · Todas as fases</span>
+      <h3>Sopa de Cúrcuma com Frango Desfiado</h3>
+      <div class="r-meta"><span>⏱ 30 min</span><span>🍽 3 porções</span><span>Confortável &amp; nutritiva</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>300g peito de frango (cozido e desfiado)</li>
+          <li>1 cenoura em rodelas</li>
+          <li>1 abobrinha em cubos</li>
+          <li>½ cebola picada</li>
+          <li>2 dentes de alho</li>
+          <li>1 col. chá de cúrcuma</li>
+          <li>Sal, pimenta, coentro e azeite</li>
+          <li>1L de água ou caldo de frango caseiro</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Modo de preparo</h4>
+        <ol>
+          <li>Refogue cebola e alho no azeite até dourar.</li>
+          <li>Adicione cenoura, abobrinha e a cúrcuma. Misture bem.</li>
+          <li>Adicione água ou caldo. Cozinhe em fogo médio por 20 min.</li>
+          <li>Adicione o frango desfiado, ajuste o sal.</li>
+          <li>Finalize com coentro fresco. Sirva quente.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="macro-item"><span class="mv">32g</span><span class="ml">Proteína</span></div>
+      <div class="macro-item"><span class="mv">12g</span><span class="ml">Carboidrato</span></div>
+      <div class="macro-item"><span class="mv">8g</span><span class="ml">Gordura</span></div>
+      <div class="macro-item"><span class="mv">~245</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRACKING + MEDIDAS ═════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Controle de Evolução</span>
+  <h2 style="font-size:16pt;color:var(--dark-green);margin-bottom:4mm">Tabela de medidas<br>&amp; progresso</h2>
+
+  <div class="phase-note">Registre suas medidas sempre no mesmo horário (manhã em jejum), com a mesma fita métrica, na mesma posição. Peça alguém pra medir o quadril e costas — você mesmo não consegue medir com precisão.</div>
+
+  <table class="tracking-table" style="margin-bottom:6mm">
+    <thead><tr><th>Semana</th><th>Data</th><th>Peso (kg)</th><th>Cintura</th><th>Quadril</th><th>Abdômen</th><th>Coxa</th><th>Braço</th></tr></thead>
+    <tbody>
+      <tr><td>S1 (Dia 1)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S2 (Dia 7)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S3 (Dia 14)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S4 (Dia 21)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Fase 1 final</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S6 (Dia 35)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S8 (Dia 49)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Fase 2 final</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S10 (Dia 63)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S12 (Dia 77)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>DIA 90 — FINAL</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:11pt;color:var(--dark-green);margin-bottom:3mm">Registro de treinos</h3>
+  <table class="tracking-table">
+    <thead><tr><th style="width:20%">Semana</th><th>Treinos feitos</th><th>Observação / Evolução</th><th>Energia (1–5)</th></tr></thead>
+    <tbody>
+      <tr><td>Semana 1</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>Semana 2</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>Semana 3</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>Semana 4</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>Semana 5–8</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ × 4 semanas</td><td></td><td></td></tr>
+      <tr><td>Semana 9–13</td><td style="text-align:left;padding-left:8px">☐ ☐ ☐ ☐ ☐ × 5 semanas</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ SUPLEMENTAÇÃO ══════════════════════════════════════ -->
+<div class="page-break">
+  <span class="section-eyebrow">Guia de Suplementação</span>
+  <h2 style="font-size:16pt;color:var(--dark-green);margin-bottom:3mm">O que funciona,<br>o que é mito</h2>
+  <p style="font-size:8pt;color:var(--muted);margin-bottom:5mm">Suplementos não fazem o trabalho por você — eles otimizam o que o treino e a alimentação já constroem. Nenhum suplemento abaixo é obrigatório. Consulte seu médico antes de iniciar qualquer suplementação.</p>
+
+  <div class="suppl-grid">
+    <div class="suppl-card">
+      <span class="sc-name">Proteína Whey</span>
+      <span class="sc-dose">20–30g pós-treino ou no café</span>
+      <span class="sc-body">Indicado: Trilha A e B. Facilita atingir a meta proteica diária sem excesso de calorias. Whey isolado é mais fácil de digerir.</span>
+    </div>
+    <div class="suppl-card">
+      <span class="sc-name">Colágeno Hidrolisado</span>
+      <span class="sc-dose">10g pela manhã em jejum</span>
+      <span class="sc-body">Indicado: Trilha C principalmente. Apoia articulações, pele e tendões. Mais relevante após os 35 anos. Dissolva em água morna com limão.</span>
+    </div>
+    <div class="suppl-card">
+      <span class="sc-name">Creatina Monohidratada</span>
+      <span class="sc-dose">3–5g/dia (qualquer horário)</span>
+      <span class="sc-body">Indicado: Trilha B. Aumenta força e retém volume muscular. Não retém gordura — o ganho de peso inicial é água intramuscular (positivo).</span>
+    </div>
+    <div class="suppl-card">
+      <span class="sc-name">Magnésio Glicinato</span>
+      <span class="sc-dose">300–400mg antes de dormir</span>
+      <span class="sc-body">Indicado: todas as trilhas. Melhora sono, reduz inflamação e cãibras. O tipo glicinato é mais absorvido que o óxido (evite óxido).</span>
+    </div>
+    <div class="suppl-card">
+      <span class="sc-name">Vitamina D3 + K2</span>
+      <span class="sc-dose">2000–5000UI com refeição gordurosa</span>
+      <span class="sc-body">Indicado: todas as trilhas. A maioria das brasileiras tem deficiência. Impacta humor, imunidade, metabolismo e sono. Sempre com K2 para fixar no osso.</span>
+    </div>
+    <div class="suppl-card">
+      <span class="sc-name">Ômega-3 (DHA/EPA)</span>
+      <span class="sc-dose">2–3g/dia com refeição</span>
+      <span class="sc-body">Indicado: Trilha C especialmente. Potente anti-inflamatório. Reduz cortisol. Melhora foco e humor. Prefira de peixe de água fria (sardinha, salmão).</span>
+    </div>
+  </div>
+
+  <div class="suppl-note">
+    <strong>O que NÃO vale a pena:</strong> Termogênicos agressivos, fat burners, diuréticos, "shakes substituídores de refeição" industrializados com longa lista de ingredientes. O mecanismo de ação da maioria é: aumentar cortisol e frequência cardíaca. O resultado a longo prazo é comprovadamente inferior à mudança alimentar.
+  </div>
+</div>
+
+<!-- ══ BÔNUS — MINDSET ════════════════════════════════════ -->
+<div class="page-break">
+  <div class="mindset-section">
+    <span class="section-eyebrow">Bônus Exclusivo</span>
+    <h2 style="font-size:16pt;color:var(--dark-green);margin-bottom:2mm">Como não desistir<br>no Dia 31</h2>
+    <p style="font-size:8.5pt;color:var(--muted);margin-bottom:5mm">O maior inimigo dos 90 dias não é a comida — é a semana 4. Sabe por quê? A motivação inicial foi embora e o resultado ainda não é visível no espelho. É o vale do desânimo. Todo mundo passa por ele. Poucas pessoas sabem que ele tem nome — e que tem saída.</p>
+
+    <div class="mindset-quote">
+      <div class="mq-text">"A motivação te leva para a academia. O hábito te mantém lá quando você não quer ir."</div>
+      <div class="mq-author">— James Clear, Hábitos Atômicos</div>
+    </div>
+
+    <div class="mindset-grid">
+      <div class="mindset-card">
+        <span class="mc-day">Dias 1–7</span>
+        <h3 class="mc-title">Euforia inicial</h3>
+        <p class="mc-body">Motivação alta, tudo parece possível. Cuidado: não exagere no início. Burnout precoce é a causa #1 de desistência. Faça menos do que acha que consegue — e seja consistente.</p>
+      </div>
+      <div class="mindset-card">
+        <span class="mc-day">Dias 14–21</span>
+        <h3 class="mc-title">Primeira crise</h3>
+        <p class="mc-body">O novelty effect acabou. O corpo está se adaptando e o progresso parece lento. É hora de confiar no processo, não na motivação. Ferramenta: escreva por que começou. Releia toda vez que quiser desistir.</p>
+      </div>
+      <div class="mindset-card">
+        <span class="mc-day">Dias 28–35</span>
+        <h3 class="mc-title">O Vale do Dia 31</h3>
+        <p class="mc-body">A maioria desiste aqui. Metabólica e psicologicamente é o ponto mais difícil. A solução não é força de vontade — é diminuir a fricção. Deixe a academia preparada. Tenha a comida pronta. Torne impossível não fazer.</p>
+      </div>
+      <div class="mindset-card">
+        <span class="mc-day">Dias 45–60</span>
+        <h3 class="mc-title">A virada</h3>
+        <p class="mc-body">Se chegou até aqui, o hábito está instalado. O esforço percebido cai. O corpo começa a sentir falta do treino quando não faz. Você virou outra pessoa — uma que se exercita, não uma que "está tentando".</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:11pt;color:var(--dark-green);margin:6mm 0 3mm">Ferramentas antidesistência</h3>
+    <table>
+      <thead><tr><th>Ferramenta</th><th>Como usar</th><th>Quando usar</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Regra dos 2 minutos</strong></td><td>Se não quer treinar, faça só 2 minutos. Após 2 min, quase sempre continua.</td><td>Dias de desmotivação total</td></tr>
+        <tr><td><strong>Foto de progresso</strong></td><td>Foto no mesmo ângulo, mesma luz, mesma roupa. Compare a cada 30 dias.</td><td>Dias que acha que "não mudou nada"</td></tr>
+        <tr><td><strong>Parceria de accountability</strong></td><td>1 pessoa que sabe do seu desafio e te pergunta semanalmente. Pode ser online.</td><td>Dias 14–35 (vale do desânimo)</td></tr>
+        <tr><td><strong>Recompensa não-alimentar</strong></td><td>Defina uma recompensa pro Dia 30, 60 e 90 (spa, roupa nova, viagem).</td><td>Como âncora motivacional</td></tr>
+        <tr><td><strong>Diário de 30 segundos</strong></td><td>Uma linha por dia: o que fez, como se sentiu (1–5), o que comeu de errado.</td><td>Todo dia, antes de dormir</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ PÁGINA FINAL ════════════════════════════════════════ -->
+<div class="final-page">
+  <div style="position:relative;z-index:1;width:100%">
+    <p style="font-size:7pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6mm">Você chegou até o final</p>
+    <h2>Agora é <em>hora de começar.</em></h2>
+    <p>90 dias parecem muito. Mas são 90 vezes de uma única decisão: eu vou fazer isso hoje. Você não precisa de motivação perfeita — precisa de um sistema. E você tem um agora.</p>
+    <div class="cover-divider" style="margin:8mm 0"></div>
+    <p style="font-size:8pt;color:rgba(255,255,255,.5)">Tire a foto do Dia 1 agora. Ela vai ser a sua prova favorita daqui a 90 dias.</p>
+    <div style="margin-top:10mm">
+      <span class="final-pill">Desafio 90 Dias — Transformação Completa</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
