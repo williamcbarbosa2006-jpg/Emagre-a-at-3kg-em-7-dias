@@ -26,6 +26,8 @@
       --text-muted:  #6B6560;
       --dark:        #1a1a18;
       --dark-green:  #253828;
+      --gold:        #C9973A;
+      --gold-light:  #e8c97a;
       --border:      rgba(0,0,0,.07);
       --shadow-card: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
     }
@@ -225,7 +227,7 @@
     }
 
     .hero h1 em {
-      background: linear-gradient(135deg, var(--accent) 0%, #a8d5ac 100%);
+      background: linear-gradient(135deg, #e8c97a 0%, #C9973A 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1578,6 +1580,184 @@
       background: rgba(122,158,126,.07);
     }
     .faq-body { color: var(--text-muted); }
+
+    /* ═══════════════════════════════════════════════════════════
+       PREMIUM VISUAL UPGRADE — gold, velvet, product arrangement
+    ═══════════════════════════════════════════════════════════ */
+
+    /* ── Velvet fabric overlay no hero ───────────────────── */
+    .hero-fabric {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        linear-gradient(125deg, rgba(255,255,255,.028) 0%, transparent 32%),
+        linear-gradient(200deg, transparent 45%, rgba(0,0,0,.1) 100%),
+        repeating-linear-gradient(
+          135deg, transparent, transparent 3px,
+          rgba(255,255,255,.007) 3px, rgba(255,255,255,.007) 6px
+        );
+    }
+
+    /* ── Anéis decorativos dourados ───────────────────────── */
+    .deco-ring {
+      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+    }
+    .deco-ring.dr1 {
+      width: 410px; height: 410px;
+      border: 1.5px solid rgba(201,151,58,.18);
+      top: 50%; left: 55%; transform: translate(-50%, -50%);
+    }
+    .deco-ring.dr2 {
+      width: 298px; height: 298px;
+      border: 1.5px solid rgba(201,151,58,.26);
+      top: 50%; left: 55%; transform: translate(-50%, -50%);
+    }
+    .deco-ring.dr3 {
+      width: 194px; height: 194px;
+      border: 1px solid rgba(201,151,58,.36);
+      top: 50%; left: 55%; transform: translate(-50%, -50%);
+    }
+
+    /* ── Planner mockup ───────────────────────────────────── */
+    .planner-mockup {
+      position: absolute; right: -4px; top: 72px; z-index: 1;
+      width: 128px; height: 170px;
+      background: var(--white);
+      border-radius: 3px 7px 7px 3px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.26), 0 2px 6px rgba(0,0,0,.1);
+      overflow: hidden;
+      transform: rotate(3.5deg);
+    }
+    .planner-top {
+      height: 20px; background: var(--off-white);
+      border-bottom: 1px solid #e0dbd4;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .planner-spirals {
+      width: 90%; height: 7px;
+      background: repeating-linear-gradient(
+        90deg, transparent, transparent 7px,
+        rgba(122,158,126,.5) 7px, rgba(122,158,126,.5) 9px
+      );
+      border-radius: 4px;
+    }
+    .planner-header {
+      text-align: center; padding: 6px 8px 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .44rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--dark-green); line-height: 1.55;
+    }
+    .planner-lines {
+      position: absolute; top: 58px; left: 10px; right: 10px; bottom: 12px;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 11px,
+        rgba(0,0,0,.06) 11px, rgba(0,0,0,.06) 12px
+      );
+    }
+    .planner-gold-bar {
+      position: absolute; top: 58px; left: 10px;
+      width: 28px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+    }
+
+    /* ── Garrafinha mockup ────────────────────────────────── */
+    .bottle-mockup {
+      position: absolute; right: -28px; bottom: 22px; z-index: 2;
+      width: 54px; height: 152px;
+    }
+    .bottle-cap {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 22px; height: 12px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent-dark));
+      border-radius: 3px 3px 0 0;
+    }
+    .bottle-neck {
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      width: 20px; height: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(200,230,210,.12));
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 2px;
+    }
+    .bottle-body {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 42px; height: 120px;
+      background: linear-gradient(
+        135deg, rgba(255,255,255,.2) 0%, rgba(200,230,210,.1) 40%, rgba(255,255,255,.06) 100%
+      );
+      border: 1px solid rgba(255,255,255,.26);
+      border-radius: 5px 5px 10px 10px;
+      box-shadow: inset 5px 0 10px rgba(255,255,255,.1), 0 8px 22px rgba(0,0,0,.22);
+    }
+    .bottle-label {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-family: 'DM Sans', sans-serif;
+      font-size: .42rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.62); text-align: center; line-height: 1.65;
+    }
+    .bottle-shine {
+      position: absolute; top: 14px; left: 30%; width: 4px; bottom: 14px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.22), transparent);
+      border-radius: 2px;
+    }
+
+    /* ── Caneta mockup ────────────────────────────────────── */
+    .pen-mockup {
+      position: absolute; right: 52px; bottom: 48px; z-index: 2;
+      width: 7px; height: 106px;
+      background: linear-gradient(to bottom, #1e1e1c 0%, #2a2a28 70%, var(--gold) 88%, var(--gold-light) 100%);
+      border-radius: 3px 3px 1px 1px;
+      transform: rotate(-20deg);
+      box-shadow: 0 4px 14px rgba(0,0,0,.32);
+    }
+    .pen-mockup::before {
+      content: '';
+      position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 3.5px solid transparent;
+      border-right: 3.5px solid transparent;
+      border-top: 8px solid #b8852e;
+    }
+    .pen-mockup::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 16px;
+      background: linear-gradient(to bottom, var(--gold), #8a6620);
+      border-radius: 3px 3px 0 0;
+    }
+
+    /* ── Sparkle decoration ───────────────────────────────── */
+    .hero-sparkle {
+      position: absolute; bottom: 18px; right: 12px; z-index: 3;
+      font-size: 1.5rem; color: rgba(201,151,58,.42); pointer-events: none;
+      animation: sparklePulse 3.2s ease-in-out infinite;
+    }
+    @keyframes sparklePulse {
+      0%, 100% { opacity: .42; transform: scale(1) rotate(0deg); }
+      50%       { opacity: .72; transform: scale(1.15) rotate(18deg); }
+    }
+
+    /* ── Float chips: dot dourado + fundo cristalino ──────── */
+    .hero .float-chip-dot { background: var(--gold); }
+    .hero .float-chip {
+      background: rgba(255,255,255,.96);
+      border-color: rgba(201,151,58,.35);
+    }
+
+    /* ── Offer badge: dourado ─────────────────────────────── */
+    .offer-badge { background: linear-gradient(135deg, var(--gold), #a87028); }
+
+    /* ── Pain highlight cite: dourado ────────────────────── */
+    .pain-highlight cite { color: var(--gold-light); }
+
+    /* ── CTA final h2 em: ouro ───────────────────────────── */
+    .cta-final h2 em {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── Responsivo: esconde produtos extras no mobile ──── */
+    @media (max-width: 768px) {
+      .planner-mockup, .bottle-mockup, .pen-mockup, .hero-sparkle, .deco-ring, .hero-fabric { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1596,6 +1776,7 @@
 ═══════════════════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-ring"></div>
+  <div class="hero-fabric"></div>
   <div class="container">
     <div class="hero-inner">
 
@@ -1622,12 +1803,21 @@
         <a href="#oferta" class="btn btn-primary">
           Quero emagrecer agora →
         </a>
-<span class="btn-micro">🔒 Compra segura · PDF enviado por e-mail · Acesso em menos de 2 minutos</span>
+        <span class="btn-micro">🔒 Compra segura · PDF enviado por e-mail · Acesso em menos de 2 minutos</span>
       </div>
 
-      <!-- Mockup do e-book -->
+      <!-- Mockup do e-book + arranjo premium -->
       <div class="book-wrapper">
+
+        <!-- Anéis decorativos dourados -->
+        <div class="deco-ring dr1"></div>
+        <div class="deco-ring dr2"></div>
+        <div class="deco-ring dr3"></div>
+
+        <!-- Glow do livro -->
         <div class="book-glow"></div>
+
+        <!-- Livro principal -->
         <div class="book">
           <div class="book-spine"></div>
           <div class="book-pages"></div>
@@ -1641,10 +1831,39 @@
             <div class="book-sub">Cardápio · Protocolo · Resultados</div>
           </div>
         </div>
+
+        <!-- Planner / caderninho -->
+        <div class="planner-mockup">
+          <div class="planner-top">
+            <div class="planner-spirals"></div>
+          </div>
+          <div class="planner-header">7 Weekly<br>Planner</div>
+          <div class="planner-lines"></div>
+          <div class="planner-gold-bar"></div>
+        </div>
+
+        <!-- Garrafinha de água -->
+        <div class="bottle-mockup">
+          <div class="bottle-cap"></div>
+          <div class="bottle-neck"></div>
+          <div class="bottle-body">
+            <div class="bottle-shine"></div>
+            <div class="bottle-label">Mineral<br>Water</div>
+          </div>
+        </div>
+
+        <!-- Caneta -->
+        <div class="pen-mockup"></div>
+
+        <!-- Chips flutuantes -->
         <div class="float-chip c1" style="--dur:3.4s;--d:.1s;--rot:-2deg"><div class="float-chip-dot"></div>Sem academia</div>
         <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>Resultado visível</div>
         <div class="float-chip c3" style="--dur:3.5s;--d:1s;--rot:-1.5deg"><div class="float-chip-dot"></div>Sem passar fome</div>
         <div class="float-chip c4" style="--dur:4.1s;--d:.4s;--rot:2deg"><div class="float-chip-dot"></div>PDF imediato</div>
+
+        <!-- Sparkle dourado -->
+        <div class="hero-sparkle">✦</div>
+
       </div>
 
     </div>
