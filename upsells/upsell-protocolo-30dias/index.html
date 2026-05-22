@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo 30 Dias — Corpo em Forma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:       #FFFFFF;
+      --off-white:   #FAF8F5;
+      --beige:       #F5F0EB;
+      --beige-mid:   #EDE6DD;
+      --accent:      #7A9E7E;
+      --accent-dark: #5d7f61;
+      --accent-deep: #3d5e41;
+      --accent-soft: #e8f0e9;
+      --text:        #1C1C1A;
+      --text-muted:  #6B6560;
+      --dark:        #1a1a18;
+      --dark-green:  #253828;
+      --border:      rgba(0,0,0,.07);
+      --shadow-card: 0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .section { padding: 88px 0; }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 16px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 22px rgba(122,158,126,.38); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(122,158,126,.45); }
+    .btn-light { background: #fff; color: var(--dark-green); box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+    .btn-block { display: block; width: 100%; text-align: center; }
+    .btn-micro { display: block; font-size: .77rem; color: var(--text-muted); margin-top: .75rem; }
+
+    /* ── TOP BAR ──────────────────────────────────────── */
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--accent); color: #fff;
+      text-align: center; padding: 10px 20px;
+      font-size: .82rem; font-weight: 500;
+    }
+    #timer-count {
+      font-family: 'DM Sans', monospace;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: .08em;
+      background: rgba(0,0,0,.18);
+      padding: 2px 10px; border-radius: 6px;
+      margin-left: 6px; display: inline-block; min-width: 58px;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: var(--dark-green);
+      padding: 160px 0 108px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 72% 48%, rgba(122,158,126,.32) 0%, transparent 55%),
+        radial-gradient(ellipse at 8% 80%, rgba(122,158,126,.14) 0%, transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 56px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(122,158,126,.15);
+      border: 1px solid rgba(122,158,126,.3);
+      border-radius: 40px; padding: 6px 16px 6px 12px;
+      margin-bottom: 1.6rem;
+    }
+    .hero-badge-stars { color: #e8c245; font-size: .82rem; letter-spacing: 2px; }
+    .hero-badge-text { font-size: .76rem; font-weight: 500; color: rgba(250,248,245,.72); }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 4.4vw, 4rem);
+      font-weight: 700;
+      background: linear-gradient(170deg, #ffffff 0%, #dff0e2 45%, #ffffff 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1.4rem; line-height: 1.08; letter-spacing: -.01em;
+    }
+    .hero h1 em {
+      background: linear-gradient(135deg, var(--accent) 0%, #a8d5ac 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-style: italic;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem; color: rgba(250,248,245,.72);
+      line-height: 1.75; margin-bottom: 2rem; max-width: 480px;
+    }
+    .hero-bullets { list-style: none; margin-bottom: 2.6rem; }
+    .hero-bullets li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .97rem; color: rgba(250,248,245,.88); margin-bottom: .7rem;
+    }
+    .hero-bullets li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .hero .btn-primary {
+      font-size: 1.06rem; padding: 18px 46px;
+      box-shadow: 0 6px 28px rgba(122,158,126,.45);
+    }
+    .hero .btn-micro { color: rgba(255,255,255,.42); }
+
+    /* book */
+    .book-wrapper {
+      position: relative; min-height: 420px;
+      display: flex; justify-content: center; align-items: center;
+      padding: 56px 24px 56px 0;
+    }
+    .book-glow {
+      position: absolute; inset: -20px;
+      background: radial-gradient(ellipse at 55% 50%, rgba(122,158,126,.22) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+    .book {
+      position: relative; z-index: 1;
+      width: 260px; height: 350px;
+      transform: perspective(1000px) rotateY(-14deg);
+      filter: drop-shadow(0 32px 56px rgba(0,0,0,.38)) drop-shadow(0 0 40px rgba(122,158,126,.22));
+      transition: transform .4s ease, filter .4s ease;
+    }
+    .book:hover { transform: perspective(1000px) rotateY(-5deg); filter: drop-shadow(0 40px 64px rgba(0,0,0,.42)) drop-shadow(0 0 50px rgba(122,158,126,.3)); }
+    .book-spine { position: absolute; left: -18px; top: 0; width: 18px; height: 100%; background: linear-gradient(to right, var(--accent-deep), #4d6e51); border-radius: 4px 0 0 4px; }
+    .book-pages {
+      position: absolute; right: -10px; top: 6px; width: 14px; height: calc(100% - 12px);
+      background: repeating-linear-gradient(to bottom, #f0ede8 0px, #f0ede8 1px, #e6e2dc 1px, #e6e2dc 3px);
+      border-radius: 0 4px 4px 0;
+    }
+    .book-cover {
+      position: absolute; inset: 0;
+      background: linear-gradient(148deg, #3d5e41 0%, var(--accent-dark) 45%, #526e55 100%);
+      border-radius: 4px 11px 11px 4px;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 28px 22px 22px;
+      box-shadow: inset -8px 0 18px rgba(0,0,0,.14), inset 2px 0 5px rgba(255,255,255,.1);
+    }
+    .book-tag {
+      font-size: .56rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.3);
+      padding: 4px 12px; border-radius: 20px; align-self: stretch; text-align: center;
+    }
+    .book-title-text {
+      font-family: 'Playfair Display', serif; font-size: 1.12rem; font-weight: 700;
+      color: #fff; text-align: center; line-height: 1.35; text-shadow: 0 1px 6px rgba(0,0,0,.25);
+    }
+    .book-title-text em { display: block; font-style: italic; font-size: .86rem; opacity: .85; margin-bottom: 6px; }
+    .book-divider { width: 36px; height: 2px; background: rgba(255,255,255,.35); border-radius: 2px; }
+    .book-sub { font-size: .6rem; color: rgba(255,255,255,.6); text-align: center; letter-spacing: .06em; }
+
+    .float-chip {
+      position: absolute;
+      background: var(--white); border: 1px solid rgba(122,158,126,.38); border-radius: 40px;
+      padding: 7px 14px 7px 10px;
+      font-size: .76rem; font-weight: 500; color: var(--text);
+      box-shadow: 0 3px 14px rgba(0,0,0,.09);
+      white-space: nowrap; display: flex; align-items: center; gap: 7px; z-index: 2;
+      animation: chipFloat var(--dur, 3.5s) ease-in-out var(--d, 0s) infinite;
+    }
+    .float-chip-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+    @keyframes chipFloat {
+      0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+      50%       { transform: translateY(-7px) rotate(var(--rot, 0deg)); }
+    }
+    .float-chip.c1 { top: 28px; left: 14px; --dur:3.4s; --d:.1s; --rot:-2deg; }
+    .float-chip.c2 { top: 140px; right: 4px; --dur:3.8s; --d:.6s; --rot:1.5deg; }
+    .float-chip.c3 { bottom: 140px; right: 0px; --dur:3.5s; --d:1s; --rot:-1.5deg; }
+    .float-chip.c4 { bottom: 28px; left: 18px; --dur:4.1s; --d:.4s; --rot:2deg; }
+
+    /* ── BRIDGE ───────────────────────────────────────── */
+    .bridge { background: var(--off-white); }
+    .bridge-inner {
+      max-width: 760px; margin: 0 auto; text-align: center;
+    }
+    .bridge h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; letter-spacing: -.025em;
+      color: var(--dark-green); margin-bottom: 1.4rem;
+    }
+    .bridge-text {
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.82; margin-bottom: 1.2rem; max-width: 660px; margin-left: auto; margin-right: auto;
+    }
+    .bridge-highlight {
+      background: var(--dark-green); border-radius: 16px;
+      padding: 32px 40px; margin-top: 2.8rem; text-align: left; position: relative; overflow: hidden;
+    }
+    .bridge-highlight::before {
+      content: '\201C';
+      position: absolute; top: -28px; left: 14px;
+      font-family: 'Playfair Display', serif; font-size: 8rem;
+      color: rgba(122,158,126,.18); line-height: 1; pointer-events: none;
+    }
+    .bridge-highlight p {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic;
+      color: rgba(250,248,245,.92); line-height: 1.72; position: relative; z-index: 1;
+    }
+    .bridge-highlight cite {
+      display: block; font-family: 'DM Sans', sans-serif; font-style: normal;
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-top: 1.1rem; position: relative; z-index: 1;
+    }
+
+    /* ── SEMANAS (4-week timeline) ───────────────────── */
+    .weeks { background: var(--dark-green); position: relative; overflow: hidden; }
+    .weeks::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(122,158,126,.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(122,158,126,.12) 0%, transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .weeks::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .weeks .container { position: relative; z-index: 1; }
+    .weeks-intro { text-align: center; max-width: 560px; margin: 0 auto 4rem; }
+    .weeks-intro h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -.025em;
+      background: linear-gradient(170deg, #fff 0%, #dff0e2 45%, #fff 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .weeks-intro p { font-size: 1rem; color: rgba(250,248,245,.7); line-height: 1.75; }
+
+    .weeks-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .week-card {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 28px 22px;
+      transition: background .3s, transform .3s;
+    }
+    .week-card:hover { background: rgba(255,255,255,.12); transform: translateY(-4px); }
+    .week-num {
+      font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700;
+      color: var(--accent); line-height: 1; margin-bottom: .4rem;
+    }
+    .week-label {
+      font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(250,248,245,.45); margin-bottom: .9rem;
+    }
+    .week-title {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600;
+      color: rgba(250,248,245,.92); margin-bottom: .6rem;
+    }
+    .week-desc { font-size: .86rem; color: rgba(250,248,245,.65); line-height: 1.65; margin-bottom: .9rem; }
+    .week-tag {
+      display: inline-block; background: rgba(122,158,126,.22); border: 1px solid rgba(122,158,126,.4);
+      color: var(--accent); font-size: .68rem; font-weight: 600; padding: 4px 12px; border-radius: 20px;
+    }
+    .week-card.final .week-num { color: #fff; }
+    .week-card.final { background: rgba(122,158,126,.18); border-color: rgba(122,158,126,.35); }
+
+    /* ── O QUE ESTÁ DENTRO ───────────────────────────── */
+    .inside { background: var(--off-white); }
+    .inside h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); margin-bottom: 2.8rem;
+    }
+    .inside-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .inside-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--white); border-radius: 12px; padding: 18px 20px;
+      border: 1px solid rgba(122,158,126,.15); border-top: 3px solid var(--accent);
+      transition: box-shadow .25s;
+    }
+    .inside-item:hover { box-shadow: 0 8px 24px rgba(0,0,0,.07); }
+    .inside-check {
+      width: 28px; height: 28px; background: var(--accent-soft); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--accent-dark); font-size: .8rem; font-weight: 700;
+    }
+    .inside-text { font-size: .9rem; color: var(--text); line-height: 1.5; }
+    .inside-text strong { color: var(--dark-green); font-weight: 600; display: block; margin-bottom: .2rem; }
+
+    /* ── DEPOIMENTOS ─────────────────────────────────── */
+    .testimonials { background: var(--beige); }
+    .testimonials h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); text-align: center; margin-bottom: 2.8rem;
+    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testi-card {
+      background: var(--white); border-radius: 16px; padding: 28px 24px;
+      border: 1px solid rgba(122,158,126,.15); border-top: 3px solid var(--accent);
+      display: flex; flex-direction: column; gap: 1rem; position: relative; overflow: hidden;
+    }
+    .testi-card::before {
+      content: '\201C'; position: absolute; top: 4px; right: 14px;
+      font-family: 'Playfair Display', serif; font-size: 5.5rem;
+      line-height: 1; color: rgba(122,158,126,.1); pointer-events: none;
+    }
+    .testi-head { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: .95rem; color: var(--text); }
+    .testi-loc { font-size: .78rem; color: var(--text-muted); }
+    .testi-stars { color: #e8c245; font-size: .9rem; }
+    .testi-text { font-size: .9rem; color: var(--text); line-height: 1.75; }
+
+    /* ── OFERTA ───────────────────────────────────────── */
+    .offer-section {
+      background: var(--dark-green); position: relative; overflow: hidden;
+    }
+    .offer-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 55%, rgba(122,158,126,.3) 0%, transparent 55%),
+        radial-gradient(ellipse at 78% 18%, rgba(122,158,126,.14) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section .container { position: relative; z-index: 1; }
+    .offer-box {
+      max-width: 520px; margin: 0 auto;
+      background: rgba(255,255,255,.97);
+      border-radius: 20px; padding: 48px 44px;
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: 0 30px 80px rgba(0,0,0,.28), 0 0 0 6px rgba(122,158,126,.1);
+      text-align: center;
+    }
+    .offer-badge {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      padding: 5px 18px; border-radius: 20px; margin-bottom: 1.4rem;
+    }
+    .offer-title {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+      color: var(--text); margin-bottom: 1.8rem;
+    }
+    .offer-includes { list-style: none; text-align: left; margin-bottom: 1.8rem; }
+    .offer-includes li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .86rem; color: var(--text); padding: .4rem 0;
+    }
+    .offer-includes li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .price-old { font-size: 1rem; color: var(--text-muted); text-decoration: line-through; margin-bottom: .2rem; }
+    .price-new {
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700;
+      color: var(--accent-dark); line-height: 1; margin-bottom: .4rem;
+    }
+    .price-new small {
+      font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 400;
+      margin-right: 3px; vertical-align: .45em;
+    }
+    .offer-installment { font-size: .84rem; color: var(--text-muted); margin-bottom: 1.6rem; }
+    .offer-installment strong { color: var(--accent-dark); font-weight: 600; }
+    .offer-micro { font-size: .76rem; color: var(--text-muted); margin-top: .7rem; margin-bottom: 1.6rem; }
+    .seals { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .seal-chip { font-size: .75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+
+    /* ── GARANTIA ─────────────────────────────────────── */
+    .guarantee { background: var(--off-white); }
+    .guarantee-inner { max-width: 580px; margin: 0 auto; text-align: center; }
+    .guarantee-badge-wrap { display: flex; justify-content: center; margin-bottom: 1.8rem; }
+    .guarantee-badge {
+      width: 140px; height: 140px; border-radius: 50%;
+      border: 3px solid var(--accent); background: var(--accent-soft);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 8px rgba(122,158,126,.12), 0 0 0 18px rgba(122,158,126,.05), 0 12px 40px rgba(0,0,0,.1);
+    }
+    .guarantee-badge::before {
+      content: ''; position: absolute; inset: 7px; border-radius: 50%;
+      border: 1.5px dashed rgba(122,158,126,.55);
+    }
+    .guarantee-badge-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--dark-green); line-height: 1; }
+    .guarantee-badge-label { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-dark); text-align: center; line-height: 1.55; }
+    .guarantee h2 { font-size: 1.8rem; font-weight: 700; letter-spacing: -.02em; color: var(--dark-green); margin-bottom: 1.1rem; }
+    .guarantee-text { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq { background: var(--white); }
+    .faq h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -.025em; color: var(--dark-green); text-align: center; margin-bottom: 2.8rem; }
+    .faq-list { max-width: 680px; margin: 0 auto; }
+    .faq-item { background: var(--white); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(0,0,0,.06); overflow: hidden; }
+    .faq-item.open { border-color: rgba(122,158,126,.32); }
+    .faq-btn {
+      width: 100%; text-align: left; background: none; border: none; padding: 20px 24px;
+      font-family: 'DM Sans', sans-serif; font-size: .96rem; font-weight: 600; color: var(--text);
+      cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .faq-item.open .faq-btn { color: var(--dark-green); background: rgba(122,158,126,.07); }
+    .faq-icon { color: var(--accent); font-size: 1.4rem; font-weight: 300; flex-shrink: 0; transition: transform .3s ease; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-body {
+      max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease;
+      font-size: .9rem; color: var(--text-muted); line-height: 1.78; padding: 0 24px;
+    }
+    .faq-item.open .faq-body { max-height: 300px; padding-bottom: 20px; }
+
+    /* ── CTA FINAL ────────────────────────────────────── */
+    .cta-final {
+      background: var(--dark-green); color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 55%, rgba(122,158,126,.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 25%, rgba(122,158,126,.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .cta-deco { position: absolute; border-radius: 50%; background: rgba(122,158,126,.07); pointer-events: none; z-index: 0; }
+    .cta-deco.d1 { width: 340px; height: 340px; top: -130px; left: -100px; }
+    .cta-deco.d2 { width: 240px; height: 240px; bottom: -80px; right: -60px; }
+    .cta-final .container { position: relative; z-index: 1; }
+    .cta-final h2 { font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 1rem; }
+    .cta-final-sub { font-size: 1.05rem; color: rgba(255,255,255,.72); max-width: 540px; margin: 0 auto 2.6rem; line-height: 1.75; }
+    .cta-micro { display: block; font-size: .77rem; color: rgba(255,255,255,.45); margin-top: 1rem; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer { background: var(--dark); color: rgba(255,255,255,.38); text-align: center; padding: 36px 24px; font-size: .79rem; line-height: 1.65; }
+    footer p + p { margin-top: .35rem; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .section { padding: 64px 0; }
+      .hero { padding: 136px 0 72px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .weeks-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .inside-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; gap: 14px; }
+      .offer-box { padding: 36px 24px; }
+      .book { width: 220px; height: 296px; }
+      .float-chip { display: none; }
+      .book-wrapper { padding: 32px 0; min-height: auto; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .seals { flex-direction: column; align-items: center; }
+      .weeks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="top-bar" id="top-bar">
+  <span id="timer-msg">⚡ Oferta exclusiva pós-compra — disponível somente agora</span>
+  <span id="timer-count">12:00</span>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div>
+        <div class="hero-badge reveal">
+          <span class="hero-badge-stars">★★★★★</span>
+          <span class="hero-badge-text">Passo natural após os 7 dias · resultado continuado</span>
+        </div>
+
+        <h1>Você perdeu os primeiros kilos.<br><em>Agora é hora de ir até o fim.</em></h1>
+
+        <p class="hero-subtitle">
+          O Protocolo 7 Dias reorganizou seu metabolismo. O Protocolo 30 Dias consolida esse resultado com plano alimentar rotativo, treinos pensados para quem não vai à academia e o método para transformar o que mudou em um novo padrão permanente.
+        </p>
+
+        <ul class="hero-bullets">
+          <li>30 dias de cardápio rotativo — sem enjoar, sem improvisar</li>
+          <li>Planilha de treinos em casa com progressão semanal</li>
+          <li>Guia de alongamentos aeróbicos (15 min por dia)</li>
+          <li>Estratégia de finais de semana sem sabotar o progresso</li>
+        </ul>
+
+        <a href="#oferta" class="btn btn-primary">Quero os 30 dias completos →</a>
+        <span class="btn-micro">🔒 Compra segura · PDF enviado por e-mail · Acesso imediato</span>
+      </div>
+
+      <div class="book-wrapper">
+        <div class="book-glow"></div>
+        <div class="book">
+          <div class="book-spine"></div>
+          <div class="book-pages"></div>
+          <div class="book-cover">
+            <span class="book-tag">E-book · PDF</span>
+            <div class="book-title-text">
+              <em>Protocolo 30 Dias</em>
+              Corpo em Forma
+            </div>
+            <div class="book-divider"></div>
+            <div class="book-sub">Alimentação · Treino · Resultado</div>
+          </div>
+        </div>
+        <div class="float-chip c1" style="--dur:3.4s;--d:.1s;--rot:-2deg"><div class="float-chip-dot"></div>Treino em casa</div>
+        <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>30 dias completos</div>
+        <div class="float-chip c3" style="--dur:3.5s;--d:1s;--rot:-1.5deg"><div class="float-chip-dot"></div>Sem academia</div>
+        <div class="float-chip c4" style="--dur:4.1s;--d:.4s;--rot:2deg"><div class="float-chip-dot"></div>Cardápio rotativo</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- BRIDGE -->
+<section class="bridge section">
+  <div class="container">
+    <div class="bridge-inner">
+
+      <span class="eyebrow reveal">Por que continuar</span>
+      <h2 class="reveal">Os primeiros 7 dias abriram a porta.<br>Parar aqui seria um erro.</h2>
+
+      <p class="bridge-text reveal">
+        O que acontece no corpo durante os 7 dias é real: a inflamação baixa, o metabolismo responde e a balança se move. Mas esse é o momento mais crítico — quando a maioria para e perde o momentum metabólico que acabou de criar.
+      </p>
+
+      <p class="bridge-text reveal">
+        Os próximos 30 dias são quando o corpo consolida a mudança. É quando você para de "fazer dieta" e começa a ter um padrão alimentar diferente. É quando os treinos entram na rotina sem força de vontade extra. É quando a perda de peso vira perda de gordura de verdade.
+      </p>
+
+      <div class="bridge-highlight reveal">
+        <p>O metabolismo que você desbloqueou nos 7 dias precisa de mais 30 dias para virar padrão. Quem para aqui quase sempre volta ao ponto de partida em 2 semanas. Quem continua, raramente volta.</p>
+        <cite>— Fundamento do Protocolo 30 Dias</cite>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 4 SEMANAS -->
+<section class="weeks section">
+  <div class="container">
+
+    <div class="weeks-intro reveal">
+      <span class="eyebrow">A jornada</span>
+      <h2>30 dias. 4 semanas. Um resultado diferente.</h2>
+      <p>Cada semana tem um objetivo específico. A progressão é calculada para que seu corpo nunca entre em modo de defesa.</p>
+    </div>
+
+    <div class="weeks-grid">
+
+      <div class="week-card reveal">
+        <div class="week-num">01</div>
+        <div class="week-label">Semana</div>
+        <div class="week-title">Consolidação</div>
+        <div class="week-desc">Mantém o que o Protocolo 7 Dias conquistou. Elimina o que restou de inflamação e estabelece o novo ritmo alimentar.</div>
+        <span class="week-tag">Base estabelecida</span>
+      </div>
+
+      <div class="week-card reveal">
+        <div class="week-num">02</div>
+        <div class="week-label">Semana</div>
+        <div class="week-title">Ativação</div>
+        <div class="week-desc">Os treinos entram na rotina. Alimentação e movimento trabalham juntos pela primeira vez, sem aumentar o estresse do corpo.</div>
+        <span class="week-tag">Treino integrado</span>
+      </div>
+
+      <div class="week-card reveal">
+        <div class="week-num">03</div>
+        <div class="week-label">Semana</div>
+        <div class="week-title">Aceleração</div>
+        <div class="week-desc">O corpo já está em ritmo. A queima de gordura se acelera, a retenção zera e a energia começa a ser consistente ao longo do dia.</div>
+        <span class="week-tag">Queima acelerada</span>
+      </div>
+
+      <div class="week-card final reveal">
+        <div class="week-num">04</div>
+        <div class="week-label">Semana</div>
+        <div class="week-title">Transformação</div>
+        <div class="week-desc">Resultado visível e consolidado. O guia de manutenção entra em cena para garantir que o que mudou não volte.</div>
+        <span class="week-tag">Resultado permanente</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- O QUE ESTÁ DENTRO -->
+<section class="inside section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Conteúdo completo</span>
+    <h2 class="reveal">Tudo que você recebe no Protocolo 30 Dias</h2>
+
+    <div class="inside-grid">
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Plano alimentar 30 dias</strong>
+          Cardápio completo semana a semana — café, almoço, jantar e lanches. Rotativo para não enjoar.
+        </div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Lista de compras mensal</strong>
+          O que comprar no mercado para o mês inteiro, organizado por semana e por categoria.
+        </div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Planilha de treinos em casa</strong>
+          3 treinos por semana, com progressão semanal. Sem equipamento, sem academia.
+        </div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Guia de alongamentos aeróbicos</strong>
+          15 minutos por dia para aumentar a queima e melhorar a postura. Qualquer horário, qualquer lugar.
+        </div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Protocolo de finais de semana</strong>
+          Como manter o progresso sem se privar — restaurante, família, festa. Sem culpa, sem sabotar.
+        </div>
+      </div>
+
+      <div class="inside-item reveal">
+        <div class="inside-check">✓</div>
+        <div class="inside-text">
+          <strong>Guia de manutenção pós-30 dias</strong>
+          O que fazer depois para que o resultado não some. O padrão que você criou, sustentado para sempre.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Quem já fez</span>
+    <h2 class="reveal">30 dias de diferença real</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Ana Beatriz L.</div>
+            <div class="testi-loc">Porto Alegre, RS</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Depois dos 7 dias vi resultado. Depois dos 30 dias, fui para a balança e eram 6,3kg. O que mais mudou foi que parei de pensar que estava de dieta. O cardápio rotativo ajudou muito — cada semana era diferente e eu continuava sem esforço."
+        </p>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#9B7EA8">J</div>
+          <div>
+            <div class="testi-name">Juliana F.</div>
+            <div class="testi-loc">Campinas, SP</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "Os treinos em casa foram o que me faltava. 20 minutos, 3 vezes por semana, sem academia, sem equipamento. Na quarta semana eu estava fazendo sem nem pensar — virou parte da rotina sem força de vontade."
+        </p>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#C4775A">M</div>
+          <div>
+            <div class="testi-name">Mariana D.</div>
+            <div class="testi-loc">Recife, PE</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          "O protocolo de final de semana salvou meu mês. Não me privei de nada, jantei com a família, fui ao churrasco — e ainda assim perdi 5,8kg nos 30 dias. Nunca nenhuma dieta tinha funcionado assim."
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- OFERTA -->
+<section id="oferta" class="offer-section section">
+  <div class="container">
+
+    <div class="offer-box reveal">
+
+      <span class="offer-badge">Oferta exclusiva pós-compra</span>
+
+      <div class="offer-title">Protocolo 30 Dias — Corpo em Forma</div>
+
+      <ul class="offer-includes">
+        <li>Plano alimentar rotativo — 30 dias completos</li>
+        <li>Lista de compras mensal organizada</li>
+        <li>Planilha de treinos em casa (3×/semana)</li>
+        <li>Guia de alongamentos aeróbicos (15 min/dia)</li>
+        <li>Protocolo de finais de semana</li>
+        <li>Guia de manutenção pós-30 dias</li>
+      </ul>
+
+      <p class="price-old">De R$ 197,00</p>
+      <div class="price-new"><small>R$</small>109,90</div>
+      <p class="offer-installment">ou <strong>4× de R$ 27,48</strong> no cartão — sem juros</p>
+
+      <a href="https://pay.kiwify.com.br/XXXXXX" target="_blank" rel="noopener" class="btn btn-primary btn-block">
+        Quero os 30 dias por R$ 109,90 →
+      </a>
+
+      <p class="offer-micro">🔒 Pagamento seguro · Entrega imediata por e-mail · PDF para qualquer dispositivo</p>
+
+      <div class="seals">
+        <span class="seal-chip">🛡️ Compra Protegida</span>
+        <span class="seal-chip">📧 Entrega Imediata</span>
+        <span class="seal-chip">📱 Qualquer dispositivo</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- GARANTIA -->
+<section class="guarantee section">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-badge-wrap">
+        <div class="guarantee-badge">
+          <div class="guarantee-badge-num">7</div>
+          <div class="guarantee-badge-label">dias de<br>garantia</div>
+        </div>
+      </div>
+      <span class="eyebrow">Compra sem risco</span>
+      <h2>7 dias de garantia incondicional</h2>
+      <p class="guarantee-text">
+        Se por qualquer motivo você não ficar satisfeita com o conteúdo, basta enviar um e-mail em até 7 dias após a compra e devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas. O risco é todo nosso.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Dúvidas comuns</span>
+    <h2 class="reveal">Perguntas frequentes</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Preciso ter feito o Protocolo 7 Dias antes?<span class="faq-icon">+</span></button>
+        <div class="faq-body">O Protocolo 30 Dias foi desenhado para ser a continuação natural do Protocolo 7 Dias. Funciona melhor depois dos 7 dias porque seu metabolismo já foi reorganizado — mas também pode ser seguido de forma independente por quem não fez os 7 dias antes.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Os treinos precisam de equipamento?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Nenhum equipamento. Todos os treinos da planilha são com peso corporal, feitos em casa ou em qualquer espaço pequeno. A progressão semanal é feita aumentando repetições e intensidade — não peso ou maquinário.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Como funciona o cardápio rotativo?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Cada semana tem um conjunto diferente de refeições, usando os mesmos princípios do protocolo mas com variações de alimentos e combinações. Você nunca repete o mesmo cardápio das semanas anteriores — o que elimina o principal motivo de abandono: o tédio.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">E se eu precisar viajar ou sair da rotina durante os 30 dias?<span class="faq-icon">+</span></button>
+        <div class="faq-body">O protocolo de finais de semana foi desenvolvido exatamente para isso — viagem, restaurante, família, imprevistos. Você aprende a manter o progresso sem se privar de situações sociais. Uma semana fora do padrão não apaga 3 semanas de resultado.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Como recebo os materiais?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Imediatamente após o pagamento, você recebe um e-mail com todos os arquivos em PDF. O protocolo alimentar, a planilha de treinos e o guia de alongamentos chegam juntos, prontos para usar no celular, tablet ou computador.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-final section">
+  <div class="cta-deco d1"></div>
+  <div class="cta-deco d2"></div>
+  <div class="container">
+
+    <h2 class="reveal">30 dias para um resultado que fica.</h2>
+
+    <p class="cta-final-sub reveal">
+      Você já deu o primeiro passo. O Protocolo 30 Dias garante que ele não foi em vão.
+    </p>
+
+    <a href="#oferta" class="btn btn-light reveal">Quero garantir agora →</a>
+    <span class="cta-micro reveal">Acesso imediato · Garantia de 7 dias · Sem risco</span>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 · Todos os direitos reservados</p>
+  <p>Produto digital · Entrega via e-mail · Este produto não substitui acompanhamento médico ou nutricional profissional.</p>
+</footer>
+
+
+<script>
+  (function () {
+    const KEY = 'p30_timer_end';
+    const DURATION = 12 * 60;
+    const bar = document.getElementById('top-bar');
+    const msgEl = document.getElementById('timer-msg');
+    const countEl = document.getElementById('timer-count');
+    const now = Math.floor(Date.now() / 1000);
+    let end = parseInt(sessionStorage.getItem(KEY) || '0');
+    if (!end || end <= now) { end = now + DURATION; sessionStorage.setItem(KEY, end); }
+    function tick() {
+      const left = Math.max(0, end - Math.floor(Date.now() / 1000));
+      const m = Math.floor(left / 60), s = left % 60;
+      countEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+      if (left === 0) {
+        msgEl.textContent = '⚠️ Oferta expirada — essa página pode fechar a qualquer momento';
+        countEl.style.display = 'none';
+        bar.style.background = '#dc2626';
+        return;
+      }
+      if (left <= 120) { bar.style.background = '#dc2626'; msgEl.textContent = '🔴 Últimos minutos! Garanta agora por R$ 109,90'; }
+      else if (left <= 300) { bar.style.background = '#d97706'; msgEl.textContent = '🟠 Oferta encerrando em breve'; }
+      setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

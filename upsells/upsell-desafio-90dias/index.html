@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio 90 Dias — Transformação Total</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:       #FFFFFF;
+      --off-white:   #FAF8F5;
+      --beige:       #F5F0EB;
+      --beige-mid:   #EDE6DD;
+      --accent:      #7A9E7E;
+      --accent-dark: #5d7f61;
+      --accent-deep: #3d5e41;
+      --accent-soft: #e8f0e9;
+      --gold:        #C9973A;
+      --gold-light:  #e8c97a;
+      --gold-soft:   #fdf6e8;
+      --text:        #1C1C1A;
+      --text-muted:  #6B6560;
+      --dark:        #1a1a18;
+      --dark-green:  #253828;
+      --border:      rgba(0,0,0,.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .section { padding: 96px 0; }
+
+    .eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem; display: block;
+    }
+    .eyebrow-gold { color: var(--gold); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .btn {
+      display: inline-block; font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 600; padding: 16px 38px; border-radius: 50px;
+      text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 22px rgba(122,158,126,.38); }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(122,158,126,.45); }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #b8852e 100%);
+      color: #fff;
+      box-shadow: 0 6px 28px rgba(201,151,58,.4);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(201,151,58,.5); }
+    .btn-light { background: #fff; color: var(--dark-green); box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.25); }
+    .btn-block { display: block; width: 100%; text-align: center; }
+    .btn-micro { display: block; font-size: .77rem; color: var(--text-muted); margin-top: .75rem; }
+
+    /* ── TOP BAR ──────────────────────────────────────── */
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: linear-gradient(90deg, var(--dark-green) 0%, #2e4a32 100%);
+      color: rgba(255,255,255,.9);
+      text-align: center; padding: 10px 20px;
+      font-size: .82rem; font-weight: 500;
+      border-bottom: 1px solid rgba(201,151,58,.3);
+    }
+    .top-bar-gold { color: var(--gold-light); font-weight: 700; }
+    #timer-count {
+      font-family: 'DM Sans', monospace; font-size: 1rem; font-weight: 700; letter-spacing: .08em;
+      background: rgba(201,151,58,.25); border: 1px solid rgba(201,151,58,.4);
+      padding: 2px 10px; border-radius: 6px; margin-left: 6px; display: inline-block; min-width: 58px;
+      color: var(--gold-light);
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      background: var(--dark-green);
+      padding: 168px 0 116px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 68% 40%, rgba(122,158,126,.28) 0%, transparent 52%),
+        radial-gradient(ellipse at 6% 75%, rgba(122,158,126,.14) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 100%, rgba(201,151,58,.08) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none; z-index: 0;
+    }
+    /* decorative ring */
+    .hero-ring {
+      position: absolute; width: 760px; height: 760px; border-radius: 50%;
+      border: 1px solid rgba(201,151,58,.08);
+      top: 50%; right: -200px; transform: translateY(-50%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-ring::before {
+      content: ''; position: absolute; inset: 56px; border-radius: 50%;
+      border: 1px solid rgba(122,158,126,.06);
+    }
+
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 460px; gap: 56px;
+      align-items: center; position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,151,58,.12); border: 1px solid rgba(201,151,58,.28);
+      border-radius: 40px; padding: 6px 18px 6px 12px; margin-bottom: 1.8rem;
+    }
+    .hero-badge-icon { color: var(--gold-light); font-size: .9rem; }
+    .hero-badge-text { font-size: .76rem; font-weight: 500; color: rgba(232,201,122,.85); letter-spacing: .01em; }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 4.6rem);
+      font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+      background: linear-gradient(170deg, #ffffff 0%, #dff0e2 40%, #ffffff 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: .9rem;
+    }
+    .hero h1 em {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-style: italic;
+    }
+    .hero-kicker {
+      font-size: 1.05rem; color: rgba(250,248,245,.65); line-height: 1.78;
+      margin-bottom: 2.2rem; max-width: 500px;
+    }
+
+    .hero-tracks {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2.4rem;
+    }
+    .track-pill {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 30px; padding: 8px 16px;
+      font-size: .8rem; font-weight: 500; color: rgba(250,248,245,.82);
+    }
+    .track-pill-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .track-pill-dot.a { background: var(--accent); }
+    .track-pill-dot.b { background: var(--gold); }
+    .track-pill-dot.c { background: #88b8d4; }
+
+    .hero .btn-gold { font-size: 1.08rem; padding: 20px 48px; }
+    .hero .btn-micro { color: rgba(255,255,255,.38); }
+
+    /* hero visual side */
+    .hero-visual {
+      position: relative; display: flex; flex-direction: column;
+      align-items: center; gap: 16px; padding: 48px 16px;
+    }
+    .hero-visual-glow {
+      position: absolute; inset: -30px;
+      background: radial-gradient(ellipse at 50% 45%, rgba(201,151,58,.12) 0%, rgba(122,158,126,.1) 40%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    /* main book */
+    .book-main {
+      position: relative; z-index: 1;
+      width: 230px; height: 310px;
+      transform: perspective(1000px) rotateY(-12deg);
+      filter: drop-shadow(0 28px 50px rgba(0,0,0,.42)) drop-shadow(0 0 36px rgba(201,151,58,.15));
+      transition: transform .4s ease;
+    }
+    .book-main:hover { transform: perspective(1000px) rotateY(-4deg); }
+    .bk-spine { position: absolute; left: -16px; top: 0; width: 16px; height: 100%; background: linear-gradient(to right, #2a3e1e, #3d5e41); border-radius: 3px 0 0 3px; }
+    .bk-pages { position: absolute; right: -9px; top: 5px; width: 12px; height: calc(100% - 10px); background: repeating-linear-gradient(to bottom, #f0ede8 0px, #f0ede8 1px, #e6e2dc 1px, #e6e2dc 3px); border-radius: 0 3px 3px 0; }
+    .bk-cover {
+      position: absolute; inset: 0;
+      background: linear-gradient(148deg, #1e2e20 0%, #253828 55%, #2e4a32 100%);
+      border-radius: 3px 10px 10px 3px;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 24px 18px 20px;
+      box-shadow: inset -6px 0 16px rgba(0,0,0,.2), inset 2px 0 5px rgba(255,255,255,.06);
+    }
+    .bk-badge {
+      font-size: .5rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold-light); border: 1px solid rgba(201,151,58,.4);
+      padding: 4px 10px; border-radius: 16px; align-self: stretch; text-align: center;
+    }
+    .bk-title {
+      font-family: 'Playfair Display', serif; font-weight: 700; color: #fff;
+      text-align: center; line-height: 1.32;
+    }
+    .bk-title em {
+      display: block; font-style: italic; font-size: .78rem;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 5px;
+    }
+    .bk-title strong { font-size: 1rem; }
+    .bk-divider { width: 32px; height: 1px; background: rgba(201,151,58,.4); }
+    .bk-sub { font-size: .54rem; color: rgba(255,255,255,.5); text-align: center; letter-spacing: .08em; }
+
+    /* 3 mini track cards beside book */
+    .track-stack {
+      position: absolute; right: -8px; top: 50%;
+      transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 8px; z-index: 2;
+    }
+    .track-mini {
+      background: rgba(255,255,255,.92); border-radius: 10px;
+      padding: 8px 12px; min-width: 128px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.14);
+      display: flex; align-items: center; gap: 8px;
+      animation: chipFloat var(--dur, 3.5s) ease-in-out var(--d, 0s) infinite;
+    }
+    .track-mini-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .track-mini-label { font-size: .72rem; font-weight: 600; color: var(--dark-green); }
+    .track-mini.tm-a { --dur:3.6s; --d:0s; }
+    .track-mini.tm-b { --dur:3.9s; --d:.5s; }
+    .track-mini.tm-c { --dur:3.4s; --d:1s; }
+    @keyframes chipFloat {
+      0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); }
+      50%      { transform: translateY(-6px) rotate(var(--rot,0deg)); }
+    }
+
+    /* ── TRILHAS ─────────────────────────────────────── */
+    .trilhas {
+      background: var(--off-white); position: relative; overflow: hidden;
+    }
+    .trilhas::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(37,56,40,.022) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .trilhas .container { position: relative; z-index: 1; }
+    .trilhas-intro { text-align: center; max-width: 620px; margin: 0 auto 4rem; }
+    .trilhas-intro h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); margin-bottom: 1rem;
+    }
+    .trilhas-intro p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.78; }
+
+    .trilhas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .trilha-card {
+      border-radius: 20px; padding: 36px 30px;
+      position: relative; overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .trilha-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,.12); }
+
+    /* Trilha A — Emagrecer */
+    .trilha-a {
+      background: var(--dark-green);
+      border: 1px solid rgba(122,158,126,.25);
+    }
+    .trilha-a::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 15%, rgba(122,158,126,.3) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Trilha B — Definição */
+    .trilha-b {
+      background: var(--white);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(201,151,58,.12);
+    }
+    .trilha-b::before {
+      content: '★ MAIS POPULAR';
+      position: absolute; top: 14px; right: -30px;
+      background: var(--gold);
+      color: #fff; font-size: .58rem; font-weight: 700; letter-spacing: .12em;
+      padding: 5px 40px; transform: rotate(35deg);
+    }
+
+    /* Trilha C — Energia */
+    .trilha-c {
+      background: var(--beige);
+      border: 1px solid var(--beige-mid);
+    }
+
+    .trilha-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin-bottom: 1.4rem;
+    }
+    .trilha-a .trilha-icon { background: rgba(122,158,126,.22); border: 1px solid rgba(122,158,126,.4); }
+    .trilha-b .trilha-icon { background: rgba(201,151,58,.1); border: 1px solid rgba(201,151,58,.3); }
+    .trilha-c .trilha-icon { background: rgba(136,184,212,.15); border: 1px solid rgba(136,184,212,.35); }
+
+    .trilha-letter {
+      font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      margin-bottom: .5rem; display: block;
+    }
+    .trilha-a .trilha-letter { color: var(--accent); }
+    .trilha-b .trilha-letter { color: var(--gold); }
+    .trilha-c .trilha-letter { color: #5a94b0; }
+
+    .trilha-name {
+      font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700;
+      margin-bottom: .6rem; line-height: 1.2;
+    }
+    .trilha-a .trilha-name { color: rgba(250,248,245,.95); }
+    .trilha-b .trilha-name { color: var(--dark-green); }
+    .trilha-c .trilha-name { color: var(--dark-green); }
+
+    .trilha-sub {
+      font-size: .88rem; line-height: 1.65; margin-bottom: 1.6rem;
+    }
+    .trilha-a .trilha-sub { color: rgba(250,248,245,.68); }
+    .trilha-b .trilha-sub { color: var(--text-muted); }
+    .trilha-c .trilha-sub { color: var(--text-muted); }
+
+    .trilha-list { list-style: none; }
+    .trilha-list li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: .84rem; padding: .38rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.0);
+    }
+    .trilha-a .trilha-list li { color: rgba(250,248,245,.78); border-bottom-color: rgba(255,255,255,.06); }
+    .trilha-b .trilha-list li { color: var(--text); border-bottom-color: rgba(0,0,0,.05); }
+    .trilha-c .trilha-list li { color: var(--text); border-bottom-color: rgba(0,0,0,.05); }
+    .trilha-list li:last-child { border-bottom: none; }
+    .trilha-list li::before { content: '✓'; font-weight: 700; flex-shrink: 0; font-size: .82rem; }
+    .trilha-a .trilha-list li::before { color: var(--accent); }
+    .trilha-b .trilha-list li::before { color: var(--gold); }
+    .trilha-c .trilha-list li::before { color: #5a94b0; }
+
+    .trilha-tag {
+      display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+      padding: 5px 14px; border-radius: 20px; margin-top: 1.4rem;
+    }
+    .trilha-a .trilha-tag { background: rgba(122,158,126,.22); border: 1px solid rgba(122,158,126,.4); color: var(--accent); }
+    .trilha-b .trilha-tag { background: rgba(201,151,58,.1); border: 1px solid rgba(201,151,58,.4); color: var(--gold); }
+    .trilha-c .trilha-tag { background: rgba(136,184,212,.15); border: 1px solid rgba(136,184,212,.4); color: #4a84a0; }
+
+    /* ── VALIDAÇÃO PERSONAL ──────────────────────────── */
+    .validation { background: var(--dark-green); position: relative; overflow: hidden; }
+    .validation::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 75% 30%, rgba(201,151,58,.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 70%, rgba(122,158,126,.18) 0%, transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .validation::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none; z-index: 0;
+    }
+    .validation .container { position: relative; z-index: 1; }
+    .validation-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .validation h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; letter-spacing: -.025em;
+      background: linear-gradient(170deg, #fff 0%, #dff0e2 45%, #fff 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 1.3rem;
+    }
+    .validation-text { font-size: 1rem; color: rgba(250,248,245,.7); line-height: 1.8; margin-bottom: 1rem; }
+    .validation-seals { display: flex; flex-direction: column; gap: 14px; margin-top: 2rem; }
+    .validation-seal {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 16px 20px;
+    }
+    .validation-seal-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .validation-seal-text { font-size: .88rem; color: rgba(250,248,245,.82); line-height: 1.5; }
+    .validation-seal-text strong { color: rgba(250,248,245,.95); display: block; }
+
+    .val-stats { display: flex; flex-direction: column; gap: 24px; }
+    .val-stat-block {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 28px 32px; text-align: center;
+    }
+    .val-stat-block.gold-border { border-color: rgba(201,151,58,.3); background: rgba(201,151,58,.06); }
+    .val-stat-num {
+      font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700;
+      color: var(--accent); line-height: 1; margin-bottom: .4rem;
+    }
+    .val-stat-block.gold-border .val-stat-num { color: var(--gold-light); }
+    .val-stat-lbl { font-size: .88rem; color: rgba(250,248,245,.65); line-height: 1.5; }
+
+    /* ── O QUE ESTÁ DENTRO ───────────────────────────── */
+    .inside { background: var(--off-white); }
+    .inside h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); margin-bottom: .8rem;
+    }
+    .inside-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 3rem; max-width: 640px; }
+    .inside-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .inside-card {
+      background: var(--white); border-radius: 16px; padding: 28px 24px;
+      border: 1px solid rgba(122,158,126,.12); border-top: 3px solid var(--accent);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .inside-card.gold-top { border-top-color: var(--gold); }
+    .inside-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.07); transform: translateY(-3px); }
+    .inside-card-icon {
+      width: 48px; height: 48px; border-radius: 13px;
+      background: var(--dark-green); display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1.2rem;
+    }
+    .inside-card.gold-top .inside-card-icon { background: linear-gradient(135deg, var(--gold), #b8852e); }
+    .inside-card-title {
+      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+      color: var(--dark-green); margin-bottom: .5rem;
+    }
+    .inside-card-text { font-size: .86rem; color: var(--text-muted); line-height: 1.65; }
+
+    .inside-bonus {
+      margin-top: 2rem;
+      background: var(--dark-green); border-radius: 16px; padding: 32px 36px;
+      display: flex; align-items: flex-start; gap: 20px;
+      position: relative; overflow: hidden;
+    }
+    .inside-bonus::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 85% 50%, rgba(201,151,58,.1) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .inside-bonus-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .inside-bonus-body { position: relative; z-index: 1; }
+    .inside-bonus-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: .5rem; display: block;
+    }
+    .inside-bonus-title {
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+      color: rgba(250,248,245,.95); margin-bottom: .5rem;
+    }
+    .inside-bonus-text { font-size: .88rem; color: rgba(250,248,245,.68); line-height: 1.65; }
+
+    /* ── 90 DIAS FASES ───────────────────────────────── */
+    .fases { background: var(--beige); }
+    .fases-intro { text-align: center; max-width: 580px; margin: 0 auto 4rem; }
+    .fases-intro h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); margin-bottom: 1rem;
+    }
+    .fases-intro p { font-size: 1rem; color: var(--text-muted); line-height: 1.78; }
+    .fases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .fase-card {
+      background: var(--white); border-radius: 20px; padding: 36px 28px;
+      border: 1px solid var(--beige-mid); position: relative; overflow: hidden;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .fase-card:hover { box-shadow: 0 20px 48px rgba(0,0,0,.09); transform: translateY(-4px); }
+    .fase-num {
+      font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 700;
+      color: var(--accent-soft); line-height: 1; margin-bottom: -.6rem;
+    }
+    .fase-range {
+      font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .9rem; display: block;
+    }
+    .fase-title {
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+      color: var(--dark-green); margin-bottom: .7rem;
+    }
+    .fase-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.3rem; }
+    .fase-items { list-style: none; }
+    .fase-items li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: .84rem; color: var(--text); padding: .35rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+    .fase-items li:last-child { border-bottom: none; }
+    .fase-items li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .fase-card.final { background: var(--dark-green); border-color: rgba(122,158,126,.2); }
+    .fase-card.final .fase-num { color: rgba(122,158,126,.22); }
+    .fase-card.final .fase-range { color: var(--gold-light); }
+    .fase-card.final .fase-title { color: rgba(250,248,245,.95); }
+    .fase-card.final .fase-desc { color: rgba(250,248,245,.68); }
+    .fase-card.final .fase-items li { color: rgba(250,248,245,.8); border-bottom-color: rgba(255,255,255,.06); }
+    .fase-card.final .fase-items li::before { color: var(--gold); }
+
+    /* ── DEPOIMENTOS ─────────────────────────────────── */
+    .testimonials { background: var(--white); }
+    .testimonials h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 700;
+      letter-spacing: -.025em; color: var(--dark-green); text-align: center; margin-bottom: 2.8rem;
+    }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testi-card {
+      background: var(--off-white); border-radius: 18px; padding: 32px 26px;
+      border: 1px solid rgba(122,158,126,.12); border-top: 3px solid var(--accent);
+      display: flex; flex-direction: column; gap: 1.1rem; position: relative; overflow: hidden;
+    }
+    .testi-card.gold-top { border-top-color: var(--gold); }
+    .testi-card::before {
+      content: '\201C'; position: absolute; top: 4px; right: 14px;
+      font-family: 'Playfair Display', serif; font-size: 6rem; line-height: 1;
+      color: rgba(122,158,126,.08); pointer-events: none;
+    }
+    .testi-card.gold-top::before { color: rgba(201,151,58,.08); }
+    .testi-head { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar {
+      width: 50px; height: 50px; border-radius: 50%; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 600; font-size: .95rem; color: var(--text); }
+    .testi-loc { font-size: .78rem; color: var(--text-muted); }
+    .testi-track { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .testi-track.a { color: var(--accent-dark); }
+    .testi-track.b { color: var(--gold); }
+    .testi-track.c { color: #4a84a0; }
+    .testi-stars { color: #e8c245; font-size: .9rem; }
+    .testi-result {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600;
+      color: var(--dark-green); font-style: italic; line-height: 1.45;
+    }
+    .testi-result.gold { color: var(--gold); }
+    .testi-text { font-size: .88rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* ── OFERTA ───────────────────────────────────────── */
+    .offer-section {
+      background: var(--dark-green); position: relative; overflow: hidden;
+    }
+    .offer-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 55%, rgba(122,158,126,.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,151,58,.1) 0%, transparent 45%);
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none; z-index: 0;
+    }
+    .offer-section .container { position: relative; z-index: 1; }
+    .offer-box {
+      max-width: 560px; margin: 0 auto;
+      background: rgba(255,255,255,.97); border-radius: 24px; padding: 52px 48px;
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: 0 36px 88px rgba(0,0,0,.32), 0 0 0 6px rgba(201,151,58,.12), 0 0 0 12px rgba(201,151,58,.04);
+      text-align: center;
+    }
+    .offer-badge {
+      display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: 6px 20px; border-radius: 20px; margin-bottom: 1.6rem;
+      background: linear-gradient(135deg, var(--gold), #b8852e); color: #fff;
+    }
+    .offer-title {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--text); margin-bottom: .5rem;
+    }
+    .offer-subtitle { font-size: .9rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.5; }
+
+    .offer-tracks {
+      display: flex; gap: 8px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .offer-track-pill {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--off-white); border: 1px solid var(--beige-mid);
+      border-radius: 20px; padding: 5px 12px;
+      font-size: .74rem; font-weight: 600; color: var(--text);
+    }
+    .offer-track-pill-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    .offer-includes { list-style: none; text-align: left; margin-bottom: 1.8rem; }
+    .offer-includes li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .87rem; color: var(--text); padding: .45rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .offer-includes li:last-child { border-bottom: none; }
+    .offer-includes li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .offer-includes li.bonus::before { content: '★'; color: var(--gold); }
+
+    .price-divider { height: 1px; background: var(--beige-mid); margin: 1.6rem 0; }
+    .price-old { font-size: 1rem; color: var(--text-muted); text-decoration: line-through; margin-bottom: .2rem; }
+    .price-new {
+      font-family: 'Playfair Display', serif; font-size: 3.4rem; font-weight: 700;
+      color: var(--dark-green); line-height: 1; margin-bottom: .4rem;
+    }
+    .price-new small {
+      font-family: 'DM Sans', sans-serif; font-size: 1.2rem; font-weight: 400;
+      margin-right: 4px; vertical-align: .45em;
+    }
+    .offer-installment { font-size: .84rem; color: var(--text-muted); margin-bottom: 1.8rem; }
+    .offer-installment strong { color: var(--accent-dark); font-weight: 600; }
+    .offer-micro { font-size: .76rem; color: var(--text-muted); margin-top: .8rem; margin-bottom: 1.6rem; }
+    .seals { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .seal-chip { font-size: .75rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+
+    /* ── GARANTIA ─────────────────────────────────────── */
+    .guarantee { background: var(--off-white); }
+    .guarantee-inner { max-width: 580px; margin: 0 auto; text-align: center; }
+    .guarantee-badge-wrap { display: flex; justify-content: center; margin-bottom: 1.8rem; }
+    .guarantee-badge {
+      width: 148px; height: 148px; border-radius: 50%;
+      border: 3px solid var(--accent); background: var(--accent-soft);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative;
+      box-shadow: 0 0 0 8px rgba(122,158,126,.12), 0 0 0 18px rgba(122,158,126,.05), 0 14px 44px rgba(0,0,0,.1);
+    }
+    .guarantee-badge::before {
+      content: ''; position: absolute; inset: 8px; border-radius: 50%;
+      border: 1.5px dashed rgba(122,158,126,.55);
+    }
+    .guarantee-badge-num { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: var(--dark-green); line-height: 1; }
+    .guarantee-badge-label { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-dark); text-align: center; line-height: 1.55; }
+    .guarantee h2 { font-size: 1.9rem; font-weight: 700; letter-spacing: -.02em; color: var(--dark-green); margin-bottom: 1.1rem; }
+    .guarantee-text { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* ── FAQ ──────────────────────────────────────────── */
+    .faq { background: var(--white); }
+    .faq h2 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 700; letter-spacing: -.025em; color: var(--dark-green); text-align: center; margin-bottom: 2.8rem; }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item { background: var(--white); border-radius: 12px; margin-bottom: 10px; border: 1px solid rgba(0,0,0,.06); overflow: hidden; }
+    .faq-item.open { border-color: rgba(122,158,126,.32); }
+    .faq-btn {
+      width: 100%; text-align: left; background: none; border: none; padding: 22px 26px;
+      font-family: 'DM Sans', sans-serif; font-size: .97rem; font-weight: 600; color: var(--text);
+      cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .faq-item.open .faq-btn { color: var(--dark-green); background: rgba(122,158,126,.07); }
+    .faq-icon { color: var(--accent); font-size: 1.4rem; font-weight: 300; flex-shrink: 0; transition: transform .3s ease; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-body {
+      max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease;
+      font-size: .92rem; color: var(--text-muted); line-height: 1.78; padding: 0 26px;
+    }
+    .faq-item.open .faq-body { max-height: 320px; padding-bottom: 22px; }
+
+    /* ── CTA FINAL ────────────────────────────────────── */
+    .cta-final {
+      background: var(--dark-green); color: #fff; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 55%, rgba(122,158,126,.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 25%, rgba(201,151,58,.08) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .cta-deco { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .cta-deco.d1 { width: 400px; height: 400px; top: -160px; left: -120px; background: rgba(122,158,126,.06); }
+    .cta-deco.d2 { width: 280px; height: 280px; bottom: -100px; right: -80px; background: rgba(201,151,58,.05); }
+    .cta-final .container { position: relative; z-index: 1; }
+    .cta-final h2 {
+      font-size: clamp(2.2rem, 4.2vw, 3.4rem); color: #fff; margin-bottom: 1.2rem; letter-spacing: -.02em;
+    }
+    .cta-final h2 em {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-style: italic;
+    }
+    .cta-final-sub { font-size: 1.05rem; color: rgba(255,255,255,.7); max-width: 540px; margin: 0 auto 2.8rem; line-height: 1.78; }
+    .cta-micro { display: block; font-size: .77rem; color: rgba(255,255,255,.4); margin-top: 1.1rem; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer { background: #0f1410; color: rgba(255,255,255,.32); text-align: center; padding: 40px 24px; font-size: .79rem; line-height: 1.65; }
+    footer p + p { margin-top: .35rem; }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .trilhas-grid { grid-template-columns: 1fr; gap: 16px; }
+      .fases-grid { grid-template-columns: 1fr; gap: 16px; }
+      .validation-inner { grid-template-columns: 1fr; gap: 48px; }
+      .inside-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .hero { padding: 140px 0 80px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .testi-grid { grid-template-columns: 1fr; gap: 14px; }
+      .offer-box { padding: 36px 24px; }
+      .book-main { width: 200px; height: 270px; }
+      .track-stack { display: none; }
+      .hero-visual { padding: 32px 0; }
+      .inside-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .seals { flex-direction: column; align-items: center; }
+      .offer-tracks { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="top-bar" id="top-bar">
+  <span id="timer-msg">⚡ <span class="top-bar-gold">Desafio 90 Dias</span> — oferta exclusiva disponível somente nessa tela</span>
+  <span id="timer-count">15:00</span>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ring"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <div>
+        <div class="hero-badge reveal">
+          <span class="hero-badge-icon">✦</span>
+          <span class="hero-badge-text">Programa definitivo · Personal trainer validado · 3 trilhas personalizadas</span>
+        </div>
+
+        <h1>90 dias. Um programa completo.<br><em>Uma nova versão de você.</em></h1>
+
+        <p class="hero-kicker">
+          O protocolo de 7 dias mostrou que seu corpo responde. O Desafio 90 Dias vai além: um programa estruturado, validado por personal trainer, com três trilhas adaptadas à sua dor específica — e tudo o que você precisa para não depender de força de vontade.
+        </p>
+
+        <div class="hero-tracks reveal">
+          <div class="track-pill">
+            <div class="track-pill-dot a"></div>
+            Trilha Emagrecimento
+          </div>
+          <div class="track-pill">
+            <div class="track-pill-dot b"></div>
+            Trilha Definição
+          </div>
+          <div class="track-pill">
+            <div class="track-pill-dot c"></div>
+            Trilha Energia
+          </div>
+        </div>
+
+        <a href="#oferta" class="btn btn-gold">Quero o Desafio 90 Dias →</a>
+        <span class="btn-micro">🔒 Compra segura · PDF enviado por e-mail · Acesso imediato</span>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-visual-glow"></div>
+
+        <div class="book-main">
+          <div class="bk-spine"></div>
+          <div class="bk-pages"></div>
+          <div class="bk-cover">
+            <span class="bk-badge">Programa Completo · PDF</span>
+            <div class="bk-title">
+              <em>Desafio 90 Dias</em>
+              <strong>Transformação Total</strong>
+            </div>
+            <div class="bk-divider"></div>
+            <div class="bk-sub">3 Trilhas · Treino · Alimentação · Receitas</div>
+          </div>
+        </div>
+
+        <div class="track-stack">
+          <div class="track-mini tm-a">
+            <div class="track-mini-dot" style="background:var(--accent)"></div>
+            <div class="track-mini-label">Emagrecer de Verdade</div>
+          </div>
+          <div class="track-mini tm-b">
+            <div class="track-mini-dot" style="background:var(--gold)"></div>
+            <div class="track-mini-label">Definição e Tônus</div>
+          </div>
+          <div class="track-mini tm-c">
+            <div class="track-mini-dot" style="background:#88b8d4"></div>
+            <div class="track-mini-label">Energia e Leveza</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- TRILHAS -->
+<section class="trilhas section">
+  <div class="container">
+
+    <div class="trilhas-intro reveal">
+      <span class="eyebrow">A grande diferença</span>
+      <h2>Escolha a trilha da sua dor específica</h2>
+      <p>Não existe programa único que serve para todas. O Desafio 90 Dias foi construído em três trilhas — cada uma com plano alimentar, treinos e receitas desenhados para o objetivo específico de quem está nela.</p>
+    </div>
+
+    <div class="trilhas-grid">
+
+      <!-- TRILHA A -->
+      <div class="trilha-card trilha-a reveal">
+        <div class="trilha-icon">⚡</div>
+        <span class="trilha-letter">Trilha A</span>
+        <div class="trilha-name">Emagrecer de Verdade</div>
+        <div class="trilha-sub">Para quem quer ver a balança mudar de forma consistente e perder gordura — sem perder músculo, sem passar fome e sem recuperar o peso depois.</div>
+        <ul class="trilha-list">
+          <li>Déficit calórico inteligente sem contar caloria</li>
+          <li>Cardio progressivo semana a semana</li>
+          <li>Receitas com foco em saciedade</li>
+          <li>Planilha de acompanhamento de perda de medidas</li>
+          <li>Protocolo de quebra de platô</li>
+        </ul>
+        <span class="trilha-tag">Resultado: 8 a 14kg em 90 dias</span>
+      </div>
+
+      <!-- TRILHA B -->
+      <div class="trilha-card trilha-b reveal">
+        <div class="trilha-icon">💪</div>
+        <span class="trilha-letter">Trilha B</span>
+        <div class="trilha-name">Definição e Tônus</div>
+        <div class="trilha-sub">Para quem já perdeu peso mas quer dar forma ao corpo — roupas que assentam, silhueta definida e músculo que aparece. Sem academia, sem equipamento.</div>
+        <ul class="trilha-list">
+          <li>Treinos de força corporal com progressão</li>
+          <li>Alimentação com proteína adequada por fase</li>
+          <li>Receitas pós-treino para recuperação</li>
+          <li>Controle de medidas (não só peso)</li>
+          <li>Exercícios posturais incluídos</li>
+        </ul>
+        <span class="trilha-tag">Resultado: corpo definido em 90 dias</span>
+      </div>
+
+      <!-- TRILHA C -->
+      <div class="trilha-card trilha-c reveal">
+        <div class="trilha-icon">🌿</div>
+        <span class="trilha-letter">Trilha C</span>
+        <div class="trilha-name">Energia e Leveza</div>
+        <div class="trilha-sub">Para quem acorda cansada, tem queda de energia ao longo do dia e quer recuperar disposição física e mental — com ou sem objetivo de perda de peso intensa.</div>
+        <ul class="trilha-list">
+          <li>Alimentos adaptógenos e anti-inflamatórios</li>
+          <li>Yoga e alongamento aeróbico guiado</li>
+          <li>Receitas energizantes e anti-fadiga</li>
+          <li>Protocolo de sono e recuperação</li>
+          <li>Gestão de cortisol pela alimentação</li>
+        </ul>
+        <span class="trilha-tag">Resultado: energia real em 30 dias</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- VALIDAÇÃO PERSONAL -->
+<section class="validation section">
+  <div class="container">
+    <div class="validation-inner">
+
+      <div>
+        <span class="eyebrow eyebrow-gold reveal">Credibilidade</span>
+        <h2 class="reveal">Treinos desenvolvidos e validados por personal trainer certificado.</h2>
+        <p class="validation-text reveal">
+          Não é uma lista de exercícios copiada da internet. Cada treino do Desafio 90 Dias foi desenvolvido por personal trainer certificado, com demonstrações gráficas passo a passo, progressão semanal calibrada e adaptação por nível de condicionamento.
+        </p>
+        <p class="validation-text reveal">
+          Você nunca vai ficar em dúvida sobre como fazer o movimento. Cada exercício tem ilustração detalhada com posição inicial, execução e variações para quem está começando ou para quem quer mais intensidade.
+        </p>
+        <div class="validation-seals reveal">
+          <div class="validation-seal">
+            <div class="validation-seal-icon">📋</div>
+            <div class="validation-seal-text">
+              <strong>Demonstrações gráficas completas</strong>
+              Cada exercício ilustrado com posição correta, execução e variação de intensidade.
+            </div>
+          </div>
+          <div class="validation-seal">
+            <div class="validation-seal-icon">📈</div>
+            <div class="validation-seal-text">
+              <strong>Progressão semanal calibrada</strong>
+              Sem estagnação: o programa avança junto com sua evolução.
+            </div>
+          </div>
+          <div class="validation-seal">
+            <div class="validation-seal-icon">🏠</div>
+            <div class="validation-seal-text">
+              <strong>100% em casa, sem equipamento</strong>
+              Todo o programa pode ser feito no seu quarto, sala ou quintal.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="val-stats">
+        <div class="val-stat-block reveal">
+          <div class="val-stat-num">90</div>
+          <div class="val-stat-lbl">dias de programa estruturado, dia a dia, sem improviso</div>
+        </div>
+        <div class="val-stat-block gold-border reveal">
+          <div class="val-stat-num">3</div>
+          <div class="val-stat-lbl">trilhas personalizadas por objetivo, cada uma com plano completo</div>
+        </div>
+        <div class="val-stat-block reveal">
+          <div class="val-stat-num">50+</div>
+          <div class="val-stat-lbl">receitas distribuídas por trilha, fase e objetivo — sem repetição</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- O QUE ESTÁ DENTRO -->
+<section class="inside section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Conteúdo completo</span>
+    <h2 class="reveal">Tudo que está dentro do Desafio 90 Dias</h2>
+    <p class="inside-sub reveal">Um programa que substitui personal trainer, nutricionista e coach — organizado, prático e desenvolvido para mulheres com rotina real.</p>
+
+    <div class="inside-grid">
+
+      <div class="inside-card reveal">
+        <div class="inside-card-icon">📅</div>
+        <div class="inside-card-title">Manual do Desafio 90 Dias</div>
+        <div class="inside-card-text">O guia completo de como funciona cada fase, o que esperar de cada semana e como escolher sua trilha com base no seu objetivo.</div>
+      </div>
+
+      <div class="inside-card reveal">
+        <div class="inside-card-icon">🥗</div>
+        <div class="inside-card-title">Plano alimentar 90 dias</div>
+        <div class="inside-card-text">Cardápio semana a semana para as 3 trilhas. Rotativo, com variações e lista de compras mensal. Comida real de supermercado.</div>
+      </div>
+
+      <div class="inside-card reveal">
+        <div class="inside-card-icon">🏋️</div>
+        <div class="inside-card-title">3 Planilhas de treino</div>
+        <div class="inside-card-text">Uma planilha completa para cada trilha, com progressão de 12 semanas, demonstrações gráficas e variações por nível de condicionamento.</div>
+      </div>
+
+      <div class="inside-card gold-top reveal">
+        <div class="inside-card-icon">📖</div>
+        <div class="inside-card-title">50+ Receitas por trilha</div>
+        <div class="inside-card-text">Receitas organizadas por objetivo e fase — saciedade, pós-treino, energizantes. Ingredientes simples, preparo rápido.</div>
+      </div>
+
+      <div class="inside-card gold-top reveal">
+        <div class="inside-card-icon">📊</div>
+        <div class="inside-card-title">Planilha de acompanhamento</div>
+        <div class="inside-card-text">Registro de peso, medidas e energia semana a semana. Você vê a curva de evolução e não perde o foco quando a balança estaciona.</div>
+      </div>
+
+      <div class="inside-card gold-top reveal">
+        <div class="inside-card-icon">💊</div>
+        <div class="inside-card-title">Guia de suplementação básica</div>
+        <div class="inside-card-text">O que funciona de verdade, o que é propaganda e o que é opcional. Sem vender produto — apenas informação para quem quer acelerar.</div>
+      </div>
+
+    </div>
+
+    <div class="inside-bonus reveal">
+      <div class="inside-bonus-icon">🎁</div>
+      <div class="inside-bonus-body">
+        <span class="inside-bonus-label">Bônus exclusivo</span>
+        <div class="inside-bonus-title">Guia de Mindset e Motivação — Como não desistir no Dia 31</div>
+        <div class="inside-bonus-text">O maior inimigo de qualquer desafio de 90 dias é o dia 31. Quando a motivação inicial vai embora e o resultado ainda não apareceu no espelho. Esse guia foi criado para esse momento específico — com técnicas práticas para continuar mesmo sem vontade.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 3 FASES -->
+<section class="fases section">
+  <div class="container">
+
+    <div class="fases-intro reveal">
+      <span class="eyebrow">A jornada</span>
+      <h2>3 fases. 90 dias. Uma transformação progressiva.</h2>
+      <p>Cada fase tem um objetivo claro. A progressão garante que seu corpo nunca se adapte — e o resultado nunca estagne.</p>
+    </div>
+
+    <div class="fases-grid">
+
+      <div class="fase-card reveal">
+        <div class="fase-num">01</div>
+        <span class="fase-range">Dias 1 – 30 · Fase 1</span>
+        <div class="fase-title">Fundação</div>
+        <div class="fase-desc">Estabelece a base do protocolo. O corpo desinflama, a alimentação se reorganiza e os treinos entram na rotina sem trauma.</div>
+        <ul class="fase-items">
+          <li>Reset alimentar completo</li>
+          <li>Treinos de adaptação (3×/semana)</li>
+          <li>Eliminação de retenção e inchaço</li>
+          <li>Primeiros 3 a 6kg a menos</li>
+        </ul>
+      </div>
+
+      <div class="fase-card reveal">
+        <div class="fase-num">02</div>
+        <span class="fase-range">Dias 31 – 60 · Fase 2</span>
+        <div class="fase-title">Aceleração</div>
+        <div class="fase-desc">Alimentação e treino em sincronia total. O metabolismo acelera, o corpo queima gordura como combustível principal e as medidas mudam visivelmente.</div>
+        <ul class="fase-items">
+          <li>Intensidade de treino aumenta</li>
+          <li>Cardápio com foco em queima</li>
+          <li>Medidas caem semana a semana</li>
+          <li>Energia consistente ao longo do dia</li>
+        </ul>
+      </div>
+
+      <div class="fase-card final reveal">
+        <div class="fase-num">03</div>
+        <span class="fase-range">Dias 61 – 90 · Fase 3</span>
+        <div class="fase-title">Transformação</div>
+        <div class="fase-desc">O pico do programa. Resultado máximo, corpo no melhor momento. A fase 3 termina com o guia de manutenção para que nada do que você conquistou volte atrás.</div>
+        <ul class="fase-items">
+          <li>Resultado total consolidado</li>
+          <li>Corpo em novo padrão permanente</li>
+          <li>Guia de manutenção pós-90 dias</li>
+          <li>Nova versão de você — para ficar</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Quem já transformou</span>
+    <h2 class="reveal">90 dias. Resultados que falam por si.</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar">L</div>
+          <div>
+            <div class="testi-name">Larissa B.</div>
+            <div class="testi-loc">São Paulo, SP</div>
+            <div class="testi-track a">Trilha Emagrecimento</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-result">"Perdi 12,4kg e 16cm de barriga em 90 dias."</div>
+        <p class="testi-text">
+          Escolhi a trilha de emagrecimento com medo — já tinha tentado tudo. O que me surpreendeu foi nunca ter passado fome de verdade. O plano alimentar era comida de gente, não de dieta. No dia 90, estava comprando roupa dois tamanhos menor.
+        </p>
+      </div>
+
+      <div class="testi-card gold-top reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#b8852e">P</div>
+          <div>
+            <div class="testi-name">Patricia V.</div>
+            <div class="testi-loc">Rio de Janeiro, RJ</div>
+            <div class="testi-track b">Trilha Definição</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-result gold">"Nunca levantei peso na vida. Em 3 meses minha filha perguntou se eu tinha personal."</div>
+        <p class="testi-text">
+          As demonstrações gráficas dos exercícios foram o que me convenceu. Consegui fazer tudo certo desde o primeiro dia sem ir à academia. Na semana 8, meu marido perguntou o que eu estava fazendo diferente. Na semana 12, eu era outra pessoa.
+        </p>
+      </div>
+
+      <div class="testi-card reveal">
+        <div class="testi-head">
+          <div class="testi-avatar" style="background:#5a94b0">V</div>
+          <div>
+            <div class="testi-name">Vanessa C.</div>
+            <div class="testi-loc">Belo Horizonte, MG</div>
+            <div class="testi-track c">Trilha Energia</div>
+          </div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-result">"Em 45 dias eu não precisava mais de café para funcionar."</div>
+        <p class="testi-text">
+          Comecei pela trilha de energia porque estava exausta. Perdi 8kg no processo — mas o que mudou minha vida foi a disposição. Durmo melhor, acordo sem alarme, tenho energia para o trabalho e para os filhos. Não parece que "fiz dieta" — parece que corrigi algo que estava errado.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- OFERTA -->
+<section id="oferta" class="offer-section section">
+  <div class="container">
+
+    <div class="offer-box reveal">
+
+      <span class="offer-badge">✦ Programa completo — oferta exclusiva</span>
+
+      <div class="offer-title">Desafio 90 Dias — Transformação Total</div>
+      <div class="offer-subtitle">3 trilhas · Personal trainer validado · Plano alimentar + treinos + receitas</div>
+
+      <div class="offer-tracks">
+        <div class="offer-track-pill"><div class="offer-track-pill-dot" style="background:var(--accent)"></div>Trilha Emagrecimento</div>
+        <div class="offer-track-pill"><div class="offer-track-pill-dot" style="background:var(--gold)"></div>Trilha Definição</div>
+        <div class="offer-track-pill"><div class="offer-track-pill-dot" style="background:#88b8d4"></div>Trilha Energia</div>
+      </div>
+
+      <ul class="offer-includes">
+        <li>Manual do Desafio 90 Dias completo</li>
+        <li>Plano alimentar 90 dias (semana a semana)</li>
+        <li>3 Planilhas de treino com demonstrações gráficas</li>
+        <li>50+ Receitas organizadas por trilha e fase</li>
+        <li>Planilha de acompanhamento de resultados</li>
+        <li>Guia de suplementação básica</li>
+        <li class="bonus">Bônus: Guia de Mindset — Como não desistir no Dia 31</li>
+      </ul>
+
+      <div class="price-divider"></div>
+
+      <p class="price-old">De R$ 697,00</p>
+      <div class="price-new"><small>R$</small>369,90</div>
+      <p class="offer-installment">ou <strong>12× de R$ 30,82</strong> no cartão — sem juros</p>
+
+      <a href="https://pay.kiwify.com.br/XXXXXX" target="_blank" rel="noopener" class="btn btn-gold btn-block">
+        Quero o Desafio 90 Dias — R$ 369,90 →
+      </a>
+
+      <p class="offer-micro">🔒 Pagamento seguro · Entrega imediata por e-mail · PDF para qualquer dispositivo</p>
+
+      <div class="seals">
+        <span class="seal-chip">🛡️ Compra Protegida</span>
+        <span class="seal-chip">📧 Entrega Imediata</span>
+        <span class="seal-chip">📱 Qualquer dispositivo</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- GARANTIA -->
+<section class="guarantee section">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-badge-wrap">
+        <div class="guarantee-badge">
+          <div class="guarantee-badge-num">15</div>
+          <div class="guarantee-badge-label">dias de<br>garantia</div>
+        </div>
+      </div>
+      <span class="eyebrow">Compra sem risco</span>
+      <h2>15 dias de garantia incondicional</h2>
+      <p class="guarantee-text">
+        Acesse todo o conteúdo, escolha sua trilha, comece o programa. Se por qualquer motivo você não ficar satisfeita, basta enviar um e-mail em até 15 dias após a compra e devolvemos 100% do seu dinheiro. Sem questionamento, sem burocracia. O risco é completamente nosso.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq section">
+  <div class="container">
+
+    <span class="eyebrow reveal">Dúvidas comuns</span>
+    <h2 class="reveal">Perguntas frequentes</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Como escolho qual trilha seguir?<span class="faq-icon">+</span></button>
+        <div class="faq-body">O Manual do Desafio 90 Dias inclui um guia de escolha de trilha com perguntas simples que identificam seu objetivo principal. Se você quer perder peso, vai para a Trilha A. Se quer dar forma ao corpo, Trilha B. Se quer mais energia e bem-estar, Trilha C. Você também pode mudar de trilha entre as fases caso seu objetivo evolua.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Preciso ter feito os protocolos anteriores?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Não. O Desafio 90 Dias é um programa completo e independente. Funciona ainda melhor para quem já fez os protocolos anteriores, mas foi desenvolvido para ser seguido por qualquer pessoa, em qualquer nível de condicionamento ou hábito alimentar atual.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Os treinos precisam de equipamento ou academia?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Nenhum equipamento e nenhuma academia. Todos os treinos das 3 trilhas são com peso corporal, feitos em casa — quarto, sala ou qualquer espaço pequeno. As demonstrações gráficas mostram cada exercício em detalhe, então você executa corretamente desde o primeiro dia.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">O que acontece se eu sair da rotina durante os 90 dias?<span class="faq-icon">+</span></button>
+        <div class="faq-body">O programa inclui um protocolo de recuperação para semanas fora da rotina — viagem, doença, compromisso imprevisto. Uma semana interrompida não apaga o que foi construído. O guia explica como retomar sem culpa e sem perder o ritmo.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Funciona para quem tem mais de 40 ou 50 anos?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Sim, e a Trilha C (Energia e Leveza) foi desenvolvida especialmente pensando em mulheres nessa faixa etária. As mudanças hormonais após os 40 afetam o metabolismo de formas específicas — e o programa considera isso na escolha dos alimentos, na intensidade dos treinos e na gestão do cortisol.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn">Como recebo os materiais?<span class="faq-icon">+</span></button>
+        <div class="faq-body">Imediatamente após o pagamento, você recebe um e-mail com todos os arquivos: o Manual do Desafio, as 3 planilhas de treino, o plano alimentar, as receitas, a planilha de acompanhamento, o guia de suplementação e o bônus de mindset. Tudo em PDF, compatível com qualquer celular, tablet ou computador.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="cta-final section">
+  <div class="cta-deco d1"></div>
+  <div class="cta-deco d2"></div>
+  <div class="container">
+
+    <h2 class="reveal">90 dias para a versão de você<br><em>que você sempre quis ser.</em></h2>
+
+    <p class="cta-final-sub reveal">
+      Escolha sua trilha. Siga o programa. Em 90 dias, você vai olhar para trás e não reconhecer o ponto de partida.
+    </p>
+
+    <a href="#oferta" class="btn btn-light reveal">Quero começar o desafio →</a>
+    <span class="cta-micro reveal">Acesso imediato · Garantia de 15 dias · Sem risco</span>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 · Todos os direitos reservados</p>
+  <p>Produto digital · Entrega via e-mail · Este produto não substitui acompanhamento médico ou nutricional profissional.</p>
+</footer>
+
+
+<script>
+  (function () {
+    const KEY = 'd90_timer_end';
+    const DURATION = 15 * 60;
+    const bar = document.getElementById('top-bar');
+    const msgEl = document.getElementById('timer-msg');
+    const countEl = document.getElementById('timer-count');
+    const now = Math.floor(Date.now() / 1000);
+    let end = parseInt(sessionStorage.getItem(KEY) || '0');
+    if (!end || end <= now) { end = now + DURATION; sessionStorage.setItem(KEY, end); }
+    function tick() {
+      const left = Math.max(0, end - Math.floor(Date.now() / 1000));
+      const m = Math.floor(left / 60), s = left % 60;
+      countEl.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+      if (left === 0) {
+        msgEl.innerHTML = '⚠️ Oferta expirada — essa página pode fechar a qualquer momento';
+        countEl.style.display = 'none';
+        bar.style.background = '#dc2626';
+        return;
+      }
+      if (left <= 120) { bar.style.background = '#dc2626'; msgEl.innerHTML = '🔴 Últimos minutos! Garanta o Desafio 90 Dias por <strong>R$ 369,90</strong>'; }
+      else if (left <= 300) { bar.style.background = '#b8852e'; }
+      setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
