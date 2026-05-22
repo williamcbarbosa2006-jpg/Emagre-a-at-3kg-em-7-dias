@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 1 — Trilha A: Emagrecer de Verdade</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--ta:#2d5534;--ta-soft:rgba(45,85,52,.1);--accent:#7A9E7E;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.track-cover{background:linear-gradient(135deg,#1e3d24,#2d5534);min-height:52mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm;border-radius:0 0 10px 10px}
+.track-cover::before{content:'';position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(135deg,transparent,transparent 3px,rgba(255,255,255,.05) 3px,rgba(255,255,255,.05) 6px)}
+.tc-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:6pt;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase}
+.tc-ey{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px;display:block;position:relative;z-index:1}
+.tc-h{font-size:20pt;color:#fff;font-weight:700;line-height:1.1;margin-bottom:4px;position:relative;z-index:1}
+.tc-sub{font-size:7.5pt;color:rgba(255,255,255,.7);position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:2mm;display:block}
+.phase-bar{background:var(--ta);color:#fff;padding:5px 12px;border-radius:4px;margin:5mm 0 3mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .pn{font-size:7.5pt;font-weight:700}
+.phase-bar .pr{font-size:6.5pt;color:rgba(255,255,255,.6)}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:4mm}
+thead th{background:var(--ta);color:#fff;padding:4px 5px;font-weight:600;text-align:left;font-size:6.5pt}
+tbody tr:nth-child(even){background:var(--off-white)}
+tbody td{padding:3.5px 5px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.meal-tag{font-size:5.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1px}
+.week-sched{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4mm}
+.wd{background:var(--off-white);border:1px solid var(--border);border-radius:3px;padding:3px 2px;text-align:center}
+.wd .dy{font-size:5pt;font-weight:700;color:var(--muted);text-transform:uppercase;display:block}
+.wd .ac{font-size:5.5pt;color:var(--dark-green);font-weight:600;display:block;margin-top:1px;line-height:1.2}
+.wd.active{border-color:var(--accent);background:var(--ta-soft)}
+.wd.rest .ac{color:var(--muted)}
+.tlabel{display:inline-block;font-size:6.5pt;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:4px;margin-bottom:3mm;background:var(--ta);color:#fff}
+.recipe-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:5mm}
+.recipe-head{background:var(--ta);padding:8px 12px;color:#fff}
+.recipe-head .rey{font-size:5.5pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.recipe-head h3{font-size:10pt;color:#fff;margin-bottom:2px}
+.recipe-head .rmeta{font-size:6.5pt;color:rgba(255,255,255,.6);display:flex;gap:10px}
+.recipe-body{padding:8px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.recipe-body h4{font-size:6.5pt;font-weight:700;color:var(--dark-green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.recipe-body ul,.recipe-body ol{padding-left:10px}
+.recipe-body ul li,.recipe-body ol li{font-size:7pt;margin-bottom:2px;line-height:1.4}
+.recipe-macro{background:var(--off-white);padding:5px 12px;display:flex;gap:12px;border-top:1px solid var(--border)}
+.mi{font-size:6.5pt;text-align:center}
+.mi .mv{font-size:9pt;font-weight:700;color:var(--ta);font-family:'Playfair Display',serif;display:block}
+.mi .ml{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="track-cover pb">
+  <span class="tc-badge">Trilha A · Módulo 1</span>
+  <span class="tc-ey">Para quem quer perder gordura</span>
+  <h1 class="tc-h">Emagrecer<br>de Verdade</h1>
+  <p class="tc-sub">Plano alimentar completo para as 3 fases · Treinos HIIT progressivos · 2 receitas exclusivas</p>
+</div>
+
+<!-- FASE 1 ALIMENTAÇÃO -->
+<div class="pb">
+  <div class="phase-bar"><span class="pn">FASE 1 — Adaptação Metabólica</span><span class="pr">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> eliminar alimentos inflamatórios, estabilizar insulina, criar déficit moderado de ~300kcal/dia. Sem restrição severa — o corpo precisa aprender que vai receber comida de qualidade.</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Seg/Qua/Sex (Treino)</th><th>Ter/Qui (Descanso)</th><th>Fim de semana</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café · 7h</span></td><td>2 ovos mexidos + 1 fatia pão integral + café s/açúcar</td><td>Idem</td><td>Omelete 3 ovos + fruta vermelha (1 xíc.)</td></tr>
+      <tr><td><span class="meal-tag">Manhã · 10h</span></td><td>1 fruta pequena + 10 amêndoas</td><td>1 fruta pequena</td><td>Vitamina: leite de coco (200ml) + whey ou iogurte grego</td></tr>
+      <tr><td><span class="meal-tag">Almoço · 13h</span></td><td>150g frango grelhado + arroz integral (4 col.) + salada verde livre + azeite</td><td>Atum + batata doce (100g) + legumes</td><td>Refeição livre (sem fritos, sem álcool)</td></tr>
+      <tr><td><span class="meal-tag">Tarde · 16h</span></td><td>Iogurte grego natural + 1 col. linhaça</td><td>1 punhado oleaginosas (30g)</td><td>Iogurte grego ou fruta</td></tr>
+      <tr><td><span class="meal-tag">Jantar · 19h</span></td><td>Omelete 3 ovos + legumes refogados</td><td>150g peixe assado + purê de couve-flor + salada</td><td>Sopa de legumes ou jantar leve</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">FASE 2 — Aceleração</span><span class="pr">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> déficit de ~500kcal/dia. Janela alimentar de 8h (comer entre 11h e 19h nos dias de treino, se tolerado).</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Dias de Treino (4×/sem)</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café · 11h*</span></td><td>Shake: whey (30g) + leite vegetal (250ml) + 1 banana + 1 col. aveia</td><td>2 ovos + abacate (½) + café s/açúcar</td></tr>
+      <tr><td><span class="meal-tag">Almoço · 13h</span></td><td>180g frango ou carne magra + arroz integral (3 col.) + feijão (2 col.) + salada livre</td><td>150g proteína + batata doce (80g) + legumes</td></tr>
+      <tr><td><span class="meal-tag">Tarde · 16h</span></td><td>Iogurte grego + fruta vermelha ou maçã</td><td>10–15 amêndoas + 1 fruta</td></tr>
+      <tr><td><span class="meal-tag">Jantar · 19h*</span></td><td>Salada grande + 120g proteína magra. <strong>Sem carboidrato simples.</strong></td><td>Idem. Pode adicionar 1 fatia pão integral se sentir fome.</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:6.5pt;color:var(--muted);margin-bottom:4mm">*Janela de 8h: comer entre 11h e 19h. Se sentir tontura, quebre o jejum com 1 fruta + castanhas às 9h.</p>
+
+  <div class="phase-bar"><span class="pn">FASE 3 — Ciclagem Calórica</span><span class="pr">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> 3 dias de déficit (–600kcal) alternados com 1 dia de manutenção. Evita a estagnação metabólica. Padrão: Seg/Ter/Qua = déficit · Qui = manutenção · Sex/Sáb = déficit · Dom = manutenção.</div>
+  <table>
+    <thead><tr><th>Tipo de dia</th><th>Almoço</th><th>Jantar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dia de déficit</strong></td><td>Frango 200g + salada + legumes. Sem arroz.</td><td>Omelete 3 ovos + caldo de legumes.</td></tr>
+      <tr><td><strong>Dia de manutenção</strong></td><td>Refeição completa normal (como Fase 1)</td><td>Proteína + carboidrato complexo + salada</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TREINOS -->
+<div class="pb">
+  <span class="eyebrow">Trilha A — Treinos</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:2mm">Programação de exercícios</h2>
+  <p style="font-size:7.5pt;color:var(--muted);margin-bottom:3mm">Todos em casa. Precisará de: colchonete, 2 garrafas d'água (~500g), 1 cadeira firme.</p>
+
+  <div class="phase-bar"><span class="pn">Fase 1 — 3×/semana</span><span class="pr">Semanas 1–4</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Treino A</span></div>
+    <div class="wd rest"><span class="dy">Ter</span><span class="ac">Caminhada 30min</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Treino B</span></div>
+    <div class="wd rest"><span class="dy">Qui</span><span class="ac">Descanso</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Treino C</span></div>
+    <div class="wd rest"><span class="dy">Sáb</span><span class="ac">Caminhada 40min</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <div class="tlabel">TREINO A — Inferiores + Cardio</div>
+  <table>
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Agachamento sumô</strong></td><td style="font-size:6pt;color:var(--muted)">Glúteos, adutores</td><td><strong style="color:var(--accent)">3 × 15</strong></td><td>45s</td><td>Pés afastados 45°. Joelhos acompanham os pés. Desça até coxa paralela.</td></tr>
+      <tr><td><strong>Avanço alternado</strong></td><td style="font-size:6pt;color:var(--muted)">Quadríceps, glúteos</td><td><strong style="color:var(--accent)">3 × 12 cada</strong></td><td>45s</td><td>Passo à frente. Joelho traseiro quase toca o chão. Empurre pelo calcanhar da frente.</td></tr>
+      <tr><td><strong>Elevação pélvica</strong></td><td style="font-size:6pt;color:var(--muted)">Glúteos, isquio.</td><td><strong style="color:var(--accent)">4 × 20</strong></td><td>30s</td><td>Deitada. Suba o quadril. Aperta 2s no topo. Alinha joelho-quadril-ombro.</td></tr>
+      <tr><td><strong>Mountain climber</strong></td><td style="font-size:6pt;color:var(--muted)">Core, cardio</td><td><strong style="color:var(--accent)">3 × 30s</strong></td><td>30s</td><td>Prancha. Joelhos alternados ao peito em ritmo acelerado. Quadril nivelado.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar" style="margin-top:4mm"><span class="pn">Fase 3 — HIIT 5×/semana</span><span class="pr">Semanas 9–13</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">HIIT A</span></div>
+    <div class="wd active"><span class="dy">Ter</span><span class="ac">HIIT B</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">HIIT C</span></div>
+    <div class="wd rest"><span class="dy">Qui</span><span class="ac">Caminhada</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">HIIT A</span></div>
+    <div class="wd active"><span class="dy">Sáb</span><span class="ac">HIIT B</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <table>
+    <thead><tr><th>Circuito</th><th>Exercícios (40s cada)</th><th>Pausa</th><th>Rounds</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td><strong>HIIT A</strong></td><td>Squat jump → Mountain climber → Burpee → Polichinelo</td><td>20s entre rounds</td><td>4</td><td>~16 min</td></tr>
+      <tr><td><strong>HIIT B</strong></td><td>Elevação pélvica rápida → Prancha com tap → Avanço com salto → Superman</td><td>20s</td><td>4</td><td>~16 min</td></tr>
+      <tr><td><strong>HIIT C</strong></td><td>Corrida estacionária → Flexão → Bicicleta → Pulo lateral</td><td>20s</td><td>4</td><td>~16 min</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RECEITAS -->
+<div>
+  <span class="eyebrow">Trilha A — Receitas</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:4mm">2 receitas para<br>potencializar a queima</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Café da manhã · Fase 1 e 2</span>
+      <h3>Shake Proteico Anti-inchaço</h3>
+      <div class="rmeta"><span>⏱ 5 min</span><span>1 porção</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>1 scoop whey baunilha (30g)</li>
+          <li>200ml leite de amêndoa s/açúcar</li>
+          <li>½ banana congelada</li>
+          <li>1 col. sopa linhaça dourada</li>
+          <li>1 col. chá gengibre fresco ralado</li>
+          <li>Gelo a gosto</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Coloque tudo no liquidificador.</li>
+          <li>Bata 30 segundos até homogêneo.</li>
+          <li>Sirva imediatamente.</li>
+          <li>Não adoce — whey e banana já têm dulçor.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">28g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">22g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">5g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~245</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Almoço · Fase 2 e 3</span>
+      <h3>Bowl Queima Ativa</h3>
+      <div class="rmeta"><span>⏱ 20 min</span><span>1 porção</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>150g peito de frango grelhado</li>
+          <li>80g batata doce cozida (cubos)</li>
+          <li>1 xíc. rúcula + espinafre</li>
+          <li>10 tomates cereja</li>
+          <li>¼ pepino em rodelas</li>
+          <li>1 col. sopa azeite extra virgem</li>
+          <li>Limão, pimenta, sal rosa</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Grelhe o frango com alho e páprica.</li>
+          <li>Cozinhe a batata doce no vapor.</li>
+          <li>Monte: folhas na base, frango e batata por cima.</li>
+          <li>Adicione tomates e pepino.</li>
+          <li>Finalize com azeite e limão.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">38g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">28g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">14g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~390</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

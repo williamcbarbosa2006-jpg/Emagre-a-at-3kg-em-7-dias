@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 3 — Trilha C: Energia e Leveza</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--tc:#5c2d55;--tc-soft:rgba(92,45,85,.1);--accent:#7A9E7E;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.track-cover{background:linear-gradient(135deg,#3d1e3a,#5c2d55);min-height:52mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm;border-radius:0 0 10px 10px}
+.track-cover::before{content:'';position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(135deg,transparent,transparent 3px,rgba(255,255,255,.05) 3px,rgba(255,255,255,.05) 6px)}
+.tc-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:6pt;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase}
+.tc-ey{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px;display:block;position:relative;z-index:1}
+.tc-h{font-size:20pt;color:#fff;font-weight:700;line-height:1.1;margin-bottom:4px;position:relative;z-index:1}
+.tc-sub{font-size:7.5pt;color:rgba(255,255,255,.7);position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8a4a80;margin-bottom:2mm;display:block}
+.phase-bar{background:var(--tc);color:#fff;padding:5px 12px;border-radius:4px;margin:5mm 0 3mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .pn{font-size:7.5pt;font-weight:700}
+.phase-bar .pr{font-size:6.5pt;color:rgba(255,255,255,.6)}
+.phase-note{background:var(--tc-soft);border-left:3px solid var(--tc);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:4mm}
+thead th{background:var(--tc);color:#fff;padding:4px 5px;font-weight:600;text-align:left;font-size:6.5pt}
+tbody tr:nth-child(even){background:var(--off-white)}
+tbody td{padding:3.5px 5px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.meal-tag{font-size:5.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1px}
+.week-sched{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4mm}
+.wd{background:var(--off-white);border:1px solid var(--border);border-radius:3px;padding:3px 2px;text-align:center}
+.wd .dy{font-size:5pt;font-weight:700;color:var(--muted);text-transform:uppercase;display:block}
+.wd .ac{font-size:5.5pt;color:var(--dark-green);font-weight:600;display:block;margin-top:1px;line-height:1.2}
+.wd.active{border-color:#c49fc2;background:var(--tc-soft)}
+.wd.rest .ac{color:var(--muted)}
+.recipe-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:5mm}
+.recipe-head{background:var(--tc);padding:8px 12px;color:#fff}
+.recipe-head .rey{font-size:5.5pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.recipe-head h3{font-size:10pt;color:#fff;margin-bottom:2px}
+.recipe-head .rmeta{font-size:6.5pt;color:rgba(255,255,255,.6);display:flex;gap:10px}
+.recipe-body{padding:8px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.recipe-body h4{font-size:6.5pt;font-weight:700;color:var(--dark-green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.recipe-body ul,.recipe-body ol{padding-left:10px}
+.recipe-body ul li,.recipe-body ol li{font-size:7pt;margin-bottom:2px;line-height:1.4}
+.recipe-macro{background:var(--off-white);padding:5px 12px;display:flex;gap:12px;border-top:1px solid var(--border)}
+.mi{font-size:6.5pt;text-align:center}
+.mi .mv{font-size:9pt;font-weight:700;color:var(--tc);font-family:'Playfair Display',serif;display:block}
+.mi .ml{color:var(--muted)}
+.info-box{background:rgba(201,151,58,.08);border-left:3px solid var(--gold);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+</style>
+</head>
+<body>
+
+<div class="track-cover pb">
+  <span class="tc-badge">Trilha C · Módulo 3</span>
+  <span class="tc-ey">Para quem prioriza saúde e disposição</span>
+  <h1 class="tc-h">Energia<br>&amp; Leveza</h1>
+  <p class="tc-sub">Plano anti-inflamatório 3 fases · Funcional de baixo impacto · 2 receitas curativas</p>
+</div>
+
+<!-- ALIMENTAÇÃO -->
+<div class="pb">
+  <div class="phase-bar"><span class="pn">FASE 1 — Reset</span><span class="pr">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> eliminar alimentos pró-inflamatórios (açúcar, ultraprocessados, álcool, trigo em excesso), melhorar sono e criar rotina de movimento. Resultado esperado: deflação e mais energia — a balança vem depois.</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Todo dia</th><th>Variações / opções</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café · 7–8h</span></td><td>2 ovos + fruta anti-inf. (mamão, abacaxi, manga) + chá verde ou café s/açúcar</td><td>Omelete de espinafre / vitamina de frutas vermelhas com leite de coco</td></tr>
+      <tr><td><span class="meal-tag">Manhã · 10h</span></td><td>1 fruta + 10 amêndoas ou nozes</td><td>Iogurte grego natural + 1 col. chia</td></tr>
+      <tr><td><span class="meal-tag">Almoço · 12–13h</span></td><td>Proteína magra (150g) + arroz integral ou quinoa (3 col.) + folhas à vontade + azeite + limão</td><td>Substitua arroz por batata doce ou inhame. Evite pão branco e arroz branco.</td></tr>
+      <tr><td><span class="meal-tag">Tarde · 15–16h</span></td><td>Chá de cúrcuma + gengibre (anti-inflamatório) + 1 fruta pequena</td><td>Suco verde (limão + couve + água de coco + gengibre) — sem açúcar</td></tr>
+      <tr><td><span class="meal-tag">Jantar · 18–19h</span></td><td>Sopa de legumes caseira OU peixe + legumes no vapor. Refeição leve, sem carb pesado.</td><td>Omelete de legumes / frango desfiado com caldo de cúrcuma</td></tr>
+      <tr><td><span class="meal-tag">Noite · 21h</span></td><td>Chá de camomila ou melissa (reduz cortisol, auxilia sono)</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">FASE 2 — Ativação</span><span class="pr">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> adicionar treinos funcionais 3×/semana + jejum leve de 12h (jantar às 19h, café às 7h).</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Dias de Treino (3×/sem)</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café · 7h</span></td><td>Vitamina: leite vegetal + colágeno hidrolisado (1 scoop) + fruta vermelha + 1 col. aveia</td><td>Omelete 2 ovos + abacate</td></tr>
+      <tr><td><span class="meal-tag">Almoço</span></td><td>Proteína 180g + carboidrato moderado + legumes</td><td>Idem</td></tr>
+      <tr><td><span class="meal-tag">Tarde</span></td><td>Banana + pasta de amendoim (1 col.) — pré-treino</td><td>Fruta + castanhas</td></tr>
+      <tr><td><span class="meal-tag">Jantar · 19h</span></td><td>Proteína leve + legumes + caldos. Sem carb pesado.</td><td>Idem</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">FASE 3 — Fluxo</span><span class="pr">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> Lifestyle integration — não é dieta, é forma de comer. 4 treinos/semana. 1 dia de refeição livre por semana (sem culpa — parte do protocolo).</div>
+  <table>
+    <thead><tr><th>Tipo de dia</th><th>Almoço</th><th>Jantar</th><th>Obs.</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dia normal (5×/sem)</strong></td><td>Refeição anti-inflamatória completa</td><td>Leve, sem carb pesado</td><td>Treino antes ou depois do almoço</td></tr>
+      <tr><td><strong>Dia livre (1×/sem)</strong></td><td>Sua escolha</td><td>Sua escolha</td><td>Sem culpa — é parte do protocolo</td></tr>
+      <tr><td><strong>Dia de recuperação (1×/sem)</strong></td><td>Sopa ou frango com legumes</td><td>Caldos ou omelete</td><td>Após o dia livre, volte suave</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TREINOS -->
+<div class="pb">
+  <span class="eyebrow">Trilha C — Treinos</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:2mm">Movimento que dá energia,<br>não cansaço</h2>
+  <div class="info-box">Trilha C prioriza <strong>consistência sobre intensidade</strong>. Os treinos são funcionais, de baixo impacto e podem ser feitos em qualquer espaço. A meta não é exaustão — é sentir o corpo melhorando a cada semana.</div>
+
+  <div class="phase-bar"><span class="pn">Fase 1 — Movimento diário (sem treino formal)</span><span class="pr">Semanas 1–4</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Caminhada 30min</span></div>
+    <div class="wd active"><span class="dy">Ter</span><span class="ac">Yoga 20min</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Caminhada 35min</span></div>
+    <div class="wd active"><span class="dy">Qui</span><span class="ac">Alongamento 15min</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Caminhada 40min</span></div>
+    <div class="wd active"><span class="dy">Sáb</span><span class="ac">Atividade livre</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <p style="font-size:7pt;color:var(--muted);margin-bottom:4mm">Yoga sugerido: Yoga With Adriene no YouTube — séries "30 Days of Yoga" ou "Yoga for Beginners". Gratuito, guiado, sem equipamento.</p>
+
+  <div class="phase-bar"><span class="pn">Fase 2 — Funcional 3×/semana</span><span class="pr">Semanas 5–8</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Funcional A</span></div>
+    <div class="wd active"><span class="dy">Ter</span><span class="ac">Caminhada</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Funcional B</span></div>
+    <div class="wd active"><span class="dy">Qui</span><span class="ac">Yoga</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Funcional C</span></div>
+    <div class="wd active"><span class="dy">Sáb</span><span class="ac">Caminhada</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <table>
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--tc-soft);font-weight:700;font-size:6.5pt;color:var(--tc)">FUNCIONAL A — Mobilidade + Força leve</td></tr>
+      <tr><td><strong>Agachamento com pausa</strong></td><td style="font-size:6pt;color:var(--muted)">Pernas, glúteos</td><td><strong style="color:var(--tc)">3 × 12</strong></td><td>60s</td><td>Desce devagar (3s), pausa 2s no fundo, sobe suave. Foco na respiração.</td></tr>
+      <tr><td><strong>Elevação pélvica com faixa</strong></td><td style="font-size:6pt;color:var(--muted)">Glúteos, adutores</td><td><strong style="color:var(--tc)">3 × 15</strong></td><td>60s</td><td>Faixa de resistência acima dos joelhos. Abra os joelhos contra a faixa no topo.</td></tr>
+      <tr><td><strong>Gato-camelo</strong></td><td style="font-size:6pt;color:var(--muted)">Coluna, core</td><td><strong style="color:var(--tc)">2 × 10</strong></td><td>30s</td><td>De quatro. Arqueie para cima (gato) e depois para baixo (camelo). Lento e respirando.</td></tr>
+      <tr><td colspan="5" style="background:var(--tc-soft);font-weight:700;font-size:6.5pt;color:var(--tc)">FUNCIONAL B — Leveza + Cardio suave</td></tr>
+      <tr><td><strong>Marcha estacionária elevada</strong></td><td style="font-size:6pt;color:var(--muted)">Core, cardio leve</td><td><strong style="color:var(--tc)">3 × 45s</strong></td><td>30s</td><td>Eleve joelhos ao nível do quadril, alternando. Braços acompanham. Suave.</td></tr>
+      <tr><td><strong>Flexão de parede</strong></td><td style="font-size:6pt;color:var(--muted)">Peitoral, ombros</td><td><strong style="color:var(--tc)">3 × 15</strong></td><td>45s</td><td>Mãos na parede. Incline e empurre. Versão de baixo impacto da flexão.</td></tr>
+      <tr><td><strong>Respiração diafragmática</strong></td><td style="font-size:6pt;color:var(--muted)">Core profundo, estresse</td><td><strong style="color:var(--tc)">5 min</strong></td><td>—</td><td>Deitada, mão no abdômen. Inspire 4s pelo nariz (barriga sobe), expire 6s pela boca.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RECEITAS -->
+<div>
+  <span class="eyebrow">Trilha C — Receitas</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:4mm">2 receitas<br>anti-inflamatórias</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Café da manhã · Todas as fases</span>
+      <h3>Vitamina Dourada Anti-inflamatória</h3>
+      <div class="rmeta"><span>⏱ 5 min</span><span>1 porção</span><span>Sem glúten e lactose</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>200ml leite de coco ou amêndoa</li>
+          <li>½ banana congelada</li>
+          <li>1 col. chá cúrcuma em pó</li>
+          <li>½ col. chá gengibre fresco ralado</li>
+          <li>Pitada de pimenta-do-reino</li>
+          <li>1 col. sopa mel (opcional)</li>
+          <li>Gelo a gosto</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Bata tudo no liquidificador 30 segundos.</li>
+          <li>Sirva gelada ou aquecida (golden milk).</li>
+          <li>Versão quente: esquente o leite, dissolva a cúrcuma, adicione mel.</li>
+          <li>A pimenta é essencial — aumenta absorção da curcumina em até 2000%.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">3g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">24g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">12g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~210</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Jantar · Todas as fases</span>
+      <h3>Sopa de Cúrcuma com Frango Desfiado</h3>
+      <div class="rmeta"><span>⏱ 30 min</span><span>3 porções</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>300g peito de frango (cozido e desfiado)</li>
+          <li>1 cenoura em rodelas</li>
+          <li>1 abobrinha em cubos</li>
+          <li>½ cebola picada</li>
+          <li>2 dentes de alho</li>
+          <li>1 col. chá cúrcuma</li>
+          <li>Sal, pimenta, coentro e azeite</li>
+          <li>1L água ou caldo de frango caseiro</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Refogue cebola e alho no azeite.</li>
+          <li>Adicione cenoura, abobrinha e cúrcuma. Misture.</li>
+          <li>Adicione água ou caldo. Cozinhe 20 min fogo médio.</li>
+          <li>Adicione o frango desfiado e ajuste o sal.</li>
+          <li>Finalize com coentro fresco. Sirva quente.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">32g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">12g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">8g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~245</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

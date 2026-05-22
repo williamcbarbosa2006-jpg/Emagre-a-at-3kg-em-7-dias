@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 4 — Ferramentas: Medidas e Suplementação</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:58mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm;border-radius:0 0 10px 10px}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(201,151,58,.2) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(122,158,126,.15) 0%,transparent 50%)}
+.mod-num{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3mm;position:relative;z-index:1}
+.mod-title{font-size:20pt;font-weight:700;color:#fff;line-height:1.05;position:relative;z-index:1}
+.mod-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mod-sub{font-size:8pt;color:rgba(250,248,245,.62);margin-top:2mm;position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:5mm}
+thead th{background:var(--dark-green);color:#fff;padding:4px 6px;font-weight:600;text-align:left;font-size:6.5pt}
+tbody tr:nth-child(even){background:var(--off-white)}
+tbody td{padding:4px 6px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+td:first-child{font-weight:600;color:var(--dark-green)}
+.suppl-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5mm}
+.sc{background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 10px}
+.sc .sn{font-size:8pt;font-weight:700;color:var(--dark-green);display:block;margin-bottom:2px}
+.sc .sd{font-size:6.5pt;color:var(--gold);font-weight:700;display:block;margin-bottom:3px}
+.sc .sb{font-size:6.5pt;color:var(--muted);line-height:1.45}
+.suppl-note{background:rgba(180,40,40,.05);border:1px solid rgba(180,40,40,.15);border-radius:6px;padding:8px 12px;font-size:7.5pt;color:#6b2020;margin-top:4mm}
+.suppl-note strong{color:#6b2020}
+.tracking-week{margin-bottom:4mm}
+.tw-label{font-size:6.5pt;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px;display:block}
+.tw-row{display:flex;gap:3px}
+.tw-day{flex:1;background:var(--off-white);border:1px solid var(--border);border-radius:3px;height:22px;display:flex;align-items:center;justify-content:center;font-size:5.5pt;font-weight:700;color:var(--muted);text-transform:uppercase}
+.tw-day.t{border-color:var(--accent);color:var(--accent-dark)}
+</style>
+</head>
+<body>
+
+<div class="mod-cover pb">
+  <span class="mod-num">Desafio 90 Dias · Módulo 4 de 5</span>
+  <h1 class="mod-title">Ferramentas<br><em>do Desafio</em></h1>
+  <p class="mod-sub">Tabela de medidas e evolução semanal · Registro de treinos · Guia completo de suplementação</p>
+</div>
+
+<!-- TABELA DE MEDIDAS -->
+<div class="pb">
+  <span class="eyebrow">Controle de evolução</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:2mm">Tabela de Medidas<br>&amp; Progresso</h2>
+  <div class="phase-note">Registre sempre no mesmo horário (manhã em jejum), com a mesma fita, na mesma posição. Peça alguém para medir o quadril e as costas — você mesmo não consegue medir com precisão. Foto mensal no mesmo ângulo e luz.</div>
+
+  <table>
+    <thead><tr><th>Semana / Marco</th><th>Data</th><th>Peso (kg)</th><th>Cintura</th><th>Quadril</th><th>Abdômen</th><th>Coxa</th><th>Braço</th></tr></thead>
+    <tbody>
+      <tr><td>S1 — Dia 1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S2 — Dia 7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S3 — Dia 14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S4 — Dia 21</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td style="color:var(--gold);font-weight:700">★ Fase 1 Final — Dia 30</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S6 — Dia 35</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S8 — Dia 49</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td style="color:var(--gold);font-weight:700">★ Fase 2 Final — Dia 60</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S10 — Dia 63</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>S12 — Dia 77</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td style="color:var(--accent-dark);font-weight:700">✓ DIA 90 — RESULTADO FINAL</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <span class="eyebrow">Registro de treinos</span>
+  <h3 style="font-size:11pt;color:var(--dark-green);margin-bottom:3mm">Consistência semanal</h3>
+  <table>
+    <thead><tr><th>Semana</th><th style="width:38%">Treinos realizados</th><th>Energia (1–5)</th><th>Observação / Evolução</th></tr></thead>
+    <tbody>
+      <tr><td>S1</td><td style="letter-spacing:4px;font-size:9pt;font-weight:400">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>S2</td><td style="letter-spacing:4px;font-size:9pt;font-weight:400">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>S3</td><td style="letter-spacing:4px;font-size:9pt;font-weight:400">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>S4</td><td style="letter-spacing:4px;font-size:9pt;font-weight:400">☐ ☐ ☐ ☐ ☐</td><td></td><td></td></tr>
+      <tr><td>S5–S8</td><td style="font-size:7pt;font-weight:400;color:var(--muted)">Repita o formato acima para cada semana</td><td></td><td></td></tr>
+      <tr><td>S9–S13</td><td style="font-size:7pt;font-weight:400;color:var(--muted)">Fase 3 — registre intensidade também</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SUPLEMENTAÇÃO -->
+<div>
+  <span class="eyebrow">Guia de suplementação</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:2mm">O que funciona,<br>o que é mito</h2>
+  <p style="font-size:7.5pt;color:var(--muted);margin-bottom:4mm">Nenhum suplemento abaixo é obrigatório. Eles otimizam o que treino e alimentação já constroem. Consulte seu médico antes de iniciar qualquer suplementação.</p>
+
+  <div class="suppl-grid">
+    <div class="sc">
+      <span class="sn">Proteína Whey</span>
+      <span class="sd">20–30g pós-treino ou no café</span>
+      <span class="sb">Indicado: Trilhas A e B. Facilita atingir a meta proteica diária sem excesso de calorias. Whey isolado é mais fácil de digerir.</span>
+    </div>
+    <div class="sc">
+      <span class="sn">Colágeno Hidrolisado</span>
+      <span class="sd">10g pela manhã em jejum</span>
+      <span class="sb">Indicado: Trilha C principalmente. Apoia articulações, pele e tendões. Mais relevante após os 35 anos. Dissolva em água morna com limão.</span>
+    </div>
+    <div class="sc">
+      <span class="sn">Creatina Monohidratada</span>
+      <span class="sd">3–5g/dia (qualquer horário)</span>
+      <span class="sb">Indicado: Trilha B. Aumenta força e retém volume muscular. Ganho de peso inicial é água intramuscular — positivo.</span>
+    </div>
+    <div class="sc">
+      <span class="sn">Magnésio Glicinato</span>
+      <span class="sd">300–400mg antes de dormir</span>
+      <span class="sb">Indicado: todas as trilhas. Melhora sono, reduz inflamação e cãibras. Glicinato é mais absorvido que o óxido — evite óxido.</span>
+    </div>
+    <div class="sc">
+      <span class="sn">Vitamina D3 + K2</span>
+      <span class="sd">2000–5000UI com refeição gordurosa</span>
+      <span class="sb">Indicado: todas as trilhas. A maioria das brasileiras tem deficiência. Impacta humor, imunidade e metabolismo. Sempre com K2.</span>
+    </div>
+    <div class="sc">
+      <span class="sn">Ômega-3 (DHA/EPA)</span>
+      <span class="sd">2–3g/dia com refeição</span>
+      <span class="sb">Indicado: Trilha C especialmente. Anti-inflamatório potente. Reduz cortisol. Prefira de peixe de água fria (sardinha, salmão).</span>
+    </div>
+  </div>
+
+  <div class="suppl-note">
+    <strong>O que NÃO vale a pena:</strong> Termogênicos agressivos, fat burners, diuréticos, shakes industrializados com longa lista de ingredientes. O mecanismo da maioria é: elevar cortisol e frequência cardíaca. O resultado a longo prazo é comprovadamente inferior à mudança alimentar sustentável.
+  </div>
+
+  <table style="margin-top:4mm">
+    <thead><tr><th>Suplemento</th><th>Trilha A</th><th>Trilha B</th><th>Trilha C</th><th>Prioridade</th></tr></thead>
+    <tbody>
+      <tr><td>Whey Protein</td><td>✓ Recomendado</td><td>✓ Essencial</td><td>Opcional</td><td>Alta</td></tr>
+      <tr><td>Colágeno Hidrolisado</td><td>Opcional</td><td>Opcional</td><td>✓ Recomendado</td><td>Média</td></tr>
+      <tr><td>Creatina</td><td>Opcional</td><td>✓ Essencial</td><td>Não necessário</td><td>Alta (Trilha B)</td></tr>
+      <tr><td>Magnésio Glicinato</td><td>✓ Recomendado</td><td>✓ Recomendado</td><td>✓ Recomendado</td><td>Alta</td></tr>
+      <tr><td>Vitamina D3 + K2</td><td>✓ Recomendado</td><td>✓ Recomendado</td><td>✓ Recomendado</td><td>Alta</td></tr>
+      <tr><td>Ômega-3</td><td>✓ Recomendado</td><td>Opcional</td><td>✓ Essencial</td><td>Alta</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

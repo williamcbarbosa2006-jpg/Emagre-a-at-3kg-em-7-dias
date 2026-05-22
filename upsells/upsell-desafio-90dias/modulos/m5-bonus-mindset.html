@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 5 — Bônus: Como não desistir no Dia 31</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:20mm 14mm 14mm;position:relative;overflow:hidden;margin:-13mm -14mm 0}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,151,58,.2) 0%,transparent 65%)}
+.gold-bar{position:absolute;top:0;left:0;right:0;height:2mm;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold))}
+.cover-badge{display:inline-block;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1a1a;font-size:5.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8mm;position:relative;z-index:1}
+.cover-h1{font-size:24pt;font-weight:700;color:#fff;line-height:1.08;position:relative;z-index:1;margin-bottom:4mm}
+.cover-h1 em{display:block;font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cover-sub{font-size:9pt;color:rgba(250,248,245,.65);line-height:1.65;position:relative;z-index:1;max-width:88%}
+.cover-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,151,58,.5),transparent);margin:10mm 0;position:relative;z-index:1}
+.cover-footer{position:relative;z-index:1;display:flex;justify-content:space-between}
+.cover-footer span{font-size:6pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:2mm;display:block}
+.mindset-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4mm 0}
+.mc{background:var(--dark-green);color:#fff;border-radius:8px;padding:10px 12px}
+.mc .mc-day{font-size:5.5pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3px}
+.mc h3{font-size:9pt;color:#fff;margin-bottom:4px}
+.mc p{font-size:7pt;color:rgba(255,255,255,.72);line-height:1.55;margin:0}
+.quote-box{background:var(--off-white);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:5mm 0;text-align:center}
+.quote-box .qt{font-size:10pt;font-family:'Playfair Display',serif;font-style:italic;color:var(--dark-green);line-height:1.5;display:block;margin-bottom:4px}
+.quote-box .qa{font-size:6.5pt;color:var(--muted)}
+.tool-table{width:100%;border-collapse:collapse;font-size:7.5pt;margin-bottom:5mm}
+.tool-table thead th{background:var(--dark-green);color:#fff;padding:4px 8px;font-size:6.5pt;text-align:left}
+.tool-table tbody td{padding:5px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.tool-table tbody tr:nth-child(even) td{background:var(--off-white)}
+.tool-table td:first-child{font-weight:700;color:var(--dark-green);width:28%}
+.tool-table td:last-child{font-size:7pt;color:var(--muted);width:22%}
+.phase-bar{background:var(--dark-green);color:#fff;padding:5px 12px;border-radius:4px;margin:5mm 0 3mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .pn{font-size:7.5pt;font-weight:700}
+.phase-bar .pr{font-size:6.5pt;color:rgba(255,255,255,.6)}
+.danger-zone{background:rgba(180,40,40,.05);border:1px solid rgba(180,40,40,.15);border-radius:6px;padding:8px 12px;margin-bottom:4mm}
+.danger-zone h4{font-size:8pt;font-weight:700;color:#8a2020;margin-bottom:3px}
+.danger-zone p{font-size:7.5pt;color:#6b1818;line-height:1.5;margin:0}
+.final-page{background:var(--dark-green);min-height:60mm;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12mm 14mm;position:relative;overflow:hidden;margin:6mm -14mm -13mm;border-radius:10px 10px 0 0}
+.final-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,151,58,.15) 0%,transparent 60%)}
+.final-page h2{font-size:20pt;color:#fff;margin-bottom:4mm;position:relative;z-index:1}
+.final-page h2 em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final-page p{font-size:8pt;color:rgba(255,255,255,.68);max-width:85%;margin:0 auto;line-height:1.65;position:relative;z-index:1}
+</style>
+</head>
+<body>
+
+<!-- CAPA BÔNUS -->
+<div class="mod-cover pb">
+  <div class="gold-bar"></div>
+  <div>
+    <span class="cover-badge">Bônus Exclusivo · Módulo 5</span>
+    <h1 class="cover-h1">Como não<br>desistir<br><em>no Dia 31</em></h1>
+    <p class="cover-sub">O maior inimigo dos 90 dias não é a comida — é a semana 4. Sabe por quê? A motivação inicial foi embora e o resultado ainda não apareceu no espelho. É o Vale do Desânimo. Todo mundo passa. Poucas pessoas sabem que tem saída.</p>
+    <div class="cover-divider"></div>
+    <p style="font-size:8pt;color:rgba(250,248,245,.5);position:relative;z-index:1">Este módulo não é opcional. Leia antes de começar — e volte aqui quando quiser desistir.</p>
+  </div>
+  <div class="cover-footer">
+    <span>Desafio 90 Dias</span>
+    <span>Bônus Mindset</span>
+  </div>
+</div>
+
+<!-- AS FASES DO DESÂNIMO -->
+<div class="pb">
+  <span class="eyebrow">A jornada emocional do desafio</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:2mm">O que acontece<br>com a sua cabeça</h2>
+  <p style="font-size:7.5pt;color:var(--muted);margin-bottom:3mm">Cada etapa abaixo é previsível. Quando você sabe o que vem, não te pega de surpresa.</p>
+
+  <div class="mindset-grid">
+    <div class="mc">
+      <span class="mc-day">Dias 1–7</span>
+      <h3>Euforia Inicial</h3>
+      <p>Motivação nas alturas. Tudo parece possível. Cuidado: não exagere no início. Burnout precoce é causa #1 de desistência. Faça menos do que acha que aguenta — e seja consistente.</p>
+    </div>
+    <div class="mc">
+      <span class="mc-day">Dias 8–14</span>
+      <h3>Primeiros resultados</h3>
+      <p>O corpo responde rápido à mudança — deflação, mais energia, sono melhor. Isso recarrega a motivação. Aproveite para criar as rotinas que vão te sustentar quando a motivação cair.</p>
+    </div>
+    <div class="mc">
+      <span class="mc-day">Dias 14–21</span>
+      <h3>Primeira crise</h3>
+      <p>O novelty effect acabou. O corpo está se adaptando e o progresso parece lento. É hora de confiar no processo, não na motivação. Ferramenta: escreva por que começou. Releia toda vez que quiser desistir.</p>
+    </div>
+    <div class="mc">
+      <span class="mc-day">Dias 28–35</span>
+      <h3>O Vale do Dia 31</h3>
+      <p>A maioria desiste aqui. Metabólica e psicologicamente é o ponto mais difícil. A solução não é força de vontade — é reduzir a fricção. Deixe a roupa de treino separada. Tenha a comida pronta. Torne impossível não fazer.</p>
+    </div>
+    <div class="mc">
+      <span class="mc-day">Dias 45–60</span>
+      <h3>A virada</h3>
+      <p>Se chegou aqui, o hábito está instalado. O esforço percebido cai. O corpo começa a sentir falta do treino quando não faz. Você virou outra pessoa — uma que cuida de si, não uma que "está tentando".</p>
+    </div>
+    <div class="mc">
+      <span class="mc-day">Dias 60–90</span>
+      <h3>Novo patamar</h3>
+      <p>Os resultados são visíveis. O protocolo virou rotina. O desafio agora é não relaxar por excesso de confiança. Continue registrando. Continue medindo. A foto do Dia 90 vai ser a sua prova favorita.</p>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    <span class="qt">"A motivação te leva para a academia. O hábito te mantém lá quando você não quer ir."</span>
+    <span class="qa">— James Clear, Hábitos Atômicos</span>
+  </div>
+</div>
+
+<!-- FERRAMENTAS ANTIDESISTÊNCIA -->
+<div>
+  <span class="eyebrow">Ferramentas práticas</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:3mm">O que fazer<br>quando quiser desistir</h2>
+
+  <table class="tool-table">
+    <thead><tr><th>Ferramenta</th><th>Como usar</th><th>Quando usar</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Regra dos 2 minutos</td>
+        <td>Se não quer treinar, comprometa-se com apenas 2 minutos. Após 2 min, 90% das pessoas continuam. O início é o obstáculo.</td>
+        <td>Dias de desmotivação total</td>
+      </tr>
+      <tr>
+        <td>Foto de progresso</td>
+        <td>Mesmo ângulo, mesma luz, mesma roupa. Compare a cada 30 dias. A balança mente — a foto não.</td>
+        <td>Quando acha que "não mudou nada"</td>
+      </tr>
+      <tr>
+        <td>Parceria de accountability</td>
+        <td>1 pessoa que sabe do seu desafio e te pergunta toda semana. Pode ser virtual (grupo, amiga online). Vergonha social funciona.</td>
+        <td>Dias 14–35 (vale do desânimo)</td>
+      </tr>
+      <tr>
+        <td>Recompensa não-alimentar</td>
+        <td>Defina uma recompensa para o Dia 30, 60 e 90 (spa, roupa nova, viagem). Âncora motivacional concreta.</td>
+        <td>Como combustível de longo prazo</td>
+      </tr>
+      <tr>
+        <td>Diário de 30 segundos</td>
+        <td>Uma linha por dia antes de dormir: o que fez, energia (1–5), o que saiu do plano. Sem julgamento — só registro.</td>
+        <td>Todo dia, antes de dormir</td>
+      </tr>
+      <tr>
+        <td>A lista do "por que comecei"</td>
+        <td>Escreva agora, no campo abaixo, os 3 motivos reais pelos quais você iniciou este desafio. Volte aqui no Dia 31.</td>
+        <td>Dia 1 — e toda vez que vacilar</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:5mm">
+    <p style="font-size:7pt;font-weight:700;color:var(--dark-green);margin-bottom:8mm">Por que eu comecei este desafio (escreva agora):</p>
+    <div style="border-bottom:1px solid var(--border);margin-bottom:8mm;height:14px"></div>
+    <div style="border-bottom:1px solid var(--border);margin-bottom:8mm;height:14px"></div>
+    <div style="border-bottom:1px solid var(--border);height:14px"></div>
+  </div>
+
+  <div class="danger-zone">
+    <h4>Sinal de alarme — quando pedir ajuda</h4>
+    <p>Se após o Dia 31 você sentir: culpa intensa após qualquer refeição, restrição alimentar extrema, pesagem diária compulsiva, ou ansiedade severa relacionada à comida — pare o protocolo e procure um nutricionista ou psicólogo. Resultado físico nenhum vale a saúde mental.</p>
+  </div>
+
+  <div class="final-page">
+    <h2>Você chegou.<br><em>Agora vai.</em></h2>
+    <p>90 dias parecem muito. Mas são 90 vezes de uma única decisão: vou fazer isso hoje. Você não precisa de motivação perfeita — precisa de um sistema. E você tem um agora.</p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 1 — Plano Alimentar 30 Dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:58mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(201,151,58,.2) 0%,transparent 55%)}
+.mod-num{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3mm;position:relative;z-index:1}
+.mod-title{font-size:22pt;font-weight:700;color:#fff;line-height:1.05;position:relative;z-index:1}
+.mod-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mod-sub{font-size:8pt;color:rgba(250,248,245,.62);margin-top:2mm;position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.info-box{background:var(--accent-soft);border-radius:8px;padding:4mm 6mm;border-left:4px solid var(--accent);margin-bottom:5mm}
+.info-box.gold{background:rgba(201,151,58,.08);border-left-color:var(--gold)}
+.info-title{font-weight:700;font-size:8pt;color:var(--dark-green);margin-bottom:2mm}
+.info-list{list-style:none;padding:0}
+.info-list li{font-size:7.5pt;color:var(--text);padding:2px 0;display:flex;gap:6px}
+.info-list li::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0}
+.info-box.gold .info-list li::before{color:var(--gold)}
+.week-label{background:var(--accent-soft);border-left:4px solid var(--accent);padding:4px 10px;border-radius:0 6px 6px 0;font-size:7pt;font-weight:700;color:var(--dark-green);margin-bottom:3mm;display:inline-block}
+.week-label.gold{background:rgba(201,151,58,.1);border-color:var(--gold);color:var(--gold)}
+.week-label.s3{background:rgba(93,127,97,.12);border-color:var(--accent-dark);color:var(--accent-dark)}
+.week-label.s4{background:rgba(37,56,40,.08);border-color:var(--dark-green);color:var(--dark-green)}
+table.mt{width:100%;border-collapse:collapse;font-size:6.6pt;margin-bottom:5mm}
+table.mt thead th{background:var(--dark-green);color:rgba(255,255,255,.9);padding:4px 5px;font-weight:600;font-size:6pt;text-align:left}
+table.mt thead th:first-child{width:12%}
+table.mt tbody td{padding:3.5px 5px;border:1px solid var(--border);vertical-align:top;line-height:1.42}
+table.mt tbody tr:nth-child(even) td{background:var(--off-white)}
+.dc{font-weight:700;color:var(--dark-green);font-size:6.5pt}
+.mn{font-size:6pt;color:var(--muted);font-style:italic;margin-bottom:3mm;padding:2px 8px;border-left:2px solid var(--accent-soft)}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6mm}
+.rule-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 10px}
+.rule-card .rn{font-size:16pt;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;line-height:1}
+.rule-card .rt{font-size:7.5pt;font-weight:700;color:var(--dark-green);margin:2px 0}
+.rule-card .rb{font-size:7pt;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+
+<!-- CAPA DO MÓDULO -->
+<div class="mod-cover pb">
+  <span class="mod-num">Protocolo 30 Dias · Módulo 1 de 4</span>
+  <h1 class="mod-title">Plano<br><em>Alimentar</em></h1>
+  <p class="mod-sub">Cardápio rotativo de 4 semanas com refeições reais, progressão de fase e protocolo de finais de semana</p>
+</div>
+
+<!-- COMO USAR -->
+<div class="pb">
+  <span class="eyebrow">Antes de começar</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:4mm">Como usar<br>este plano</h2>
+
+  <div class="info-box" style="margin-bottom:4mm">
+    <div class="info-title">A lógica das 4 semanas</div>
+    <p style="font-size:7.5pt;color:var(--text);line-height:1.6">Cada semana tem um objetivo metabólico diferente. Não pule etapas — a Semana 4 só funciona porque a Semana 1 foi feita. O corpo precisa ser preparado antes de ser acelerado.</p>
+  </div>
+
+  <div class="rules-grid">
+    <div class="rule-card">
+      <div class="rn">01</div>
+      <div class="rt">Siga a sequência</div>
+      <div class="rb">Semana 1 → 2 → 3 → 4. Não antecipe fases. A progressão é o protocolo.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rn">02</div>
+      <div class="rt">Substitua com critério</div>
+      <div class="rb">Frango ↔ peixe ↔ ovo: ok. Arroz integral ↔ batata doce: ok. Açúcar e farinha branca: não.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rn">03</div>
+      <div class="rt">Hidratação é parte</div>
+      <div class="rb">2L de água por dia, mínimo. Comece o dia com 1 copo antes do café. Chá sem açúcar conta.</div>
+    </div>
+    <div class="rule-card">
+      <div class="rn">04</div>
+      <div class="rt">Fome entre refeições</div>
+      <div class="rb">Se sentir fome real entre as refeições, adicione 10 amêndoas ou 1 fruta pequena. Não passe fome.</div>
+    </div>
+  </div>
+
+  <div class="info-box gold">
+    <div class="info-title">O que cada semana faz</div>
+    <ul class="info-list">
+      <li><strong>S1 — Consolidação:</strong> estabiliza insulina, elimina picos de açúcar, reduz retenção</li>
+      <li><strong>S2 — Ativação:</strong> introduz variação de macros para evitar adaptação metabólica</li>
+      <li><strong>S3 — Aceleração:</strong> redução controlada de carboidratos no jantar, começa desinchar</li>
+      <li><strong>S4 — Transformação:</strong> método do prato + maior flexibilidade, prepara manutenção</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SEMANA 1 -->
+<div class="pb">
+  <span class="week-label">Semana 1 — Consolidação</span>
+  <p class="mn">Objetivo: estabilizar insulina e criar o hábito das 5 refeições. Evite farinha branca, açúcar e ultraprocessados. Carboidratos complexos em todas as refeições principais.</p>
+  <table class="mt">
+    <thead>
+      <tr><th>Refeição</th><th>Seg / Qua / Sex</th><th>Ter / Qui</th><th>Sáb / Dom</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="dc">Café da manhã<br>7h</td><td>2 ovos mexidos + 1 fatia pão integral + café sem açúcar</td><td>Iogurte grego natural (170g) + 1 col. sopa granola s/açúcar + 1 fruta</td><td>Omelete 3 ovos + queijo branco + suco verde (couve + limão + água)</td></tr>
+      <tr><td class="dc">Lanche da manhã<br>10h</td><td>1 banana pequena + 10 amêndoas</td><td>1 maçã ou pera + 1 fatia queijo branco</td><td>Vitamina: leite vegetal (200ml) + ½ banana + 1 col. aveia</td></tr>
+      <tr><td class="dc">Almoço<br>13h</td><td>150g frango grelhado + arroz integral (4 col.) + feijão (2 col.) + salada de folhas à vontade + azeite</td><td>150g peixe ao forno + batata doce (120g cozida) + brócolis refogado + azeite</td><td>Refeição livre — evite fritos e bebida alcoólica. Coma devagar.</td></tr>
+      <tr><td class="dc">Lanche da tarde<br>16h</td><td>Iogurte grego natural + 1 col. chá de linhaça</td><td>1 punhado de castanhas (30g) + 1 fruta pequena</td><td>Fruta + iogurte ou castanhas</td></tr>
+      <tr><td class="dc">Jantar<br>19–20h</td><td>Omelete 3 ovos + legumes refogados (abobrinha, cenoura, espinafre) + caldo de legumes opcional</td><td>150g peixe ou frango + salada grande + 1 col. azeite + limão. Sem carb pesado.</td><td>Sopa de legumes com frango desfiado ou jantar leve simples</td></tr>
+    </tbody>
+  </table>
+  <div class="phase-note"><strong>Dica da semana:</strong> prepare o almoço de segunda e terça juntos no domingo. Grelhe o frango e cozinhe o arroz para os dois dias. Isso elimina a desculpa da "falta de tempo" nos dias de semana.</div>
+</div>
+
+<!-- SEMANA 2 -->
+<div class="pb">
+  <span class="week-label">Semana 2 — Ativação</span>
+  <p class="mn">Objetivo: variar fontes de proteína e carboidratos para ativar o metabolismo. Introdução de 1 refeição com janela reduzida (café às 8h, jantar até 19h).</p>
+  <table class="mt">
+    <thead>
+      <tr><th>Refeição</th><th>Seg / Qua / Sex ★</th><th>Ter / Qui</th><th>Sáb / Dom</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="dc">Café da manhã<br>7–8h</td><td>Omelete 2 ovos + ½ abacate + café ou chá verde</td><td>2 ovos cozidos + 1 fatia pão integral + 1 fruta vermelha (½ xíc.)</td><td>Panqueca de banana e aveia (1 banana + 2 ovos + 3 col. aveia) + canela</td></tr>
+      <tr><td class="dc">Lanche<br>10h</td><td>1 col. pasta de amendoim + 1 maçã</td><td>Iogurte grego + frutas vermelhas (½ xíc.)</td><td>Mix de oleaginosas (30g)</td></tr>
+      <tr><td class="dc">Almoço<br>13h</td><td>180g frango ou carne magra + quinoa (3 col.) + feijão preto (2 col.) + salada de folhas + azeite</td><td>150g atum ou sardinha + arroz integral (4 col.) + legumes cozidos</td><td>Refeição livre moderada</td></tr>
+      <tr><td class="dc">Lanche<br>16h</td><td>Shake: 200ml leite vegetal + 1 scoop whey (ou 2 col. iogurte grego) + ½ banana</td><td>1 fatia pão integral + queijo cottage + tomate</td><td>Fruta + 10 castanhas</td></tr>
+      <tr><td class="dc">Jantar ★<br>até 19h</td><td>Salada grande + 120g proteína magra (ovo, frango, atum) + azeite. <em>Sem carboidrato neste jantar.</em></td><td>Sopa de legumes com frango + 1 fatia pão integral</td><td>Refeição leve à vontade</td></tr>
+    </tbody>
+  </table>
+  <div class="phase-note"><strong>★ Dias de janela:</strong> nos dias Seg/Qua/Sex, tente jantar até 19h e só voltar a comer às 7h do dia seguinte — são 12h de descanso digestivo. Se sentir tontura, inclua 1 fruta às 21h.</div>
+</div>
+
+<!-- SEMANA 3 -->
+<div class="pb">
+  <span class="week-label s3">Semana 3 — Aceleração</span>
+  <p class="mn">Objetivo: reduzir carboidratos no jantar todos os dias. Almoço permanece completo. Aumento de proteína para preservar massa muscular.</p>
+  <table class="mt">
+    <thead>
+      <tr><th>Refeição</th><th>Dias de Treino (3–4×/sem)</th><th>Dias de Descanso</th><th>Sábado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="dc">Café<br>7h</td><td>Shake proteico: 200ml leite vegetal + 30g whey + 1 banana + 1 col. aveia</td><td>2 ovos + ½ abacate + café s/açúcar</td><td>Café reforçado: omelete 3 ovos + fruta + iogurte</td></tr>
+      <tr><td class="dc">Manhã<br>10h</td><td>1 fruta + 10 amêndoas</td><td>Iogurte grego + 1 col. chia</td><td>1 col. pasta amendoim + maçã</td></tr>
+      <tr><td class="dc">Almoço<br>13h</td><td>200g proteína + arroz integral (4 col.) + feijão (2 col.) + salada + azeite. Completo.</td><td>150g proteína + batata doce (100g) + vegetais + azeite</td><td>Refeição livre — 1 exceção/sem aqui, se quiser</td></tr>
+      <tr><td class="dc">Pré-treino<br>16h</td><td>Banana + 10 amendoins ou pasta de amendoim (1 col.)</td><td>Castanhas + fruta pequena</td><td>Fruta ou iogurte</td></tr>
+      <tr><td class="dc">Jantar<br>19h</td><td>200g proteína magra + vegetais refogados à vontade. <strong>Sem arroz, sem pão, sem batata no jantar.</strong></td><td>Omelete 3 ovos + salada + caldo de legumes</td><td>Proteína leve + salada</td></tr>
+    </tbody>
+  </table>
+  <div class="phase-note"><strong>Por que cortar carb só no jantar?</strong> À noite o metabolismo desacelera naturalmente. Carboidrato à noite eleva insulina quando o gasto energético é menor — ele vai para estoque com mais facilidade. No almoço, o carb ainda vai ser usado como energia.</div>
+</div>
+
+<!-- SEMANA 4 -->
+<div class="pb">
+  <span class="week-label s4">Semana 4 — Transformação</span>
+  <p class="mn">Objetivo: método do prato + flexibilidade consciente. Última semana prepara o mindset de manutenção. Sem contar calorias — confiar no julgamento que foi desenvolvido nas 3 semanas anteriores.</p>
+
+  <div class="info-box" style="margin-bottom:4mm">
+    <div class="info-title">O Método do Prato (Semana 4)</div>
+    <p style="font-size:7.5pt;color:var(--text);line-height:1.6">Olhe para o seu prato antes de servir:</p>
+    <ul class="info-list">
+      <li><strong>½ prato:</strong> vegetais e folhas — sem limite</li>
+      <li><strong>¼ prato:</strong> proteína magra (frango, peixe, ovos, carne magra)</li>
+      <li><strong>¼ prato:</strong> carboidrato complexo (arroz integral, batata doce, quinoa)</li>
+      <li>Azeite: 1 fio. Sal: moderado. Sem molhos industrializados.</li>
+    </ul>
+  </div>
+
+  <table class="mt">
+    <thead>
+      <tr><th>Refeição</th><th>Todo dia — Método do Prato</th><th>Variações permitidas</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="dc">Café<br>7h</td><td>Omelete 2–3 ovos + fruta pequena + café s/açúcar</td><td>Iogurte grego + granola s/açúcar + fruta vermelha</td></tr>
+      <tr><td class="dc">Manhã<br>10h</td><td>1 fruta + proteína (iogurte, queijo branco, oleaginosas)</td><td>Shake de proteína + banana</td></tr>
+      <tr><td class="dc">Almoço<br>13h</td><td>Método do prato. Coma devagar. Pare quando estiver satisfeita — não cheia.</td><td>Qualquer proteína + vegetal + carb complexo</td></tr>
+      <tr><td class="dc">Tarde<br>16h</td><td>Lanche leve — fruta, iogurte ou oleaginosas</td><td>Shake opcional se treinou</td></tr>
+      <tr><td class="dc">Jantar<br>19h</td><td>Proteína + vegetais. Opção de ½ porção de carb se tiver treinado.</td><td>Sopa de legumes com proteína — excelente opção</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box gold">
+    <div class="info-title">1 dia de refeição livre por semana</div>
+    <ul class="info-list">
+      <li>Escolha um dia (sugestão: sábado ao almoço)</li>
+      <li>Coma o que quiser — sem culpa, sem compensação depois</li>
+      <li>Não é "trapaça" — é parte do protocolo. Ajuda o metabolismo a não adaptar.</li>
+      <li>No dia seguinte: volte ao plano normalmente, sem exagerar na "recuperação"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROTOCOLO FINS DE SEMANA -->
+<div>
+  <span class="eyebrow">Protocolo especial</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:4mm">Finais de Semana</h2>
+  <p style="font-size:8pt;color:var(--muted);margin-bottom:4mm">Fim de semana é onde a maioria sabota o protocolo. Este guia torna o processo previsível — você sabe exatamente o que fazer em cada situação.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin-bottom:5mm">
+    <div style="background:var(--off-white);border:1px solid var(--border);border-radius:8px;padding:7px 8px">
+      <div style="font-size:6pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px">Sábado</div>
+      <div style="font-weight:700;font-size:7.5pt;color:var(--dark-green);margin-bottom:3px">Dia Moderado</div>
+      <p style="font-size:6.5pt;color:var(--muted);line-height:1.5">Café normal do protocolo. Almoço livre (escolha boa). Jantar leve. Evite beber álcool — se beber, 1 taça de vinho tinto máximo.</p>
+    </div>
+    <div style="background:var(--accent-soft);border:1px solid rgba(122,158,126,.2);border-radius:8px;padding:7px 8px">
+      <div style="font-size:6pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:3px">Domingo</div>
+      <div style="font-weight:700;font-size:7.5pt;color:var(--dark-green);margin-bottom:3px">Dia de Reset</div>
+      <p style="font-size:6.5pt;color:var(--muted);line-height:1.5">Volte ao protocolo completo. Cozinhe o almoço da semana. Prepare os marmiteiros. O domingo organizado salva a semana inteira.</p>
+    </div>
+    <div style="background:var(--dark-green);border-radius:8px;padding:7px 8px">
+      <div style="font-size:6pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px">Restaurante</div>
+      <div style="font-weight:700;font-size:7.5pt;color:rgba(250,248,245,.92);margin-bottom:3px">Como Escolher</div>
+      <p style="font-size:6.5pt;color:rgba(250,248,245,.65);line-height:1.5">Grelhado > frito. Peça o molho separado. Substitua fritas por salada. Uma sobremesa compartilhada está liberado. Coma devagar.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

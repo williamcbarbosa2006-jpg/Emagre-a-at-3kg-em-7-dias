@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 2 — Trilha B: Definição e Tônus</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--tb:#2d4a6a;--tb-soft:rgba(45,74,106,.1);--accent:#7A9E7E;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.track-cover{background:linear-gradient(135deg,#1e2d4a,#2d4a6a);min-height:52mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm;border-radius:0 0 10px 10px}
+.track-cover::before{content:'';position:absolute;inset:0;opacity:.1;background:repeating-linear-gradient(135deg,transparent,transparent 3px,rgba(255,255,255,.05) 3px,rgba(255,255,255,.05) 6px)}
+.tc-badge{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:6pt;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase}
+.tc-ey{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);margin-bottom:3px;display:block;position:relative;z-index:1}
+.tc-h{font-size:20pt;color:#fff;font-weight:700;line-height:1.1;margin-bottom:4px;position:relative;z-index:1}
+.tc-sub{font-size:7.5pt;color:rgba(255,255,255,.7);position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4a7aaa;margin-bottom:2mm;display:block}
+.phase-bar{background:var(--tb);color:#fff;padding:5px 12px;border-radius:4px;margin:5mm 0 3mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .pn{font-size:7.5pt;font-weight:700}
+.phase-bar .pr{font-size:6.5pt;color:rgba(255,255,255,.6)}
+.phase-note{background:rgba(45,74,106,.08);border-left:3px solid var(--tb);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:4mm}
+thead th{background:var(--tb);color:#fff;padding:4px 5px;font-weight:600;text-align:left;font-size:6.5pt}
+tbody tr:nth-child(even){background:var(--off-white)}
+tbody td{padding:3.5px 5px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.meal-tag{font-size:5.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1px}
+.week-sched{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4mm}
+.wd{background:var(--off-white);border:1px solid var(--border);border-radius:3px;padding:3px 2px;text-align:center}
+.wd .dy{font-size:5pt;font-weight:700;color:var(--muted);text-transform:uppercase;display:block}
+.wd .ac{font-size:5.5pt;color:var(--dark-green);font-weight:600;display:block;margin-top:1px;line-height:1.2}
+.wd.active{border-color:#82a8d4;background:var(--tb-soft)}
+.wd.rest .ac{color:var(--muted)}
+.superset-badge{font-size:5.5pt;font-weight:700;background:var(--gold);color:#1a1a1a;padding:1px 5px;border-radius:2px;display:inline-block;margin-bottom:2px}
+.recipe-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:5mm}
+.recipe-head{background:var(--tb);padding:8px 12px;color:#fff}
+.recipe-head .rey{font-size:5.5pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.recipe-head h3{font-size:10pt;color:#fff;margin-bottom:2px}
+.recipe-head .rmeta{font-size:6.5pt;color:rgba(255,255,255,.6);display:flex;gap:10px}
+.recipe-body{padding:8px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.recipe-body h4{font-size:6.5pt;font-weight:700;color:var(--dark-green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.recipe-body ul,.recipe-body ol{padding-left:10px}
+.recipe-body ul li,.recipe-body ol li{font-size:7pt;margin-bottom:2px;line-height:1.4}
+.recipe-macro{background:var(--off-white);padding:5px 12px;display:flex;gap:12px;border-top:1px solid var(--border)}
+.mi{font-size:6.5pt;text-align:center}
+.mi .mv{font-size:9pt;font-weight:700;color:var(--tb);font-family:'Playfair Display',serif;display:block}
+.mi .ml{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="track-cover pb">
+  <span class="tc-badge">Trilha B · Módulo 2</span>
+  <span class="tc-ey">Para recomposição corporal</span>
+  <h1 class="tc-h">Definição<br>&amp; Tônus</h1>
+  <p class="tc-sub">Plano alimentar 3 fases · Força progressiva com supersets · 2 receitas de alto teor proteico</p>
+</div>
+
+<!-- ALIMENTAÇÃO -->
+<div class="pb">
+  <div class="phase-bar"><span class="pn">FASE 1 — Base de Força</span><span class="pr">Dias 1 a 30</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> manutenção calórica (não déficit). Proteína: 1,6–2g/kg de peso/dia. Aprender os padrões de movimento e criar base muscular.</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Dias de Treino</th><th>Dias de Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café · 7h</span></td><td>Omelete 3 ovos + aveia (4 col.) + banana</td><td>2 ovos + 1 fatia pão integral + queijo cottage</td></tr>
+      <tr><td><span class="meal-tag">Manhã · 10h</span></td><td>Whey shake (30g) + 1 fruta</td><td>Iogurte grego + granola s/açúcar (2 col.)</td></tr>
+      <tr><td><span class="meal-tag">Almoço · 13h</span></td><td>200g proteína + arroz integral (5 col.) + feijão + salada + azeite</td><td>Idem, 3 col. arroz</td></tr>
+      <tr><td><span class="meal-tag">Pré-treino · 16h</span></td><td>Banana + 10 amendoins ou 1 torrada + pasta de amendoim</td><td>Fruta + castanhas (30g)</td></tr>
+      <tr><td><span class="meal-tag">Jantar · 20h</span></td><td>Proteína 150g + vegetais refogados + 2 col. arroz integral</td><td>Omelete ou peixe + salada + 1 batata doce pequena</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">FASE 2 — Intensificação</span><span class="pr">Dias 31 a 60</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> leve déficit (–200kcal) para revelar músculo sem perder massa. Progressão de carga obrigatória toda semana.</div>
+  <table>
+    <thead><tr><th>Refeição</th><th>Treino (4×/sem)</th><th>Descanso</th></tr></thead>
+    <tbody>
+      <tr><td><span class="meal-tag">Café</span></td><td>Idem F1 + 1 col. chia</td><td>Omelete 2 ovos + abacate (¼) + café</td></tr>
+      <tr><td><span class="meal-tag">Manhã</span></td><td>Whey (30g) + aveia (2 col.) + água</td><td>Iogurte grego + frutas vermelhas (½ xíc.)</td></tr>
+      <tr><td><span class="meal-tag">Almoço</span></td><td>220g proteína + arroz integral (4 col.) + brócolis + azeite</td><td>Idem, 3 col. arroz</td></tr>
+      <tr><td><span class="meal-tag">Tarde</span></td><td>Whey pós-treino (30g) + 1 fruta</td><td>Castanhas (20g) + 1 fruta</td></tr>
+      <tr><td><span class="meal-tag">Jantar</span></td><td>200g proteína + legumes à vontade. <strong>Sem carb no jantar.</strong></td><td>150g proteína + 1 col. arroz + legumes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">FASE 3 — Definição</span><span class="pr">Dias 61 a 90</span></div>
+  <div class="phase-note"><strong>Objetivo:</strong> déficit –300kcal + 2× cardio em jejum por semana (manhã, antes do café). Supersets para densidade muscular e queima extra.</div>
+  <table>
+    <thead><tr><th>Tipo de dia</th><th>Café</th><th>Almoço</th><th>Jantar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cardio em jejum</strong></td><td>Cardio → Whey + fruta ao acordar</td><td>200g proteína + arroz (4 col.) + salada</td><td>Proteína + legumes. Sem carb.</td></tr>
+      <tr><td><strong>Treino normal</strong></td><td>Omelete 3 ovos + aveia</td><td>Idem acima</td><td>Proteína + legumes + 1 col. arroz</td></tr>
+      <tr><td><strong>Descanso</strong></td><td>2 ovos + queijo branco + fruta</td><td>Refeição completa. 1 sobremesa leve ok (chocolate 70%, 2 quadradinhos).</td><td>Salada + proteína leve</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TREINOS -->
+<div class="pb">
+  <span class="eyebrow">Trilha B — Treinos</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:3mm">Força progressiva em casa</h2>
+
+  <div class="phase-bar"><span class="pn">Fase 1 — Fundamentos (3×/semana)</span><span class="pr">Semanas 1–4</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Treino A</span></div>
+    <div class="wd rest"><span class="dy">Ter</span><span class="ac">Caminhada</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Treino B</span></div>
+    <div class="wd rest"><span class="dy">Qui</span><span class="ac">Descanso</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Treino C</span></div>
+    <div class="wd rest"><span class="dy">Sáb</span><span class="ac">Caminhada</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <table>
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td colspan="5" style="background:var(--tb-soft);font-weight:700;font-size:6.5pt;color:var(--tb)">TREINO A — Posterior + Glúteos</td></tr>
+      <tr><td><strong>Elevação pélvica lenta</strong></td><td style="font-size:6pt;color:var(--muted)">Glúteo, isquio.</td><td><strong style="color:var(--tb)">4 × 15</strong></td><td>60s</td><td>Suba 2s, aperta 2s no topo, desce 3s. Ritmo lento = mais ativação.</td></tr>
+      <tr><td><strong>Agachamento livre</strong></td><td style="font-size:6pt;color:var(--muted)">Quad., glúteos</td><td><strong style="color:var(--tb)">4 × 15</strong></td><td>60s</td><td>Calcanhares no chão. Coluna neutra. Coxa paralela no ponto mais baixo.</td></tr>
+      <tr><td><strong>Panturrilha em pé</strong></td><td style="font-size:6pt;color:var(--muted)">Gastrocnêmio</td><td><strong style="color:var(--tb)">3 × 20</strong></td><td>45s</td><td>Segure na cadeira. Suba na ponta do pé, aperta, desce lento. Amplitude total.</td></tr>
+      <tr><td colspan="5" style="background:var(--tb-soft);font-weight:700;font-size:6.5pt;color:var(--tb)">TREINO B — Superior</td></tr>
+      <tr><td><strong>Flexão de braço</strong></td><td style="font-size:6pt;color:var(--muted)">Peitoral, tríceps</td><td><strong style="color:var(--tb)">4 × 10–15</strong></td><td>60s</td><td>Mãos à largura dos ombros. Cotovelos a 45°. Desce até perto do chão.</td></tr>
+      <tr><td><strong>Remada com garrafa</strong></td><td style="font-size:6pt;color:var(--muted)">Dorsal, bíceps</td><td><strong style="color:var(--tb)">3 × 12 cada</strong></td><td>60s</td><td>Apoie mão/joelho na cadeira. Puxe garrafa até o quadril. Retrai escápula.</td></tr>
+      <tr><td><strong>Desenvolvimento de ombro</strong></td><td style="font-size:6pt;color:var(--muted)">Deltoides</td><td><strong style="color:var(--tb)">3 × 12</strong></td><td>60s</td><td>Sentada, cotovelos 90°. Empurre as garrafas acima da cabeça. Não trave o cotovelo.</td></tr>
+      <tr><td colspan="5" style="background:var(--tb-soft);font-weight:700;font-size:6.5pt;color:var(--tb)">TREINO C — Core + Estabilização</td></tr>
+      <tr><td><strong>Prancha lateral</strong></td><td style="font-size:6pt;color:var(--muted)">Oblíquos</td><td><strong style="color:var(--tb)">3 × 25s cada</strong></td><td>30s</td><td>Antebraço no chão. Quadril elevado. Corpo reto. Versão fácil: apoie joelho.</td></tr>
+      <tr><td><strong>Dead bug</strong></td><td style="font-size:6pt;color:var(--muted)">Core profundo</td><td><strong style="color:var(--tb)">3 × 10 cada</strong></td><td>45s</td><td>Deitada, braços verticais, joelhos 90°. Abaixe braço oposto ao pé. Costas no chão.</td></tr>
+      <tr><td><strong>Hiperextensão no chão</strong></td><td style="font-size:6pt;color:var(--muted)">Lombar, glúteos</td><td><strong style="color:var(--tb)">3 × 15</strong></td><td>45s</td><td>Barriga no chão. Eleve braços e pernas. Segura 2s no topo. Baixa controlado.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="phase-bar"><span class="pn">Fase 3 — Supersets para Definição (5×/semana)</span><span class="pr">Semanas 9–13</span></div>
+  <table>
+    <thead><tr><th>Par</th><th>Exercício 1</th><th>Exercício 2</th><th>Séries</th><th>Pausa entre pares</th></tr></thead>
+    <tbody>
+      <tr><td><span class="superset-badge">S1</span></td><td>Agachamento búlgaro 12× cada</td><td>Elevação pélvica 20×</td><td>4 pares</td><td>75s</td></tr>
+      <tr><td><span class="superset-badge">S2</span></td><td>Flexão de braço 12×</td><td>Remada com garrafa 15×</td><td>4 pares</td><td>75s</td></tr>
+      <tr><td><span class="superset-badge">S3</span></td><td>Desenvolvimento de ombro 12×</td><td>Prancha frontal 40s</td><td>3 pares</td><td>60s</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- RECEITAS -->
+<div>
+  <span class="eyebrow">Trilha B — Receitas</span>
+  <h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:4mm">2 receitas para<br>recomposição</h2>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Pós-treino · Fase 2 e 3</span>
+      <h3>Tigela Proteica de Atum e Abacate</h3>
+      <div class="rmeta"><span>⏱ 8 min</span><span>1 porção</span><span>Sem glúten</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>1 lata atum em água (120g escorrido)</li>
+          <li>½ abacate maduro</li>
+          <li>½ pepino em cubos</li>
+          <li>10 tomates cereja ao meio</li>
+          <li>Suco de 1 limão</li>
+          <li>Sal, pimenta e coentro</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Escorra bem o atum e desfie levemente.</li>
+          <li>Amasse o abacate com limão e sal.</li>
+          <li>Misture atum, pepino e tomates.</li>
+          <li>Sirva sobre o abacate amassado.</li>
+          <li>Finalize com pimenta e coentro.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">35g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">8g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">18g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~325</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-head">
+      <span class="rey">Jantar · Fase 3</span>
+      <h3>Frango Asiático com Brócolis</h3>
+      <div class="rmeta"><span>⏱ 25 min</span><span>2 porções</span><span>Baixo carb</span></div>
+    </div>
+    <div class="recipe-body">
+      <div>
+        <h4>Ingredientes</h4>
+        <ul>
+          <li>300g peito de frango em tiras</li>
+          <li>200g brócolis em floretes</li>
+          <li>2 dentes alho picados</li>
+          <li>1 col. sopa shoyu light</li>
+          <li>1 col. chá gengibre ralado</li>
+          <li>1 col. chá gergelim torrado</li>
+          <li>1 col. sopa azeite</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Preparo</h4>
+        <ol>
+          <li>Marine frango com shoyu, gengibre e alho (15 min).</li>
+          <li>Grelhe na frigideira antiaderente até dourar.</li>
+          <li>Cozinhe brócolis no vapor (5 min — crocante).</li>
+          <li>Monte o prato, regue com azeite.</li>
+          <li>Polvilhe gergelim e sirva.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="recipe-macro">
+      <div class="mi"><span class="mv">42g</span><span class="ml">Proteína</span></div>
+      <div class="mi"><span class="mv">10g</span><span class="ml">Carboidrato</span></div>
+      <div class="mi"><span class="mv">12g</span><span class="ml">Gordura</span></div>
+      <div class="mi"><span class="mv">~315</span><span class="ml">Kcal</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

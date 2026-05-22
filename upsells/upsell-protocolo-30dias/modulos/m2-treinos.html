@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 2 — Treinos em Casa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:58mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(122,158,126,.25) 0%,transparent 55%)}
+.mod-num{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3mm;position:relative;z-index:1}
+.mod-title{font-size:22pt;font-weight:700;color:#fff;line-height:1.05;position:relative;z-index:1}
+.mod-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mod-sub{font-size:8pt;color:rgba(250,248,245,.62);margin-top:2mm;position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.phase-bar{background:var(--dark-green);color:#fff;padding:5px 12px;border-radius:4px;margin:5mm 0 4mm;display:flex;justify-content:space-between;align-items:center}
+.phase-bar .pn{font-size:7.5pt;font-weight:700}
+.phase-bar .pr{font-size:6.5pt;color:rgba(255,255,255,.6)}
+.week-sched{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:4mm}
+.wd{background:var(--off-white);border:1px solid var(--border);border-radius:3px;padding:3px 2px;text-align:center}
+.wd .dy{font-size:5pt;font-weight:700;color:var(--muted);text-transform:uppercase;display:block}
+.wd .ac{font-size:6pt;color:var(--dark-green);font-weight:600;display:block;margin-top:1px;line-height:1.2}
+.wd.active{border-color:var(--accent);background:rgba(122,158,126,.06)}
+.wd.rest .ac{color:var(--muted)}
+.tlabel{display:inline-block;font-size:6.5pt;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:4px;margin-bottom:3mm}
+.tlabel.a{background:var(--accent);color:#fff}
+.tlabel.b{background:var(--accent-dark);color:#fff}
+.tlabel.c{background:var(--dark-green);color:#fff}
+table.et{width:100%;border-collapse:collapse;font-size:6.8pt;margin-bottom:4mm}
+table.et thead th{background:var(--accent-soft);color:var(--dark-green);padding:3px 5px;font-size:6pt;font-weight:700;text-align:left;border:1px solid rgba(122,158,126,.2)}
+table.et tbody td{padding:3.5px 5px;border:1px solid var(--border);vertical-align:top;line-height:1.4}
+table.et tbody tr:nth-child(even) td{background:var(--off-white)}
+.en{font-weight:600;color:var(--dark-green)}
+.em{font-size:5.5pt;color:var(--muted)}
+.es{font-weight:700;color:var(--accent-dark);white-space:nowrap}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:4mm}
+.info-box{background:rgba(201,151,58,.08);border-radius:8px;padding:4mm 6mm;border-left:4px solid var(--gold);margin-bottom:4mm}
+.info-box ul{padding-left:4mm}
+.info-box li{font-size:7.5pt;margin-bottom:2px}
+</style>
+</head>
+<body>
+
+<div class="mod-cover pb">
+  <span class="mod-num">Protocolo 30 Dias · Módulo 2 de 4</span>
+  <h1 class="mod-title">Treinos<br><em>em Casa</em></h1>
+  <p class="mod-sub">Planilha de exercícios progressivos para Semanas 1–2 (adaptação) e 3–4 (intensificação). Sem equipamentos.</p>
+</div>
+
+<!-- INTRO + SEMANAS 1-2 -->
+<div class="pb">
+  <span class="eyebrow">O que você vai precisar</span>
+  <div class="info-box">
+    <ul>
+      <li>Colchonete ou tapete antiderrapante</li>
+      <li>2 garrafas de água cheias (improvisam peso de ~500g cada)</li>
+      <li>Uma cadeira firme (para tríceps e avanço)</li>
+      <li>Corda de pular (opcional — substitua por polichinelo)</li>
+      <li>Espaço de 2m × 2m no chão</li>
+    </ul>
+  </div>
+
+  <div class="phase-bar"><span class="pn">Semanas 1–2 — Adaptação</span><span class="pr">3×/semana</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Treino A</span></div>
+    <div class="wd rest"><span class="dy">Ter</span><span class="ac">Caminhada 30min</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Treino B</span></div>
+    <div class="wd rest"><span class="dy">Qui</span><span class="ac">Descanso</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Treino C</span></div>
+    <div class="wd rest"><span class="dy">Sáb</span><span class="ac">Caminhada 40min</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+
+  <div class="tlabel a">TREINO A — Membros Inferiores + Cardio</div>
+  <table class="et">
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Agachamento sumô</span></td><td><span class="em">Glúteos, adutores</span></td><td><span class="es">3 × 15</span></td><td>45s</td><td>Pés afastados 45°. Joelhos acompanham pés. Desça até coxa paralela.</td></tr>
+      <tr><td><span class="en">Avanço alternado</span></td><td><span class="em">Quadríceps, glúteos</span></td><td><span class="es">3 × 12 cada</span></td><td>45s</td><td>Passo à frente. Joelho traseiro quase toca o chão. Empurre o calcanhar da frente para subir.</td></tr>
+      <tr><td><span class="en">Elevação pélvica</span></td><td><span class="em">Glúteos, isquiotibiais</span></td><td><span class="es">4 × 20</span></td><td>30s</td><td>Deitada. Pés no chão. Suba o quadril. Aperta 2s no topo. Alinha joelho-quadril-ombro.</td></tr>
+      <tr><td><span class="en">Polichinelo</span></td><td><span class="em">Cardio full body</span></td><td><span class="es">3 × 45s</span></td><td>30s</td><td>Salte abrindo pernas e levando braços acima da cabeça. Aterrisse suave.</td></tr>
+      <tr><td><span class="en">Mountain climber</span></td><td><span class="em">Core, cardio</span></td><td><span class="es">3 × 30s</span></td><td>30s</td><td>Prancha. Traga joelhos alternados ao peito em ritmo acelerado. Quadril nivelado.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tlabel b">TREINO B — Membros Superiores + Core</div>
+  <table class="et">
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Flexão (joelhos)</span></td><td><span class="em">Peitoral, tríceps</span></td><td><span class="es">3 × 12</span></td><td>45s</td><td>Mãos à largura dos ombros. Cotovelos a 45° do tronco. Desce até peito quase tocar.</td></tr>
+      <tr><td><span class="en">Tríceps no banco</span></td><td><span class="em">Tríceps</span></td><td><span class="es">3 × 15</span></td><td>45s</td><td>Mãos na cadeira. Cotovelos dobram para trás. Desça até 90° e empurre.</td></tr>
+      <tr><td><span class="en">Remada com garrafa</span></td><td><span class="em">Dorsal, bíceps</span></td><td><span class="es">3 × 12 cada</span></td><td>45s</td><td>Apoie mão/joelho na cadeira. Puxe a garrafa até o quadril. Retrai escápula no topo.</td></tr>
+      <tr><td><span class="en">Prancha frontal</span></td><td><span class="em">Core total</span></td><td><span class="es">3 × 30s</span></td><td>30s</td><td>Antebraços no chão. Corpo reto. Quadril não sobe nem cai. Respira normalmente.</td></tr>
+      <tr><td><span class="en">Abdominal bicicleta</span></td><td><span class="em">Oblíquos, reto abd.</span></td><td><span class="es">3 × 20</span></td><td>30s</td><td>Mãos atrás da cabeça. Cotovelo direito ao joelho esquerdo. Alterne devagar — foco na contração.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tlabel c">TREINO C — Full Body Metabólico</div>
+  <table class="et">
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Burpee simplificado</span></td><td><span class="em">Full body</span></td><td><span class="es">3 × 10</span></td><td>45s</td><td>Agacha → mãos no chão → recua pernas (prancha) → avança → levanta. Sem salto na S1-2.</td></tr>
+      <tr><td><span class="en">Agachamento livre</span></td><td><span class="em">Pernas, glúteos</span></td><td><span class="es">3 × 15</span></td><td>45s</td><td>Calcanhares no chão. Coluna neutra. Coxa paralela ao chão no ponto mais baixo.</td></tr>
+      <tr><td><span class="en">Superman</span></td><td><span class="em">Lombar, glúteos</span></td><td><span class="es">3 × 15</span></td><td>30s</td><td>Barriga no chão. Eleve braços e pernas simultaneamente. Segura 2s. Baixa controlado.</td></tr>
+      <tr><td><span class="en">Dead bug</span></td><td><span class="em">Core profundo</span></td><td><span class="es">3 × 8 cada</span></td><td>30s</td><td>Deitada, braços verticais, joelhos 90°. Abaixe braço oposto ao pé. Costas coladas ao chão.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SEMANAS 3-4 -->
+<div>
+  <div class="phase-bar"><span class="pn">Semanas 3–4 — Progressão</span><span class="pr">3–4×/semana</span></div>
+  <div class="week-sched">
+    <div class="wd active"><span class="dy">Seg</span><span class="ac">Treino A+</span></div>
+    <div class="wd active"><span class="dy">Ter</span><span class="ac">Cardio 30min</span></div>
+    <div class="wd active"><span class="dy">Qua</span><span class="ac">Treino B+</span></div>
+    <div class="wd rest"><span class="dy">Qui</span><span class="ac">Descanso</span></div>
+    <div class="wd active"><span class="dy">Sex</span><span class="ac">Treino C+</span></div>
+    <div class="wd rest"><span class="dy">Sáb</span><span class="ac">Caminhada</span></div>
+    <div class="wd rest"><span class="dy">Dom</span><span class="ac">Descanso</span></div>
+  </div>
+  <div class="phase-note" style="margin-bottom:4mm"><strong>Progressão:</strong> adicione 2 repetições por exercício a cada semana. Se um exercício ficou fácil, inclua pausa de 2s no ponto mais difícil (ex.: fundo do agachamento). Aumente o ritmo do cardio.</div>
+
+  <div class="tlabel a">TREINO A+ — Glúteos e Pernas Intensificado</div>
+  <table class="et">
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Agachamento búlgaro</span></td><td><span class="em">Glúteos, quad.</span></td><td><span class="es">4 × 12 cada</span></td><td>60s</td><td>Pé traseiro elevado na cadeira. Desça o joelho da frente a 90°. Empurre pelo calcanhar da frente.</td></tr>
+      <tr><td><span class="en">Elevação pélvica 1 perna</span></td><td><span class="em">Glúteo unilateral</span></td><td><span class="es">3 × 15 cada</span></td><td>45s</td><td>Uma perna estendida. Suba o quadril com 1 pé só. Mantém nivelado no topo. Troca sem pausa.</td></tr>
+      <tr><td><span class="en">Cadeira de parede</span></td><td><span class="em">Quadríceps</span></td><td><span class="es">3 × 45s</span></td><td>60s</td><td>Costas na parede, joelhos a 90°. Segure. Se começar a queimar — aguenta mais 5s.</td></tr>
+      <tr><td><span class="en">Squat jump</span></td><td><span class="em">Pernas, cardio</span></td><td><span class="es">3 × 12</span></td><td>45s</td><td>Agacha fundo e salta verticalmente. Aterrisse suave com joelhos semiflexionados.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tlabel b">TREINO B+ — Superior com Progressão</div>
+  <table class="et">
+    <thead><tr><th>Exercício</th><th>Músculos</th><th>Séries × Reps</th><th>Pausa</th><th>Técnica</th></tr></thead>
+    <tbody>
+      <tr><td><span class="en">Flexão completa</span></td><td><span class="em">Peitoral, tríceps, ombro</span></td><td><span class="es">4 × 10</span></td><td>60s</td><td>Sem apoio de joelhos. Se precisar, pause na posição de prancha e descanse. Desça lento (3s).</td></tr>
+      <tr><td><span class="en">Supino no chão</span></td><td><span class="em">Peitoral, tríceps</span></td><td><span class="es">3 × 15</span></td><td>60s</td><td>Deitada, garrafas cheias. Empurra verticalmente. Cotovelos não batem no chão entre as reps.</td></tr>
+      <tr><td><span class="en">Prancha lateral</span></td><td><span class="em">Oblíquos, glúteo médio</span></td><td><span class="es">3 × 30s cada</span></td><td>30s</td><td>Antebraço no chão, quadril elevado. Corpo reto. Versão fácil: apoie joelho inferior.</td></tr>
+      <tr><td><span class="en">Desenvolvimento com garrafa</span></td><td><span class="em">Deltoides</span></td><td><span class="es">3 × 15</span></td><td>45s</td><td>Sentada ou de pé. Garrafas na altura dos ombros. Empurre acima da cabeça. Não trave o cotovelo.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tlabel c">TREINO C+ — HIIT Introdutório (20-10)</div>
+  <table class="et">
+    <thead><tr><th>Round</th><th>Exercício</th><th>Esforço</th><th>Descanso</th><th>Total</th></tr></thead>
+    <tbody>
+      <tr><td><span class="es">R1 e R5</span></td><td><span class="en">Agachamento com salto</span></td><td>20s máximo</td><td>10s</td><td rowspan="4" style="vertical-align:middle;text-align:center;font-weight:700;color:var(--dark-green)">8 rounds<br>= 4 min<br>por bloco<br><br>2–3 blocos<br>= 8–12 min</td></tr>
+      <tr><td><span class="es">R2 e R6</span></td><td><span class="en">Mountain climber</span></td><td>20s máximo</td><td>10s</td></tr>
+      <tr><td><span class="es">R3 e R7</span></td><td><span class="en">Burpee completo</span></td><td>20s máximo</td><td>10s</td></tr>
+      <tr><td><span class="es">R4 e R8</span></td><td><span class="en">Polichinelo</span></td><td>20s máximo</td><td>10s</td></tr>
+    </tbody>
+  </table>
+  <div class="phase-note"><strong>Protocolo Tabata:</strong> 20s de esforço máximo, 10s de descanso, 8 rounds = 4 minutos. Faça 2–3 blocos com 2 minutos de descanso entre eles. Intensidade real — você deve terminar sem conseguir falar.</div>
+</div>
+
+</body>
+</html>

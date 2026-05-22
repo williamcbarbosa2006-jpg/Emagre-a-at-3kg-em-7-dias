@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 3 — Lista de Compras + Alongamentos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:58mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 90% 10%,rgba(201,151,58,.2) 0%,transparent 50%),radial-gradient(ellipse at 10% 90%,rgba(122,158,126,.2) 0%,transparent 50%)}
+.mod-num{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3mm;position:relative;z-index:1}
+.mod-title{font-size:20pt;font-weight:700;color:#fff;line-height:1.05;position:relative;z-index:1}
+.mod-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mod-sub{font-size:8pt;color:rgba(250,248,245,.62);margin-top:2mm;position:relative;z-index:1}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:5mm}
+.shop-cat{background:var(--off-white);border-radius:8px;padding:6px 8px;border-top:3px solid var(--accent)}
+.shop-cat.gold-top{border-top-color:var(--gold)}
+.shop-cat.dark-top{border-top-color:var(--dark-green)}
+.shop-cat-title{font-size:6.5pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dark-green);margin-bottom:4px}
+.shop-list{list-style:none;padding:0}
+.shop-list li{font-size:7pt;color:var(--text);padding:2px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:center;gap:5px}
+.shop-list li:last-child{border-bottom:none}
+.shop-list li::before{content:'□';color:var(--accent);font-size:8pt;flex-shrink:0;line-height:1}
+.shop-cat.gold-top .shop-list li::before{color:var(--gold)}
+.shop-cat.dark-top .shop-list li::before{color:var(--dark-green)}
+.phase-note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 5px 5px 0;font-size:7.5pt;color:var(--dark-green);margin-bottom:5mm}
+.stretch-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.stretch-card{border:1px solid var(--border);border-radius:8px;padding:7px 9px;border-top:3px solid var(--accent)}
+.stretch-num{font-family:'Playfair Display',serif;font-size:13pt;font-weight:700;color:rgba(122,158,126,.25);line-height:1;float:right}
+.stretch-name{font-weight:700;font-size:7.5pt;color:var(--dark-green);margin-bottom:2px;display:block}
+.stretch-time{font-size:6pt;color:var(--gold);font-weight:700;margin-bottom:3px;display:block}
+.stretch-how{font-size:6.5pt;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="mod-cover pb">
+  <span class="mod-num">Protocolo 30 Dias · Módulo 3 de 4</span>
+  <h1 class="mod-title">Lista de Compras<br><em>&amp; Alongamentos</em></h1>
+  <p class="mod-sub">Lista mensal por categoria + guia completo de 10 alongamentos aeróbicos para fazer diariamente em 15 minutos</p>
+</div>
+
+<!-- LISTA DE COMPRAS -->
+<div class="pb">
+  <span class="eyebrow">Compras do mês</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:2mm">Lista de Compras<br>Mensal</h2>
+  <p style="font-size:7.5pt;color:var(--muted);margin-bottom:4mm">Quantidade para 1 pessoa, 30 dias. Ajuste conforme o número de refeições que você prepara em casa. Itens marcados com ★ são opcionais mas recomendados.</p>
+
+  <div class="shop-grid">
+    <div class="shop-cat">
+      <div class="shop-cat-title">Proteínas</div>
+      <ul class="shop-list">
+        <li>Peito de frango (3–4kg)</li>
+        <li>Ovos (30 unidades)</li>
+        <li>Atum em água (8 latas)</li>
+        <li>Sardinha em água (4 latas)</li>
+        <li>Peixe (tilápia, salmão) 1kg</li>
+        <li>Carne moída magra 500g</li>
+        <li>Iogurte grego natural (8 unidades)</li>
+        <li>Queijo cottage (500g)</li>
+        <li>★ Whey protein (1 pote)</li>
+      </ul>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-title">Vegetais e Folhas</div>
+      <ul class="shop-list">
+        <li>Brócolis (1kg ou 2 cabeças)</li>
+        <li>Couve-flor (1 unidade)</li>
+        <li>Espinafre (2 maços)</li>
+        <li>Rúcula (2 maços)</li>
+        <li>Tomate (1kg)</li>
+        <li>Pepino (4 unidades)</li>
+        <li>Abobrinha (4 unidades)</li>
+        <li>Cenoura (500g)</li>
+        <li>Cebola (500g) + Alho (2 cabeças)</li>
+        <li>Couve-manteiga (1 maço)</li>
+      </ul>
+    </div>
+    <div class="shop-cat gold-top">
+      <div class="shop-cat-title">Frutas</div>
+      <ul class="shop-list">
+        <li>Banana (2 cachos)</li>
+        <li>Maçã (2kg)</li>
+        <li>Mamão (2 unidades)</li>
+        <li>Abacate (4 unidades)</li>
+        <li>Limão (1kg)</li>
+        <li>Frutas vermelhas (2 pacotes congeladas)</li>
+        <li>Laranja (1kg)</li>
+        <li>Abacaxi (1 unidade)</li>
+      </ul>
+    </div>
+    <div class="shop-cat gold-top">
+      <div class="shop-cat-title">Carboidratos</div>
+      <ul class="shop-list">
+        <li>Arroz integral (2kg)</li>
+        <li>Batata doce (2kg)</li>
+        <li>Aveia em flocos (500g)</li>
+        <li>Pão integral (2 pacotes)</li>
+        <li>Feijão carioca ou preto (1kg)</li>
+        <li>★ Quinoa (500g)</li>
+        <li>★ Grão-de-bico (400g lata)</li>
+        <li>Inhame ou cará (1kg)</li>
+      </ul>
+    </div>
+    <div class="shop-cat dark-top">
+      <div class="shop-cat-title">Gorduras Boas</div>
+      <ul class="shop-list">
+        <li>Azeite extra virgem (500ml)</li>
+        <li>Castanha-do-pará (200g)</li>
+        <li>Amêndoas (200g)</li>
+        <li>Pasta de amendoim integral (1 pote)</li>
+        <li>Leite de coco (2 caixas 200ml)</li>
+        <li>★ Chia (200g)</li>
+        <li>★ Linhaça dourada (200g)</li>
+      </ul>
+    </div>
+    <div class="shop-cat dark-top">
+      <div class="shop-cat-title">Temperos e Chás</div>
+      <ul class="shop-list">
+        <li>Sal rosa ou marinho (não refinado)</li>
+        <li>Pimenta-do-reino moída</li>
+        <li>Cúrcuma em pó</li>
+        <li>Gengibre fresco (1 pedaço)</li>
+        <li>Canela em pó</li>
+        <li>Chá verde (caixa)</li>
+        <li>Camomila e Hortelã (caixas)</li>
+        <li>Shoyu light (opcional)</li>
+        <li>Vinagre de maçã</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phase-note"><strong>Compre fresco 2× por semana:</strong> folhas, frutas e ovos ficam melhores frescos. Deixe para comprar proteínas em quantidade e congele em porções de 150g já temperadas. Descongela na véspera na geladeira.</div>
+</div>
+
+<!-- GUIA DE ALONGAMENTOS -->
+<div>
+  <span class="eyebrow">Rotina diária — 15 minutos</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:2mm">Guia de Alongamentos<br>Aeróbicos</h2>
+  <p style="font-size:7.5pt;color:var(--muted);margin-bottom:4mm">Faça esta sequência todos os dias — de preferência após o treino ou antes de dormir. Nunca force além do ponto de resistência. Respire fundo em cada posição.</p>
+
+  <div class="stretch-grid">
+    <div class="stretch-card">
+      <span class="stretch-num">1</span>
+      <span class="stretch-name">Pescoço lateral</span>
+      <span class="stretch-time">30s cada lado</span>
+      <p class="stretch-how">Incline a cabeça para o lado direito, orelha em direção ao ombro. Mão oposta puxa suavemente para baixo. Sinta o alongamento no pescoço e trapézio. Troca de lado.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">2</span>
+      <span class="stretch-name">Ombro cruzado</span>
+      <span class="stretch-time">30s cada lado</span>
+      <p class="stretch-how">Braço direito cruzado na frente do peito. Mão esquerda pressiona o cotovelo em direção ao peito. Sinta o deltoides e a parte superior das costas. Troca.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">3</span>
+      <span class="stretch-name">Tríceps atrás da cabeça</span>
+      <span class="stretch-time">30s cada lado</span>
+      <p class="stretch-how">Braço dobrado atrás da cabeça. Mão oposta empurra o cotovelo suavemente para baixo. Sinta na parte posterior do braço. Mantenha o queixo levantado.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">4</span>
+      <span class="stretch-name">Peito aberto</span>
+      <span class="stretch-time">45s</span>
+      <p class="stretch-how">Em pé, entrelace os dedos atrás das costas. Abra o peito empurrando os ombros para trás e para baixo. Levante o queixo. Inspire fundo — expanda o tórax.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">5</span>
+      <span class="stretch-name">Flexão lateral do tronco</span>
+      <span class="stretch-time">30s cada lado</span>
+      <p class="stretch-how">Em pé, pé afastado. Braço direito acima da cabeça, incline para a esquerda em arco. Sinta o oblíquo e a lateral do tronco. Não deixe o quadril mover.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">6</span>
+      <span class="stretch-name">Rotação de coluna sentada</span>
+      <span class="stretch-time">30s cada lado</span>
+      <p class="stretch-how">Sentada, pernas cruzadas. Mão direita no joelho esquerdo. Gire o tronco para a esquerda, olhando para trás. Coluna ereta. Sinta a lombar e a coluna torácica.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">7</span>
+      <span class="stretch-name">Psoas (flexor do quadril)</span>
+      <span class="stretch-time">45s cada lado</span>
+      <p class="stretch-how">Ajoelhe o joelho direito no chão. Pé esquerdo à frente (90°). Empurre o quadril para frente e para baixo suavemente. Sinta a frente da coxa e virilha. Mantenha o tronco ereto.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">8</span>
+      <span class="stretch-name">Borboleta (adutores)</span>
+      <span class="stretch-time">60s</span>
+      <p class="stretch-how">Sentada, plantas dos pés juntas. Joelhos abertos para os lados. Segure os pés e pressione os joelhos suavemente em direção ao chão. Incline levemente o tronco à frente.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">9</span>
+      <span class="stretch-name">Isquiotibial deitado</span>
+      <span class="stretch-time">45s cada lado</span>
+      <p class="stretch-how">Deitada, perna direita esticada para cima. Segure atrás da coxa ou panturrilha. Puxe devagar em direção ao peito. Perna de baixo fica no chão. Não force o joelho.</p>
+    </div>
+    <div class="stretch-card">
+      <span class="stretch-num">10</span>
+      <span class="stretch-name">Criança (descompressão)</span>
+      <span class="stretch-time">60s</span>
+      <p class="stretch-how">Ajoelhada, sente nos calcanhares. Estique os braços à frente no chão. Testa toca o tapete. Respire fundo 5 vezes. Deixe a coluna descomprimir. Posição final da sequência.</p>
+    </div>
+  </div>
+
+  <div class="phase-note" style="margin-top:4mm"><strong>Dica:</strong> coloque uma música tranquila com duração de 15 minutos como timer. Quando a música acabar, você terminou. Não precisa cronômetro por exercício.</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Módulo 0 — Manual do Desafio 90 Dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
+@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
+body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:2mm} strong{font-weight:600}
+.mod-cover{background:var(--dark-green);min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:20mm 14mm 14mm;position:relative;overflow:hidden;margin:-13mm -14mm 0}
+.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 15%,rgba(201,151,58,.22) 0%,transparent 50%),radial-gradient(ellipse at 10% 85%,rgba(122,158,126,.18) 0%,transparent 45%)}
+.cover-badge{display:inline-block;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1a1a;font-size:5.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px;margin-bottom:8mm;position:relative;z-index:1}
+.cover-h1{font-size:30pt;font-weight:700;color:#fff;line-height:1.04;letter-spacing:-.02em;margin-bottom:3mm;position:relative;z-index:1}
+.cover-h1 em{display:block;font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cover-sub{font-size:8.5pt;color:rgba(250,248,245,.65);line-height:1.65;max-width:88%;position:relative;z-index:1}
+.cover-tracks{display:flex;gap:6px;margin-top:10mm;position:relative;z-index:1}
+.ct{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:7px 9px;text-align:center}
+.ct .ct-label{font-size:5pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.ct .ct-name{font-size:6.5pt;color:#fff;font-weight:600;line-height:1.3}
+.cover-footer{position:relative;z-index:1;border-top:1px solid rgba(201,151,58,.2);padding-top:5mm;display:flex;justify-content:space-between}
+.cover-footer span{font-size:6pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.ring{position:absolute;border-radius:50%;transform:translate(-50%,-50%)}
+.r1{width:72mm;height:72mm;border:1px solid rgba(201,151,58,.1);right:-20mm;top:45%;left:auto;transform:translateY(-50%)}
+.r2{width:50mm;height:50mm;border:1px solid rgba(201,151,58,.18);right:-10mm;top:45%;left:auto;transform:translateY(-50%)}
+.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5mm}
+.rc{background:#fff;border:1px solid var(--border);border-radius:6px;padding:8px 10px}
+.rc .rn{font-size:16pt;font-weight:700;color:var(--accent);font-family:'Playfair Display',serif;line-height:1}
+.rc .rt{font-size:7.5pt;font-weight:700;color:var(--dark-green);margin:2px 0}
+.rc .rb{font-size:7pt;color:var(--muted);line-height:1.45}
+.quiz-card{background:var(--dark-green);color:#fff;border-radius:8px;padding:10px 12px;margin-bottom:6mm}
+.quiz-card h3{font-size:11pt;margin-bottom:5mm;color:#fff}
+.qo{display:flex;gap:8px;margin-bottom:5px;align-items:flex-start}
+.ql{min-width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6.5pt;font-weight:700;color:#1a1a1a;flex-shrink:0;margin-top:1px}
+.ql.qa{background:var(--gold-light)}.ql.qb{background:#82a8d4}.ql.qc{background:#c49fc2}
+.qt{font-size:7.5pt;color:rgba(255,255,255,.85);line-height:1.5}
+.qr{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6mm}
+.qrc{background:rgba(255,255,255,.1);border-radius:5px;padding:7px;text-align:center}
+.qrc .qrl{font-size:5pt;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:2px}
+.qrc .qrn{font-size:6.5pt;color:#fff;font-weight:600;line-height:1.3}
+.phase-table{width:100%;border-collapse:collapse;font-size:7pt;margin-bottom:5mm}
+.phase-table thead th{background:var(--dark-green);color:#fff;padding:4px 6px;font-size:6pt;font-weight:600;text-align:left}
+.phase-table tbody td{padding:4px 6px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.4}
+.phase-table tbody tr:nth-child(even) td{background:var(--off-white)}
+.phase-table td:first-child{font-weight:700;color:var(--dark-green)}
+.start-table{width:100%;border-collapse:collapse;font-size:7pt}
+.start-table thead th{background:var(--dark-green);color:#fff;padding:4px 6px;font-size:6pt}
+.start-table tbody td{padding:5px 6px;border:1px solid var(--border);height:14px}
+.start-table td:first-child{font-weight:600;color:var(--dark-green);background:var(--off-white)}
+</style>
+</head>
+<body>
+
+<!-- CAPA COMPLETA -->
+<div class="mod-cover pb">
+  <div class="r1" style="position:absolute"></div>
+  <div class="r2" style="position:absolute"></div>
+  <div>
+    <span class="cover-badge">Manual do Desafio · Módulo 0</span>
+    <h1 class="cover-h1">Desafio<br><em>90 Dias</em></h1>
+    <p class="cover-sub">Antes de começar qualquer trilha, leia este manual completo. Ele explica como o desafio funciona, como escolher sua trilha e o que esperar em cada fase.</p>
+    <div class="cover-tracks">
+      <div class="ct"><span class="ct-label">Trilha A</span><span class="ct-name">Emagrecer de Verdade</span></div>
+      <div class="ct"><span class="ct-label">Trilha B</span><span class="ct-name">Definição &amp; Tônus</span></div>
+      <div class="ct"><span class="ct-label">Trilha C</span><span class="ct-name">Energia &amp; Leveza</span></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Desafio 90 Dias</span>
+    <span>Uso pessoal — não reproduzir</span>
+  </div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<div class="pb">
+  <span class="eyebrow">Como funciona</span>
+  <h2 style="font-size:15pt;color:var(--dark-green);margin-bottom:3mm">As regras do desafio</h2>
+
+  <p style="font-size:8pt;color:var(--muted);margin-bottom:4mm">Este programa divide 90 dias em 3 fases de 30 dias, cada uma com objetivo distinto. Cada fase prepara o terreno para a próxima — não pule etapas.</p>
+
+  <div class="rules-grid">
+    <div class="rc">
+      <div class="rn">01</div>
+      <div class="rt">Escolha uma trilha — só uma</div>
+      <div class="rb">As três trilhas têm estruturas diferentes. Misturar planos de trilhas cancela os resultados. Use o quiz abaixo.</div>
+    </div>
+    <div class="rc">
+      <div class="rn">02</div>
+      <div class="rt">Cada fase dura exatamente 30 dias</div>
+      <div class="rb">Não pule de fase antes do prazo. A Fase 1 tem resultado metabólico que só aparece no final — não no meio.</div>
+    </div>
+    <div class="rc">
+      <div class="rn">03</div>
+      <div class="rt">Pese-se só 1× por semana</div>
+      <div class="rb">Flutuação diária de 1–2kg é normal. A balança semanal mostra a tendência real. Foto mensal é mais fiel.</div>
+    </div>
+    <div class="rc">
+      <div class="rn">04</div>
+      <div class="rt">Um tropeço não é queda</div>
+      <div class="rb">Saiu do plano um dia? Volta no próximo. O protocolo absorve 2–3 dias fora por fase sem perder resultado.</div>
+    </div>
+    <div class="rc">
+      <div class="rn">05</div>
+      <div class="rt">Registre no Módulo 4</div>
+      <div class="rb">Use a tabela de medidas do Módulo 4 todo domingo. Sem registro não há evolução percebida — e a percepção é combustível.</div>
+    </div>
+    <div class="rc">
+      <div class="rn">06</div>
+      <div class="rt">Leia o Bônus Mindset</div>
+      <div class="rb">O Módulo 5 (Bônus) não é opcional. Ele explica o Vale do Dia 31 — a crise que derruba 70% de quem começa.</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <h3>Qual trilha é a sua?</h3>
+    <div class="qo">
+      <div class="ql qa">A</div>
+      <div class="qt"><strong style="color:var(--gold-light)">Trilha A — Emagrecer de Verdade:</strong> Tenho mais de 5kg para perder, meu metabolismo parece "travado" e já tentei dietas sem resultado duradouro. Prioridade: perda de gordura.</div>
+    </div>
+    <div class="qo">
+      <div class="ql qb">B</div>
+      <div class="qt"><strong style="color:#a0c4e8">Trilha B — Definição &amp; Tônus:</strong> Estou no peso ou próxima, mas quero firmar o corpo, ganhar músculo e eliminar gordura localizada. Não tenho pressa para perder peso — quero mudar a composição.</div>
+    </div>
+    <div class="qo">
+      <div class="ql qc">C</div>
+      <div class="qt"><strong style="color:#d4a8d0">Trilha C — Energia &amp; Leveza:</strong> Meu principal problema é cansaço, inchaço e falta de energia. Perder peso seria ótimo, mas saúde e disposição vêm primeiro. Preciso de algo sustentável.</div>
+    </div>
+    <div class="qr">
+      <div class="qrc"><span class="qrl">Trilha A</span><span class="qrn">Déficit + cardio progressivo</span></div>
+      <div class="qrc"><span class="qrl">Trilha B</span><span class="qrn">Recomposição + força</span></div>
+      <div class="qrc"><span class="qrl">Trilha C</span><span class="qrn">Anti-inf. + movimento diário</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- VISÃO GERAL DAS FASES -->
+<div>
+  <span class="eyebrow">Visão geral</span>
+  <h2 style="font-size:14pt;color:var(--dark-green);margin-bottom:3mm">As 3 fases<br>do desafio</h2>
+
+  <table class="phase-table" style="margin-bottom:4mm">
+    <thead><tr><th>Fase</th><th>Dias</th><th>Objetivo geral</th><th>Trilha A</th><th>Trilha B</th><th>Trilha C</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Fase 1<br><span style="font-weight:400;color:var(--muted);font-size:6pt">Adaptação</span></td>
+        <td>1–30</td>
+        <td>Limpar o organismo, criar hábito, eliminar inflamação base</td>
+        <td>Alim. limpa + cardio 3×/sem</td>
+        <td>Balanceado + força 3×/sem</td>
+        <td>Anti-inf. + caminhada diária</td>
+      </tr>
+      <tr>
+        <td>Fase 2<br><span style="font-weight:400;color:var(--muted);font-size:6pt">Aceleração</span></td>
+        <td>31–60</td>
+        <td>Ativar metabolismo, intensificar resultados, criar consistência</td>
+        <td>Déficit + cardio 4×/sem</td>
+        <td>Progressão de carga + finisher</td>
+        <td>Funcional 3×/sem + anti-inf.</td>
+      </tr>
+      <tr>
+        <td>Fase 3<br><span style="font-weight:400;color:var(--muted);font-size:6pt">Transformação</span></td>
+        <td>61–90</td>
+        <td>Consolidar resultado, criar estilo de vida, preparar manutenção</td>
+        <td>Ciclagem calórica + HIIT 5×</td>
+        <td>Supersets + cardio em jejum</td>
+        <td>Lifestyle integrado</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:7.5pt;color:var(--muted);background:rgba(201,151,58,.08);border-left:3px solid var(--gold);padding:6px 10px;border-radius:0 5px 5px 0;margin-bottom:5mm"><strong style="color:#8a6020">Regra de ouro entre fases:</strong> Antes de passar para a Fase 2 (Dia 31), registre suas medidas e faça uma foto. Este é o seu ponto de comparação mais importante — a memória distorce o ponto de partida.</p>
+
+  <h3 style="font-size:11pt;color:var(--dark-green);margin-bottom:2mm">Seu ponto de partida — Dia 1</h3>
+  <table class="start-table">
+    <thead><tr><th>Medida</th><th>Dia 1</th><th>Dia 30</th><th>Dia 60</th><th>Dia 90</th><th>Diferença</th></tr></thead>
+    <tbody>
+      <tr><td>Peso (kg)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Cintura (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Quadril (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Abdômen (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Braço (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Coxa (cm)</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
