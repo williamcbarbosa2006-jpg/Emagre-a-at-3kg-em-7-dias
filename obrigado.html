@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra Confirmada — Oferta Especial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;--off-white:#FAF8F5;--beige:#F5F0EB;--beige-mid:#EDE6DD;
+  --accent:#7A9E7E;--accent-dark:#5d7f61;--accent-deep:#3d5e41;--accent-soft:#e8f0e9;
+  --text:#1C1C1A;--text-muted:#6B6560;--dark:#1a1a18;--dark-green:#253828;
+  --gold:#C9973A;--gold-light:#e8c97a;--border:rgba(0,0,0,.07);
+  --shadow-card:0 4px 24px rgba(0,0,0,.06),0 1px 4px rgba(0,0,0,.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;color:var(--text);background:var(--off-white);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
+
+/* CONFIRMATION BAR */
+.confirm-bar{background:var(--accent-soft);border-bottom:2px solid var(--accent);padding:14px 20px;text-align:center}
+.confirm-bar-inner{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.confirm-check{width:28px;height:28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.confirm-check svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.confirm-text{font-size:15px;font-weight:600;color:var(--dark-green)}
+.confirm-text span{font-weight:400;color:var(--text-muted)}
+
+/* URGENCY BANNER */
+.urgency-bar{background:var(--dark-green);padding:12px 20px;text-align:center}
+.urgency-bar p{font-size:13px;color:rgba(250,248,245,.8);letter-spacing:.02em}
+.urgency-bar strong{color:var(--gold-light);font-weight:600}
+#timer{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--gold-light);letter-spacing:.08em}
+
+/* HERO OTO */
+.hero-oto{background:var(--dark-green);padding:64px 20px 72px;text-align:center;position:relative;overflow:hidden}
+.hero-oto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(122,158,126,.18) 0%,transparent 65%),radial-gradient(ellipse at 85% 100%,rgba(201,151,58,.1) 0%,transparent 50%);pointer-events:none}
+.hero-oto-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.oto-badge{display:inline-block;background:rgba(201,151,58,.15);border:1px solid rgba(201,151,58,.35);border-radius:100px;padding:6px 18px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:24px}
+.hero-oto h1{font-size:clamp(30px,5vw,50px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:20px}
+.hero-oto h1 em{font-style:italic;color:var(--accent)}
+.hero-oto .sub{font-size:17px;color:rgba(250,248,245,.72);max-width:540px;margin:0 auto 32px;line-height:1.65}
+.divider-gold{width:50px;height:2px;background:var(--gold);margin:0 auto 32px}
+
+/* MAIN CONTENT */
+.container{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* PROBLEM BRIDGE */
+.bridge{padding:56px 0 48px}
+.bridge-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+@media(max-width:580px){.bridge-grid{grid-template-columns:1fr}}
+.bridge-card{background:var(--white);border-radius:14px;padding:24px;box-shadow:var(--shadow-card)}
+.bridge-card.bad{border-top:3px solid #c0392b}
+.bridge-card.good{border-top:3px solid var(--accent)}
+.bridge-card-title{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+.bridge-card.bad .bridge-card-title{color:#c0392b}
+.bridge-card.good .bridge-card-title{color:var(--accent-dark)}
+.bridge-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bridge-card li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--text-muted);line-height:1.5}
+.bridge-card li::before{content:'';width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.bridge-card.bad li::before{background:rgba(192,57,43,.12);border:1.5px solid rgba(192,57,43,.3)}
+.bridge-card.good li::before{background:var(--accent-soft);border:1.5px solid var(--accent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='2,6 5,9 10,3' fill='none' stroke='%235d7f61' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+
+/* WHAT'S INSIDE */
+.inside{padding:0 0 56px}
+.section-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:10px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:700;color:var(--dark-green);margin-bottom:6px}
+.section-sub{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.6}
+.modules-list{display:flex;flex-direction:column;gap:14px}
+.module-item{background:var(--white);border-radius:12px;padding:18px 22px;display:flex;align-items:flex-start;gap:16px;box-shadow:var(--shadow-card)}
+.module-num{width:36px;height:36px;background:var(--dark-green);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--gold-light)}
+.module-body{}
+.module-name{font-weight:600;font-size:15px;color:var(--dark-green);margin-bottom:3px}
+.module-desc{font-size:13.5px;color:var(--text-muted);line-height:1.5}
+
+/* OFFER CARD */
+.offer-section{padding:0 0 72px}
+.offer-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.06)}
+.offer-top{background:var(--dark-green);padding:28px 32px;text-align:center;position:relative;overflow:hidden}
+.offer-top::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(122,158,126,.15) 0%,transparent 65%)}
+.offer-top-badge{position:relative;z-index:1;display:inline-block;background:rgba(201,151,58,.2);border:1px solid rgba(201,151,58,.4);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
+.offer-top h2{position:relative;z-index:1;font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);color:#fff;font-weight:700;line-height:1.2}
+.offer-top h2 em{font-style:italic;color:var(--accent)}
+.offer-body{padding:32px}
+.price-block{text-align:center;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.price-of{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.price-installment{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-muted);margin-bottom:2px}
+.price-installment strong{font-size:42px;color:var(--dark-green);font-weight:700}
+.price-installment sup{font-size:20px;vertical-align:super;color:var(--dark-green)}
+.price-full{font-size:13px;color:var(--text-muted)}
+.price-full strong{color:var(--accent-dark)}
+.deliverables{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.deliv-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--text);line-height:1.5}
+.deliv-icon{width:20px;height:20px;background:var(--accent-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.deliv-icon svg{width:10px;height:10px;fill:none;stroke:var(--accent-dark);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.btn-primary{display:block;width:100%;padding:18px 24px;background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;border:none;border-radius:12px;cursor:pointer;text-align:center;text-decoration:none;letter-spacing:.02em;box-shadow:0 4px 20px rgba(93,127,97,.35),0 1px 4px rgba(93,127,97,.2);transition:background .2s,transform .15s,box-shadow .2s;margin-bottom:14px}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 6px 28px rgba(93,127,97,.45),0 2px 6px rgba(93,127,97,.25)}
+.btn-primary:active{transform:translateY(0)}
+.btn-security{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--text-muted);margin-bottom:20px}
+.btn-security svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.decline-link{display:block;text-align:center;font-size:13px;color:var(--text-muted);text-decoration:none;cursor:pointer;transition:color .2s}
+.decline-link:hover{color:var(--text)}
+
+/* GUARANTEE */
+.guarantee{background:var(--beige);border-radius:14px;padding:24px 28px;display:flex;align-items:flex-start;gap:18px;margin-bottom:28px}
+.guarantee-icon{width:48px;height:48px;background:var(--accent-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.guarantee-icon svg{width:24px;height:24px;fill:none;stroke:var(--accent-dark);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.guarantee-body h4{font-family:'Playfair Display',serif;font-size:15px;color:var(--dark-green);font-weight:700;margin-bottom:4px}
+.guarantee-body p{font-size:13.5px;color:var(--text-muted);line-height:1.55}
+
+/* FOOTER */
+.oto-footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border)}
+.oto-footer p{font-size:12px;color:var(--text-muted);line-height:1.7}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .offer-body{padding:24px 20px}
+  .bridge-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- CONFIRMATION BAR -->
+<div class="confirm-bar">
+  <div class="confirm-bar-inner">
+    <span class="confirm-check">
+      <svg viewBox="0 0 16 16"><polyline points="3,8 6,11 13,4"/></svg>
+    </span>
+    <p class="confirm-text">Compra confirmada! <span>Seu e-book <em>Emagreça 3kg em 7 Dias</em> está a caminho do seu e-mail.</span></p>
+  </div>
+</div>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-bar">
+  <p>Esta oferta especial expira em <strong id="timer">10:00</strong> — disponível <strong>apenas nesta página</strong></p>
+</div>
+
+<!-- HERO OTO -->
+<div class="hero-oto">
+  <div class="hero-oto-inner">
+    <span class="oto-badge">Oferta Única — Não aparece novamente</span>
+    <h1>Você perdeu <em>3kg em 7 dias.</em><br>E agora?</h1>
+    <div class="divider-gold"></div>
+    <p class="sub">Os 7 dias ensinaram seu corpo a funcionar diferente. O Protocolo 30 Dias consolida isso — transforma o resultado em estilo de vida, sem efeito sanfona.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- BRIDGE: BEFORE / AFTER -->
+  <div class="bridge">
+    <div style="text-align:center">
+      <span class="section-badge">Por que continuar</span>
+      <h2 class="section-title">O que acontece com quem para nos 7 dias</h2>
+      <p class="section-sub">vs. quem vai até os 30</p>
+    </div>
+    <div class="bridge-grid">
+      <div class="bridge-card bad">
+        <div class="bridge-card-title">Sem o Protocolo 30 Dias</div>
+        <ul>
+          <li>Os hábitos dos 7 dias se perdem em 2 semanas</li>
+          <li>O peso volta — com gordura onde não estava</li>
+          <li>A fome fora de hora reaparece</li>
+          <li>Volta ao ponto de partida sem saber por quê</li>
+          <li>Precisa "fazer dieta" de novo em poucos meses</li>
+        </ul>
+      </div>
+      <div class="bridge-card good">
+        <div class="bridge-card-title">Com o Protocolo 30 Dias</div>
+        <ul>
+          <li>Os 7 dias viram base — os 30 consolidam</li>
+          <li>Perda de mais 4–6kg sem estresse alimentar</li>
+          <li>Treinos progressivos que cabem na rotina real</li>
+          <li>Lista de compras e substitutos prontos</li>
+          <li>Manutenção para a vida — sem voltar à estaca zero</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <div class="inside">
+    <span class="section-badge">O que está incluído</span>
+    <h2 class="section-title">Protocolo 30 Dias — <em>4 módulos completos</em></h2>
+    <p class="section-sub">Tudo que você precisa para consolidar o resultado dos 7 dias e seguir sozinha daqui pra frente.</p>
+    <div class="modules-list">
+      <div class="module-item">
+        <div class="module-num">M1</div>
+        <div class="module-body">
+          <div class="module-name">Plano Alimentar 30 Dias</div>
+          <div class="module-desc">4 semanas de cardápio progressivo, Método do Prato, substituições inteligentes e protocolo de hidratação. Sem contar calorias.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M2</div>
+        <div class="module-body">
+          <div class="module-name">Guia de Treinos</div>
+          <div class="module-desc">3 fases de evolução (Ativação, Progressão, Intensificação), HIIT, mobilidade e protocolo de recuperação. Em casa, sem equipamento.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M3</div>
+        <div class="module-body">
+          <div class="module-name">Lista de Compras + Suplementos</div>
+          <div class="module-desc">Lista de mercado por categoria, guia de suplementos reais (proteína, magnésio, vitamina D), receitas rápidas e chás funcionais.</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-num">M4</div>
+        <div class="module-body">
+          <div class="module-name">Manutenção Pós-30 Dias</div>
+          <div class="module-desc">As 4 categorias de comportamento, sinais de alerta, protocolo de recuperação por situação e como sustentar o resultado para sempre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFER CARD -->
+  <div class="offer-section">
+    <div class="offer-card">
+      <div class="offer-top">
+        <span class="offer-top-badge">Oferta especial — apenas agora</span>
+        <h2>Protocolo 30 Dias<br><em>Consolidação e Resultado Definitivo</em></h2>
+      </div>
+      <div class="offer-body">
+
+        <div class="price-block">
+          <p class="price-of">Acesso completo por</p>
+          <p class="price-installment">
+            12x de <strong><sup>R$</sup>6<span>,65</span></strong>
+          </p>
+          <p class="price-full">ou <strong>R$79,90</strong> à vista no Pix ou cartão</p>
+        </div>
+
+        <div class="deliverables">
+          <div class="deliv-item">
+            <span class="deliv-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            <span><strong>Módulo 1</strong> — Plano Alimentar 30 Dias completo (4 semanas)</span>
+          </div>
+          <div class="deliv-item">
+            <span class="deliv-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            <span><strong>Módulo 2</strong> — Guia de Treinos progressivo (em casa)</span>
+          </div>
+          <div class="deliv-item">
+            <span class="deliv-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            <span><strong>Módulo 3</strong> — Lista de compras, suplementos e receitas</span>
+          </div>
+          <div class="deliv-item">
+            <span class="deliv-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            <span><strong>Módulo 4</strong> — Manutenção definitiva pós-30 dias</span>
+          </div>
+          <div class="deliv-item">
+            <span class="deliv-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            <span>Acesso imediato via e-mail — PDFs para baixar e guardar</span>
+          </div>
+        </div>
+
+        <div class="guarantee">
+          <span class="guarantee-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="guarantee-body">
+            <h4>Garantia de 7 dias</h4>
+            <p>Se por qualquer motivo você não ficar satisfeita, devolvemos 100% do valor. Sem burocracia, sem perguntas.</p>
+          </div>
+        </div>
+
+        <a href="https://pay.kiwify.com.br/j0vAGbU" target="_blank" class="btn-primary">
+          Quero o Protocolo 30 Dias — R$79,90
+        </a>
+        <p class="btn-security">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Pagamento 100% seguro via Kiwify
+        </p>
+        <a class="decline-link" href="#" onclick="return false;">
+          Não, obrigado. Vou continuar apenas com os 7 dias.
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="oto-footer">
+  <p>Esta é uma oferta única apresentada imediatamente após sua compra.<br>Após fechar esta página, o preço especial não estará mais disponível.<br><br>
+  &copy; 2026 — Todos os direitos reservados.</p>
+</div>
+
+<script>
+// Countdown timer — 10 minutes
+(function(){
+  var total = 10 * 60;
+  var el = document.getElementById('timer');
+  function tick(){
+    if(total <= 0){ el.textContent = '00:00'; return; }
+    var m = Math.floor(total / 60);
+    var s = total % 60;
+    el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    total--;
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
