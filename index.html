@@ -1771,9 +1771,137 @@
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* ── Responsivo: esconde produtos extras no mobile ──── */
+    /* ── Hero imagem real ─────────────────────────────── */
+    .hero-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 420px;
+    }
+    .hero-photo {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .hero-ebook-badge {
+      position: absolute;
+      bottom: -24px;
+      left: -28px;
+      background: white;
+      border-radius: 14px;
+      padding: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .hero-ebook-badge img {
+      width: 130px;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* ── Before/After section ─────────────────────────── */
+    .before-after {
+      padding: 80px 0;
+      background: var(--beige);
+    }
+    .ba-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .ba-img-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .ba-img-wrap img {
+      width: 100%;
+      display: block;
+    }
+    .ba-label {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    .ba-tag {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .ba-tag.before { color: #b94040; }
+    .ba-tag.after { color: var(--accent-dark); }
+    .ba-content h2 { margin-bottom: 16px; }
+    .ba-results {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .ba-result-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--shadow-card);
+    }
+    .ba-result-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .ba-result-text strong {
+      display: block;
+      font-size: 13px;
+      color: var(--dark);
+    }
+    .ba-result-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── Ingredients section ──────────────────────────── */
+    .ingredients-section {
+      padding: 80px 0;
+    }
+    .ingredients-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .ing-img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    /* ── Responsivo ───────────────────────────────────── */
     @media (max-width: 768px) {
       .planner-mockup, .bottle-mockup, .pen-mockup, .hero-sparkle, .deco-ring, .hero-fabric { display: none; }
+      .hero-img-wrap { width: 100%; }
+      .hero-photo { height: 380px; }
+      .hero-ebook-badge { bottom: -16px; left: 12px; }
+      .hero-ebook-badge img { width: 100px; }
+      .ba-inner, .ingredients-inner { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
 </head>
@@ -1824,64 +1952,15 @@
         <span class="btn-micro">🔒 Acesso imediato · PDF enviado por e-mail · Método 100% natural</span>
       </div>
 
-      <!-- Mockup do e-book + arranjo premium -->
-      <div class="book-wrapper">
-
-        <!-- Anéis decorativos dourados -->
-        <div class="deco-ring dr1"></div>
-        <div class="deco-ring dr2"></div>
-        <div class="deco-ring dr3"></div>
-
-        <!-- Glow do livro -->
-        <div class="book-glow"></div>
-
-        <!-- Livro principal -->
-        <div class="book">
-          <div class="book-spine"></div>
-          <div class="book-pages"></div>
-          <div class="book-cover">
-            <span class="book-tag">E-book · PDF</span>
-            <div class="book-title-text">
-              <em>Emagreça até 3kg em 7 Dias</em>
-              O Protocolo de 7 Dias
-            </div>
-            <div class="book-divider"></div>
-            <div class="book-sub">Cardápio · Protocolo · Resultados</div>
-          </div>
+      <!-- Imagem hero -->
+      <div class="hero-img-wrap">
+        <img src="images/hero-woman.png" alt="Mulher saudável com smoothie verde" class="hero-photo">
+        <div class="hero-ebook-badge">
+          <img src="images/ebook-mockup.png" alt="E-book Emagreça 3kg em 7 Dias">
         </div>
-
-        <!-- Planner / caderninho -->
-        <div class="planner-mockup">
-          <div class="planner-top">
-            <div class="planner-spirals"></div>
-          </div>
-          <div class="planner-header">7 Weekly<br>Planner</div>
-          <div class="planner-lines"></div>
-          <div class="planner-gold-bar"></div>
-        </div>
-
-        <!-- Garrafinha de água -->
-        <div class="bottle-mockup">
-          <div class="bottle-cap"></div>
-          <div class="bottle-neck"></div>
-          <div class="bottle-body">
-            <div class="bottle-shine"></div>
-            <div class="bottle-label">Mineral<br>Water</div>
-          </div>
-        </div>
-
-        <!-- Caneta -->
-        <div class="pen-mockup"></div>
-
-        <!-- Chips flutuantes -->
         <div class="float-chip c1" style="--dur:3.4s;--d:.1s;--rot:-2deg"><div class="float-chip-dot"></div>Sem academia</div>
-        <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>Resultado visível</div>
-        <div class="float-chip c3" style="--dur:3.5s;--d:1s;--rot:-1.5deg"><div class="float-chip-dot"></div>Sem passar fome</div>
-        <div class="float-chip c4" style="--dur:4.1s;--d:.4s;--rot:2deg"><div class="float-chip-dot"></div>PDF imediato</div>
-
-        <!-- Sparkle dourado -->
-        <div class="hero-sparkle">✦</div>
-
+        <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>Sem passar fome</div>
+        <div class="float-chip c3" style="--dur:3.5s;--d:1s;--rot:-1.5deg"><div class="float-chip-dot"></div>Resultado visível</div>
       </div>
 
     </div>
@@ -1915,6 +1994,51 @@
   </div>
 </section>
 
+
+<!-- ══════════════════════════════════════════════════════════════
+     BEFORE/AFTER
+═══════════════════════════════════════════════════════════════ -->
+<section class="before-after">
+  <div class="container">
+    <div class="ba-inner">
+      <div class="ba-img-wrap reveal">
+        <img src="images/before-after.jpg" alt="Transformação antes e depois">
+        <div class="ba-label">
+          <span class="ba-tag before">Antes</span>
+          <span class="ba-tag after">Depois — 7 dias</span>
+        </div>
+      </div>
+      <div class="ba-content">
+        <span class="eyebrow reveal">Resultado real</span>
+        <h2 class="reveal">O que muda em 7 dias<br>quando você faz certo</h2>
+        <p class="reveal" style="color:var(--text-muted);line-height:1.7;margin-bottom:8px">Sem academia. Sem fome. Sem contar caloria. Apenas o protocolo alimentar certo para o seu metabolismo.</p>
+        <div class="ba-results">
+          <div class="ba-result-item reveal">
+            <div class="ba-result-icon">⚡</div>
+            <div class="ba-result-text">
+              <strong>Energia de volta nos primeiros dias</strong>
+              <span>92% relatam mais disposição já no Dia 3</span>
+            </div>
+          </div>
+          <div class="ba-result-item reveal">
+            <div class="ba-result-icon">👗</div>
+            <div class="ba-result-text">
+              <strong>Roupas mais soltas em menos de 1 semana</strong>
+              <span>Redução de inchaço visível a partir do Dia 2</span>
+            </div>
+          </div>
+          <div class="ba-result-item reveal">
+            <div class="ba-result-icon">⚖️</div>
+            <div class="ba-result-text">
+              <strong>Até 3kg a menos na balança</strong>
+              <span>Quem seguiu 80%+ do protocolo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      04. DOR
@@ -2226,6 +2350,32 @@
   </div>
 </section>
 
+
+<!-- ══════════════════════════════════════════════════════════════
+     INGREDIENTES / PROTOCOLO
+═══════════════════════════════════════════════════════════════ -->
+<section class="ingredients-section section">
+  <div class="container">
+    <div class="ingredients-inner">
+      <div class="reveal">
+        <span class="eyebrow">O protocolo na prática</span>
+        <h2>Alimentos reais que<br>ativam seu metabolismo</h2>
+        <p style="color:var(--text-muted);line-height:1.7;margin:16px 0 24px">O cardápio dos 7 dias usa ingredientes acessíveis que você encontra em qualquer mercado — e que trabalham juntos para reduzir inflamação, estabilizar insulina e queimar gordura.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted)"><span style="color:var(--accent-dark);font-weight:700">✓</span> Abacate — gordura boa que sacia e ativa o metabolismo</li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted)"><span style="color:var(--accent-dark);font-weight:700">✓</span> Gengibre — termogênico natural, aumenta queima em até 20%</li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted)"><span style="color:var(--accent-dark);font-weight:700">✓</span> Canela — regula insulina e reduz vontade de doce</li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted)"><span style="color:var(--accent-dark);font-weight:700">✓</span> Frutas vermelhas — antioxidantes que combatem inflamação</li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-muted)"><span style="color:var(--accent-dark);font-weight:700">✓</span> Aveia — fibra que mantém saciedade por horas</li>
+        </ul>
+        <a href="#oferta" class="btn btn-primary" style="margin-top:28px;display:inline-flex">Ver o cardápio completo →</a>
+      </div>
+      <div class="reveal">
+        <img src="images/ingredients.jpg" alt="Ingredientes do protocolo" class="ing-img">
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      09. OFERTA

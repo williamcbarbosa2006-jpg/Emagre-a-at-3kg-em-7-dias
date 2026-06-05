@@ -5,159 +5,186 @@
 <title>Módulo 4 — Manutenção Pós-30 Dias</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--dark-green:#253828;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--gold:#C9973A;--gold-light:#e8c97a;--off-white:#FAF8F5;--text:#1C1C1A;--muted:#6B6560;--border:#DDD8D2}
-@page{size:A5 portrait;margin:13mm 14mm 13mm 14mm}
-body{font-family:'DM Sans',sans-serif;font-size:8.5pt;color:var(--text);background:#fff;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.2}
-p{margin-bottom:2mm} strong{font-weight:600}
-.mod-cover{background:var(--dark-green);min-height:58mm;display:flex;flex-direction:column;justify-content:flex-end;padding:10mm 14mm 9mm;position:relative;overflow:hidden;margin:-13mm -14mm 8mm}
-.mod-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,151,58,.18) 0%,transparent 60%)}
-.mod-num{font-size:5.5pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-light);display:block;margin-bottom:3mm;position:relative;z-index:1}
-.mod-title{font-size:22pt;font-weight:700;color:#fff;line-height:1.05;position:relative;z-index:1}
-.mod-title em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.mod-sub{font-size:8pt;color:rgba(250,248,245,.62);margin-top:2mm;position:relative;z-index:1}
-.eyebrow{font-size:6pt;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:3mm;display:block}
-.maint-grid{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-bottom:6mm}
-.mc{border-radius:8px;padding:8px 10px}
+:root{--white:#FFFFFF;--off-white:#FAF8F5;--beige:#F5F0EB;--beige-mid:#EDE6DD;--accent:#7A9E7E;--accent-dark:#5d7f61;--accent-soft:#e8f0e9;--text:#1C1C1A;--muted:#6B6560;--dark-green:#253828;--gold:#C9973A;--gold-light:#e8c97a;--border:#DDD8D2}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+@page{size:A5 portrait;margin:16mm 18mm 20mm 18mm}
+@page cover{margin:0}
+body{font-family:'DM Sans',sans-serif;font-size:9.5pt;line-height:1.65;color:var(--text);background:var(--white)}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.25}
+.pb{page-break-after:always;break-after:page}
+p{margin-bottom:3mm}
+strong{font-weight:600}
+
+.page-cover{page:cover;width:148mm;height:210mm;background:var(--dark-green);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:22mm 20mm;position:relative;overflow:hidden;page-break-after:always}
+.page-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(122,158,126,.18) 0%,transparent 60%),radial-gradient(ellipse at 85% 85%,rgba(201,151,58,.1) 0%,transparent 45%)}
+.cov-badge{font-size:6.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8mm;position:relative}
+.cov-title{font-family:'Playfair Display',serif;font-size:32pt;font-weight:700;color:#fff;line-height:1.06;margin-bottom:5mm;position:relative}
+.cov-title em{font-style:italic;color:var(--accent)}
+.cov-sub{font-size:8.5pt;color:rgba(250,248,245,.65);font-weight:300;line-height:1.62;max-width:92mm;margin-bottom:12mm;position:relative}
+.cov-div{width:26mm;height:1.5px;background:var(--accent);margin-bottom:12mm;position:relative}
+.cov-promises{display:flex;flex-direction:column;gap:3.5mm;text-align:left;position:relative}
+.cov-pitem{display:flex;align-items:center;gap:4mm;font-size:8.5pt;color:rgba(250,248,245,.84)}
+.cov-check{width:4.5mm;height:4.5mm;background:var(--accent);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6pt;color:#fff;line-height:1}
+.cov-foot{position:absolute;bottom:10mm;font-size:6.5pt;color:rgba(255,255,255,.28);letter-spacing:.14em;text-transform:uppercase}
+
+.eyebrow{font-size:6.5pt;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:2mm;display:block}
+.sec-title{font-family:'Playfair Display',serif;font-size:18pt;font-weight:700;color:var(--dark-green);line-height:1.2;margin-bottom:5mm;padding-bottom:4mm;border-bottom:2px solid var(--accent-soft)}
+
+.quote-box{background:var(--dark-green);border-radius:10px;padding:7mm 9mm;position:relative;overflow:hidden;margin-bottom:6mm}
+.quote-box::before{content:'\201C';position:absolute;top:-4mm;left:2mm;font-family:'Playfair Display',serif;font-size:42pt;color:rgba(122,158,126,.18);line-height:1}
+.quote-box p{font-family:'Playfair Display',serif;font-size:10pt;font-style:italic;color:rgba(250,248,245,.9);line-height:1.65;position:relative;z-index:1;margin-bottom:3mm}
+.quote-box cite{display:block;font-family:'DM Sans',sans-serif;font-style:normal;font-size:6pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light);position:relative;z-index:1}
+
+.maint-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:6mm}
+.mc{border-radius:8px;padding:9px 11px}
 .mc.green{background:var(--accent-soft);border:1px solid rgba(122,158,126,.3)}
 .mc.dark{background:var(--dark-green)}
-.mc.gold{background:rgba(201,151,58,.08);border:1px solid rgba(201,151,58,.2)}
-.mc.red{background:rgba(180,40,40,.06);border:1px solid rgba(180,40,40,.15)}
-.mc-title{font-weight:700;font-size:8pt;margin-bottom:4px}
+.mc.gold{background:rgba(201,151,58,.07);border:1px solid rgba(201,151,58,.2)}
+.mc.red{background:rgba(180,40,40,.05);border:1px solid rgba(180,40,40,.15)}
+.mc-title{font-weight:700;font-size:8pt;margin-bottom:5px}
 .mc.green .mc-title{color:var(--dark-green)}
 .mc.dark .mc-title{color:rgba(250,248,245,.92)}
-.mc.gold .mc-title{color:#8a6020}
-.mc.red .mc-title{color:#8a2020}
-.mc p,.mc ul{font-size:7pt;line-height:1.5}
-.mc.green p,.mc.green ul{color:var(--muted)}
-.mc.dark p,.mc.dark ul{color:rgba(250,248,245,.7)}
-.mc.gold p,.mc.gold ul{color:#6b4a18}
-.mc.red p,.mc.red ul{color:#6b2018}
-.mc ul{padding-left:10px;list-style:disc}
+.mc.gold .mc-title{color:#7a5010}
+.mc.red .mc-title{color:#7a1818}
+.mc ul{padding-left:10px;list-style:disc;font-size:7.5pt;line-height:1.52}
+.mc.green ul{color:var(--muted)}
+.mc.dark ul{color:rgba(250,248,245,.72)}
+.mc.gold ul{color:#5a3a10}
+.mc.red ul{color:#5a1818}
 .mc ul li{margin-bottom:2px}
-.highlight-box{background:var(--dark-green);border-radius:10px;padding:8mm 10mm;position:relative;overflow:hidden;margin:5mm 0}
-.highlight-box::before{content:'\201C';position:absolute;top:-3mm;left:2mm;font-family:'Playfair Display',serif;font-size:36pt;color:rgba(201,151,58,.15);line-height:1}
-.highlight-box p{font-family:'Playfair Display',serif;font-size:10pt;font-style:italic;color:rgba(250,248,245,.9);line-height:1.65;position:relative;z-index:1}
-.highlight-box cite{display:block;font-family:'DM Sans',sans-serif;font-style:normal;font-size:6pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-top:4mm;position:relative;z-index:1}
-.rule-table{width:100%;border-collapse:collapse;font-size:7.5pt;margin-bottom:5mm}
-.rule-table thead th{background:var(--dark-green);color:#fff;padding:4px 8px;font-size:6.5pt;text-align:left}
-.rule-table tbody td{padding:5px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
-.rule-table tbody tr:nth-child(even) td{background:var(--off-white)}
-.rule-table td:first-child{font-weight:600;color:var(--dark-green);width:28%}
+
 .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:5mm}
-.signal-card{border-radius:7px;padding:7px 9px}
-.signal-card.ok{background:var(--accent-soft);border-left:3px solid var(--accent)}
-.signal-card.alert{background:rgba(201,151,58,.08);border-left:3px solid var(--gold)}
-.signal-card .sc-title{font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.signal-card{border-radius:7px;padding:8px 10px}
+.signal-card.ok{background:var(--accent-soft);border-left:3.5px solid var(--accent)}
+.signal-card.alert{background:rgba(201,151,58,.07);border-left:3.5px solid var(--gold)}
+.sc-title{font-size:6.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;display:block}
 .signal-card.ok .sc-title{color:var(--accent-dark)}
-.signal-card.alert .sc-title{color:#8a6020}
-.signal-card ul{padding-left:10px;list-style:disc}
-.signal-card ul li{font-size:7pt;line-height:1.5;color:var(--muted);margin-bottom:1px}
-.final-msg{background:var(--dark-green);border-radius:10px;padding:8mm 10mm;text-align:center;margin-top:6mm}
-.final-msg h3{font-size:16pt;color:#fff;margin-bottom:3mm}
-.final-msg h3 em{font-style:italic;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.final-msg p{font-size:8pt;color:rgba(250,248,245,.7);line-height:1.65;max-width:90%;margin:0 auto}
+.signal-card.alert .sc-title{color:#7a5010}
+.signal-card ul{padding-left:10px;list-style:disc;font-size:7.5pt;line-height:1.5;color:var(--muted)}
+.signal-card ul li{margin-bottom:2px}
+
+table.rt{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:5mm;page-break-inside:avoid}
+table.rt thead th{background:var(--dark-green);color:#fff;padding:5px 8px;font-size:7.5pt;font-weight:600;text-align:left}
+table.rt tbody td{padding:5px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+table.rt tbody tr:nth-child(even) td{background:var(--off-white)}
+table.rt td:first-child{font-weight:600;color:var(--dark-green);width:30%;background:var(--beige)!important}
+table.rt td:last-child{font-size:7.5pt;color:var(--muted);width:20%}
+
+.final-msg{background:var(--dark-green);border-radius:10px;padding:8mm 10mm;text-align:center;margin-top:5mm;position:relative;overflow:hidden}
+.final-msg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(122,158,126,.15) 0%,transparent 60%)}
+.final-msg h3{font-family:'Playfair Display',serif;font-size:17pt;color:#fff;margin-bottom:3mm;position:relative;z-index:1;line-height:1.25}
+.final-msg h3 em{font-style:italic;color:var(--accent)}
+.final-msg p{font-size:8.5pt;color:rgba(250,248,245,.7);line-height:1.65;max-width:90%;margin:0 auto;position:relative;z-index:1}
 </style>
 </head>
 <body>
 
-<div class="mod-cover">
-  <span class="mod-num">Protocolo 30 Dias · Módulo 4 de 4</span>
-  <h1 class="mod-title">Manutenção<br><em>Pós-30 Dias</em></h1>
-  <p class="mod-sub">O que continuar, o que flexibilizar, o que nunca abrir mão — e como reconhecer os sinais de que você está saindo dos trilhos antes que vire hábito ruim</p>
+<div class="page-cover pb">
+  <span class="cov-badge">Protocolo 30 Dias · Módulo 4 de 4</span>
+  <h1 class="cov-title">Manutenção<br><em>Pós-30 Dias</em></h1>
+  <p class="cov-sub">O que continuar, o que flexibilizar, o que nunca abrir mão — e como reconhecer os sinais de que você está saindo dos trilhos antes que vire hábito ruim</p>
+  <div class="cov-div"></div>
+  <div class="cov-promises">
+    <div class="cov-pitem"><span class="cov-check">✓</span>4 categorias de comportamento pós-protocolo</div>
+    <div class="cov-pitem"><span class="cov-check">✓</span>Sinais de alerta e o que fazer</div>
+    <div class="cov-pitem"><span class="cov-check">✓</span>Protocolo de recuperação por situação</div>
+  </div>
+  <span class="cov-foot">Protocolo 30 Dias</span>
 </div>
 
-<div class="highlight-box" style="margin-bottom:6mm">
-  <p>Os 30 dias ensinaram o seu corpo a funcionar diferente. A manutenção não é vontade de ferro — é não destruir em 3 dias o que levou 30 para construir.</p>
-  <cite>Protocolo 30 Dias — Princípio da Manutenção</cite>
-</div>
+<div>
+  <div class="quote-box">
+    <p>Os 30 dias ensinaram o seu corpo a funcionar diferente. A manutenção não é vontade de ferro — é não destruir em 3 dias o que levou 30 para construir.</p>
+    <cite>Protocolo 30 Dias — Princípio da Manutenção</cite>
+  </div>
 
-<span class="eyebrow">As 4 categorias de comportamento</span>
-<div class="maint-grid">
-  <div class="mc green">
-    <div class="mc-title">✓ Continue sempre</div>
-    <ul>
-      <li>Água: 2L/dia mínimo</li>
-      <li>Café da manhã com proteína</li>
-      <li>Almoço pelo Método do Prato</li>
-      <li>Jantar leve, sem carb pesado</li>
-      <li>Alongamentos 3–4×/semana</li>
-      <li>Evitar ultraprocessados</li>
-    </ul>
+  <span class="eyebrow">As 4 categorias de comportamento</span>
+  <div class="maint-grid">
+    <div class="mc green">
+      <div class="mc-title">✓ Continue sempre</div>
+      <ul>
+        <li>Água: 2L/dia mínimo</li>
+        <li>Café da manhã com proteína</li>
+        <li>Almoço pelo Método do Prato</li>
+        <li>Jantar leve, sem carb pesado</li>
+        <li>Alongamentos 3–4×/semana</li>
+        <li>Evitar ultraprocessados</li>
+      </ul>
+    </div>
+    <div class="mc dark">
+      <div class="mc-title">↔ Pode flexibilizar</div>
+      <ul>
+        <li>1–2 refeições livres por semana</li>
+        <li>Álcool: 1–2 doses/semana (não diário)</li>
+        <li>Trocar proteínas livremente</li>
+        <li>Pular treino por 1 semana (viagem)</li>
+        <li>Sobremesa 1–2×/semana (moderada)</li>
+      </ul>
+    </div>
+    <div class="mc gold">
+      <div class="mc-title">⚡ Nunca abra mão</div>
+      <ul>
+        <li>Café da manhã — não pule</li>
+        <li>Proteína em toda refeição principal</li>
+        <li>Vegetais no almoço e jantar</li>
+        <li>Comer devagar — 20 min por refeição</li>
+        <li>Dormir 7–8h por noite</li>
+      </ul>
+    </div>
+    <div class="mc red">
+      <div class="mc-title">✗ Sinal de alarme</div>
+      <ul>
+        <li>Pular refeições mais de 2 dias seguidos</li>
+        <li>Açúcar diário voltando</li>
+        <li>Mais de 1 semana sem nenhum treino</li>
+        <li>Inchaço voltando (retenção)</li>
+        <li>Sentir culpa após comer — não é normal</li>
+      </ul>
+    </div>
   </div>
-  <div class="mc dark">
-    <div class="mc-title">↔ Pode flexibilizar</div>
-    <ul style="color:rgba(250,248,245,.75)">
-      <li>1–2 refeições livres por semana</li>
-      <li>Álcool: 1–2 doses/semana (não diário)</li>
-      <li>Trocar proteínas entre si livremente</li>
-      <li>Pular treino por 1 semana (viagem, estresse)</li>
-      <li>Sobremesa 1–2×/semana (moderada)</li>
-    </ul>
-  </div>
-  <div class="mc gold">
-    <div class="mc-title">⚡ Nunca abra mão</div>
-    <ul>
-      <li>Café da manhã — não pule</li>
-      <li>Proteína em toda refeição principal</li>
-      <li>Vegetais no almoço e jantar</li>
-      <li>Comer devagar — 20 min por refeição</li>
-      <li>Dormir 7–8h por noite</li>
-    </ul>
-  </div>
-  <div class="mc red">
-    <div class="mc-title">✗ Sinal de alarme</div>
-    <ul>
-      <li>Pular refeições mais de 2 dias seguidos</li>
-      <li>Açúcar diário voltando</li>
-      <li>Mais de 1 semana sem nenhum treino</li>
-      <li>Inchaço voltando (retenção)</li>
-      <li>Sentir culpa após comer — não é normal</li>
-    </ul>
-  </div>
-</div>
 
-<span class="eyebrow">Como reconhecer a tempo</span>
-<h2 style="font-size:13pt;color:var(--dark-green);margin-bottom:3mm">Sinais de alerta<br>e o que fazer</h2>
-<div class="signal-grid">
-  <div class="signal-card ok">
-    <div class="sc-title">Está bem</div>
-    <ul>
-      <li>Peso estável ±1kg</li>
-      <li>Energia constante ao longo do dia</li>
-      <li>Roupas confortáveis no mesmo lugar</li>
-      <li>Dormindo bem, sem inchaço ao acordar</li>
-      <li>Fome regular nos horários das refeições</li>
-    </ul>
-  </div>
-  <div class="signal-card alert">
-    <div class="sc-title">Atenção</div>
-    <ul>
-      <li>+2kg em 1 semana (retenção ou deslize)</li>
-      <li>Inchaço matinal voltou</li>
-      <li>Vontade de doce após toda refeição</li>
-      <li>Energia em queda no meio da tarde</li>
-      <li>Fome fora dos horários voltando</li>
-    </ul>
-  </div>
-</div>
+  <span class="eyebrow">Como reconhecer a tempo</span>
+  <h2 class="sec-title">Sinais de alerta e o que fazer</h2>
 
-<span class="eyebrow">Protocolo de recuperação</span>
-<table class="rule-table">
-  <thead><tr><th>Situação</th><th>O que fazer</th><th>Prazo</th></tr></thead>
-  <tbody>
-    <tr><td>1 semana fora do protocolo</td><td>Volta ao plano da Semana 1 por 5 dias. Sem rigidez — só o básico: proteína + vegetal + carb complexo.</td><td>5 dias de reset</td></tr>
-    <tr><td>2+ semanas fora</td><td>Refaça as Semanas 1 e 2 do protocolo completo. Não tente compensar com jejum ou dieta severa — piora.</td><td>2 semanas</td></tr>
-    <tr><td>Viagem ou evento</td><td>Mantenha o café da manhã e o jantar leve. O almoço pode ser livre. Alongamento no hotel (10 min).</td><td>Duração da viagem</td></tr>
-    <tr><td>Estresse alto / doença</td><td>Priorize sono e hidratação. Não force treino. Alimentação simples e nutritiva — sopa, ovos, fruta. Volte ao normal quando melhorar.</td><td>Enquanto durar</td></tr>
-    <tr><td>Plateau de peso</td><td>Adicione 1 sessão de treino por semana. Varie as proteínas. Verifique o sono — insônia trava o metabolismo mais do que a dieta.</td><td>2 semanas de ajuste</td></tr>
-  </tbody>
-</table>
+  <div class="signal-grid">
+    <div class="signal-card ok">
+      <span class="sc-title">Está bem</span>
+      <ul>
+        <li>Peso estável ±1kg</li>
+        <li>Energia constante ao longo do dia</li>
+        <li>Roupas confortáveis no mesmo lugar</li>
+        <li>Dormindo bem, sem inchaço ao acordar</li>
+        <li>Fome regular nos horários das refeições</li>
+      </ul>
+    </div>
+    <div class="signal-card alert">
+      <span class="sc-title">Atenção</span>
+      <ul>
+        <li>+2kg em 1 semana (retenção ou deslize)</li>
+        <li>Inchaço matinal voltou</li>
+        <li>Vontade de doce após toda refeição</li>
+        <li>Energia em queda no meio da tarde</li>
+        <li>Fome fora dos horários voltando</li>
+      </ul>
+    </div>
+  </div>
 
-<div class="final-msg">
-  <h3>Você chegou.<br><em>Agora é estilo de vida.</em></h3>
-  <p>O protocolo acabou. O hábito ficou. Não existe mais "estar de dieta" — existe comer bem porque você sabe como faz você se sentir. Esse é o resultado real.</p>
+  <span class="eyebrow">Protocolo de recuperação</span>
+  <table class="rt">
+    <thead><tr><th>Situação</th><th>O que fazer</th><th>Prazo</th></tr></thead>
+    <tbody>
+      <tr><td>1 semana fora do protocolo</td><td>Volta ao plano da Semana 1 por 5 dias. O básico: proteína + vegetal + carb complexo. Sem rigidez.</td><td>5 dias</td></tr>
+      <tr><td>2+ semanas fora</td><td>Refaça as Semanas 1 e 2 completas. Não tente compensar com jejum ou dieta severa — piora.</td><td>2 semanas</td></tr>
+      <tr><td>Viagem ou evento</td><td>Mantenha o café da manhã e o jantar leve. Almoço pode ser livre. Alongamento no hotel (10 min).</td><td>Duração</td></tr>
+      <tr><td>Estresse alto / doença</td><td>Priorize sono e hidratação. Não force treino. Alimentação simples — sopa, ovos, fruta. Volta ao normal quando melhorar.</td><td>Enquanto durar</td></tr>
+      <tr><td>Plateau de peso</td><td>Adicione 1 sessão de treino por semana. Varie as proteínas. Verifique o sono — insônia trava o metabolismo mais do que a dieta.</td><td>2 semanas</td></tr>
+    </tbody>
+  </table>
+
+  <div class="final-msg">
+    <h3>Você chegou.<br><em>Agora é estilo de vida.</em></h3>
+    <p>O protocolo acabou. O hábito ficou. Não existe mais "estar de dieta" — existe comer bem porque você sabe como faz você se sentir. Esse é o resultado real.</p>
+  </div>
 </div>
 
 </body>

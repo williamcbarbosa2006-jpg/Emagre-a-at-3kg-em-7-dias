@@ -518,22 +518,200 @@
   .break-before {
     page-break-before: always;
   }
+  /* ─── MEAL PLAN ─── */
+  .meal-plan {
+    margin: 5mm 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+    page-break-inside: avoid;
+  }
+  .meal-row {
+    display: grid;
+    grid-template-columns: 28mm 1fr;
+    gap: 2mm;
+    border-bottom: 1px solid var(--beige);
+    padding-bottom: 2mm;
+    align-items: start;
+  }
+  .meal-time {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    padding-top: 0.5mm;
+  }
+  .meal-food {
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .meal-food .sub {
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .meal-plan-header {
+    background: var(--dark-green);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2.5mm 3.5mm;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0;
+  }
+  .meal-plan-wrap {
+    border: 1px solid var(--beige-mid);
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+    padding: 3mm 4mm;
+    background: var(--off-white);
+  }
+
+  /* ─── SUBSTITUTION TABLE ─── */
+  .sub-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin: 4mm 0;
+    page-break-inside: avoid;
+  }
+  .sub-table thead th {
+    background: var(--accent-dark);
+    color: white;
+    padding: 2.5mm 3mm;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-align: left;
+  }
+  .sub-table tbody td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid var(--beige);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .sub-table tbody tr:nth-child(even) td { background: var(--beige); }
+
+  /* ─── HYDRATION BAR ─── */
+  .hydration {
+    background: var(--accent-soft);
+    border-radius: 6px;
+    padding: 3mm 4mm;
+    margin: 4mm 0;
+    display: flex;
+    gap: 3mm;
+    align-items: flex-start;
+    page-break-inside: avoid;
+  }
+  .hydration-icon {
+    font-size: 16pt;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .hydration-body {
+    flex: 1;
+  }
+  .hydration-body strong {
+    display: block;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-deep);
+    margin-bottom: 1mm;
+  }
+  .hydration-body p {
+    margin: 0;
+    font-size: 9pt;
+    color: var(--accent-deep);
+    line-height: 1.5;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist {
+    list-style: none;
+    margin: 4mm 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    font-size: 9.5pt;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .checklist li::before {
+    content: '□';
+    font-size: 11pt;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: -0.5mm;
+    line-height: 1.3;
+  }
+
+  /* ─── SHOPPING LIST ─── */
+  .shop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin: 4mm 0;
+  }
+  .shop-cat {
+    border-radius: 6px;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+  .shop-cat-header {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--dark-green);
+    padding: 2mm 3mm;
+  }
+  .shop-cat-body {
+    background: var(--beige);
+    padding: 2.5mm 3mm;
+  }
+  .shop-cat-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .shop-cat-body li {
+    font-size: 9pt;
+    color: var(--text);
+    padding: 1mm 0;
+    border-bottom: 1px solid var(--beige-mid);
+    line-height: 1.4;
+  }
+  .shop-cat-body li:last-child { border-bottom: none; }
 </style>
 </head>
 <body>
 
 <!-- ═══════════════════════════════════ COVER ═══════════════════════════════════ -->
 <div class="page-cover">
-  <div class="cover-eyebrow">Protocolo Alimentar</div>
+  <div class="cover-eyebrow">Protocolo Alimentar Completo</div>
   <div class="cover-title">Emagreça até<br><em>3kg em 7 Dias</em></div>
-  <div class="cover-subtitle">Sem academia, sem passar fome e sem contar caloria — o protocolo dia a dia para desinchar, recuperar energia e ver resultado real na primeira semana.</div>
+  <div class="cover-subtitle">Cardápio dia a dia, porções exatas, substituições e protocolo de ativação metabólica — sem academia, sem passar fome, sem contar caloria.</div>
   <div class="cover-divider"></div>
   <div class="cover-promise">
-    <div class="cover-promise-item"><div class="cover-check"></div>Protocolo alimentar completo para os 7 dias</div>
-    <div class="cover-promise-item"><div class="cover-check"></div>Cardápio diário com substituições</div>
-    <div class="cover-promise-item"><div class="cover-check"></div>Ativação metabólica sem academia</div>
-    <div class="cover-promise-item"><div class="cover-check"></div>Estratégia de janela alimentar (Dias 5–6)</div>
-    <div class="cover-promise-item"><div class="cover-check"></div>Guia de perfil individual por tipo de corpo</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Cardápio completo: café, almoço, jantar e lanches</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Porções exatas para cada refeição</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Tabela de substituições — 40+ opções</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Exercícios em casa sem equipamento</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Janela alimentar + protocolo anti-retenção</div>
+    <div class="cover-promise-item"><div class="cover-check"></div>Lista de compras completa para os 7 dias</div>
   </div>
   <div class="cover-footer">© 2026 — Todos os direitos reservados. Uso pessoal.</div>
 </div>
@@ -543,41 +721,14 @@
   <div class="toc-label">Sumário</div>
   <div class="toc-title">O Que Vem a Seguir</div>
   <ul class="toc-list">
-    <li>
-      <span class="toc-num">01</span>
-      <span class="toc-name">Você Não Está Exagerando — Seu Corpo Está Pedindo Socorro</span>
-      <span class="toc-days">Diagnóstico</span>
-    </li>
-    <li>
-      <span class="toc-num">02</span>
-      <span class="toc-name">Por Que Realmente Você Não Consegue Emagrecer</span>
-      <span class="toc-days">Causa Real</span>
-    </li>
-    <li>
-      <span class="toc-num">03</span>
-      <span class="toc-name">O Erro Que Sabota 90% das Dietas</span>
-      <span class="toc-days">Armadilhas</span>
-    </li>
-    <li>
-      <span class="toc-num">04</span>
-      <span class="toc-name">Dias 1 e 2 — O Reset Metabólico</span>
-      <span class="toc-days">Dias 1–2</span>
-    </li>
-    <li>
-      <span class="toc-num">05</span>
-      <span class="toc-name">Dias 3 e 4 — A Ativação</span>
-      <span class="toc-days">Dias 3–4</span>
-    </li>
-    <li>
-      <span class="toc-num">06</span>
-      <span class="toc-name">Dias 5 e 6 — A Aceleração</span>
-      <span class="toc-days">Dias 5–6</span>
-    </li>
-    <li>
-      <span class="toc-num">07</span>
-      <span class="toc-name">Dia 7 — A Decisão</span>
-      <span class="toc-days">Dia 7</span>
-    </li>
+    <li><span class="toc-num">01</span><span class="toc-name">Você Não Está Exagerando — Seu Corpo Está Pedindo Socorro</span><span class="toc-days">Diagnóstico</span></li>
+    <li><span class="toc-num">02</span><span class="toc-name">Por Que Realmente Você Não Consegue Emagrecer</span><span class="toc-days">Causa Real</span></li>
+    <li><span class="toc-num">03</span><span class="toc-name">O Erro Que Sabota 90% das Dietas</span><span class="toc-days">Armadilhas</span></li>
+    <li><span class="toc-num">04</span><span class="toc-name">Dias 1 e 2 — Reset Metabólico + Cardápio</span><span class="toc-days">Dias 1–2</span></li>
+    <li><span class="toc-num">05</span><span class="toc-name">Dias 3 e 4 — Ativação + Cardápio</span><span class="toc-days">Dias 3–4</span></li>
+    <li><span class="toc-num">06</span><span class="toc-name">Dias 5 e 6 — Aceleração + Janela Alimentar</span><span class="toc-days">Dias 5–6</span></li>
+    <li><span class="toc-num">07</span><span class="toc-name">Dia 7 — Medição, Resultado e Próximos Passos</span><span class="toc-days">Dia 7</span></li>
+    <li><span class="toc-num">+</span><span class="toc-name">Bônus: Lista de Compras + Tabela de Substituições</span><span class="toc-days">Referência</span></li>
   </ul>
 </div>
 
@@ -700,206 +851,498 @@
 <!-- ═══════════════════════════════════ CAP 4 ═══════════════════════════════════ -->
 <div class="page-chapter">
   <div class="chapter-eyebrow">Capítulo 4</div>
-  <h1 class="chapter-title">Dias 1 e 2 — O Reset Metabólico</h1>
+  <h1 class="chapter-title">Dias 1 e 2 — Reset Metabólico</h1>
   <div class="phase-tag">Dias 1 – 2</div>
 
-  <p>Os dois primeiros dias são sobre parar antes de acelerar. Parece contra-intuitivo. A vontade é de sair fazendo. Mas o reset é o passo que determina o sucesso de tudo que vem depois.</p>
+  <p>Os dois primeiros dias são sobre parar antes de acelerar. O objetivo é remover inflamação, estabilizar insulina e dar ao corpo as ferramentas para começar a liberar gordura. Sem dieta radical, sem passar fome.</p>
 
-  <div class="avoid-break">
-    <h2>O Que É o Reset (e o Que Não É)</h2>
-    <table>
-      <thead><tr><th>O Reset É</th><th>O Reset Não É</th></tr></thead>
-      <tbody>
-        <tr><td>Remover alimentos inflamatórios</td><td>Jejum de dias</td></tr>
-        <tr><td>Aumentar hidratação</td><td>Suco detox de 3 dias</td></tr>
-        <tr><td>Priorizar sono como ferramenta metabólica</td><td>Comer só salada</td></tr>
-        <tr><td>Comer com atenção — sem pressa, sem tela</td><td>Passar fome</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2>O Que Remover Completamente</h2>
+  <h2>O Que Eliminar Completamente</h2>
   <ul>
-    <li>Açúcar refinado e adoçantes artificiais (aspartame, sucralose)</li>
-    <li>Farinhas brancas (pão branco, macarrão branco, biscoito, bolacha)</li>
-    <li>Óleos vegetais industriais (soja, girassol, milho, canola)</li>
-    <li>Alimentos ultraprocessados (qualquer coisa com lista de ingredientes maior que 5 itens que você não reconhece)</li>
-    <li>Álcool em qualquer quantidade</li>
-    <li>Refrigerantes e sucos de caixinha</li>
+    <li>Açúcar refinado e adoçantes artificiais (aspartame, sucralose, sacarina)</li>
+    <li>Farinhas brancas: pão branco, macarrão convencional, biscoito, bolacha, salgadinho</li>
+    <li>Óleos vegetais industriais: soja, girassol, milho, canola — use azeite ou coco</li>
+    <li>Ultraprocessados: qualquer produto com mais de 5 ingredientes desconhecidos</li>
+    <li>Álcool, refrigerante, suco de caixinha, energético</li>
+    <li>Molhos industrializados: ketchup, mostarda amarela, maionese de pote</li>
   </ul>
 
-  <h2>O Que Adicionar Ativamente</h2>
+  <div class="hydration">
+    <div class="hydration-icon">💧</div>
+    <div class="hydration-body">
+      <strong>Protocolo de Hidratação — Dias 1 e 2</strong>
+      <p>Ao acordar: 500ml de água com suco de ½ limão (ativa o fígado). Durante o dia: 2,0 a 2,5L no total. Antes de cada refeição: 1 copo (200ml) — reduz a fome em até 30%. Chás permitidos: verde, gengibre, hibisco, camomila — sem adoçar.</p>
+    </div>
+  </div>
+
+  <div class="meal-plan-header">Cardápio — Dia 1</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Café da manhã<br>7h–8h</div>
+        <div class="meal-food"><strong>2 ovos mexidos com azeite + 1 fatia de pão integral + café preto sem açúcar</strong><br><span class="sub">Ou: omelete de 2 ovos com espinafre + chá verde</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>10h–10h30</div>
+        <div class="meal-food"><strong>1 fruta média (maçã, pera ou laranja) + 10 castanhas-do-pará ou amêndoas</strong><br><span class="sub">Ou: 1 iogurte natural integral (sem açúcar) + canela</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Almoço<br>12h–13h</div>
+        <div class="meal-food"><strong>120g de frango grelhado + 4 col de sopa de arroz integral + 2 col de feijão + salada verde à vontade com azeite + 1 col de chá de limão</strong><br><span class="sub">Ou: 120g de carne magra (patinho, músculo) ou atum</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h–16h</div>
+        <div class="meal-food"><strong>1 iogurte grego natural (sem açúcar) + 1 punhado de frutas vermelhas</strong><br><span class="sub">Ou: 2 ovos cozidos + 1 fruta pequena</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h–20h</div>
+        <div class="meal-food"><strong>Sopa de legumes com 100g de frango desfiado (cenoura, abobrinha, chuchu, cebola, alho) + 1 col de azeite</strong><br><span class="sub">Ou: 2 ovos + salada grande com atum (100g) + azeite</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meal-plan-header" style="margin-top:4mm">Cardápio — Dia 2</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Café da manhã<br>7h–8h</div>
+        <div class="meal-food"><strong>Vitamina verde: 200ml de leite vegetal (amêndoas ou aveia) + 1 banana pequena + 1 col de chá de spirulina + 1 col de sopa de aveia + café preto</strong><br><span class="sub">Ou: 2 ovos + 1 fatia de pão integral + chá verde</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>10h</div>
+        <div class="meal-food"><strong>1 maçã + 1 col de sopa de pasta de amendoim natural (sem açúcar)</strong><br><span class="sub">Ou: cottage (2 col) + 1 fruta</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Almoço<br>12h–13h</div>
+        <div class="meal-food"><strong>100g de salmão grelhado com ervas + 3 col de quinoa ou arroz integral + legumes refogados no azeite (abobrinha, berinjela, pimentão)</strong><br><span class="sub">Ou: 120g de frango + batata-doce pequena + salada</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h30</div>
+        <div class="meal-food"><strong>Chá de gengibre com limão + 10 castanhas + 1 quadrado de chocolate 70%+</strong><br><span class="sub">Ou: iogurte natural + canela + 1 fruta vermelha</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h–20h</div>
+        <div class="meal-food"><strong>Omelete de 3 ovos com espinafre, tomate e cogumelo + salada de rúcula com azeite</strong><br><span class="sub">Ou: 100g de peixe + legumes grelhados</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Movimento — Dias 1 e 2</h2>
+  <p>Nada de academia. O objetivo é ativar a circulação sem elevar o cortisol:</p>
   <ul>
-    <li><strong>Água:</strong> mínimo 2,5 litros por dia (não inclui café, chá ou suco)</li>
-    <li><strong>Legumes e verduras</strong> em cada refeição</li>
-    <li><strong>Proteína</strong> em cada refeição: ovo, frango, peixe, atum, cottage</li>
-    <li><strong>Gordura boa:</strong> azeite extra-virgem, abacate, castanhas (porção pequena)</li>
-    <li><strong>Sono:</strong> 7 a 8 horas. Sem negociação. Dormir mal aumenta grelina em 24% no dia seguinte.</li>
+    <li><strong>Caminhada leve:</strong> 20–25 minutos a qualquer hora. Passo confortável — você deve conseguir conversar.</li>
+    <li><strong>Alongamento noturno:</strong> 10 minutos antes de dormir. Reduz cortisol e melhora a qualidade do sono.</li>
+    <li><strong>Nenhum treino de força nesses dias.</strong> O reset acontece no repouso, não no esforço.</li>
   </ul>
 
   <div class="protocol-section">
     <table>
-      <thead><tr><th>✓ O que fazer</th><th>✗ O que não fazer</th></tr></thead>
+      <thead><tr><th>✓ Faça</th><th>✗ Evite</th></tr></thead>
       <tbody>
-        <tr><td>Comer de 3 em 3 horas (sem pular)</td><td>Pular refeições para "compensar"</td></tr>
+        <tr><td>Proteína em toda refeição principal</td><td>Refeição só de carboidrato</td></tr>
         <tr><td>2,5L de água ao longo do dia</td><td>Tomar líquido só quando sentir sede</td></tr>
-        <tr><td>Verdura em todas as refeições</td><td>Refeição só de carboidrato</td></tr>
-        <tr><td>Dormir antes da meia-noite</td><td>Tela depois das 22h (luz azul atrasa melatonina)</td></tr>
-        <tr><td>Caminhar 20 minutos (leve)</td><td>Academia intensa nesses dias</td></tr>
-        <tr><td>Mastigar devagar, sem distração</td><td>Comer em pé, correndo ou na frente do celular</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="profiles">
-    <div class="profile-card"><strong>Perfil 1</strong><p>Você vai sentir uma diferença de bem-estar já no Dia 2. A inflamação responde rápido quando o gatilho é recente.</p></div>
-    <div class="profile-card"><strong>Perfil 2</strong><p>Esses dois dias podem gerar um leve "craving" por açúcar ou carboidrato. É normal. É o seu organismo testando se o novo padrão é real. Não é fome — é adaptação.</p></div>
-    <div class="profile-card"><strong>Perfil 3</strong><p>Você provavelmente vai desinchar visivelmente já no Dia 2. A redução de sódio e aumento de água é o protocolo mais eficaz para retenção.</p></div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════ CAP 5 ═══════════════════════════════════ -->
-<div class="page-chapter">
-  <div class="chapter-eyebrow">Capítulo 5</div>
-  <h1 class="chapter-title">Dias 3 e 4 — A Ativação</h1>
-  <div class="phase-tag">Dias 3 – 4</div>
-
-  <p>Você passou pelos dois primeiros dias. O ambiente interno está mais limpo. Agora é hora de ligar o motor.</p>
-  <p>A fase de ativação tem dois focos simultâneos: alimentos que aceleram o metabolismo e movimento estratégico que não aumenta o cortisol. A combinação cria o "efeito termogênico composto" — seu corpo começa a gastar mais energia processando e se movendo ao mesmo tempo.</p>
-
-  <h2>Alimentos Termogênicos para Adicionar</h2>
-  <ul>
-    <li><strong>Gengibre fresco:</strong> ralado no chá, na salada, no peixe. Aumenta a termogênese em até 20%.</li>
-    <li><strong>Canela:</strong> uma colher de chá no café, no iogurte, na fruta. Melhora sensibilidade à insulina.</li>
-    <li><strong>Chá verde:</strong> 2 a 3 xícaras por dia. Catequinas + cafeína moderada = queima de gordura sem estresse adrenal.</li>
-    <li><strong>Pimenta-caiena:</strong> se tolerar, uma pitada em qualquer refeição quente.</li>
-    <li><strong>Ovo inteiro:</strong> a gema tem colina, que ativa o metabolismo das gorduras no fígado.</li>
-    <li><strong>Salmão ou sardinha:</strong> ômega-3 reduz inflamação e melhora sensibilidade hormonal.</li>
-  </ul>
-
-  <h2>Movimento de Ativação — Dias 3 e 4</h2>
-  <div class="plate-guide">
-    <h3>Manhã (10–15 minutos, antes do café)</h3>
-    <div class="plate-row"><span class="plate-pct">50</span><span class="plate-desc">agachamentos livres (divida em séries de 10)</span></div>
-    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">séries de 30 segundos de prancha</span></div>
-    <div class="plate-row"><span class="plate-pct">20</span><span class="plate-desc">afundos alternados + 5 minutos de caminhada</span></div>
-    <h3 style="margin-top:3mm;">Tarde ou Noite (30 minutos)</h3>
-    <p>Caminhada a passo acelerado — você deve conseguir falar mas estar levemente ofegante.</p>
-  </div>
-
-  <div class="protocol-section">
-    <table>
-      <thead><tr><th>✓ O que fazer</th><th>✗ O que não fazer</th></tr></thead>
-      <tbody>
-        <tr><td>Gengibre e canela pelo menos 1× por dia</td><td>Academia pesada ou treino acima de 45 min</td></tr>
-        <tr><td>Chá verde com limão no café da manhã</td><td>Café com açúcar ou adoçante artificial</td></tr>
-        <tr><td>Proteína no café da manhã (ovo, queijo, iogurte)</td><td>Café da manhã só com pão e manteiga</td></tr>
-        <tr><td>Exercício matinal em jejum curto (até 60 min)</td><td>Jejum prolongado (mais de 14h)</td></tr>
-        <tr><td>Caminhada 30 min à tarde</td><td>Ficar sentada o dia todo sem nenhum movimento</td></tr>
+        <tr><td>Dormir antes da meia-noite</td><td>Tela depois das 22h</td></tr>
+        <tr><td>Mastigar devagar — 20+ minutos por refeição</td><td>Comer em menos de 10 minutos</td></tr>
         <tr><td>Jantar até as 20h</td><td>Comer após as 21h</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="profiles">
-    <div class="profile-card"><strong>Perfil 1</strong><p>Dias 3 e 4 são quando você vai começar a ver a balança se mover. A inflamação caiu, o metabolismo está se ajustando.</p></div>
-    <div class="profile-card"><strong>Perfil 2</strong><p>Você pode sentir um aumento de energia incomum. Não interprete isso como sinal de que pode "flexibilizar" — é o corpo respondendo positivamente. Continue.</p></div>
-    <div class="profile-card"><strong>Perfil 3</strong><p>O inchaço visual está provavelmente menor. A balança pode ainda não ter se movido muito, mas o espelho está diferente.</p></div>
+    <div class="profile-card"><strong>Perfil 1 — Recém-chegada</strong><p>Você vai sentir melhora de energia e menos inchaço já no Dia 2. A inflamação responde rápido quando o gatilho é recente.</p></div>
+    <div class="profile-card"><strong>Perfil 2 — Ciclo interminável</strong><p>Craving por açúcar nos primeiros dias é normal — é adaptação, não fome real. Use água, chá ou fruta quando aparecer.</p></div>
+    <div class="profile-card"><strong>Perfil 3 — Inchaço crônico</strong><p>Redução de sódio + aumento de água = você vai acordar no Dia 2 visivelmente mais definida.</p></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ CAP 5 ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Capítulo 5</div>
+  <h1 class="chapter-title">Dias 3 e 4 — Ativação Metabólica</h1>
+  <div class="phase-tag">Dias 3 – 4</div>
+
+  <p>O ambiente interno está mais limpo. Agora é hora de ativar o metabolismo com alimentos termogênicos e movimento estratégico que queima gordura sem elevar cortisol.</p>
+
+  <h2>Termogênicos para Adicionar a Partir de Hoje</h2>
+  <ul>
+    <li><strong>Gengibre fresco:</strong> 1 col de chá ralado no chá, na salada ou na proteína. Aumenta termogênese em até 20%.</li>
+    <li><strong>Canela:</strong> ½ col de chá no café, iogurte ou fruta. Melhora sensibilidade à insulina em até 29%.</li>
+    <li><strong>Chá verde:</strong> 2 xícaras por dia — catequinas + cafeína moderada = queima de gordura sem estresse adrenal.</li>
+    <li><strong>Pimenta-caiena:</strong> pitada em sopas ou carnes (se tolerar). Ativa receptores TRPV1 que aumentam gasto calórico.</li>
+    <li><strong>Cúrcuma + pimenta preta:</strong> pitada em qualquer refeição quente. Anti-inflamatório potente — a pimenta preta aumenta absorção em 2.000%.</li>
+  </ul>
+
+  <div class="meal-plan-header">Cardápio — Dia 3</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Café da manhã<br>7h–8h</div>
+        <div class="meal-food"><strong>Panqueca de banana: 1 banana amassada + 2 ovos + canela — fritar no coco ou azeite + chá verde com gengibre</strong><br><span class="sub">Ou: 2 ovos mexidos + 1 fatia de pão integral + café preto</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>10h</div>
+        <div class="meal-food"><strong>1 iogurte grego natural + ½ col de canela + 1 colher de mel puro (não industrializado)</strong><br><span class="sub">Ou: 1 fruta + 10 amêndoas</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Almoço<br>12h–13h</div>
+        <div class="meal-food"><strong>120g de frango grelhado com cúrcuma e alho + 3 col de arroz integral + salada: rúcula, tomate-cereja, pepino, 1 col de azeite + suco de limão</strong><br><span class="sub">Ou: 150g de carne magra grelhada + batata-doce pequena</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h30</div>
+        <div class="meal-food"><strong>Chá de hibisco gelado (sem açúcar) + 2 torradas integrais com pasta de amendoim natural</strong><br><span class="sub">Ou: 2 ovos cozidos + tomate</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h</div>
+        <div class="meal-food"><strong>100g de salmão ou sardinha no forno com ervas + legumes grelhados (abobrinha, pimentão, berinjela) + 1 col de azeite</strong><br><span class="sub">Ou: sopa de lentilha com frango desfiado</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meal-plan-header" style="margin-top:4mm">Cardápio — Dia 4</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Café da manhã<br>7h–8h</div>
+        <div class="meal-food"><strong>Overnight oats: 4 col de aveia em flocos + 150ml de leite vegetal + 1 col de chia + frutas vermelhas + canela — prepare na noite anterior</strong><br><span class="sub">Ou: omelete de 2 ovos + vegetais + pão integral</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>10h</div>
+        <div class="meal-food"><strong>1 banana pequena + 1 col de sopa de pasta de amendoim natural</strong><br><span class="sub">Ou: chá verde + castanhas (10 unidades)</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Almoço<br>12h–13h</div>
+        <div class="meal-food"><strong>Tigela: 3 col de quinoa + 120g de frango desfiado + ½ abacate + tomate + coentro + limão + azeite</strong><br><span class="sub">Ou: prato convencional — proteína + arroz integral + feijão + salada</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h30</div>
+        <div class="meal-food"><strong>100g de queijo cottage + ½ pepino fatiado + pitada de pimenta-do-reino</strong><br><span class="sub">Ou: iogurte natural + frutas vermelhas</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h</div>
+        <div class="meal-food"><strong>Wrap integral: 1 wrap integral + 100g de frango grelhado + folhas + tomate + 1 col de hummus ou guacamole caseiro</strong><br><span class="sub">Ou: omelete de 3 ovos + salada grande</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Treino de Ativação — Dias 3 e 4</h2>
+  <div class="plate-guide">
+    <h3>Circuito Matinal — 15 minutos (antes do café)</h3>
+    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">20 agachamentos livres — descanso de 30s entre séries</span></div>
+    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">30 segundos de prancha abdominal</span></div>
+    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">15 afundos alternados (cada perna)</span></div>
+    <div class="plate-row"><span class="plate-pct">3×</span><span class="plate-desc">10 flexões (adaptadas na parede se necessário)</span></div>
+    <h3 style="margin-top:3mm">Cardio — 30 minutos (tarde ou noite)</h3>
+    <p>Caminhada acelerada ou bike leve. Intensidade: consegue falar mas está levemente ofegante. Não use academia nesses dias.</p>
+  </div>
+
+  <div class="profiles">
+    <div class="profile-card"><strong>Perfil 1</strong><p>A balança começa a se mover. Continue sem pesarse todo dia — pese apenas no Dia 1 e no Dia 7.</p></div>
+    <div class="profile-card"><strong>Perfil 2</strong><p>Você pode sentir energia aumentando. Não flexibilize agora — é exatamente quando a maioria abandona por achar que "já deu".</p></div>
+    <div class="profile-card"><strong>Perfil 3</strong><p>O espelho já está diferente. A balança pode tardar porque você está substituindo retenção por massa muscular ativada.</p></div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════ CAP 6 ═══════════════════════════════════ -->
 <div class="page-chapter">
   <div class="chapter-eyebrow">Capítulo 6</div>
-  <h1 class="chapter-title">Dias 5 e 6 — A Aceleração</h1>
+  <h1 class="chapter-title">Dias 5 e 6 — Aceleração e Janela Alimentar</h1>
   <div class="phase-tag">Dias 5 – 6</div>
 
-  <p>Chegamos na fase que mais gera dúvida. E também a que mais gera resultado.</p>
-  <p>Nos Dias 5 e 6, você vai usar uma janela alimentar de 8 horas — comer em um período específico do dia e não comer fora dele. Isso não é jejum radical. É o seu sistema digestivo tendo tempo suficiente para processar, descansar e usar gordura como combustível.</p>
+  <p>Nos Dias 5 e 6 você ativa o protocolo mais poderoso do método: a janela alimentar de 8 horas. Não é jejum radical. É dar ao seu sistema digestivo tempo suficiente para usar gordura armazenada como combustível.</p>
 
-  <h2>O Que É a Janela Alimentar</h2>
+  <blockquote>Mark Mattson (NIH/EUA): após 10–12 horas sem alimento, o organismo entra em lipólise — começa a usar gordura armazenada como fonte primária de energia. A janela de 8h garante isso sem sofrimento.</blockquote>
+
+  <h2>Como Funciona a Janela</h2>
   <table>
-    <thead><tr><th>É</th><th>Não É</th></tr></thead>
+    <thead><tr><th>A janela alimentar É</th><th>A janela alimentar NÃO É</th></tr></thead>
     <tbody>
-      <tr><td>Comer entre 12h e 20h</td><td>Ficar sem comer nada o dia todo</td></tr>
-      <tr><td>3 refeições dentro desse horário</td><td>Contar cada caloria</td></tr>
-      <tr><td>Água, chá verde e café preto fora da janela</td><td>Sofrer de fome até o horário "liberar"</td></tr>
+      <tr><td>Comer entre 12h e 20h</td><td>Ficar sem comer o dia todo</td></tr>
+      <tr><td>3 refeições dentro do horário</td><td>Contar cada caloria</td></tr>
+      <tr><td>Água, chá e café preto fora da janela</td><td>Sofrer de fome até as 12h</td></tr>
+      <tr><td>Comer normalmente — sem restrição de volume</td><td>Jejum prolongado (mais de 16h)</td></tr>
     </tbody>
   </table>
-
-  <blockquote>Mark Mattson, neurocientista dos National Institutes of Health (EUA): quando o organismo passa mais de 10 a 12 horas sem alimento, ele começa a utilizar gordura armazenada como fonte primária de energia — o processo chamado de <strong>lipólise</strong>.</blockquote>
 
   <div class="plate-guide">
-    <h3>Composição de Prato — Dias 5 e 6</h3>
-    <div class="plate-row"><span class="plate-pct">50%</span><span class="plate-desc">Legumes e verduras (qualquer preparo)</span></div>
-    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Proteína (frango, peixe, ovo, carne magra, tofu)</span></div>
-    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Carboidrato complexo (arroz integral, batata-doce, mandioca, quinoa)</span></div>
+    <h3>Método do Prato — Dias 5 e 6</h3>
+    <div class="plate-row"><span class="plate-pct">50%</span><span class="plate-desc">Legumes e verduras — qualquer preparo, à vontade</span></div>
+    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Proteína — frango, peixe, ovo, carne magra, tofu</span></div>
+    <div class="plate-row"><span class="plate-pct">25%</span><span class="plate-desc">Carboidrato complexo — arroz integral, batata-doce, mandioca, quinoa</span></div>
   </div>
 
-  <h2>O Cronograma do Dia</h2>
-  <table>
-    <thead><tr><th>Horário</th><th>O Que Fazer</th></tr></thead>
-    <tbody>
-      <tr><td>Ao acordar</td><td>300ml de água com limão + café preto ou chá verde</td></tr>
-      <tr><td>Antes de 10h</td><td>Caminhada 30 min em jejum (lipólise ativa)</td></tr>
-      <tr><td>12h (1ª refeição)</td><td>Almoço completo — composição 50/25/25</td></tr>
-      <tr><td>15h–16h</td><td>Lanche proteico: iogurte + castanhas + fruta vermelha</td></tr>
-      <tr><td>19h–20h</td><td>Jantar leve: sopa ou salada grande com proteína</td></tr>
-      <tr><td>Após 20h</td><td>Apenas água e chá sem adoçar</td></tr>
-    </tbody>
-  </table>
+  <div class="meal-plan-header">Cardápio — Dia 5 (Janela 12h–20h)</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Ao acordar<br>7h</div>
+        <div class="meal-food"><strong>400ml de água com limão + café preto ou chá verde (sem adoçar) — fora da janela, apenas líquidos sem caloria</strong></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Movimento<br>9h–10h</div>
+        <div class="meal-food"><strong>Caminhada de 30 minutos em jejum — lipólise ativa. Ou circuito de casa (agachamento + prancha + afundo × 3)</strong></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">1ª refeição<br>12h</div>
+        <div class="meal-food"><strong>Almoço completo: 130g de frango ou peixe + 4 col de arroz integral + salada grande (alface, rúcula, tomate, pepino, cenoura ralada) + 1 col de azeite + limão</strong><br><span class="sub">Método do prato: 50% salada / 25% proteína / 25% carboidrato</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h30</div>
+        <div class="meal-food"><strong>Iogurte grego natural (170g) + punhado de frutas vermelhas + 8 castanhas + ½ col de canela</strong><br><span class="sub">Ou: 2 ovos cozidos + 1 fruta pequena</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h–20h</div>
+        <div class="meal-food"><strong>Sopa antiinflamatória: caldo de frango caseiro + cenoura, abobrinha, espinafre, cebola, alho, 100g de frango desfiado + 1 col de azeite + cúrcuma</strong><br><span class="sub">Ou: salada grande com atum + ovos cozidos + azeite</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Após 20h</div>
+        <div class="meal-food"><strong>Apenas água, chá de camomila ou erva-cidreira sem adoçar</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="meal-plan-header" style="margin-top:4mm">Cardápio — Dia 6 (Janela 12h–20h)</div>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Ao acordar<br>7h</div>
+        <div class="meal-food"><strong>Água com limão + chá verde com gengibre + café preto (sem adoçar)</strong></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Movimento<br>9h</div>
+        <div class="meal-food"><strong>30–40 minutos de caminhada acelerada em jejum. Não coma antes — esse é o horário de maior queima de gordura.</strong></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">1ª refeição<br>12h</div>
+        <div class="meal-food"><strong>Bowl: 3 col de quinoa + 120g de atum ou frango grelhado + ½ abacate + tomate + rúcula + limão + azeite + pimenta-do-reino</strong><br><span class="sub">Ou: prato convencional com proteína + arroz integral + legumes</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Lanche<br>15h30</div>
+        <div class="meal-food"><strong>1 maçã com canela + 1 col de pasta de amendoim natural</strong><br><span class="sub">Ou: cottage (4 col) + frutas vermelhas</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar<br>19h</div>
+        <div class="meal-food"><strong>100g de salmão ou tilápia grelhado com ervas + legumes no vapor (brócolis, vagem, couve-flor) + 1 col de azeite</strong><br><span class="sub">Ou: omelete de 3 ovos com queijo branco + salada</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Se Sentir Fome Antes das 12h</h2>
+  <ul>
+    <li><strong>Beba água primeiro</strong> — 80% da fome matinal é sede disfarçada.</li>
+    <li><strong>Café preto ou chá</strong> — suprimem a grelina (hormônio da fome) por 1 a 2 horas.</li>
+    <li><strong>Espere 20 minutos</strong> — a fome hormonal tem picos que passam. A fome real cresce gradualmente.</li>
+    <li>Se a fome for insuportável, quebre a janela com um ovo cozido ou punhado de castanhas — não abandone o protocolo.</li>
+  </ul>
 
   <div class="profiles">
-    <div class="profile-card"><strong>Perfil 1</strong><p>Você provavelmente vai sentir fome no período da manhã por 1 a 2 horas. Isso passa no segundo dia. Use água e café para atravessar.</p></div>
-    <div class="profile-card"><strong>Perfil 2</strong><p>A janela alimentar pode parecer fácil ou muito difícil dependendo da sua relação histórica com comida. Se sentir ansiedade, não é fome física — é hábito. Fome tem crescimento gradual, ansiedade tem onset súbito.</p></div>
-    <div class="profile-card"><strong>Perfil 3</strong><p>Você vai acordar no Dia 6 notavelmente mais definida. O conjunto redução de sódio + hidratação + janela alimentar age especificamente na retenção.</p></div>
+    <div class="profile-card"><strong>Perfil 1</strong><p>Fome pela manhã passa em 1–2 dias. Use água e café. Você vai acordar no Dia 6 com energia fora do comum.</p></div>
+    <div class="profile-card"><strong>Perfil 2</strong><p>Se sentir ansiedade — não é fome física, é hábito. Fome física cresce devagar. Ansiedade é súbita e some com distração.</p></div>
+    <div class="profile-card"><strong>Perfil 3</strong><p>Você vai acordar no Dia 6 visivelmente mais definida. Sódio reduzido + hidratação alta + janela alimentar = protocolo anti-retenção mais eficaz existente.</p></div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════ CAP 7 ═══════════════════════════════════ -->
 <div class="page-chapter">
   <div class="chapter-eyebrow">Capítulo 7</div>
-  <h1 class="chapter-title">Dia 7 — A Decisão</h1>
+  <h1 class="chapter-title">Dia 7 — Medição, Resultado e Próximos Passos</h1>
   <div class="phase-tag">Dia 7</div>
 
-  <p>O Dia 7 não é o dia do resultado mágico.</p>
-  <p>Digo isso com respeito, porque qualquer promessa de milagre em uma semana desrespeita a inteligência de quem está aqui. O Dia 7 é o dia em que você avalia, consolida e decide o que fazer com o que aprendeu.</p>
+  <p>O Dia 7 não é o dia do resultado mágico. É o dia da avaliação real — e da decisão sobre o que construir a partir daqui.</p>
 
-  <h2>Como Se Medir Hoje</h2>
-  <p>Antes de qualquer refeição, logo ao acordar:</p>
-  <ul>
-    <li>Peso na balança</li>
-    <li>Medida da cintura (na altura do umbigo, com fita métrica)</li>
-    <li>Medida do quadril (na parte mais larga)</li>
-    <li>Foto comparativa se quiser (frente e lado, mesma roupa do Dia 1)</li>
+  <h2>Como Se Medir Hoje (Antes de Qualquer Refeição)</h2>
+  <ul class="checklist">
+    <li>Peso na balança — em jejum, mesma hora do Dia 1</li>
+    <li>Medida da cintura na altura do umbigo (fita métrica)</li>
+    <li>Medida do quadril na parte mais larga</li>
+    <li>Foto comparativa: frente e lado, mesma roupa, mesma luz do Dia 1</li>
+    <li>Como você está se sentindo: energia, sono, digestão, humor</li>
   </ul>
-  <p>Compare com os registros do Dia 1. <strong>Não apenas com a balança — com tudo.</strong></p>
 
-  <h2>O Que Você Provavelmente Vai Encontrar</h2>
+  <blockquote><strong>Não meça só a balança.</strong> A balança é a métrica mais enganosa do processo. Mulheres podem perder 3cm de cintura e 0kg na balança em 7 dias — porque perderam gordura e ganharam tônus. O espelho e a fita métrica não mentem.</blockquote>
+
+  <h2>O Que Esperar Pelo Nível de Consistência</h2>
   <table>
-    <thead><tr><th>Consistência</th><th>Resultado Esperado</th></tr></thead>
+    <thead><tr><th>Consistência</th><th>Resultado Realista</th></tr></thead>
     <tbody>
-      <tr><td>80%+ dos dias seguidos</td><td>1 a 3kg na balança · 1 a 3cm na cintura · energia visivelmente melhor</td></tr>
-      <tr><td>50–80% seguidos</td><td>0,5 a 1,5kg · redução de inchaço visível · mais clareza sobre o que funciona pro seu corpo</td></tr>
-      <tr><td>Chegou até aqui com dificuldades</td><td>Você tem agora mais dados sobre como o seu corpo reage do que tinha antes. Isso não é fracasso — é pesquisa aplicada.</td></tr>
+      <tr><td>90–100% dos dias</td><td>1,5 a 3kg na balança · 2 a 4cm na cintura · energia visivelmente melhor · menos inchaço</td></tr>
+      <tr><td>70–90% dos dias</td><td>0,8 a 2kg · inchaço reduzido visivelmente · clareza sobre o que funciona pro seu corpo</td></tr>
+      <tr><td>50–70% dos dias</td><td>0 a 1kg · melhora de bem-estar · base sólida para repetir o protocolo com mais consistência</td></tr>
+      <tr><td>Chegou com dificuldades</td><td>Você tem dados reais sobre seu corpo. Isso é mais valioso que qualquer número.</td></tr>
     </tbody>
   </table>
 
-  <h2>A Coisa Que Ninguém Diz Sobre Emagrecimento</h2>
-  <p>Existe uma mentira embutida no mercado de dietas: que o objetivo é um ponto final. Um número na balança. Uma foto de depois.</p>
-  <p>O que realmente funciona é que as pessoas que mantêm o peso perdido não chegaram a um "ponto final". Elas chegaram a um novo ponto de partida. Um conjunto de hábitos que não exigem mais esforço ativo porque se tornaram o modo padrão.</p>
-  <blockquote><strong>Você não vai "terminar de emagrecer". Você vai mudar quem você é na sua relação com comida e movimento.</strong></blockquote>
+  <h2>Cardápio do Dia 7 — Celebre com Qualidade</h2>
+  <div class="meal-plan-wrap">
+    <div class="meal-plan">
+      <div class="meal-row">
+        <div class="meal-time">Café da manhã</div>
+        <div class="meal-food"><strong>Tapioca de 2 ovos com queijo branco e tomate + café preto ou chá verde</strong><br><span class="sub">Ou: qualquer café dos dias anteriores que você mais gostou</span></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Almoço</div>
+        <div class="meal-food"><strong>Prato livre — mas mantendo o Método do Prato (50% vegetais / 25% proteína / 25% carboidrato). Pode ser restaurante — escolha grelhado, evite fritura e molhos pesados.</strong></div>
+      </div>
+      <div class="meal-row">
+        <div class="meal-time">Jantar</div>
+        <div class="meal-food"><strong>Jantar leve de celebração: omelete recheada com queijo branco e ervas + salada grande com azeite. Ou sushi (sem tempurá) se quiser sair.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Como Não Perder o Resultado Conquistado</h2>
+  <p>As 3 regras que mantêm o resultado dos 7 dias indefinidamente:</p>
+  <ul>
+    <li><strong>Nunca pule o café da manhã com proteína.</strong> É o hábito de maior impacto metabólico documentado.</li>
+    <li><strong>Mantenha o Método do Prato no almoço.</strong> Não precisa ser perfeito — 80% do tempo já é suficiente.</li>
+    <li><strong>Uma refeição livre por semana não desfaz 6 dias certos.</strong> O problema é quando a refeição livre vira dia livre, vira semana livre.</li>
+  </ul>
+
+  <blockquote><strong>Você não vai "terminar de emagrecer". Você vai mudar quem você é na sua relação com comida. Esse é o resultado real — e ele dura.</strong></blockquote>
 
   <div class="next-step-box">
     <h3>Seu Próximo Passo</h3>
-    <p>Se você quer continuar com um protocolo de 30 dias que aprofunda cada fase desse método — incluindo estratégias de treino progressivo, rotação de carboidratos, e como sustentar o resultado sem efeito rebote:</p>
-    <strong>CORPO SECO: O MÉTODO COMPLETO</strong>
-    <p style="margin-top:2mm;font-size:9pt;">O próximo passo para quem provou que consegue e quer resultados de longo prazo.</p>
+    <p>Se você quer um protocolo de 30 dias que aprofunda cada fase deste método — cardápio progressivo, treinos evolutivos, rotação de carboidratos e como sustentar o resultado sem efeito rebote:</p>
+    <strong>Protocolo Completo 30 Dias — Corpo Seco</strong>
+    <p style="margin-top:2mm;font-size:9pt;">Para quem provou que consegue e quer resultados duradouros.</p>
   </div>
 
   <hr>
-  <p style="text-align:center; color:var(--text-muted); font-size:8.5pt; margin-top:6mm;">Você chegou ao Dia 7. Isso por si só é algo que a maioria não faz.<br>A próxima versão de você começa exatamente daqui.</p>
-  <p style="text-align:center; color:var(--beige-mid); font-size:8pt; margin-top:3mm;">© 2026 — Todos os direitos reservados. Uso pessoal.</p>
+  <p style="text-align:center;color:var(--text-muted);font-size:8.5pt;margin-top:6mm">Você chegou ao Dia 7. A maioria não chega.<br>A próxima versão de você começa exatamente daqui.</p>
+</div>
+
+<!-- ═══════════════════════════════════ BÔNUS 1 — LISTA DE COMPRAS ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Bônus</div>
+  <h1 class="chapter-title">Lista de Compras — 7 Dias Completos</h1>
+  <p style="font-size:9.5pt;color:var(--text-muted);margin-bottom:5mm">Lista otimizada para comprar uma vez e cobrir todos os 7 dias do protocolo.</p>
+
+  <div class="shop-grid">
+    <div class="shop-cat">
+      <div class="shop-cat-header">Proteínas</div>
+      <div class="shop-cat-body"><ul>
+        <li>Frango (peito ou filé) — 700g</li>
+        <li>Ovos — 2 dúzias</li>
+        <li>Atum em água — 4 latas</li>
+        <li>Salmão ou sardinha — 400g</li>
+        <li>Iogurte grego natural — 4 potes</li>
+        <li>Queijo cottage — 1 pote</li>
+        <li>Queijo branco (minas frescal) — 200g</li>
+      </ul></div>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-header">Vegetais e Verduras</div>
+      <div class="shop-cat-body"><ul>
+        <li>Alface, rúcula ou mix de folhas</li>
+        <li>Tomate — 6 unidades</li>
+        <li>Pepino — 3 unidades</li>
+        <li>Abobrinha — 2 unidades</li>
+        <li>Brócolis — 1 maço</li>
+        <li>Cenoura — 4 unidades</li>
+        <li>Pimentão — 2 unidades</li>
+        <li>Espinafre — 1 maço</li>
+        <li>Cebola e alho — à vontade</li>
+      </ul></div>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-header">Carboidratos</div>
+      <div class="shop-cat-body"><ul>
+        <li>Arroz integral — 500g</li>
+        <li>Quinoa — 200g</li>
+        <li>Batata-doce — 4 unidades</li>
+        <li>Aveia em flocos — 250g</li>
+        <li>Pão integral (100% — lista limpa)</li>
+        <li>Feijão ou lentilha — 300g</li>
+        <li>Tapioca (goma de mandioca)</li>
+      </ul></div>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-header">Gorduras Boas</div>
+      <div class="shop-cat-body"><ul>
+        <li>Azeite extra-virgem — 500ml</li>
+        <li>Abacate — 2 unidades</li>
+        <li>Castanhas-do-pará — 100g</li>
+        <li>Amêndoas — 100g</li>
+        <li>Pasta de amendoim natural</li>
+        <li>Semente de chia — 100g</li>
+      </ul></div>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-header">Frutas</div>
+      <div class="shop-cat-body"><ul>
+        <li>Limão — 6 unidades</li>
+        <li>Banana — 1 cacho pequeno</li>
+        <li>Maçã — 4 unidades</li>
+        <li>Frutas vermelhas (morango, mirtilo)</li>
+        <li>Laranja — 3 unidades</li>
+      </ul></div>
+    </div>
+    <div class="shop-cat">
+      <div class="shop-cat-header">Temperos e Chás</div>
+      <div class="shop-cat-body"><ul>
+        <li>Gengibre fresco — 1 raiz</li>
+        <li>Cúrcuma em pó</li>
+        <li>Canela em pó</li>
+        <li>Pimenta-do-reino</li>
+        <li>Chá verde (caixinha)</li>
+        <li>Chá de hibisco ou camomila</li>
+        <li>Ervas frescas: coentro, salsa</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ BÔNUS 2 — SUBSTITUIÇÕES ═══════════════════════════════════ -->
+<div class="page-chapter">
+  <div class="chapter-eyebrow">Bônus</div>
+  <h1 class="chapter-title">Tabela Completa de Substituições</h1>
+  <p style="font-size:9.5pt;color:var(--text-muted);margin-bottom:5mm">Não tem um ingrediente? Use a substituição abaixo — mesma função nutricional, mesmo resultado.</p>
+
+  <h2>Proteínas</h2>
+  <table class="sub-table">
+    <thead><tr><th>Se não tiver</th><th>Use no lugar</th><th>Porção equivalente</th></tr></thead>
+    <tbody>
+      <tr><td>Frango grelhado</td><td>Atum em água / carne magra / tofu / peixe branco</td><td>120g</td></tr>
+      <tr><td>Salmão</td><td>Sardinha / atum / cavalinha em lata</td><td>100g</td></tr>
+      <tr><td>Ovos</td><td>Cottage (4 col) / atum (1 lata) / frango desfiado</td><td>2 ovos = 80g proteína</td></tr>
+      <tr><td>Iogurte grego</td><td>Iogurte natural integral / cottage / coalhada seca</td><td>170g</td></tr>
+      <tr><td>Queijo cottage</td><td>Ricota / queijo branco minas / iogurte grego</td><td>4 col de sopa</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Carboidratos</h2>
+  <table class="sub-table">
+    <thead><tr><th>Se não tiver</th><th>Use no lugar</th><th>Porção equivalente</th></tr></thead>
+    <tbody>
+      <tr><td>Arroz integral</td><td>Quinoa / arroz negro / batata-doce / mandioca</td><td>3–4 col de sopa cozido</td></tr>
+      <tr><td>Batata-doce</td><td>Mandioca / inhame / cará / batata inglesa (menos indicada)</td><td>1 unidade média</td></tr>
+      <tr><td>Aveia</td><td>Granola sem açúcar / chia + banana / tapioca</td><td>4 col de sopa</td></tr>
+      <tr><td>Pão integral</td><td>Tapioca / crepioca (ovo + tapioca) / wrap integral</td><td>1 fatia = 1 tapioca pequena</td></tr>
+      <tr><td>Quinoa</td><td>Arroz integral / lentilha / grão-de-bico cozido</td><td>3 col de sopa cozido</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Gorduras e Outros</h2>
+  <table class="sub-table">
+    <thead><tr><th>Se não tiver</th><th>Use no lugar</th></tr></thead>
+    <tbody>
+      <tr><td>Azeite extra-virgem</td><td>Óleo de coco extra-virgem (mesma quantidade)</td></tr>
+      <tr><td>Abacate</td><td>Pasta de amendoim natural / castanhas / chia hidratada</td></tr>
+      <tr><td>Castanha-do-pará</td><td>Amêndoas / nozes / pistache / amendoim natural</td></tr>
+      <tr><td>Frutas vermelhas</td><td>Qualquer fruta fresca de baixo IG: maçã, kiwi, pera</td></tr>
+      <tr><td>Chá verde</td><td>Chá de hibisco / chá de gengibre / café preto</td></tr>
+      <tr><td>Gengibre fresco</td><td>Gengibre em pó (½ col de chá = 1 col de chá ralado fresco)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Regras de Substituição</h2>
+  <ul>
+    <li><strong>Proteína por proteína</strong> — nunca substitua proteína por carboidrato.</li>
+    <li><strong>Carboidrato complexo por complexo</strong> — batata-doce por arroz integral: ok. Batata-doce por pão branco: não.</li>
+    <li><strong>Gordura boa por gordura boa</strong> — azeite por coco: ok. Azeite por manteiga convencional: evite nos 7 dias.</li>
+    <li><strong>Volume sempre mantido</strong> — se trocar um alimento, mantenha a quantidade de proteína e reduza carboidrato se necessário.</li>
+  </ul>
+
+  <hr>
+  <p style="text-align:center;color:var(--text-muted);font-size:8pt;margin-top:6mm">© 2026 — Todos os direitos reservados. Uso pessoal exclusivo.</p>
 </div>
 
 </body>
