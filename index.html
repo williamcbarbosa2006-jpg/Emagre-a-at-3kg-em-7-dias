@@ -1766,7 +1766,7 @@
      01. BARRA SUPERIOR FIXA
 ═══════════════════════════════════════════════════════════════ -->
 <div class="top-bar" id="top-bar">
-  <span id="timer-msg">⚡ Oferta reservada por tempo limitado — garanta agora por R$ 29,90</span>
+  <span id="timer-msg">⚡ Oferta reservada por tempo limitado — garanta agora por R$ 19,90</span>
   <span id="timer-count">15:00</span>
 </div>
 
@@ -2245,11 +2245,11 @@
       </ul>
 
       <p class="price-old">De R$ 97,00</p>
-      <div class="price-new"><small>R$</small>29,90</div>
-      <p class="offer-installment">ou <strong>4× de R$ 7,48</strong> no cartão — sem juros</p>
+      <div class="price-new"><small>R$</small>19,90</div>
+      <p class="offer-installment">ou <strong>2× de R$ 9,95</strong> no cartão — sem juros</p>
 
       <a href="https://pay.kiwify.com.br/CTAGyUt" target="_blank" rel="noopener" class="btn btn-primary btn-block btn-checkout-link">
-        Quero começar agora — R$ 29,90
+        Quero começar agora — R$ 19,90
       </a>
 
       <p class="offer-micro">🔒 Pagamento seguro · Entrega imediata por e-mail · PDF para qualquer celular</p>
@@ -2446,13 +2446,13 @@
         bar.classList.add('danger', 'pulse');
         return; // para o timer
       } else if (left <= 120) {        // ≤ 2 min → vermelho pulsante
-        msgEl.textContent = '🔴 Últimos minutos! Garanta agora por R$ 29,90';
+        msgEl.textContent = '🔴 Últimos minutos! Garanta agora por R$ 19,90';
         bar.classList.add('danger', 'pulse');
       } else if (left <= 300) {        // ≤ 5 min → laranja
-        msgEl.textContent = '🟠 Oferta encerrando em breve — R$ 29,90';
+        msgEl.textContent = '🟠 Oferta encerrando em breve — R$ 19,90';
         bar.classList.add('warn');
       } else {                          // > 5 min → verde normal
-        msgEl.textContent = '⚡ Oferta reservada por tempo limitado — garanta agora por R$ 29,90';
+        msgEl.textContent = '⚡ Oferta reservada por tempo limitado — garanta agora por R$ 19,90';
       }
 
       setTimeout(tick, 1000);
