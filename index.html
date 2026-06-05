@@ -1787,17 +1787,30 @@
     }
     .hero-ebook-badge {
       position: absolute;
-      bottom: -24px;
-      left: -28px;
+      bottom: -32px;
+      left: -36px;
       background: white;
-      border-radius: 14px;
-      padding: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.18);
     }
     .hero-ebook-badge img {
-      width: 130px;
+      width: 190px;
       display: block;
-      border-radius: 8px;
+      border-radius: 10px;
+    }
+    .hero-ebook-badge .badge-price {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 100px;
+      box-shadow: 0 4px 16px rgba(93,127,97,.4);
+      white-space: nowrap;
     }
 
     /* ── Before/After section ─────────────────────────── */
@@ -1894,14 +1907,55 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.1);
     }
 
+    /* ── Botão pulsante ───────────────────────────────── */
+    @keyframes pulse-btn {
+      0%, 100% { box-shadow: 0 4px 24px rgba(93,127,97,.4); transform: scale(1); }
+      50% { box-shadow: 0 8px 40px rgba(93,127,97,.65); transform: scale(1.015); }
+    }
+
+    /* ── Sticky CTA mobile ────────────────────────────── */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: white;
+      padding: 12px 16px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .sticky-cta a {
+      display: block;
+      width: 100%;
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(93,127,97,.4);
+    }
+    .sticky-cta p {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
     /* ── Responsivo ───────────────────────────────────── */
     @media (max-width: 768px) {
       .planner-mockup, .bottle-mockup, .pen-mockup, .hero-sparkle, .deco-ring, .hero-fabric { display: none; }
       .hero-img-wrap { width: 100%; }
       .hero-photo { height: 380px; }
       .hero-ebook-badge { bottom: -16px; left: 12px; }
-      .hero-ebook-badge img { width: 100px; }
+      .hero-ebook-badge img { width: 140px; }
       .ba-inner, .ingredients-inner { grid-template-columns: 1fr; gap: 32px; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 80px; }
     }
   </style>
 </head>
@@ -1957,6 +2011,7 @@
         <img src="images/hero-woman.png" alt="Mulher saudável com smoothie verde" class="hero-photo">
         <div class="hero-ebook-badge">
           <img src="images/ebook-mockup.png" alt="E-book Emagreça 3kg em 7 Dias">
+          <span class="badge-price">R$ 19,90</span>
         </div>
         <div class="float-chip c1" style="--dur:3.4s;--d:.1s;--rot:-2deg"><div class="float-chip-dot"></div>Sem academia</div>
         <div class="float-chip c2" style="--dur:3.8s;--d:.6s;--rot:1.5deg"><div class="float-chip-dot"></div>Sem passar fome</div>
@@ -2385,42 +2440,41 @@
 
     <div class="offer-box reveal">
 
-      <span class="offer-badge">Oferta especial</span>
+      <span class="offer-badge">⚡ Oferta especial — apenas hoje</span>
 
       <div class="offer-title">Emagreça até 3kg em 7 Dias</div>
 
-      <!-- Mockup decorativo pequeno -->
-      <div class="offer-book">
-        <div class="offer-book-spine"></div>
-        <div class="offer-book-cover">
-          <span>Emagreça até 3kg em 7 Dias<br>Protocolo 7 Dias</span>
-        </div>
+      <!-- Ebook real -->
+      <div style="text-align:center;margin:20px 0">
+        <img src="images/ebook-mockup.png" alt="E-book Emagreça 3kg em 7 Dias" style="width:220px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.15)">
       </div>
 
       <!-- Includes resumidos -->
       <ul class="offer-includes">
-        <li>Protocolo alimentar completo — 7 dias</li>
-        <li>Lista de compras pronta</li>
-        <li>As 5 trocas anti-inchaço em 48h</li>
-        <li>Guia de manutenção pós-7 dias</li>
-        <li>O que beber para acelerar resultados</li>
-        <li>Cronograma dia a dia</li>
+        <li>Cardápio completo dia a dia — 7 dias</li>
+        <li>Porções exatas + tabela de substituições</li>
+        <li>Protocolo anti-inchaço em 48h</li>
+        <li>Exercícios em casa sem equipamento</li>
+        <li>Lista de compras pronta para o mercado</li>
+        <li>Cronograma hora a hora</li>
       </ul>
 
       <p class="price-old">De R$ 97,00</p>
       <div class="price-new"><small>R$</small>19,90</div>
       <p class="offer-installment">ou <strong>2× de R$ 9,95</strong> no cartão — sem juros</p>
 
-      <a href="https://pay.kiwify.com.br/CTAGyUt" target="_blank" rel="noopener" class="btn btn-primary btn-block btn-checkout-link">
-        Quero começar agora — R$ 19,90
+      <a href="https://pay.kiwify.com.br/CTAGyUt" target="_blank" rel="noopener" class="btn btn-primary btn-block btn-checkout-link" style="font-size:18px;padding:18px 24px;animation:pulse-btn 2s infinite">
+        🍃 Quero começar agora — R$ 19,90
       </a>
+
+      <p style="text-align:center;font-size:12px;color:#b94040;font-weight:600;margin:8px 0">⏰ Preço especial válido apenas enquanto esta página estiver aberta</p>
 
       <p class="offer-micro">🔒 Pagamento seguro · Entrega imediata por e-mail · PDF para qualquer celular</p>
 
       <div class="seals">
-        <span class="seal-chip">🛡️ Compra Protegida</span>
-        <span class="seal-chip">📧 Entrega Imediata</span>
-        <span class="seal-chip">📱 Leia em qualquer dispositivo</span>
+        <span class="seal-chip">🛡️ Garantia 7 dias</span>
+        <span class="seal-chip">📧 Acesso imediato</span>
+        <span class="seal-chip">📱 Qualquer dispositivo</span>
       </div>
 
     </div>
@@ -2667,6 +2721,28 @@
       fbq('track', 'InitiateCheckout', { value: 19.90, currency: 'BRL' });
     });
   });
+</script>
+
+<!-- STICKY CTA MOBILE -->
+<div class="sticky-cta" id="sticky-cta">
+  <a href="https://pay.kiwify.com.br/CTAGyUt" target="_blank" rel="noopener" class="btn-checkout-link">
+    🍃 Começar agora — R$ 19,90
+  </a>
+  <p>🔒 Acesso imediato · Garantia de 7 dias</p>
+</div>
+
+<script>
+  // Esconde sticky CTA quando oferta estiver visível
+  var oferta = document.getElementById('oferta');
+  var stickyCta = document.getElementById('sticky-cta');
+  if (oferta && stickyCta) {
+    var stickyObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        stickyCta.style.display = e.isIntersecting ? 'none' : 'block';
+      });
+    }, { threshold: 0.1 });
+    stickyObs.observe(oferta);
+  }
 </script>
 
 </body>
