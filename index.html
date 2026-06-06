@@ -2624,7 +2624,7 @@
 
 
 <script>
-  /* ── Countdown timer (15 min de sessão) ───────────────────── */
+  /* ── Countdown timer (persistente + auto-reinício) ─────────── */
   (function () {
     const KEY      = 'emagreca_timer_end';
     const DURATION = 15 * 60; // 15 minutos em segundos
@@ -2632,29 +2632,37 @@
     const msgEl    = document.getElementById('timer-msg');
     const countEl  = document.getElementById('timer-count');
 
-    const now = Math.floor(Date.now() / 1000);
-    let end   = parseInt(sessionStorage.getItem(KEY) || '0');
-    if (!end || end <= now) {
-      end = now + DURATION;
-      sessionStorage.setItem(KEY, end);
+    // Usa localStorage para persistir entre refreshes e abas
+    function getEnd() {
+      const now = Math.floor(Date.now() / 1000);
+      let end = parseInt(localStorage.getItem(KEY) || '0');
+      // Se nunca iniciou ou já passou, começa novo ciclo (nunca expira de vez)
+      if (!end || end <= now) {
+        end = now + DURATION;
+        localStorage.setItem(KEY, end);
+      }
+      return end;
     }
 
-    function tick() {
-      const left = Math.max(0, end - Math.floor(Date.now() / 1000));
-      const m    = Math.floor(left / 60);
-      const s    = left % 60;
-      const fmt  = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    let end = getEnd();
 
-      countEl.textContent = fmt;
+    function tick() {
+      let left = end - Math.floor(Date.now() / 1000);
+
+      // Quando zera, reinicia automaticamente — nunca mostra "expirado"
+      if (left <= 0) {
+        end = getEnd();
+        left = end - Math.floor(Date.now() / 1000);
+      }
+
+      const m   = Math.floor(left / 60);
+      const s   = left % 60;
+      countEl.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      countEl.style.display = '';
 
       // Escalada visual
       bar.classList.remove('warn', 'danger', 'pulse');
-      if (left === 0) {
-        msgEl.innerHTML = '⚠️ Oferta expirada — o preço pode voltar a R$&nbsp;97,00 a qualquer momento';
-        countEl.style.display = 'none';
-        bar.classList.add('danger', 'pulse');
-        return; // para o timer
-      } else if (left <= 120) {        // ≤ 2 min → vermelho pulsante
+      if (left <= 120) {        // ≤ 2 min → vermelho pulsante
         msgEl.textContent = '🔴 Últimos minutos! Garanta agora por R$ 19,90';
         bar.classList.add('danger', 'pulse');
       } else if (left <= 300) {        // ≤ 5 min → laranja
